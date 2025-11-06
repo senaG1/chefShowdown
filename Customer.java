@@ -9,13 +9,14 @@ import java.util.ArrayList;
 public class Customer extends SuperSmoothMover
 {
     private int timeSpent;
+    private int customerIndex = 1;
     /**
      * Act - do whatever the Customer wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        
+        lineUp();
     }
     
     public Customer()
@@ -26,6 +27,9 @@ public class Customer extends SuperSmoothMover
     public void lineUp()
     {
         ArrayList<Customer> totalCustomers = (ArrayList<Customer>)getWorld().getObjects(Customer.class);
-        
+        if(totalCustomers.size() == 1)
+        {
+            setLocation(68, 512);
+        }
     }
 }
