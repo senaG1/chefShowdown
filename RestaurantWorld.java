@@ -34,6 +34,6 @@ public class RestaurantWorld extends World
         
         addObject(new KitchenObject("grill_back.png"), 540, 598);
         addObject(new KitchenObject("stove_back_off.png"), 614, 600);
-        addObject(new KitchenObject("counter_shelf.png"), 688, 598);
+        addObject(new KitchenObject("counter_shelf.png"), 688, 594);
     }
 }
