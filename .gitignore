@@ -2,4 +2,4 @@
 **.ctxt
 project.greenfoot
 **/greenfoot.jar
-project.greenfoot
+git rm --cached project.greenfoot
