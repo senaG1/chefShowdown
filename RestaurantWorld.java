@@ -19,7 +19,7 @@ public class RestaurantWorld extends World
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
         setBackground(background);
         
-        addObject(new UI(), 0, 0);
+        addObject(new UI(), 960, 40);
         
         addKitchenObjects();
     }
