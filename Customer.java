@@ -16,4 +16,9 @@ public class Customer extends SuperSmoothMover
     {
         // Add your action code here.
     }
+    
+    public void lineUp()
+    {
+        
+    }
 }
