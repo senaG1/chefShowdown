@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class cohen here.
+ * Write a description of class ChefCohen here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class cohen extends Actor
+public class ChefCohen extends Customer
 {
     /**
-     * Act - do whatever the cohen wants to do. This method is called whenever
+     * Act - do whatever the ChefCohen wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
