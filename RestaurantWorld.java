@@ -29,5 +29,13 @@ public class RestaurantWorld extends World
         addObject(new KitchenObject("sink_double.png"), 628, 190);
         addObject(new KitchenObject("stove_front_off.png"), 702, 195);
         addObject(new KitchenObject("fryer.png"), 760, 191);
+        
+        addObject(new KitchenObject("bread_station.png"), 777, 300);
+        addObject(new KitchenObject("sink_single_side.png"), 777, 370);
+        addObject(new KitchenObject("dishes_side.png"), 775, 416);
+        
+        addObject(new KitchenObject("grill_back.png"), 540, 598);
+        addObject(new KitchenObject("stove_back_off.png"), 614, 600);
+        addObject(new KitchenObject("counter_shelf.png"), 688, 598);
     }
 }
