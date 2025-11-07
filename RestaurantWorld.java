@@ -37,6 +37,7 @@ public class RestaurantWorld extends World
     }
     
     private void addKitchenObjects() {
+        
         addObject(new KitchenObject("fridge.png"), 540, 174);
         addObject(new KitchenObject("sink_double.png"), 628, 190);
         addObject(new KitchenObject("stove_front_off.png"), 702, 195);
