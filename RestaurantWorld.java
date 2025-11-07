@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.ArrayList;
 /**
  * Write a description of class MyWorld here.
  * 
@@ -12,6 +12,7 @@ public class RestaurantWorld extends World
     private int actTimer = 180;
     public UI ui;
     
+    private int customers;
     public RestaurantWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -22,7 +23,7 @@ public class RestaurantWorld extends World
         setBackground(background);
         
         ui = new UI(this);
-        
+        customers = 0;        
         addKitchenObjects();
     }
     
@@ -31,8 +32,17 @@ public class RestaurantWorld extends World
         actTimer--;
         if(actTimer == 0)
         {
-            addCustomers();
-            actTimer = 180;
+            if(customers <= 4)
+            {
+                addCustomers();
+                customers++;
+                actTimer = 180;
+            }
+            else
+            {
+                actTimer = 180; 
+            }
+            
         }
     }
     
