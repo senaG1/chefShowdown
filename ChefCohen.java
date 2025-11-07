@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ChefCohen extends Customer
 {
+    private GreenfootImage image;
     public ChefCohen(){
         image = new GreenfootImage ("pixelCoden.png");
         image.scale(image.getWidth()*4, image.getHeight()*4);

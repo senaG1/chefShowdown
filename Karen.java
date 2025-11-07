@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Karen extends Customer
 {
-    
+    private GreenfootImage image;
     public Karen(){
         image = new GreenfootImage ("Karen_00.png");
         image.scale(image.getWidth()*4, image.getHeight()*4);
