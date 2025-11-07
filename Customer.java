@@ -14,10 +14,12 @@ public class Customer extends SuperSmoothMover
     private static final int LINE_START_Y = 512;
     private static final int SPACING = 30;
     private static final double MOVE_SPEED = 2.0;
+    private boolean inLine;
     public Customer()
     {
         customerIndex = nextCustomerIndex;
         nextCustomerIndex++;
+        inLine = true;
     }
     
     public void act()
@@ -32,28 +34,39 @@ public class Customer extends SuperSmoothMover
         int myPosition = 0;
         for(Customer c : customers)
         {
-            if (c.customerIndex < this.customerIndex)
+            if(c.isInLine())
             {
-                myPosition++;
+                if (c.customerIndex < this.customerIndex)
+                {
+                    myPosition++;
+                }
             }
         }
-        int currentX = getX();
-        int currentY = getY();
-        int targetX = LINE_X;
-        int targetY = LINE_START_Y + myPosition * SPACING;
-        double dx = targetX - currentX;
-        double dy = targetY - currentY;
-        double distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance > MOVE_SPEED)
+        if(isInLine())
         {
-            double moveX = (dx / distance) * MOVE_SPEED;
-            double moveY = (dy / distance) * MOVE_SPEED;
-            setLocation(currentX + (int)moveX, currentY + (int)moveY);
+            int currentX = getX();
+            int currentY = getY();
+            int targetX = LINE_X;
+            int targetY = LINE_START_Y + myPosition * SPACING;
+            double dx = targetX - currentX;
+            double dy = targetY - currentY;
+            double distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance > MOVE_SPEED)
+            {
+                double moveX = (dx / distance) * MOVE_SPEED;
+                double moveY = (dy / distance) * MOVE_SPEED;
+                setLocation(currentX + (int)moveX, currentY + (int)moveY);
+            }
+            else if (distance > 0)
+            {
+                setLocation(targetX, targetY);
+            }
         }
-        else if (distance > 0)
-        {
-            setLocation(targetX, targetY);
-        }
+    }
+    
+    public boolean isInLine()
+    {
+        return inLine;    
     }
     
     
