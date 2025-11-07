@@ -8,28 +8,53 @@ import java.util.ArrayList;
  */
 public class Customer extends SuperSmoothMover
 {
-    private int timeSpent;
-    private int customerIndex = 1;
-    /**
-     * Act - do whatever the Customer wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private static int nextCustomerIndex = 0;
+    private int customerIndex;
+    private static final int LINE_X = 62;
+    private static final int LINE_START_Y = 512;
+    private static final int SPACING = 30;
+    private static final double MOVE_SPEED = 2.0;
+    public Customer()
+    {
+        customerIndex = nextCustomerIndex;
+        nextCustomerIndex++;
+    }
+    
     public void act()
     {
         lineUp();
     }
     
-    public Customer()
-    {
-        timeSpent = 0;
-    }
-    
     public void lineUp()
     {
-        ArrayList<Customer> totalCustomers = (ArrayList<Customer>)getWorld().getObjects(Customer.class);
-        if(totalCustomers.size() == 1)
+        ArrayList<Customer> customers = (ArrayList<Customer>) getWorld().getObjects(Customer.class);
+        
+        int myPosition = 0;
+        for(Customer c : customers)
         {
-            setLocation(68, 512);
+            if (c.customerIndex < this.customerIndex)
+            {
+                myPosition++;
+            }
+        }
+        int currentX = getX();
+        int currentY = getY();
+        int targetX = LINE_X;
+        int targetY = LINE_START_Y + myPosition * SPACING;
+        double dx = targetX - currentX;
+        double dy = targetY - currentY;
+        double distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance > MOVE_SPEED)
+        {
+            double moveX = (dx / distance) * MOVE_SPEED;
+            double moveY = (dy / distance) * MOVE_SPEED;
+            setLocation(currentX + (int)moveX, currentY + (int)moveY);
+        }
+        else if (distance > 0)
+        {
+            setLocation(targetX, targetY);
         }
     }
+    
+    
 }

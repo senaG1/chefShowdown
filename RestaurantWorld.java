@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class RestaurantWorld extends World
 {
     private GreenfootImage background;
-    
+    private int actTimer = 180;
     public UI ui;
     
     public RestaurantWorld()
@@ -26,6 +26,16 @@ public class RestaurantWorld extends World
         addKitchenObjects();
     }
     
+    public void act()
+    {
+        actTimer--;
+        if(actTimer == 0)
+        {
+            addCustomers();
+            actTimer = 180;
+        }
+    }
+    
     private void addKitchenObjects() {
         addObject(new KitchenObject("fridge.png"), 540, 174);
         addObject(new KitchenObject("sink_double.png"), 628, 190);
@@ -39,5 +49,10 @@ public class RestaurantWorld extends World
         addObject(new KitchenObject("grill_back.png"), 540, 598);
         addObject(new KitchenObject("stove_back_off.png"), 614, 600);
         addObject(new KitchenObject("counter_shelf.png"), 688, 594);
+    }
+    
+    private void addCustomers()
+    {
+        addObject(new Customer(), 51, 628);
     }
 }
