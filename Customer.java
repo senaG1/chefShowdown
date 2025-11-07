@@ -10,6 +10,7 @@ public class Customer extends SuperSmoothMover
 {
     private int timeSpent;
     private int customerIndex = 1;
+    protected GreenfootImage image;
     /**
      * Act - do whatever the Customer wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

@@ -8,6 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Karen extends Customer
 {
+    
+    public Karen(){
+        image = new GreenfootImage ("Karen_00.png");
+        image.scale(image.getWidth()*4, image.getHeight()*4);
+        setImage(image);
+    }
     /**
      * Act - do whatever the Karen wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
