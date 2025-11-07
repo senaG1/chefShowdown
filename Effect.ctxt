@@ -1,7 +1,13 @@
 #BlueJ class context
 comment0.target=Effect
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Effect\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Effect\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=2
+comment0.text=\r\n\ Effect\ -\ Abstract\ superclass\ for\ temporary\ visual\ and\ gameplay\ effects.\r\n\ \r\n\ Provides\ fade-out\ functionality\ and\ automatic\ removal\ after\ a\ duration.\r\n\ \r\n\ @Sena\ Godek\ \r\n\ @version\:\ 2025\r\n
+comment1.params=duration
+comment1.target=Effect(int)
+comment1.text=\r\n\ Constructor\ for\ Effect\r\n\ @param\ duration\ -\ how\ long\ the\ effect\ lasts\ before\ fading\ out\r\n
+comment2.params=timeLeft\ totalFadeTime
+comment2.target=void\ fade(int,\ int)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ loseCustomers()
+numComments=5
