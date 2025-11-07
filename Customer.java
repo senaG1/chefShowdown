@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class Customer extends SuperSmoothMover
 {
-    private GreenfootImage image;
     private static int nextCustomerIndex = 0;
     private int customerIndex;
     private static final int LINE_X = 62;
@@ -16,9 +15,12 @@ public class Customer extends SuperSmoothMover
     private static final int SPACING = 30;
     private static final double MOVE_SPEED = 2.0;
     private boolean inLine;
+    private GreenfootImage image;
+    
     public Customer()
     {
         image = new GreenfootImage("regular_Cust.png");
+        image.scale(image.getWidth()*3, image.getHeight()*3);
         setImage(image);
         customerIndex = nextCustomerIndex;
         nextCustomerIndex++;
