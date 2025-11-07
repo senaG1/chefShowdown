@@ -10,6 +10,8 @@ public class RestaurantWorld extends World
 {
     private GreenfootImage background;
     
+    public UI ui;
+    
     public RestaurantWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -19,7 +21,7 @@ public class RestaurantWorld extends World
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
         setBackground(background);
         
-        addObject(new UI(), 960, 40);
+        ui = new UI(this);
         
         addKitchenObjects();
     }
