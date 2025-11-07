@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Influencer extends Customer
 {
+    private GreenfootImage image;
     public Influencer(){
         image = new GreenfootImage ("influencer_00.png");
         image.scale(image.getWidth()*4, image.getHeight()*4);

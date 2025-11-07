@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class RegularCustomer extends Customer
 {
-    
+    private GreenfootImage image;
     public RegularCustomer(){
         image = new GreenfootImage ("regular_Cust.png");
         image.scale(image.getWidth()*4, image.getHeight()*4);
