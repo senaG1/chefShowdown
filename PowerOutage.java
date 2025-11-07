@@ -23,17 +23,16 @@ public class PowerOutage extends Effect
     }
     
     /**
-     * The added to world method is called uato,.....
      * 
-     * @param w     The World you are being added to.
+     * @param w The World you are being added to.
      */    
     public void addedToWorld (World w){
         if (firstAct){
             // Knock out 25% of Pedestrians with wind!
             customer = (ArrayList<Customer>)w.getObjects(Customer.class);
             for (Customer c : customer){
-                // Roll a random number 0-3, 25% chance of a 0
-                if (Greenfoot.getRandomNumber(4) == 0){
+                // Roll a random number 0-2, 33.33% chance of a 0
+                if (Greenfoot.getRandomNumber(3) == 0){
                     getWorld().removeObject(c);
                 }
             }
