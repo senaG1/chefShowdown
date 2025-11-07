@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
 /**
  * Write a description of class PowerOutage here.
@@ -8,8 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PowerOutage extends Effect
 {
+    private ArrayList<Customer> customer;
     private int actCount;
     private int totalFadeTime;
+    private boolean firstAct;
     
     public PowerOutage()
     {
@@ -19,14 +22,38 @@ public class PowerOutage extends Effect
         totalFadeTime = 90;
     }
     
+    /**
+     * The added to world method is called uato,.....
+     * 
+     * @param w     The World you are being added to.
+     */    
+    public void addedToWorld (World w){
+        if (firstAct){
+            // Knock out 25% of Pedestrians with wind!
+            customer = (ArrayList<Customer>)w.getObjects(Customer.class);
+            for (Customer c : customer){
+                // Roll a random number 0-3, 25% chance of a 0
+                if (Greenfoot.getRandomNumber(4) == 0){
+                    getWorld().removeObject(c);
+                }
+            }
+            firstAct = false;
+        }
+    }
+    
     public void loseCustomers()
     {
-        // Empty for now
+        
     }
     
     public void act()
     {
-        // Add your action code here.
+        actCount--;
+        if (actCount == 0){
+            getWorld().removeObject(this);
+            return;
+        }
+        fade (actCount, totalFadeTime);
     }
     
     private void drawimage() {
