@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class RestaurantWorld extends World
 {
     private GreenfootImage background;
+    private int actCount;
     private int actTimer = 180;
     public UI ui;
     
@@ -23,16 +24,23 @@ public class RestaurantWorld extends World
         
         ui = new UI(this);
         
+        actCount = 0;
+        
         addKitchenObjects();
     }
     
     public void act()
     {
         actTimer--;
+        actCount++;
         if(actTimer == 0)
         {
             addCustomers();
             actTimer = 180;
+        }
+        
+        if (actCount % 360 == 0){
+            addObject(new PowerOutage(), 512, 400);
         }
     }
     
