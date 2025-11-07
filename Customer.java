@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
+import java.util.Random;
 /**
  * Write a description of class Customer here.
  * 
@@ -30,6 +31,22 @@ public class Customer extends SuperSmoothMover
     public void act()
     {
         lineUp();
+        
+    }
+    
+    public void waitOrder()
+    {
+        Random random = new Random();
+        ArrayList<Customer> customers = (ArrayList<Customer>) getWorld().getObjects(Customer.class);
+        for(Customer c : customers)
+        {
+            if(c.isInLine() == false)
+            {
+                int randY = random.nextInt(426 - 212 + 1) + 212;
+                int randX = random.nextInt(78 - 11 + 1) + 11;
+                setLocation(randX, randY);
+            }
+        }
     }
     
     public void lineUp()
@@ -66,6 +83,8 @@ public class Customer extends SuperSmoothMover
             {
                 setLocation(targetX, targetY);
             }
+            this.inLine = false;
+            waitOrder();
         }
     }
     
