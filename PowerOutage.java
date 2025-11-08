@@ -4,14 +4,14 @@ import java.util.ArrayList;
 /**
  * Write a description of class PowerOutage here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sena Godek
+ * @version 2025
  */
 public class PowerOutage extends Effect
 {
-    private int actCount;
-    private int totalFadeTime;
-    private boolean customersRemoved = false;
+    private int actCount;      // Tracks remaining duration of the power outage
+    private int totalFadeTime; // Duration of the fade-out effect at the end
+    private boolean customersRemoved = false; // Ensures customers are only removed once
     
     public PowerOutage()
     {
@@ -21,14 +21,33 @@ public class PowerOutage extends Effect
         totalFadeTime = 90;
     }
     
+     /**
+     * loseCustomers - Abstract method implementation from Effect class.
+     * Removes 50% of customers when power goes out (they leave due to the outage).
+     * Note: This method is defined but not called in the current implementation.
+     */
     public void loseCustomers()
     {
         // Remove 33% of customers when power goes out
         ArrayList<Customer> customers = (ArrayList<Customer>)getWorld().getObjects(Customer.class);
         
-        // Go backwards through the list to safely remove while iterating
-        for (int i = customers.size() - 1; i >= 0; i--) {
-            if (Greenfoot.getRandomNumber(3) == 0) {  // 33% chance
+        // If there are no customers, nothing to do
+        if (customers.isEmpty()) {
+            return;
+        }
+        
+        // Remove at least 2 customers (or all if less than 2)
+        int guaranteedRemovals = Math.min(2, customers.size());
+        
+        // Remove the first 2 customers (guaranteed)
+        for (int i = 0; i < guaranteedRemovals; i++) {
+            getWorld().removeObject(customers.get(i));
+        }
+        
+        // For remaining customers, 50% chance they leave
+        // Go backwards to safely remove while iterating
+        for (int i = customers.size() - 1; i >= guaranteedRemovals; i--) {
+            if (Greenfoot.getRandomNumber(2) == 0) {
                 getWorld().removeObject(customers.get(i));
             }
         }
@@ -38,12 +57,7 @@ public class PowerOutage extends Effect
     {
         // Remove customers on first act only
         if (!customersRemoved) {
-            ArrayList<Customer> customers = (ArrayList<Customer>)getWorld().getObjects(Customer.class);
-            for (int i = customers.size() - 1; i >= 0; i--) {
-                if (Greenfoot.getRandomNumber(3) == 0) {
-                    getWorld().removeObject(customers.get(i));
-                }
-            }
+            loseCustomers();
             customersRemoved = true;
         }
         
