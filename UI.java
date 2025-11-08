@@ -19,8 +19,10 @@ public class UI extends SuperSmoothMover
     private GreenfootImage ui = new GreenfootImage("UI.png");
     
     private Label cashLabelA;
+    private Label cashCounterA;
     private Label ratingLabelA;
     private Label cashLabelB;
+    private Label cashCounterB;
     private Label ratingLabelB;
     
     private UI_Image cashIconA;
@@ -54,8 +56,10 @@ public class UI extends SuperSmoothMover
         
         // labels for the UI
         cashLabelA = new Label("CASH: ", labelSize);
+        cashCounterA = new Label(cashCounter, labelSize);
         ratingLabelA = new Label("RATING: ", labelSize);
         cashLabelB = new Label("CASH: ", labelSize);
+        cashCounterB = new Label(cashCounter, labelSize);
         ratingLabelB = new Label("RATING: ", labelSize);
         
         // add labels and images to UI
@@ -69,12 +73,14 @@ public class UI extends SuperSmoothMover
     private void addImages(World w) {
         // blue team
         w.addObject(cashLabelA, 340, labelHeight);
+        w.addObject(cashCounterA, 410, labelHeight);
         w.addObject(cashIconA, 450, labelHeight);
         w.addObject(ratingLabelA, 60, labelHeight);
         w.addObject(starIconA, 190, labelHeight - 5);
         
         // red team
         w.addObject(cashLabelB, 810, labelHeight);
+        w.addObject(cashCounterB, 880, labelHeight);
         w.addObject(cashIconB, 920, labelHeight);
         w.addObject(ratingLabelB, 530, labelHeight);
         w.addObject(starIconB, 660, labelHeight - 5);
