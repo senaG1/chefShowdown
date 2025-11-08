@@ -10,6 +10,7 @@ public class Influencer extends Customer
 {
     private GreenfootImage image;
     public Influencer(){
+        super();
         image = new GreenfootImage ("influencer_00.png");
         image.scale(image.getWidth()*4, image.getHeight()*4);
         setImage(image);
@@ -20,6 +21,6 @@ public class Influencer extends Customer
      */
     public void act()
     {
-        // Add your action code here.
+        super.act();
     }
 }

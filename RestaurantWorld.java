@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.ArrayList;
 /**
  * Write a description of class MyWorld here.
  * 
@@ -11,6 +11,7 @@ public class RestaurantWorld extends World
     private GreenfootImage background;
     private int actTimer = 180;
     public UI ui;
+    private ArrayList<Customer> customers;
     
     public RestaurantWorld()
     {    
@@ -50,9 +51,43 @@ public class RestaurantWorld extends World
         addObject(new KitchenObject("stove_back_off.png"), 614, 600);
         addObject(new KitchenObject("counter_shelf.png"), 688, 594);
     }
-    
+    //Currently the right side spawn does not work
     private void addCustomers()
     {
-        addObject(new Customer(), 51, 628);
+        int rand = Greenfoot.getRandomNumber(30);
+        int customerType = Greenfoot.getRandomNumber(10);
+        
+            //boolean spawnAtRed = Greenfoot.getRandomNumber(2) == 0 ? true : false;
+            boolean spawnAtRed = false;
+        if (spawnAtRed){
+            if(customerType <= 4) {
+                addObject(new RegularCustomer(), 908, 628);
+            }
+            else if(customerType <= 6) {
+                addObject(new Karen(), 908, 628);
+            }
+            else if(customerType <= 9){
+                addObject(new Influencer(), 908, 628);
+            }
+            else{
+                addObject(new ChefCohen(), 908, 628);
+            }
+            } else {
+            if(customerType <= 4) {
+                addObject(new RegularCustomer(), 51, 628);
+            }
+            else if(customerType <= 6) {
+                addObject(new Karen(), 51, 628);
+            }
+            else if(customerType <= 9){
+                addObject(new Influencer(), 51, 628);
+            }
+            else{
+                addObject(new ChefCohen(), 51, 628);
+            }
+            
+        }
     }
+    
+    
 }
