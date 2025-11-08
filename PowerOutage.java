@@ -24,7 +24,7 @@ public class PowerOutage extends Effect
      /**
      * loseCustomers - Abstract method implementation from Effect class.
      * Removes 50% of customers when power goes out (they leave due to the outage).
-     * Note: This method is defined but not called in the current implementation.
+     * It also gaurentees at least 2 customers leaving.
      */
     public void loseCustomers()
     {
