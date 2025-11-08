@@ -9,10 +9,9 @@ import java.util.ArrayList;
  */
 public class PowerOutage extends Effect
 {
-    private ArrayList<Customer> customer;
     private int actCount;
     private int totalFadeTime;
-    private boolean firstAct;
+    private boolean customersRemoved = false;
     
     public PowerOutage()
     {
@@ -22,37 +21,38 @@ public class PowerOutage extends Effect
         totalFadeTime = 90;
     }
     
-    /**
-     * 
-     * @param w The World you are being added to.
-     */    
-    public void addedToWorld (World w){
-        if (firstAct){
-            // Knock out 25% of Pedestrians with wind!
-            customer = (ArrayList<Customer>)w.getObjects(Customer.class);
-            for (Customer c : customer){
-                // Roll a random number 0-2, 33.33% chance of a 0
-                if (Greenfoot.getRandomNumber(3) == 0){
-                    getWorld().removeObject(c);
-                }
-            }
-            firstAct = false;
-        }
-    }
-    
     public void loseCustomers()
     {
+        // Remove 33% of customers when power goes out
+        ArrayList<Customer> customers = (ArrayList<Customer>)getWorld().getObjects(Customer.class);
         
+        // Go backwards through the list to safely remove while iterating
+        for (int i = customers.size() - 1; i >= 0; i--) {
+            if (Greenfoot.getRandomNumber(3) == 0) {  // 33% chance
+                getWorld().removeObject(customers.get(i));
+            }
+        }
     }
     
     public void act()
     {
+        // Remove customers on first act only
+        if (!customersRemoved) {
+            ArrayList<Customer> customers = (ArrayList<Customer>)getWorld().getObjects(Customer.class);
+            for (int i = customers.size() - 1; i >= 0; i--) {
+                if (Greenfoot.getRandomNumber(3) == 0) {
+                    getWorld().removeObject(customers.get(i));
+                }
+            }
+            customersRemoved = true;
+        }
+        
         actCount--;
         if (actCount == 0){
             getWorld().removeObject(this);
             return;
         }
-        fade (actCount, totalFadeTime);
+        fade(actCount, totalFadeTime);
     }
     
     private void drawimage() {
