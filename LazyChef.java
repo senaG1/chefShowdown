@@ -1,17 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class LazyChef here.
+ * Cheap chef that cooks very slowly
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
 public class LazyChef extends Chef
 {
-    /**
-     * Act - do whatever the LazyChef wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    public LazyChef(){
+        speed = 300;
+    }
+    
     public void act()
     {
         // Add your action code here.
