@@ -32,6 +32,8 @@ public class Customer extends SuperSmoothMover
         
     }
     
+    // Sends customers in line to wait at the waiting space
+    // Currently needs implementation after method for taking customer's orders is made
     public void waitOrder()
     {
         Random random = new Random();
@@ -47,6 +49,7 @@ public class Customer extends SuperSmoothMover
         }
     }
     
+    // Has customers line up, max 5 customers at a time
     public void lineUp()
     {
         ArrayList<Customer> customers = (ArrayList<Customer>) getWorld().getObjects(Customer.class);
@@ -81,8 +84,7 @@ public class Customer extends SuperSmoothMover
             {
                 setLocation(targetX, targetY);
             }
-            this.inLine = false;
-            waitOrder();
+            
         }
     }
     
