@@ -10,11 +10,11 @@ public class ChefCohenBlue extends Chef
 {
     public ChefCohenBlue()
     {
-        speed = 210;
+        cookSpeed = 210;
     }
     
     public void act()
     {
-        // Add your action code here.
+        super.act();
     }
 }

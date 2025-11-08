@@ -27,6 +27,10 @@ public class RestaurantWorld extends World
         
         actCount = 0;
         
+        //testing
+        addObject(new ChefCohenBlue(), 420, 260);
+        addObject(new ChefCohenBlue(), 520, 260);
+        
         addKitchenObjects();
     }
     

@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class LazyChef extends Chef
 {
     public LazyChef(){
-        speed = 300;
+        cookSpeed = 300;
     }
     
     public void act()

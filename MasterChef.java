@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MasterChef extends Chef
 {
     public MasterChef(){
-        speed = 120;
+        cookSpeed = 120;
     }
     
     public void act()
