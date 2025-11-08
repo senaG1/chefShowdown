@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public abstract class Chef extends SuperSmoothMover
 {
-    protected int cookSpeed, cost, salary, cookCount, orders, xMovement, yMovement, walkSpeed;
+    protected int cookSpeed, cost, salary, cookCount, orders, walkSpeed;
+    protected int upperBound, lowerBound, farBound, closeBound;//movement box (close and far from center x of screen)
+    protected int centreX;
     protected String side;
     protected boolean isCooking;
     protected SuperStatBar cookBar;
@@ -13,31 +13,37 @@ public abstract class Chef extends SuperSmoothMover
     {
         isCooking = false;
         cookBar = new SuperStatBar(cookSpeed, 0, this, 40, 10, -20, Color.YELLOW, Color.DARK_GRAY);
+        
         cookCount = 1;
         orders = 1;
-        xMovement = 200;
-        yMovement = 240;
-        walkSpeed = 3;
+
+        walkSpeed = 5;
+        
+        upperBound = 260;
+        lowerBound = 500;
+        farBound = 240;
+        closeBound = 40;
+        
         setImage("pixelCoden.png");//testing
         enableStaticRotation();
     }
 
     public void addedToWorld(World w){
-        getWorld().addObject(cookBar, getX(), getY());
+        w.addObject(cookBar, getX(), getY());
         if(getX() <= w.getWidth() / 2){//on left side, works for blue restaurant
             side = "L";
         }else{//on right side, works for red restaurant
             side = "R";
         }
-
+        centreX = w.getWidth()/2;
     }
 
     public void act(){
+        walk();
         cookBar.update(cookCount);
         if(!isCooking && orders > 0){
             cook();
         }
-        walk();
     }
 
     public void takeOrder(){
@@ -53,32 +59,41 @@ public abstract class Chef extends SuperSmoothMover
         orders--;
         cookCount = 0;
     }
-
+    
+    //walks in a rectangle
     protected void walk(){
-        if(side.equals("L")){
-            if(getRotation() % 180 == 0){
-                for(int i = 0; i < xMovement/walkSpeed; i++){
-                    move(-walkSpeed);
-                }     
+        move(walkSpeed);
+        if(getY() >= lowerBound || getY() <= upperBound){
+            sleepFor(15);
+            turn(90);
+            if(getY() >= lowerBound){
+                setLocation(getX(), lowerBound - 5);
             }else{
-                for(int i = 0; i < yMovement/walkSpeed; i++){
-                    move(walkSpeed);
-                }     
-            }
-        }else{
-            if(getRotation() % 180 == 0){
-                for(int i = 0; i < xMovement/walkSpeed; i++){
-                    move(walkSpeed);
-                }     
-            }else{
-                for(int i = 0; i < yMovement/walkSpeed; i++){
-                    move(walkSpeed);
-                }     
+                setLocation(getX(), upperBound + 5);
             }
         }
-
-        sleepFor(15);
-        turn(90);
+        if(side.equals("L")){
+            if(getX() >= centreX - closeBound || getX() <= centreX - farBound){
+                turn(90);
+                sleepFor(15);
+                if(getX() >= centreX-closeBound){
+                    setLocation(centreX - closeBound - 5, getY());
+                }else{
+                    setLocation(centreX - farBound + 5, getY());
+                }
+            }
+        }else{
+            if(getX() <= centreX + closeBound || getX() >= centreX + farBound){
+                turn(90);
+                sleepFor(15);
+                if(getX() <= centreX+closeBound){
+                    setLocation(centreX + closeBound + 5, getY());
+                }else{
+                    setLocation(centreX + farBound - 5, getY());
+                }
+            }
+        }
+ 
     }
 
     protected void checkQueue(){
