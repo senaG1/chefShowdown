@@ -16,7 +16,11 @@ public class Customer extends SuperSmoothMover
     private static final int LINE_START_Y = 512;
     private static final int SPACING = 30;
     private static final double MOVE_SPEED = 2.0;
-    private boolean inLine;
+    private boolean inLine;    
+    private boolean hasWaitingSpot;
+    private int waitingX;
+    private int waitingY;
+    private int actTimer;
     public Customer()
     {
         image = new GreenfootImage("regular_Cust.png");
@@ -24,30 +28,96 @@ public class Customer extends SuperSmoothMover
         customerIndex = nextCustomerIndex;
         nextCustomerIndex++;
         inLine = true;
+        actTimer = 240;
     }
     
     public void act()
     {
-        lineUp();
-        
+        actTimer--;
+        if(actTimer == 0)
+        {
+            inLine = false;
+            actTimer = 240;
+        }
+        if(isInLine())
+        {
+            lineUp();
+        }
+        else
+        {
+            waitOrder();
+        }
     }
     
     // Sends customers in line to wait at the waiting space
     // Currently needs implementation after method for taking customer's orders is made
     public void waitOrder()
     {
-        Random random = new Random();
-        ArrayList<Customer> customers = (ArrayList<Customer>) getWorld().getObjects(Customer.class);
-        for(Customer c : customers)
+        int currentX = getX();
+        int currentY = getY();
+        if(!hasWaitingSpot)
         {
-            if(c.isInLine() == false)
+            int attempts = 0;
+            boolean spotFound = false;
+            // Ensures that customers don't wait at a spot where there is already a customer waiting
+            while(!spotFound && attempts < 50)  
+                {
+                int testX = Greenfoot.getRandomNumber(78 - 11 + 1) + 11;
+                int testY = Greenfoot.getRandomNumber(426 - 212 + 1) + 212;
+                
+                boolean occupied = false;
+                ArrayList<Customer> customers = (ArrayList<Customer>) getWorld().getObjects(Customer.class);
+            
+                for(Customer c : customers)
+                {
+                    if(c != this && !c.isInLine())
+                    {
+                        double dist = Math.sqrt(Math.pow(c.getX() - testX, 2) + Math.pow(c.getY() - testY, 2));
+                        if(dist < 40)
+                        {
+                            occupied = true;
+                            break;
+                        }
+                    }
+                }
+                
+                if(!occupied)
+                {
+                    waitingX = testX;
+                    waitingY = testY;
+                    hasWaitingSpot = true;
+                    spotFound = true;
+                }
+                
+                attempts++;
+            }
+            
+            // If no spot found after 50 attempts, just pick a random one anyway
+            if(!spotFound)
             {
-                int randY = random.nextInt(426 - 212 + 1) + 212;
-                int randX = random.nextInt(78 - 11 + 1) + 11;
-                setLocation(randX, randY);
+                waitingX = Greenfoot.getRandomNumber(78 - 11 + 1) + 11;
+                waitingY = Greenfoot.getRandomNumber(426 - 212 + 1) + 212;
+                hasWaitingSpot = true;
             }
         }
+        
+        // Move towards the waiting spot
+        double dx = waitingX - currentX;
+        double dy = waitingY - currentY;
+        double distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance > MOVE_SPEED)
+        {
+            double moveX = (dx / distance) * MOVE_SPEED;
+            double moveY = (dy / distance) * MOVE_SPEED;
+            setLocation(currentX + (int)moveX, currentY + (int)moveY);
+        }
+        else if (distance > 0)
+        {
+            setLocation(waitingX, waitingY);
+        }
     }
+        
     
     // Has customers line up, max 5 customers at a time
     public void lineUp()
@@ -86,6 +156,7 @@ public class Customer extends SuperSmoothMover
             }
             
         }
+        
     }
     
     public boolean isInLine()
