@@ -11,16 +11,19 @@ public class Customer extends SuperSmoothMover
 {
     private GreenfootImage image;
     private static int nextCustomerIndex = 0;
-    private int customerIndex;
+    protected int customerIndex;
     private static final int LINE_X = 62;
     private static final int LINE_START_Y = 512;
     private static final int SPACING = 30;
-    private static final double MOVE_SPEED = 2.0;
-    private boolean inLine;    
+    private static final double MOVE_SPEED = 3.0;
+    protected boolean inLine;    
     private boolean hasWaitingSpot;
     private int waitingX;
     private int waitingY;
-    private int actTimer;
+    protected int actTimer;
+    protected SuperStatBar patience;
+    protected int maxPatience = 2100; // 35 secs before patience runs out
+    protected int currentPatience = 2100;
     public Customer()
     {
         image = new GreenfootImage("regular_Cust.png");
@@ -31,9 +34,17 @@ public class Customer extends SuperSmoothMover
         actTimer = 240;
     }
     
+    public void addedToWorld(World world)
+    {
+        patience = new SuperStatBar(maxPatience, currentPatience, this, 50, 8, -30, Color.BLUE, Color.RED);
+        world.addObject(patience, getX(), getY());
+    }
+    
     public void act()
     {
         actTimer--;
+        currentPatience--;
+        patience.update(currentPatience);
         if(actTimer == 0)
         {
             inLine = false;
@@ -46,6 +57,11 @@ public class Customer extends SuperSmoothMover
         else
         {
             waitOrder();
+        }
+        
+        if(currentPatience == 0)
+        {
+            getWorld().removeObject(this);
         }
     }
     
@@ -93,7 +109,7 @@ public class Customer extends SuperSmoothMover
             }
             
             // If no spot found after 50 attempts, just pick a random one anyway
-            if(!spotFound)
+            if(spotFound == false)
             {
                 waitingX = Greenfoot.getRandomNumber(78 - 11 + 1) + 11;
                 waitingY = Greenfoot.getRandomNumber(426 - 212 + 1) + 212;
