@@ -32,6 +32,7 @@ public class RestaurantWorld extends World
         addObject(new ChefCohenBlue(), 525, 265);
         
         addKitchenObjects();
+        setPaintOrder(SuperStatBar.class, SuperSpeechBubble.class);
     }
     
     public void act()
