@@ -24,6 +24,7 @@ public class Customer extends SuperSmoothMover
     protected SuperStatBar patience;
     protected int maxPatience = 2100; // 35 secs before patience runs out
     protected int currentPatience = 2100;
+    
     public Customer()
     {
         image = new GreenfootImage("regular_Cust.png");
@@ -36,7 +37,7 @@ public class Customer extends SuperSmoothMover
     
     public void addedToWorld(World world)
     {
-        patience = new SuperStatBar(maxPatience, currentPatience, this, 50, 8, -30, Color.BLUE, Color.RED);
+        patience = new SuperStatBar(maxPatience, currentPatience, this, 40, 8, -22, Color.BLUE, Color.RED);
         world.addObject(patience, getX(), getY());
     }
     

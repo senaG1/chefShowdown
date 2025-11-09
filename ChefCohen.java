@@ -11,8 +11,7 @@ public class ChefCohen extends Customer
     private GreenfootImage image;
     public ChefCohen(){
         super();
-        image = new GreenfootImage ("pixelCoden.png");
-        image.scale(image.getWidth()*4, image.getHeight()*4);
+        image = new GreenfootImage ("ChefCohen.png");
         setImage(image);
     }
     /**

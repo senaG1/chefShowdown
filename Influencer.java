@@ -12,7 +12,7 @@ public class Influencer extends Customer
     public Influencer(){
         super();
         image = new GreenfootImage ("influencer_00.png");
-        image.scale(image.getWidth()*4, image.getHeight()*4);
+        image.scale(image.getWidth()*2, image.getHeight()*2);
         setImage(image);
     }
     /**
