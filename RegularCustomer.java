@@ -10,6 +10,7 @@ public class RegularCustomer extends Customer
 {
     private GreenfootImage image;
     public RegularCustomer(){
+        super();
         image = new GreenfootImage ("regular_Cust.png");
         image.scale(image.getWidth()*4, image.getHeight()*4);
         setImage(image);
@@ -22,6 +23,6 @@ public class RegularCustomer extends Customer
 
     public void act()
     {
-        // Add your action code here.
+        super.act();
     }
 }

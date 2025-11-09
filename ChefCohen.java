@@ -10,6 +10,7 @@ public class ChefCohen extends Customer
 {
     private GreenfootImage image;
     public ChefCohen(){
+        super();
         image = new GreenfootImage ("pixelCoden.png");
         image.scale(image.getWidth()*4, image.getHeight()*4);
         setImage(image);
@@ -20,6 +21,6 @@ public class ChefCohen extends Customer
      */
     public void act()
     {
-        // Add your action code here.
+        super.act();
     }
 }

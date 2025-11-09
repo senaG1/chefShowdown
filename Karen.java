@@ -10,6 +10,7 @@ public class Karen extends Customer
 {
     private GreenfootImage image;
     public Karen(){
+        super();
         image = new GreenfootImage ("Karen_00.png");
         image.scale(image.getWidth()*4, image.getHeight()*4);
         setImage(image);
@@ -20,6 +21,6 @@ public class Karen extends Customer
      */
     public void act()
     {
-        // Add your action code here.
+        super.act();
     }
 }
