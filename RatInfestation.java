@@ -81,7 +81,7 @@ public class RatInfestation extends Effect
     }
     
      /**
-     * spawnRats - Spawns 8-15 rats at random positions at the bottom of the screen.
+     * spawnRats - Spawns 10-18 rats at random positions at the bottom of the screen.
      * Each rat runs upward at a slightly different speed for variety.
      */
     private void spawnRats()
