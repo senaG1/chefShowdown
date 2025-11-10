@@ -181,5 +181,4 @@ public class Customer extends SuperSmoothMover
         return inLine;    
     }
     
-    
 }
