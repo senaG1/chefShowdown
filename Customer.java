@@ -34,6 +34,27 @@ public class Customer extends SuperSmoothMover
         inLine = true;
         actTimer = 240;
     }
+    // Has customer choose random items from menu
+    // Can choose up to 3 items
+    public String[] generateOrder()
+    {
+        int numOrder = Greenfoot.getRandomNumber(2);
+        ArrayList<String> availibleItems = new ArrayList<>();
+        for(String item : menu)
+        {
+            availibleItems.add(item);
+        }
+        order = new String[numOrder];
+        for(int i = 0; i < numOrder; i++)
+        {
+            int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
+            order[i] = availibleItems.remove(randomIndex);
+            orderImageSet(menu[randomIndex]);
+                
+        }
+        
+        return order;
+    }
     
     public void addedToWorld(World world)
     {
