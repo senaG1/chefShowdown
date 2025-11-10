@@ -24,6 +24,7 @@ public class Customer extends SuperSmoothMover
     protected SuperStatBar patience;
     protected int maxPatience = 2100; // 35 secs before patience runs out
     protected int currentPatience = 2100;
+    protected Restaurant restaurant;
     
     public Customer()
     {
@@ -33,6 +34,7 @@ public class Customer extends SuperSmoothMover
         nextCustomerIndex++;
         inLine = true;
         actTimer = 240;
+        //restaurant = (Restaurant) getOneIntersectingObject(Restaurant.class);
     }
     // Has customer choose random items from menu
     // Can choose up to 3 items
