@@ -9,6 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Karen extends Customer
 {
     private GreenfootImage image;
+    //Karens should be more impatient
+    protected int maxPatience = 1050; // 17.5 secs before patience runs out
+    protected int currentPatience = 1050;
     public Karen(){
         super();
         image = new GreenfootImage ("Karen_00.png");

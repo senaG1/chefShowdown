@@ -9,6 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Influencer extends Customer
 {
     private GreenfootImage image;
+    protected int maxPatience = 1680; // 17.5 secs before patience runs out
+    protected int currentPatience = 1680;
     public Influencer(){
         super();
         image = new GreenfootImage ("influencer_00.png");
