@@ -34,7 +34,7 @@ public class Customer extends SuperSmoothMover
         nextCustomerIndex++;
         inLine = true;
         actTimer = 240;
-        restaurant = (Restaurant) getOneIntersectingObject(Restaurant.class);
+        //restaurant = (Restaurant) getOneIntersectingObject(Restaurant.class);
     }
     
     public void addedToWorld(World world)
@@ -182,6 +182,5 @@ public class Customer extends SuperSmoothMover
     {
         return inLine;    
     }
-    
     
 }
