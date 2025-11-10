@@ -13,6 +13,10 @@ public class RestaurantWorld extends World
     private int actTimer = 180;
     public UI ui;
     private ArrayList<Customer> customers;
+    private Restaurant restaurantBlue;
+    private Restaurant restaurantRed;
+    private int width = 960;
+    private int height = 640;
     
     public RestaurantWorld()
     {    
@@ -26,6 +30,12 @@ public class RestaurantWorld extends World
         ui = new UI(this);
         
         actCount = 0;
+        
+        restaurantBlue = new Restaurant("Blue", 1000);
+        addObject(restaurantBlue, getWidth()/4, getHeight()/2);
+        
+        restaurantBlue = new Restaurant("Red", 1000);
+        addObject(restaurantBlue, width/2 + width/4, height/2);           
         
         //testing
         addObject(new ChefCohenBlue(), 415, 265);
