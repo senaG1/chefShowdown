@@ -15,6 +15,13 @@ public class Restaurant extends SuperSmoothMover
     protected ArrayList<Chef> chefs;
     protected ArrayList<Customer> customers;
     
+    public Restaurant(String name, double money) {
+        this.name = name;
+        this.money = money;
+        
+        drawImage();
+    }
+    
     public void act()
     {
         // Add your action code here.
@@ -38,5 +45,21 @@ public class Restaurant extends SuperSmoothMover
     
     protected void loseMoney(double amount) {
         money -= amount;
+    }
+    
+    private void drawImage() {
+        int worldWidth = 960;
+        int worldHeight = 640;
+    
+        GreenfootImage img = new GreenfootImage(worldWidth / 2, worldHeight);
+    
+        img.setColor(new Color(0, 0, 0, 0));
+        img.fill();
+    
+        setImage(img);
+    }
+    
+    public String getName() {
+        return name;
     }
 }
