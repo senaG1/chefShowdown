@@ -15,7 +15,7 @@ public class Paparazzi extends Effect
     
     public void loseCustomers()
     {
-        // Empty for now
+        // All Karens leave
     }
     
     public void act()
