@@ -17,14 +17,13 @@ public class Customer extends SuperSmoothMover
     private static final int SPACING = 30;
     private static final double MOVE_SPEED = 3.0;
     protected boolean inLine;    
-    private boolean hasWaitingSpot;
-    private int waitingX;
-    private int waitingY;
+    protected boolean hasWaitingSpot;
+    protected int waitingX;
+    protected int waitingY;
     protected int actTimer;
     protected SuperStatBar patience;
     protected int maxPatience = 2100; // 35 secs before patience runs out
     protected int currentPatience = 2100;
-    protected Restaurant restaurant;
     protected String[] menu = {"nuggets", "fries", "hash", "big cohen", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
     protected String[] order;
     protected SuperSpeechBubble orderBubble;
@@ -39,8 +38,10 @@ public class Customer extends SuperSmoothMover
         nextCustomerIndex++;
         inLine = true;
         actTimer = 240;
-        //restaurant = (Restaurant) getOneIntersectingObject(Restaurant.class);
+        order = generateOrder();
+        
     }
+    
     // Has customer choose random items from menu
     // Can choose up to 3 items
     public String[] generateOrder()
@@ -63,14 +64,69 @@ public class Customer extends SuperSmoothMover
         return order;
     }
     
+    public void orderImageSet(String order)
+    {
+        if(order == "nuggets")
+        {
+            orderImage = new GreenfootImage("nuggets.png");
+        }
+        else if(order == "fries")
+        {
+            orderImage = new GreenfootImage("fries.png");
+        }
+        else if(order == "hash")
+        {
+            orderImage = new GreenfootImage("hash.png");
+        }
+        else if(order == "big cohen")
+        {
+            orderImage = new GreenfootImage("burger.png");
+        }
+        else if(order == "crispy")
+        {
+            orderImage = new GreenfootImage("crispy.png");
+        }
+        else if(order == "filet")
+        {
+            orderImage = new GreenfootImage("filet.png");
+        }
+        else if(order == "apple")
+        {
+            orderImage = new GreenfootImage("apple.png");
+        }
+        else if(order == "mcflurry")
+        {
+            orderImage = new GreenfootImage("mcflurry.png");
+        }
+        else if(order == "coffee")
+        {
+            orderImage = new GreenfootImage("coffee.png");
+        }
+        else if(order == "smoothie")
+        {
+            orderImage = new GreenfootImage("smoothie.png");
+        }
+        else
+        {
+            return;
+        }
+    }
+    
     public void addedToWorld(World world)
     {
-        patience = new SuperStatBar(maxPatience, currentPatience, this, 40, 8, -22, Color.BLUE, Color.RED);
+        patience = new SuperStatBar(maxPatience, currentPatience, this, 50, 8, -30, Color.BLUE, Color.RED);
         world.addObject(patience, getX(), getY());
+        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
+        world.addObject(orderBubble, getX(), getY());
     }
     
     public void act()
     {
+        if (givingUp)
+        {
+            walkToExit();
+            return;  
+        }
         actTimer--;
         currentPatience--;
         patience.update(currentPatience);
@@ -90,7 +146,28 @@ public class Customer extends SuperSmoothMover
         
         if(currentPatience == 0)
         {
-            getWorld().removeObject(this);
+            giveUp();
+        }
+    }
+    
+    // If patience runs out or an effect is caused, removes from world
+    public void giveUp()
+    {
+        if (!givingUp)
+        {
+            givingUp = true;
+            orderImage = new GreenfootImage("angry.png");
+            
+            // Remove old bubble if it exists
+            if (orderBubble != null && orderBubble.getWorld() != null)
+            {
+                getWorld().removeObject(orderBubble);
+            }
+            
+            orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
+            getWorld().addObject(orderBubble, getX(), getY());
+            inLine = false;
+            hasWaitingSpot = false;
         }
     }
     
@@ -162,27 +239,6 @@ public class Customer extends SuperSmoothMover
             setLocation(waitingX, waitingY);
         }
     }
-    
-        // If patience runs out or an effect is caused, removes from world
-    public void giveUp()
-    {
-        if (!givingUp)
-        {
-            givingUp = true;
-            orderImage = new GreenfootImage("angry.png");
-            
-            // Remove old bubble if it exists
-            if (orderBubble != null && orderBubble.getWorld() != null)
-            {
-                getWorld().removeObject(orderBubble);
-            }
-            
-            orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
-            getWorld().addObject(orderBubble, getX(), getY());
-            inLine = false;
-            hasWaitingSpot = false;
-        }
-    }
         
     
     // Has customers line up, max 5 customers at a time
@@ -225,9 +281,32 @@ public class Customer extends SuperSmoothMover
         
     }
     
+    private void walkToExit()
+    {
+        int currentY = getY();
+        int worldHeight = getWorld().getHeight();
+        if (currentY < worldHeight - 5)
+        {
+            setLocation(getX(), currentY + (int)MOVE_SPEED * 1.5);
+        }
+        else
+        {
+            if (orderBubble != null && orderBubble.getWorld() != null)
+            {
+                getWorld().removeObject(orderBubble);
+            }
+            if (patience != null && patience.getWorld() != null)
+            {
+                getWorld().removeObject(patience);
+            }
+            getWorld().removeObject(this);
+        }
+    }
+    
     public boolean isInLine()
     {
         return inLine;    
     }
+    
     
 }
