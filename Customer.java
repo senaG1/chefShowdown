@@ -29,6 +29,7 @@ public class Customer extends SuperSmoothMover
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage orderImage;
     protected boolean givingUp = false;
+    private boolean test = false;
     public Customer()
     {
         image = new GreenfootImage("regular_Cust.png");
