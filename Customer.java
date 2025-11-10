@@ -162,6 +162,27 @@ public class Customer extends SuperSmoothMover
             setLocation(waitingX, waitingY);
         }
     }
+    
+        // If patience runs out or an effect is caused, removes from world
+    public void giveUp()
+    {
+        if (!givingUp)
+        {
+            givingUp = true;
+            orderImage = new GreenfootImage("angry.png");
+            
+            // Remove old bubble if it exists
+            if (orderBubble != null && orderBubble.getWorld() != null)
+            {
+                getWorld().removeObject(orderBubble);
+            }
+            
+            orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
+            getWorld().addObject(orderBubble, getX(), getY());
+            inLine = false;
+            hasWaitingSpot = false;
+        }
+    }
         
     
     // Has customers line up, max 5 customers at a time
