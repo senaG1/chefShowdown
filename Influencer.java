@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Influencer extends Customer
 {
     private GreenfootImage image;
+    private World w;
     public Influencer(){
         super();
         image = new GreenfootImage ("influencer_00.png");
@@ -22,5 +23,9 @@ public class Influencer extends Customer
     public void act()
     {
         super.act();
+    }
+    
+    public void addedToWorld(World w) {
+        getWorld().addObject(new Paparazzi(), getX(), getY());
     }
 }
