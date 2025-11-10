@@ -69,8 +69,8 @@ public class RestaurantWorld extends World
         addObject(new KitchenObject("counter_left.png"), 192, 578);
         
         addObject(new KitchenObject("stove_back_off.png"), 244, 596);
-        addObject(new KitchenObject("counter_shelf.png"), 318, 590);
-        addObject(new KitchenObject("grill_back.png"), 410, 594);
+        addObject(new KitchenObject("counter_shelf_veggies.png"), 318, 590);
+        addObject(new KitchenObject("grill_back_meat.png"), 410, 594);
         
         
         // Kitchen objects for red side
@@ -86,9 +86,9 @@ public class RestaurantWorld extends World
         addObject(new KitchenObject("dishes_right.png"), 764, 506);
         addObject(new KitchenObject("counter_left.png"), 766, 578);
         
-        addObject(new KitchenObject("grill_back.png"), 548, 594);
+        addObject(new KitchenObject("grill_back_meat.png"), 548, 594);
         addObject(new KitchenObject("stove_back_off.png"), 622, 596);
-        addObject(new KitchenObject("counter_shelf.png"), 696, 590);
+        addObject(new KitchenObject("counter_shelf_veggies.png"), 696, 590);
     }
     //Currently the right side spawn does not work
     private void addCustomers()

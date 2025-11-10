@@ -99,6 +99,10 @@ public abstract class Chef extends SuperSmoothMover
         }
  
     }
+    
+    protected void makeBurger() {
+        
+    }
 
     protected void checkQueue(){
 
