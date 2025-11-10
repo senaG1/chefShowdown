@@ -28,6 +28,7 @@ public class Customer extends SuperSmoothMover
     protected String[] order;
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage orderImage;
+    protected boolean givingUp = false;
     public Customer()
     {
         image = new GreenfootImage("regular_Cust.png");
@@ -71,6 +72,11 @@ public class Customer extends SuperSmoothMover
     
     public void act()
     {
+        if (givingUp)
+        {
+            walkToExit();
+            return;  
+        }
         actTimer--;
         currentPatience--;
         patience.update(currentPatience);
@@ -90,7 +96,28 @@ public class Customer extends SuperSmoothMover
         
         if(currentPatience == 0)
         {
-            getWorld().removeObject(this);
+            giveUp();
+        }
+    }
+    
+    // If patience runs out or an effect is caused, removes from world
+    public void giveUp()
+    {
+        if (!givingUp)
+        {
+            givingUp = true;
+            orderImage = new GreenfootImage("angry.png");
+            
+            // Remove old bubble if it exists
+            if (orderBubble != null && orderBubble.getWorld() != null)
+            {
+                getWorld().removeObject(orderBubble);
+            }
+            
+            orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
+            getWorld().addObject(orderBubble, getX(), getY());
+            inLine = false;
+            hasWaitingSpot = false;
         }
     }
     
@@ -202,6 +229,28 @@ public class Customer extends SuperSmoothMover
             
         }
         
+    }
+    
+    private void walkToExit()
+    {
+        int currentY = getY();
+        int worldHeight = getWorld().getHeight();
+        if (currentY < worldHeight - 5)
+        {
+            setLocation(getX(), currentY + (int)MOVE_SPEED * 1.5);
+        }
+        else
+        {
+            if (orderBubble != null && orderBubble.getWorld() != null)
+            {
+                getWorld().removeObject(orderBubble);
+            }
+            if (patience != null && patience.getWorld() != null)
+            {
+                getWorld().removeObject(patience);
+            }
+            getWorld().removeObject(this);
+        }
     }
     
     public boolean isInLine()
