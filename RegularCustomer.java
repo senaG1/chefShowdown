@@ -12,7 +12,7 @@ public class RegularCustomer extends Customer
     public RegularCustomer(){
         super();
         image = new GreenfootImage ("regular_Cust.png");
-        image.scale(image.getWidth()*3, image.getHeight()*3);
+        image.scale(image.getWidth()*2, image.getHeight()*2);
         setImage(image);
     }
     
