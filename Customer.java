@@ -25,7 +25,12 @@ public class Customer extends SuperSmoothMover
     protected int maxPatience = 2100; // 35 secs before patience runs out
     protected int currentPatience = 2100;
     protected Restaurant restaurant;
-    
+    protected String[] menu = {"nuggets", "fries", "hash", "big cohen", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
+    protected String[] order;
+    protected SuperSpeechBubble orderBubble;
+    protected GreenfootImage orderImage;
+    protected boolean givingUp = false;
+    private boolean test = false;
     public Customer()
     {
         image = new GreenfootImage("regular_Cust.png");
