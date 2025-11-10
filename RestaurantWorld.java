@@ -55,27 +55,41 @@ public class RestaurantWorld extends World
     }
     
     private void addKitchenObjects() {
+        // Kitchen objects for blue side
         addObject(new KitchenObject("fridge.png"), 210, 174);
-        addObject(new KitchenObject("sink_double.png"), 428, 190);
-        addObject(new KitchenObject("stove_front_off.png"), 402, 195);
+        addObject(new KitchenObject("fryer.png"), 282, 191);
+        addObject(new KitchenObject("stove_front_off.png"), 340, 195);
+        addObject(new KitchenObject("sink_double.png"), 415, 190);
         
         
+        addObject(new KitchenObject("dishes_left.png"), 194, 320);
+        addObject(new KitchenObject("sink_single_left.png"), 192, 380);
+        addObject(new KitchenObject("bread_station_left.png"), 192, 440);
+        addObject(new KitchenObject("counter_side_small.png"), 192, 512);
+        addObject(new KitchenObject("mixer_left.png"), 192, 480);
+        addObject(new KitchenObject("counter_left.png"), 192, 578);
         
+        addObject(new KitchenObject("stove_back_off.png"), 244, 596);
+        addObject(new KitchenObject("counter_shelf_veggies.png"), 318, 590);
+        addObject(new KitchenObject("grill_back_meat.png"), 410, 594);
+        
+        
+        // Kitchen objects for red side
         addObject(new KitchenObject("fridge.png"), 540, 174);
         addObject(new KitchenObject("sink_double.png"), 628, 190);
         addObject(new KitchenObject("stove_front_off.png"), 702, 195);
         addObject(new KitchenObject("fryer.png"), 760, 191);
         
-        addObject(new KitchenObject("counter_side_small.png"), 520, 332);
-        addObject(new KitchenObject("mixer_left.png"), 520, 298);
-        addObject(new KitchenObject("bread_station_left.png"), 520, 392);
-        addObject(new KitchenObject("sink_single_left.png"), 520, 462);
-        addObject(new KitchenObject("dishes_left.png"), 522, 508);
-        addObject(new KitchenObject("counter_left.png"), 520, 582);
+        addObject(new KitchenObject("counter_side_small.png"), 766, 330);
+        addObject(new KitchenObject("mixer_right.png"), 766, 290);
+        addObject(new KitchenObject("bread_station_right.png"), 766, 390);
+        addObject(new KitchenObject("sink_single_right.png"), 766, 460);
+        addObject(new KitchenObject("dishes_right.png"), 764, 506);
+        addObject(new KitchenObject("counter_left.png"), 766, 578);
         
-        addObject(new KitchenObject("grill_back.png"), 590, 598);
-        addObject(new KitchenObject("stove_back_off.png"), 664, 600);
-        addObject(new KitchenObject("counter_shelf.png"), 738, 594);
+        addObject(new KitchenObject("grill_back_meat.png"), 548, 594);
+        addObject(new KitchenObject("stove_back_off.png"), 622, 596);
+        addObject(new KitchenObject("counter_shelf_veggies.png"), 696, 590);
     }
     //Currently the right side spawn does not work
     private void addCustomers()

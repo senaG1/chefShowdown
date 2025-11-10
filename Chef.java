@@ -8,11 +8,12 @@ public abstract class Chef extends SuperSmoothMover
     protected String side;
     protected boolean isCooking;
     protected SuperStatBar cookBar;
-
+    private GreenfootImage image;
+    
     public Chef()
     {
         isCooking = false;
-        cookBar = new SuperStatBar(cookSpeed, 0, this, 40, 10, -20, Color.YELLOW, Color.DARK_GRAY);
+        cookBar = new SuperStatBar(cookSpeed, 0, this, 40, 10, -30, Color.YELLOW, Color.DARK_GRAY);
         
         cookCount = 1;
         orders = 1;
@@ -20,11 +21,14 @@ public abstract class Chef extends SuperSmoothMover
         walkSpeed = 5;
         
         upperBound = 260;
-        lowerBound = 500;
+        lowerBound = 540;
         farBound = 240;
         closeBound = 40;
         
-        setImage("pixelCoden.png");//testing
+        
+        image = new GreenfootImage ("ChefCohen.png");
+        setImage(image);
+        
         enableStaticRotation();
     }
 
@@ -94,6 +98,10 @@ public abstract class Chef extends SuperSmoothMover
             }
         }
  
+    }
+    
+    protected void makeBurger() {
+        
     }
 
     protected void checkQueue(){

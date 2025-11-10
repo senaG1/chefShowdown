@@ -17,17 +17,14 @@ public class Customer extends SuperSmoothMover
     private static final int SPACING = 30;
     private static final double MOVE_SPEED = 3.0;
     protected boolean inLine;    
-    protected boolean hasWaitingSpot;
-    protected int waitingX;
-    protected int waitingY;
+    private boolean hasWaitingSpot;
+    private int waitingX;
+    private int waitingY;
     protected int actTimer;
     protected SuperStatBar patience;
     protected int maxPatience = 2100; // 35 secs before patience runs out
     protected int currentPatience = 2100;
-    protected String[] menu = {"nuggets", "fries", "hash", "big cohen", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
-    protected String[] order;
-    protected SuperSpeechBubble orderBubble;
-    protected GreenfootImage orderImage;
+    
     public Customer()
     {
         image = new GreenfootImage("regular_Cust.png");
@@ -36,37 +33,12 @@ public class Customer extends SuperSmoothMover
         nextCustomerIndex++;
         inLine = true;
         actTimer = 240;
-        order = generateOrder();
-        
-    }
-    
-    // Has customer choose random items from menu
-    // Can choose up to 3 items
-    public String[] generateOrder()
-    {
-        int numOrder = Greenfoot.getRandomNumber(2);
-        ArrayList<String> availibleItems = new ArrayList<>();
-        for(String item : menu)
-        {
-            availibleItems.add(item);
-        }
-        order = new String[numOrder];
-        for(int i = 0; i < numOrder; i++)
-        {
-            int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
-            order[i] = availibleItems.remove(randomIndex);
-                
-        }
-        orderImage = new GreenfootImage("burger.png");
-        return order;
     }
     
     public void addedToWorld(World world)
     {
-        patience = new SuperStatBar(maxPatience, currentPatience, this, 50, 8, -30, Color.BLUE, Color.RED);
+        patience = new SuperStatBar(maxPatience, currentPatience, this, 40, 8, -22, Color.BLUE, Color.RED);
         world.addObject(patience, getX(), getY());
-        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
-        world.addObject(orderBubble, getX(), getY());
     }
     
     public void act()

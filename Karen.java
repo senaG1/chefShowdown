@@ -15,7 +15,7 @@ public class Karen extends Customer
     public Karen(){
         super();
         image = new GreenfootImage ("Karen_00.png");
-        image.scale(image.getWidth()*3, image.getHeight()*3);
+        image.scale(image.getWidth()*2, image.getHeight()*2);
         setImage(image);
     }
     /**
