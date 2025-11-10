@@ -56,10 +56,59 @@ public class Customer extends SuperSmoothMover
         {
             int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
             order[i] = availibleItems.remove(randomIndex);
+            orderImageSet(menu[randomIndex]);
                 
         }
-        orderImage = new GreenfootImage("burger.png");
+        
         return order;
+    }
+    
+    public void orderImageSet(String order)
+    {
+        if(order == "nuggets")
+        {
+            orderImage = new GreenfootImage("nuggets.png");
+        }
+        else if(order == "fries")
+        {
+            orderImage = new GreenfootImage("fries.png");
+        }
+        else if(order == "hash")
+        {
+            orderImage = new GreenfootImage("hash.png");
+        }
+        else if(order == "big cohen")
+        {
+            orderImage = new GreenfootImage("burger.png");
+        }
+        else if(order == "crispy")
+        {
+            orderImage = new GreenfootImage("crispy.png");
+        }
+        else if(order == "filet")
+        {
+            orderImage = new GreenfootImage("filet.png");
+        }
+        else if(order == "apple")
+        {
+            orderImage = new GreenfootImage("apple.png");
+        }
+        else if(order == "mcflurry")
+        {
+            orderImage = new GreenfootImage("mcflurry.png");
+        }
+        else if(order == "coffee")
+        {
+            orderImage = new GreenfootImage("coffee.png");
+        }
+        else if(order == "smoothie")
+        {
+            orderImage = new GreenfootImage("smoothie.png");
+        }
+        else
+        {
+            return;
+        }
     }
     
     public void addedToWorld(World world)
