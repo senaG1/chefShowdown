@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class StoryWorld extends World
 {
-
+    private GreenfootImage background;
+    
     /**
      * Constructor for objects of class StoryWorld.
      * 
@@ -16,6 +17,12 @@ public class StoryWorld extends World
     public StoryWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(960, 640, 1); 
+        
+        background = new GreenfootImage("story_Background.jpg");
+        setBackground(background);
+        
+        addObject(new Cohen("golden_Cohen.PNG", true), 188, 448);
+        addObject(new Cohen("red_Cohen.PNG", false), 743, 398);
     }
 }
