@@ -56,7 +56,7 @@ public class RestaurantWorld extends World
         }
         
         if (actCount % 800 == 0){
-            addObject(new PowerOutage(), 640, 400);
+            addObject(new PowerOutage(), 512, 400);
         }
         
         if (actCount % 1200 == 0){

@@ -70,7 +70,7 @@ public class PowerOutage extends Effect
     }
     
     private void drawimage() {
-        image = new GreenfootImage(960, 640);
+        image = new GreenfootImage(1100, 700);
         image.setColor(new Color(0, 0, 40, 80));
         image.fill();
         setImage(image);
