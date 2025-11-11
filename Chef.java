@@ -26,7 +26,7 @@ public abstract class Chef extends SuperSmoothMover
         farBound = 240;
         closeBound = 80;
         
-        setImage("pixelCoden.png");//testing
+        setImage("ChefCohen.png");//testing
         enableStaticRotation();
     }
 
