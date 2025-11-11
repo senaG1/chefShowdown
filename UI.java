@@ -66,6 +66,11 @@ public class UI extends SuperSmoothMover
         addImages(world);
     }
     
+    public void setCash(double cash)
+    {
+        cashCounter += (int)cash;
+    }
+    
     public void act() {
         // Add your action code here.
     }
