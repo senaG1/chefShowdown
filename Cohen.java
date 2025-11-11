@@ -9,10 +9,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Cohen extends SuperSmoothMover
 {
     private GreenfootImage image;
-    
-    public Cohen(String img){
+    private boolean isGold;
+    public Cohen(String img, boolean gold){
+        isGold = gold;
         image = new GreenfootImage(img);
-        //image.scale(image.getWidth() * 2, image.getHeight() * 2);
+        if(isGold){
+            image.scale(image.getWidth() * 1/6, image.getHeight()*1/6);
+        }
+        else{
+            image.scale(image.getWidth() * 1/2, image.getHeight() * 1/2);
+        }
         setImage(image);
     }
     /**
