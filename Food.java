@@ -3,17 +3,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Food here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jiayu Chen
+ * @version 11-10 1.0
  */
 public class Food extends SuperSmoothMover
 {
-    /**
-     * Act - do whatever the Food wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    protected GreenfootImage image;
+    
+    protected int cost;
+    protected int quality;
+    
+    protected boolean dirty;
+    public Food() {
+        image = new GreenfootImage("burger.png");
+        setImage(image);
+    }
+    
     public void act()
     {
-        // Add your action code here.
+        
     }
 }
