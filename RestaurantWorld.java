@@ -56,11 +56,11 @@ public class RestaurantWorld extends World
         }
         
         if (actCount % 800 == 0){
-            addObject(new PowerOutage(), 512, 400);
+            addObject(new PowerOutage(), 640, 400);
         }
         
         if (actCount % 1200 == 0){
-            addObject(new RatInfestation(), 0, 0); // Position doesn't matter for this effect
+            addObject(new RatInfestation(), 0, 0);
         }
     }
     
