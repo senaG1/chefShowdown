@@ -7,7 +7,7 @@ import java.util.Random;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Customer extends SuperSmoothMover
+public abstract class Customer extends SuperSmoothMover
 {
     private GreenfootImage image;
     private static int nextCustomerIndex = 0;
@@ -46,7 +46,7 @@ public class Customer extends SuperSmoothMover
     // Can choose up to 3 items
     public String[] generateOrder()
     {
-        int numOrder = Greenfoot.getRandomNumber(2);
+        int numOrder = Greenfoot.getRandomNumber(3)+1;
         ArrayList<String> availibleItems = new ArrayList<>();
         for(String item : menu)
         {
@@ -57,7 +57,7 @@ public class Customer extends SuperSmoothMover
         {
             int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
             order[i] = availibleItems.remove(randomIndex);
-            orderImageSet(menu[randomIndex]);
+            orderImageSet(order[i]);
                 
         }
         
@@ -66,49 +66,45 @@ public class Customer extends SuperSmoothMover
     
     public void orderImageSet(String order)
     {
-        if(order == "nuggets")
+        if(order.equals("nuggets"))
         {
             orderImage = new GreenfootImage("nuggets.png");
         }
-        else if(order == "fries")
+        else if(order.equals("fries"))
         {
             orderImage = new GreenfootImage("fries.png");
         }
-        else if(order == "hash")
+        else if(order.equals("hash"))
         {
             orderImage = new GreenfootImage("hash.png");
         }
-        else if(order == "big cohen")
+        else if(order.equals("big cohen"))
         {
             orderImage = new GreenfootImage("burger.png");
         }
-        else if(order == "crispy")
+        else if(order.equals("crispy"))
         {
             orderImage = new GreenfootImage("crispy.png");
         }
-        else if(order == "filet")
+        else if(order.equals("filet"))
         {
             orderImage = new GreenfootImage("filet.png");
         }
-        else if(order == "apple")
+        else if(order.equals("apple"))
         {
             orderImage = new GreenfootImage("apple.png");
         }
-        else if(order == "mcflurry")
+        else if(order.equals("mcflurry"))
         {
             orderImage = new GreenfootImage("mcflurry.png");
         }
-        else if(order == "coffee")
+        else if(order.equals("coffee"))
         {
             orderImage = new GreenfootImage("coffee.png");
         }
-        else if(order == "smoothie")
+        else if(order.equals("smoothie"))
         {
             orderImage = new GreenfootImage("smoothie.png");
-        }
-        else
-        {
-            return;
         }
     }
     
@@ -287,7 +283,7 @@ public class Customer extends SuperSmoothMover
         int worldHeight = getWorld().getHeight();
         if (currentY < worldHeight - 5)
         {
-            setLocation(getX(), currentY + (int)MOVE_SPEED * 1.5);
+            setLocation(getX(), currentY + (int)MOVE_SPEED);
         }
         else
         {
