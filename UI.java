@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.ArrayList;
 /**
  * User Interface that shows the viewers the current ratings of each restaurant
  * and how much cash they have.
@@ -21,6 +21,10 @@ public class UI extends SuperSmoothMover
     private TeamUI teamRed;
     private TeamUI teamBlue;
     
+    private static int maxRating = 5;
+    
+    private static ArrayList<Stars> teamRating = new ArrayList<>();
+    
     // initially each restaurant starts with $1000 to hire chefs and price their menus etc.
     public int cashCounter = 1000;
     
@@ -41,6 +45,10 @@ public class UI extends SuperSmoothMover
     }
     
     public void act() {
-        // Add your action code here.
+        teamRed.updateCash(teamRed.getCash());
+        teamBlue.updateCash(teamBlue.getCash());
+        
+        teamRed.updateRating(teamBlue.getRating());
+        teamBlue.updateRating(teamBlue.getRating());
     }
 }

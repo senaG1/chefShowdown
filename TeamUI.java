@@ -6,15 +6,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Jiayu Chen
  * @version 11-10
  */
-public class TeamUI {
+public class TeamUI extends SuperSmoothMover {
     private Label cashLabel;
     private Label cashCounter;
     private Label ratingLabel;
     private UI_Image cashIcon;
     private UI_Image starIcon;
+    
+    private Stars stars;
+    private int numReviews;
 
     private int cash;
-    private double rating;
+    private int rating;
 
     public TeamUI(World world, int xOffset, int labelHeight, int labelSize, String teamColor) {
         cash = 1000;
@@ -45,12 +48,13 @@ public class TeamUI {
     }
 
     public void updateRating(double newRating) {
-        rating = newRating;
-        //update star images based on rating
+        numReviews++;
+        rating = (int) (rating + newRating) / numReviews;
+        GreenfootImage img = new GreenfootImage("star_rating/stars" + rating + ".png");
     }
 
     public int getCash() {
-        return cash;
+            return cash;
     }
 
     public double getRating() {
