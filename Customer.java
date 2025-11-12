@@ -34,6 +34,7 @@ public class Customer extends SuperSmoothMover
     private boolean test = false;
     protected boolean orderTaken = false;
     protected boolean leavingStore = false;
+    
     @Override
     public void addedToWorld(World w) {
         System.out.println("addedToWorld called");
