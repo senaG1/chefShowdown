@@ -10,6 +10,7 @@ import java.util.Random;
 public class Customer extends SuperSmoothMover
 {
     private GreenfootImage image;
+    private World rw;
     private static int nextCustomerIndex = 0;
     protected int customerIndex;
     private static final int LINE_X = 62;
@@ -35,11 +36,18 @@ public class Customer extends SuperSmoothMover
     protected boolean waitingOrder = false;
     protected boolean orderRecieved = false;
     
-    @Override
-    public void addedToWorld(World w) {
+    private int rating;
+    
+    public void addedToWorld(World world)
+    {
+        patience = new SuperStatBar(maxPatience, currentPatience, this, 50, 8, -30, Color.BLUE, Color.RED);
+        world.addObject(patience, getX(), getY());
+        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
+        world.addObject(orderBubble, getX(), getY());
+        
         System.out.println("addedToWorld called");
-        if (w instanceof RestaurantWorld) {
-            rw = (RestaurantWorld) w;
+        if (world instanceof RestaurantWorld) {
+            rw = (RestaurantWorld) world;
             System.out.println("World assigned: " + rw);
             order = generateOrder();
         }
@@ -132,14 +140,6 @@ public class Customer extends SuperSmoothMover
         }
     }
     
-    public void addedToWorld(World world)
-    {
-        patience = new SuperStatBar(maxPatience, currentPatience, this, 50, 8, -30, Color.BLUE, Color.RED);
-        world.addObject(patience, getX(), getY());
-        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
-        world.addObject(orderBubble, getX(), getY());
-    }
-    
     public void act()
     {
         if (givingUp)
@@ -192,35 +192,6 @@ public class Customer extends SuperSmoothMover
         
         
     }
-    
-    // Has customer choose random items from menu
-    // Can choose up to 3 items
-    public String[] generateOrder()
-    {
-        int numOrder = Greenfoot.getRandomNumber(2)+1;
-        ArrayList<String> availibleItems = new ArrayList<>();
-        for(String item : menu)
-        {   
-            availibleItems.add(item);
-        }
-        order = new String[numOrder];
-        
-        ArrayList<GreenfootImage> itemImages = new ArrayList<>();
-        
-        for(int i = 0; i < numOrder; i++)
-        {
-            int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
-            order[i] = availibleItems.remove(randomIndex);
-            itemImages.add(getItemImage(order[i]));
-            UI ui = new UI(this.getWorld());
-            ui.addCashToTeam(0, prices[i]);
-        }
-        
-        createCompositeOrderImage(itemImages);
-        
-        return order;
-    }
-
     
     public void takeOrder()
     {
