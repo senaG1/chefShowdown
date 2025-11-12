@@ -41,14 +41,14 @@ public class PowerOutage extends Effect
         
         // Remove the first 2 customers (guaranteed)
         for (int i = 0; i < guaranteedRemovals; i++) {
-            // customers.get(i).giveUp();
+            customers.get(i).giveUp();
         }
         
         // For remaining customers, 50% chance they leave
         // Go backwards to safely remove while iterating
         for (int i = customers.size() - 1; i >= guaranteedRemovals; i--) {
             if (Greenfoot.getRandomNumber(2) == 0) {
-                // customers.get(i).giveUp();
+                customers.get(i).giveUp();
             }
         }
     }

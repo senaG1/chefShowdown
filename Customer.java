@@ -25,6 +25,7 @@ public class Customer extends SuperSmoothMover
     protected SuperStatBar patience;
     protected int maxPatience = 2100; // 35 secs before patience runs out
     protected int currentPatience = 2100;
+    protected int rating;
     protected String[] menu = {"nuggets", "fries", "hash", "big cohen", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
     protected int[] prices = {51, 36, 17, 105, 107, 76, 59, 22, 34, 45};
     protected String[] order;
@@ -34,6 +35,8 @@ public class Customer extends SuperSmoothMover
     private boolean test = false;
     protected boolean orderTaken = false;
     protected boolean leavingStore = false;
+    protected boolean waitingOrder = false;
+    protected boolean orderRecieved = false;
     @Override
     public void addedToWorld(World w) {
         System.out.println("addedToWorld called");
@@ -52,6 +55,102 @@ public class Customer extends SuperSmoothMover
         nextCustomerIndex++;
         inLine = true;
         actTimer = 240;
+    }
+   
+    public void act()
+    {
+        if(getX() == 62 && getY() == 512)
+        {
+            actTimer--;
+            if(actTimer == 0)
+            {
+                inLine = false;
+            }
+        }
+        if(waitingOrder)
+        {
+            currentPatience--;
+            if(orderRecieved)
+            {
+                leaveWithFood();
+                return;
+            }
+            else
+            {
+                checkOrderRecieved();
+            }
+        }        
+        if(leavingStore)
+        {
+            walkToExit();
+            return; 
+        }       
+        if(isInLine())
+        {
+            lineUp();
+        }
+        else
+        {
+            if(!orderTaken)
+            {   
+                takeOrder();
+                orderTaken = true;
+            }
+            else
+            {
+                waitOrder();
+            }
+        }  
+        if(currentPatience <= 0 && !givingUp)
+        {
+            giveUp();
+        }
+        
+        if(currentPatience == 0)
+        {
+            giveUp();
+        }
+    }
+    
+    // Has customers line up, max 5 customers at a time
+    public void lineUp()
+    {
+        ArrayList<Customer> customers = (ArrayList<Customer>) getWorld().getObjects(Customer.class);
+        
+        int myPosition = 0;
+        for(Customer c : customers)
+        {
+            if(c.isInLine())
+            {
+                if (c.customerIndex < this.customerIndex)
+                {
+                    myPosition++;
+                }
+            }
+        }
+        if(isInLine())
+        {
+            int currentX = getX();
+            int currentY = getY();
+            int targetX = LINE_X;
+            int targetY = LINE_START_Y + myPosition * SPACING;
+            double dx = targetX - currentX;
+            double dy = targetY - currentY;
+            double distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance > MOVE_SPEED)
+            {
+                double moveX = (dx / distance) * MOVE_SPEED;
+                double moveY = (dy / distance) * MOVE_SPEED;
+                setLocation(currentX + (int)moveX, currentY + (int)moveY);
+            }
+            else if (distance > 0)
+            {
+                setLocation(targetX, targetY);
+            }
+            
+        }
+        
+        
     }
     
     // Has customer choose random items from menu
@@ -163,88 +262,12 @@ public class Customer extends SuperSmoothMover
         
         return img;
     }
-
-    public void act()
-    {
-        currentPatience--;
-
-            if(getX() == 62 && getY() == 512)
-            {
-                actTimer--;
-                if(actTimer == 0)
-                {
-                    inLine = false;
-                }
-            }
-            
-        
-            if(leavingStore)
-            {
-                walkToExit();
-                return; 
-            }
-            
-            if(isInLine())
-            {
-                lineUp();
-            }
-            else
-            {
-                if(!orderTaken)
-                {   
-                    takeOrder();
-                    orderTaken = true;
-                }
-                else
-                {
-                    waitOrder();
-                }
-            }
-            
-            if(currentPatience <= 0 && !givingUp)
-            {
-                giveUp();
-            }
-        
-            if(currentPatience == 0)
-            {
-                giveUp();
-            }
-    }
-    
-    // If patience runs out or an effect is caused, removes from world
-    public void giveUp()
-    {
-        if (!givingUp)
-        {
-            givingUp = true;
-            leavingStore = true;  
-            orderImage = new GreenfootImage("angry.png");
-            
-            if (orderBubble != null && orderBubble.getWorld() != null)
-            {
-                getWorld().removeObject(orderBubble);
-            }
-            
-            // Remove patience bar
-            if (patience != null && patience.getWorld() != null)
-            {
-                getWorld().removeObject(patience);
-            }
-            
-            // Show angry bubble briefly
-            orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
-            getWorld().addObject(orderBubble, getX(), getY());
-            
-            inLine = false;
-            hasWaitingSpot = false;
-        }
-    }
     
     // Sends customers in line to wait at the waiting space
     // Currently needs implementation after method for taking customer's orders is made
     public void waitOrder()
     {
+        waitingOrder = true;
         if(patience != null)
         {
             patience.update(currentPatience);
@@ -312,50 +335,76 @@ public class Customer extends SuperSmoothMover
         {
             setLocation(waitingX, waitingY);
         }
-    }
-        
+    }    
+
     
-    // Has customers line up, max 5 customers at a time
-    public void lineUp()
+    public void leaveWithFood()
     {
-        ArrayList<Customer> customers = (ArrayList<Customer>) getWorld().getObjects(Customer.class);
-        
-        int myPosition = 0;
-        for(Customer c : customers)
+        orderImage = new GreenfootImage("happy.png");
+        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
+        getWorld().addObject(orderBubble, getX(), getY());
+        walkToExit();
+        if(currentPatience >= 29)
         {
-            if(c.isInLine())
-            {
-                if (c.customerIndex < this.customerIndex)
-                {
-                    myPosition++;
-                }
-            }
+            rating = 5;
         }
-        if(isInLine())
+        else if(currentPatience < 29 && currentPatience >= 23)
         {
-            int currentX = getX();
-            int currentY = getY();
-            int targetX = LINE_X;
-            int targetY = LINE_START_Y + myPosition * SPACING;
-            double dx = targetX - currentX;
-            double dy = targetY - currentY;
-            double distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance > MOVE_SPEED)
+            rating = 4;
+        }
+        else if(currentPatience < 23 && currentPatience >= 17)
+        {
+            rating = 3;
+        }
+        else if(currentPatience < 17 && currentPatience >= 11)
+        {
+            rating = 2;
+        }
+        else if(currentPatience < 11 && currentPatience >= 5)
+        {
+            rating = 1;
+        }
+        else
+        {
+            rating = 0;
+        }
+    }
+    
+    public void checkOrderRecieved()
+    {
+        
+    }
+    
+    // If patience runs out or an effect is caused, removes from world
+    public void giveUp()
+    {
+        if (!givingUp)
+        {
+            waitingOrder = false;
+            givingUp = true;
+            leavingStore = true;  
+            orderImage = new GreenfootImage("angry.png");
+            
+            if (orderBubble != null && orderBubble.getWorld() != null)
             {
-                double moveX = (dx / distance) * MOVE_SPEED;
-                double moveY = (dy / distance) * MOVE_SPEED;
-                setLocation(currentX + (int)moveX, currentY + (int)moveY);
-            }
-            else if (distance > 0)
-            {
-                setLocation(targetX, targetY);
+                getWorld().removeObject(orderBubble);
             }
             
+            // Remove patience bar
+            if (patience != null && patience.getWorld() != null)
+            {
+                getWorld().removeObject(patience);
+            }
+            
+            // Show angry bubble briefly
+            orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
+            getWorld().addObject(orderBubble, getX(), getY());
+            
+            inLine = false;
+            hasWaitingSpot = false;
         }
-        
-        
     }
-    
+        
     private void walkToExit()
     {
         int currentY = getY();
@@ -363,7 +412,7 @@ public class Customer extends SuperSmoothMover
     
         if (currentY < worldHeight - 5)
         {
-            setLocation(getX(), currentY + (int)MOVE_SPEED * 1.5);
+            setLocation(getX(), currentY + (int)MOVE_SPEED * 1.15);
         }
         else
         {
@@ -378,6 +427,11 @@ public class Customer extends SuperSmoothMover
             }
             getWorld().removeObject(this);
         }
+    }
+    
+    public void setOrderRecieved()
+    {
+        orderRecieved = true;
     }
     
     public boolean isInLine()
