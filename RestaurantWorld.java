@@ -11,6 +11,7 @@ public class RestaurantWorld extends World
     private GreenfootImage background;
     private int actCount;
     private int actTimer = 180;
+    private int dayTimer = 1200;
     public UI ui;
     private ArrayList<Customer> customers;
     private Restaurant restaurantBlue;
@@ -28,7 +29,7 @@ public class RestaurantWorld extends World
         setBackground(background);
         
         ui = new UI(this);
-        
+        //hello
         actCount = 0;
         
         restaurantBlue = new Restaurant("Blue", 1000);
