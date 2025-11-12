@@ -9,6 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class StoryWorld extends World
 {
     private GreenfootImage background;
+    protected SuperSpeechBubble talkingBubble;
+    private int timer = 0;
+    
+    private Cohen goldenCohen;
+    private Cohen redCohen;
+    private Cohen blueCohen;
     
     /**
      * Constructor for objects of class StoryWorld.
@@ -22,7 +28,33 @@ public class StoryWorld extends World
         background = new GreenfootImage("story_Background.jpg");
         setBackground(background);
         
-        addObject(new Cohen("golden_Cohen.PNG", true), 188, 448);
-        addObject(new Cohen("red_Cohen.PNG", false), 743, 398);
+        goldenCohen = new Cohen("golden_Cohen.PNG", true);
+        redCohen = new Cohen("red_Cohen.PNG", false);
+        blueCohen = new Cohen("blue_Cohen.PNG", false);
+        
+        addObject(goldenCohen, 178, 444);
+        addObject(redCohen, 743, 398);
+        addObject(blueCohen, 900, 398);
+        
+        timer = 0;
+        conversation();
+        
+    }
+    
+    public void act(){
+        timer++;
+        conversation();
+    }
+    
+    private void conversation(){
+        if(talkingBubble != null && talkingBubble.getWorld() != null){
+            removeObject(talkingBubble);
+        }
+        
+        if(timer == 0){
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 200, 80, 30, 60, "hello", true, false);
+            addObject(talkingBubble, 0, 0);
+        }
+        
     }
 }

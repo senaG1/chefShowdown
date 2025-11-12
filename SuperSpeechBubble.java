@@ -22,6 +22,9 @@ public class SuperSpeechBubble extends Actor
     private boolean autoFit;
     private Font font;
     
+    private int offsetX;
+    private int offsetY;
+    
     public SuperSpeechBubble (Actor owner, int offset, int width, int height, int stemHeight, int stemStart, String text, boolean facingRight, boolean isThought){
         
         font = STANDARD_FONT;
@@ -90,6 +93,8 @@ public class SuperSpeechBubble extends Actor
         bubble.setColor (Color.WHITE);
         bubble.fillOval (0, 0, width, height);
         
+    
+        
         bubble.setColor (Color.WHITE);
         bubble.fillPolygon (xCoords, yCoords, 3);
         
@@ -114,6 +119,7 @@ public class SuperSpeechBubble extends Actor
         }
         
         return bubble;
+        
     }
     
     private static GreenfootImage drawBubble (int width, int height, int stemHeight, int stemStart, String text, boolean facingRight, boolean isThought, boolean autoFit, Font font){
