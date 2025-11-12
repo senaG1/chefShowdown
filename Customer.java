@@ -30,6 +30,20 @@ public class Customer extends SuperSmoothMover
     protected GreenfootImage orderImage;
     protected boolean givingUp = false;
     private boolean test = false;
+    protected boolean orderTaken = false;
+    protected boolean leavingStore = false;
+    protected boolean waitingOrder = false;
+    protected boolean orderRecieved = false;
+    
+    @Override
+    public void addedToWorld(World w) {
+        System.out.println("addedToWorld called");
+        if (w instanceof RestaurantWorld) {
+            rw = (RestaurantWorld) w;
+            System.out.println("World assigned: " + rw);
+            order = generateOrder();
+        }
+    }
     
     private static final int BLUE_MIN_X = 0;
     private static final int BLUE_MAX_X = 480;  // Left half of 960
@@ -175,6 +189,73 @@ public class Customer extends SuperSmoothMover
             inLine = false;
             hasWaitingSpot = false;
         }
+        
+        
+    }
+    
+    // Has customer choose random items from menu
+    // Can choose up to 3 items
+    public String[] generateOrder()
+    {
+        int numOrder = Greenfoot.getRandomNumber(2)+1;
+        ArrayList<String> availibleItems = new ArrayList<>();
+        for(String item : menu)
+        {   
+            availibleItems.add(item);
+        }
+        order = new String[numOrder];
+        
+        ArrayList<GreenfootImage> itemImages = new ArrayList<>();
+        
+        for(int i = 0; i < numOrder; i++)
+        {
+            int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
+            order[i] = availibleItems.remove(randomIndex);
+            itemImages.add(getItemImage(order[i]));
+            UI ui = new UI(this.getWorld());
+            ui.addCashToTeam(0, prices[i]);
+        }
+        
+        createCompositeOrderImage(itemImages);
+        
+        return order;
+    }
+
+    
+    public void takeOrder()
+    {
+        patience = new SuperStatBar(maxPatience, currentPatience, this, 50, 8, -30, Color.BLUE, Color.RED);
+        getWorld().addObject(patience, getX(), getY());
+        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
+        getWorld().addObject(orderBubble, getX(), getY());
+        waitOrder();
+    }
+    
+    private void createCompositeOrderImage(ArrayList<GreenfootImage> images)
+    {
+        if(images.isEmpty()) 
+        {
+            return;
+        }
+        
+        int itemSize = 30; // Adjust size as needed
+        int spacing = 5;
+        int totalWidth = images.size() * (itemSize + spacing) - spacing;
+        
+        // Create a transparent canvas
+        orderImage = new GreenfootImage(totalWidth, itemSize);
+        orderImage.setColor(new Color(0, 0, 0, 0)); // Transparent
+        orderImage.fill();
+        
+        // Draw each item image
+        int xPos = 0;
+        for(GreenfootImage img : images)
+        {
+            GreenfootImage scaledImg = new GreenfootImage(img);
+            scaledImg.scale(itemSize, itemSize);
+            orderImage.drawImage(scaledImg, xPos, 0);
+            xPos += itemSize + spacing;
+        }
     }
     
     /**
@@ -272,6 +353,41 @@ public class Customer extends SuperSmoothMover
         {
             setLocation(waitingX, waitingY);
         }
+    }    
+
+    
+    public void leaveWithFood()
+    {
+        orderImage = new GreenfootImage("happy.png");
+        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
+        getWorld().addObject(orderBubble, getX(), getY());
+        walkToExit();
+        // Give rating based off of time spent in restaurant waiting for food
+        if(currentPatience >= 29)
+        {
+            rating = 5;
+        }
+        else if(currentPatience < 29 && currentPatience >= 23)
+        {
+            rating = 4;
+        }
+        else if(currentPatience < 23 && currentPatience >= 17)
+        {
+            rating = 3;
+        }
+        else if(currentPatience < 17 && currentPatience >= 11)
+        {
+            rating = 2;
+        }
+        else if(currentPatience < 11 && currentPatience >= 5)
+        {
+            rating = 1;
+        }
+        else
+        {
+            rating = 0;
+        }
+
     }
         
     
