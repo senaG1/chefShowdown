@@ -44,6 +44,11 @@ public class UI extends SuperSmoothMover
         teamBlue = new TeamUI(world, 810, labelHeight, labelSize, "blue");
     }
     
+    public void setCash(double cash)
+    {
+        cashCounter += (int)cash;
+    }
+    
     public void act() {
         teamRed.updateCash(teamRed.getCash());
         teamBlue.updateCash(teamBlue.getCash());
