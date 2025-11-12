@@ -10,6 +10,7 @@ import java.util.Random;
 public class Customer extends SuperSmoothMover
 {
     private GreenfootImage image;
+    private World rw;
     private static int nextCustomerIndex = 0;
     protected int customerIndex;
     private static final int LINE_X = 62;
@@ -25,7 +26,7 @@ public class Customer extends SuperSmoothMover
     protected int maxPatience = 2100; // 35 secs before patience runs out
     protected int currentPatience = 2100;
     protected String[] menu = {"nuggets", "fries", "hash", "big cohen", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
-    protected double[] prices = {5.19, 3.69, 1.79, 10.59, 10.79, 7.59, 5.99, 2.29, 3.49, 4.59};
+    protected int[] prices = {51, 36, 17, 105, 107, 76, 59, 22, 34, 45};
     protected String[] order;
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage orderImage;
@@ -33,6 +34,16 @@ public class Customer extends SuperSmoothMover
     private boolean test = false;
     protected boolean orderTaken = false;
     protected boolean leavingStore = false;
+    @Override
+    public void addedToWorld(World w) {
+        System.out.println("addedToWorld called");
+        if (w instanceof RestaurantWorld) {
+            rw = (RestaurantWorld) w;
+            System.out.println("World assigned: " + rw);
+            order = generateOrder();
+        }
+    }
+    
     public Customer()
     {
         image = new GreenfootImage("regular_Cust.png");
@@ -41,8 +52,6 @@ public class Customer extends SuperSmoothMover
         nextCustomerIndex++;
         inLine = true;
         actTimer = 240;
-        order = generateOrder();
-        
     }
     
     // Has customer choose random items from menu
@@ -64,8 +73,8 @@ public class Customer extends SuperSmoothMover
             int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
             order[i] = availibleItems.remove(randomIndex);
             itemImages.add(getItemImage(order[i]));
-            //UI ui = new UI(getWorld());
-            //ui.setCash(prices[i]);
+            UI ui = new UI(this.getWorld());
+            ui.addCashToTeam(0, prices[i]);
         }
         
         createCompositeOrderImage(itemImages);
@@ -154,16 +163,16 @@ public class Customer extends SuperSmoothMover
         
         return img;
     }
-    
-    public void addedToWorld(World world)
-    {
-        
-    }
-    
+
     public void act()
     {
         currentPatience--;
-    
+            if (rw == null) {
+            System.out.println("Still null");
+        } else {
+            System.out.println("World is set");
+        }
+
             if(getX() == 62 && getY() == 512)
             {
                 actTimer--;
