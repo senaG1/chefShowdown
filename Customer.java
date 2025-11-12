@@ -30,6 +30,12 @@ public class Customer extends SuperSmoothMover
     protected GreenfootImage orderImage;
     protected boolean givingUp = false;
     private boolean test = false;
+    
+    private static final int BLUE_MIN_X = 0;
+    private static final int BLUE_MAX_X = 480;  // Left half of 960
+    private static final int RED_MIN_X = 480;
+    private static final int RED_MAX_X = 960;   // Right half of 960
+
     public Customer()
     {
         image = new GreenfootImage("regular_Cust.png");
@@ -169,6 +175,34 @@ public class Customer extends SuperSmoothMover
             inLine = false;
             hasWaitingSpot = false;
         }
+    }
+    
+    /**
+     * Determines which restaurant side this customer is on based on X position
+     * @return "Blue" if on left side, "Red" if on right side
+     */
+    public String getRestaurantSide()
+    {
+        int x = getX();
+        
+        if (x >= BLUE_MIN_X && x < BLUE_MAX_X)
+        {
+            return "Blue";
+        }
+        else
+        {
+            return "Red";
+        }
+    }
+    
+    /**
+     * Check if this customer is on a specific restaurant side
+     * @param side - "Red" or "Blue"
+     * @return true if customer is on that side
+     */
+    public boolean isOnSide(String side)
+    {
+        return getRestaurantSide().equals(side);
     }
     
     // Sends customers in line to wait at the waiting space

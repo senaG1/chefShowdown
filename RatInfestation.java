@@ -18,9 +18,9 @@ public class RatInfestation extends Effect
      * Constructor for RatInfestation.
      * Creates a rat infestation that lasts 60 seconds (3600 acts).
      */
-    public RatInfestation()
+    public RatInfestation(String side)
     {
-        super(600);
+        super(600, side);
         this.spawnTimer = 0;
         this.totalDuration = 600;
         this.customersRemoved = false;
@@ -91,15 +91,24 @@ public class RatInfestation extends Effect
         
         for (int i = 0; i < numRats; i++)
         {
-            // Random X position with more spread
-            int x = Greenfoot.getRandomNumber(900) + 30;
+            int x;
+            
+            // Check which side this infestation is for
+            if (restaurantSide.equals("Blue"))
+            {
+                x = Greenfoot.getRandomNumber(310) + 30; 
+            }
+            else // Red side
+            {
+                x = Greenfoot.getRandomNumber(450) + 495;
+            }
             int y = 630; // Bottom of screen
             
             // Random speed between 2-5 pixels per act
             int speed = Greenfoot.getRandomNumber(4) + 2;
             
             // Add the rat to the world
-            getWorld().addObject(new Rat(speed), x, y);
+            getWorld().addObject(new Rat(speed, restaurantSide), x, y);
         }
     }
 }
