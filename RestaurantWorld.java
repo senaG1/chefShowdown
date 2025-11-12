@@ -11,29 +11,31 @@ public class RestaurantWorld extends World
     private GreenfootImage background;
     private int actCount;
     private int actTimer = 180;
+    private int dayTimer = 1200;
     public UI ui;
     private ArrayList<Customer> customers;
     private Restaurant restaurantBlue;
     private Restaurant restaurantRed;
     private int width = 960;
     private int height = 640;
+    private int currentDay;
     
-    private int blueEffectTimer = 800;    // Separate timer for Blue side effects
-    private int redEffectTimer = 1500;     // Separate timer for Red side effects (offset)
-    private int blueRatTimer = 2400;      // Separate timer for Blue side rats
-    private int redRatTimer = 1900;       // Separate timer for Red side rats (offset)
+    public RestaurantWorld(){
+        this(1);
+    }
     
-    public RestaurantWorld()
+    public RestaurantWorld(int currentDay)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(960, 640, 1);
+        this.currentDay = currentDay;
         
         background = new GreenfootImage("restaurant_bg.png");
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
         setBackground(background);
         
         ui = new UI(this);
-        
+        //hello
         actCount = 0;
         
         restaurantBlue = new Restaurant("Blue", 1000);
@@ -54,38 +56,23 @@ public class RestaurantWorld extends World
     {
         actTimer--;
         actCount++;
+        dayTimer--;
         if(actTimer == 0)
         {
             addCustomers();
             actTimer = 180;
         }
         
-        // Blue side Power Outage
-        blueEffectTimer--;
-        if (blueEffectTimer <= 0){
-            addObject(new PowerOutage("Blue"), width/2, height/2); // Center of world
-            blueEffectTimer = 800 + Greenfoot.getRandomNumber(200); // Reset with some randomness
+        if (actCount % 800 == 0){
+            addObject(new PowerOutage(), 512, 400);
         }
         
-        // Red side Power Outage (happens at different time)
-        redEffectTimer--;
-        if (redEffectTimer <= 0){
-            addObject(new PowerOutage("Red"), width/2, height/2); // Center of world
-            redEffectTimer = 800 + Greenfoot.getRandomNumber(200); // Reset with some randomness
+        if (actCount % 1200 == 0){
+            addObject(new RatInfestation(), 0, 0);
         }
         
-        // Blue side Rat Infestation
-        blueRatTimer--;
-        if (blueRatTimer <= 0){
-            addObject(new RatInfestation("Blue"), 0, 0);
-            blueRatTimer = 1200 + Greenfoot.getRandomNumber(300); // Reset with some randomness
-        }
-        
-        // Red side Rat Infestation (happens at different time)
-        redRatTimer--;
-        if (redRatTimer <= 0){
-            addObject(new RatInfestation("Red"), 0, 0);
-            redRatTimer = 1200 + Greenfoot.getRandomNumber(300); // Reset with some randomness
+        if(dayTimer == 0){
+            Greenfoot.setWorld(new DayWorld(currentDay + 1));
         }
     }
     
@@ -126,15 +113,14 @@ public class RestaurantWorld extends World
         addObject(new KitchenObject("stove_back_off.png"), 622, 596);
         addObject(new KitchenObject("counter_shelf_veggies.png"), 696, 590);
     }
-    
     //Currently the right side spawn does not work
     private void addCustomers()
     {
         int rand = Greenfoot.getRandomNumber(30);
         int customerType = Greenfoot.getRandomNumber(10);
         
-        //boolean spawnAtRed = Greenfoot.getRandomNumber(2) == 0 ? true : false;
-        boolean spawnAtRed = false;
+            //boolean spawnAtRed = Greenfoot.getRandomNumber(2) == 0 ? true : false;
+            boolean spawnAtRed = false;
         if (spawnAtRed){
             if(customerType <= 4) {
                 addObject(new RegularCustomer(), 908, 628);

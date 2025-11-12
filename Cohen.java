@@ -29,4 +29,6 @@ public class Cohen extends SuperSmoothMover
     {
         // Add your action code here.
     }
+    
+    
 }
