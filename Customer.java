@@ -167,11 +167,6 @@ public class Customer extends SuperSmoothMover
     public void act()
     {
         currentPatience--;
-            if (rw == null) {
-            System.out.println("Still null");
-        } else {
-            System.out.println("World is set");
-        }
 
             if(getX() == 62 && getY() == 512)
             {
