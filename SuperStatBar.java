@@ -78,7 +78,7 @@ public class SuperStatBar extends Actor
     private Actor target;
 
     
-    
+        
     
     // Declare some Color objects
     private Color[] filledColor;
@@ -222,6 +222,7 @@ public class SuperStatBar extends Actor
         update(currVals);
 
     }
+    
 
     public void addedToWorld (World w){
         moveMe();
