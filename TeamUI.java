@@ -36,10 +36,10 @@ public class TeamUI extends SuperSmoothMover {
 
         // Positioning
         world.addObject(cashLabel, xOffset, labelHeight);
-        world.addObject(cashCounter, xOffset + 70, labelHeight);
+        world.addObject(cashCounter, xOffset + 60, labelHeight);
         world.addObject(cashIcon, xOffset + 110, labelHeight);
         world.addObject(ratingLabel, xOffset - 280, labelHeight);
-        world.addObject(starIcon, xOffset - 150, labelHeight - 5);
+        world.addObject(starIcon, xOffset - 140, labelHeight - 5);
     }
 
     public void updateCash(int newCash) {
