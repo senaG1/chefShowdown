@@ -44,16 +44,32 @@ public class UI extends SuperSmoothMover
         teamBlue = new TeamUI(world, 810, labelHeight, labelSize, "blue");
     }
     
-    public void setCash(double cash)
-    {
-        cashCounter += (int)cash;
+    public void addCashToTeam(int teamIndex, double cash) {
+        int amount = (int) cash;
+        if (teamIndex == 0) {
+            teamRed.updateCash(teamRed.getCash() + amount);
+        } else if (teamIndex == 1) {
+            teamBlue.updateCash(teamBlue.getCash() + amount);
+        }
     }
     
     public void act() {
-        teamRed.updateCash(teamRed.getCash());
-        teamBlue.updateCash(teamBlue.getCash());
         
-        teamRed.updateRating(teamBlue.getRating());
-        teamBlue.updateRating(teamBlue.getRating());
+    }
+    
+    public void updateTeamCash(int teamIndex, int newCash) {
+        if (teamIndex == 0) {
+            teamRed.updateCash(newCash);
+        } else if (teamIndex == 1) {
+            teamBlue.updateCash(newCash);
+        }
+    }
+
+    public void updateTeamRating(int teamIndex, double newRating) {
+        if (teamIndex == 0) {
+            teamRed.updateRating(newRating);
+        } else if (teamIndex == 1) {
+            teamBlue.updateRating(newRating);
+        }
     }
 }

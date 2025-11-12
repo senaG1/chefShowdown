@@ -13,6 +13,8 @@ public class TeamUI extends SuperSmoothMover {
     private UI_Image cashIcon;
     private UI_Image starIcon;
     
+    private int profit;
+    
     private Stars stars;
     private int numReviews;
 
@@ -44,7 +46,7 @@ public class TeamUI extends SuperSmoothMover {
 
     public void updateCash(int newCash) {
         cash = newCash;
-        cashCounter.setValue(cash);
+        cashCounter.setValue(cash); // This updates the label
     }
 
     public void updateRating(double newRating) {
@@ -54,7 +56,7 @@ public class TeamUI extends SuperSmoothMover {
     }
 
     public int getCash() {
-            return cash;
+        return cash;
     }
 
     public double getRating() {
