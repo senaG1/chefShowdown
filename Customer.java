@@ -193,7 +193,10 @@ public class Customer extends SuperSmoothMover
     
     private void createCompositeOrderImage(ArrayList<GreenfootImage> images)
     {
-        if(images.isEmpty()) return;
+        if(images.isEmpty()) 
+        {
+            return;
+        }
         
         int itemSize = 30; // Adjust size as needed
         int spacing = 5;
@@ -344,6 +347,7 @@ public class Customer extends SuperSmoothMover
         orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
         getWorld().addObject(orderBubble, getX(), getY());
         walkToExit();
+        // Give rating based off of time spent in restaurant waiting for food
         if(currentPatience >= 29)
         {
             rating = 5;
