@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=UI_Image
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ UI_Images\ here.\r\n\ \r\n\ @author\ Jiayu\ Chen\r\n\ @version\ 11-6\r\n
+comment1.params=image
+comment1.target=UI_Image(greenfoot.GreenfootImage)
+numComments=2
