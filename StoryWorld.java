@@ -47,14 +47,33 @@ public class StoryWorld extends World
     }
     
     private void conversation(){
-        if(talkingBubble != null && talkingBubble.getWorld() != null){
+        if(talkingBubble != null && talkingBubble.getWorld() != null && timer%180 == 0){
             removeObject(talkingBubble);
         }
         
         if(timer == 0){
-            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 200, 80, 30, 60, "hello", true, false);
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Hello, my Mctrainies . It’s time for your final test!", true, false);
             addObject(talkingBubble, 0, 0);
         }
         
+        if(timer == 190){
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Only one of you can become a real Cohen.", true, false);
+            addObject(talkingBubble, 0, 0);
+        }
+        
+        if(timer == 370){
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Whoever has the highest star rating will win.", true, false);
+            addObject(talkingBubble, 0, 0);
+        }
+        
+        if(timer == 550){
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Allowing them to become a Cohen just like me.", true, false);
+            addObject(talkingBubble, 0, 0);
+        }
+        
+        if(timer == 720){
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Good luck.", true, false);
+            addObject(talkingBubble, 0, 0);
+        }
     }
 }

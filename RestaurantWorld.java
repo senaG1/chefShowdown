@@ -18,11 +18,17 @@ public class RestaurantWorld extends World
     private Restaurant restaurantRed;
     private int width = 960;
     private int height = 640;
+    private int currentDay;
     
-    public RestaurantWorld()
+    public RestaurantWorld(){
+        this(1);
+    }
+    
+    public RestaurantWorld(int currentDay)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(960, 640, 1);
+        this.currentDay = currentDay;
         
         background = new GreenfootImage("restaurant_bg.png");
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
@@ -50,6 +56,7 @@ public class RestaurantWorld extends World
     {
         actTimer--;
         actCount++;
+        dayTimer--;
         if(actTimer == 0)
         {
             addCustomers();
@@ -62,6 +69,10 @@ public class RestaurantWorld extends World
         
         if (actCount % 1200 == 0){
             addObject(new RatInfestation(), 0, 0);
+        }
+        
+        if(dayTimer == 0){
+            Greenfoot.setWorld(new DayWorld(currentDay + 1));
         }
     }
     

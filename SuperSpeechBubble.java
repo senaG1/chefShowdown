@@ -157,11 +157,15 @@ public class SuperSpeechBubble extends Actor
         
         // Draw Text
         bubble.setFont (font);
-        int lines = 2;
-        //int xStart = ;
-        if (autoFit){
-            
-        }
+        //Code below was added 
+        bubble.setColor(Color.BLACK);
+        //Image of text
+        GreenfootImage textImage = new GreenfootImage(text, font.getSize(), Color.BLACK, new Color(0,0, 0, 0));
+        
+        int textX = (width - textImage.getWidth())/2;
+        int textY = (height - textImage.getHeight())/2;
+        
+        bubble.drawImage(textImage, textX, textY);
         
         
         return bubble;
