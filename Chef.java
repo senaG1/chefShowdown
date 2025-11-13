@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
 public abstract class Chef extends SuperSmoothMover
 {
@@ -11,6 +12,8 @@ public abstract class Chef extends SuperSmoothMover
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage image;
     protected int skill;
+    protected ArrayList<GreenfootImage> orderImages;
+    protected ArrayList<String> foodItems;
 
     public Chef()
     {
@@ -28,8 +31,11 @@ public abstract class Chef extends SuperSmoothMover
 
         image = new GreenfootImage ("ChefCohen.png");
         setImage(image);
-
+        
         enableStaticRotation();
+        
+        orderImages = new ArrayList<GreenfootImage>();
+        foodItems = new ArrayList<String>();
     }
 
     public void addedToWorld(World w){
@@ -51,9 +57,22 @@ public abstract class Chef extends SuperSmoothMover
             cook();
         }
     }
-
-    public void takeOrder(GreenfootImage img){
+    
+    public void nextOrder(){
+        World w = getWorld();
+        orderImages.remove(0);
+        foodItems.remove(0);
+        if(orderBubble != null){
+            w.removeObject(orderBubble);
+        }
+        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImages.get(0), true, true);
+        w.addObject(orderBubble, getX(), getY());
+    }
+    
+    public void takeOrder(GreenfootImage img, String order){
         orders ++;
+        orderImages.add(img);
+        foodItems.add(order);
         orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, img, true, true);
         getWorld().addObject(orderBubble, getX(), getY());
     }
@@ -110,10 +129,6 @@ public abstract class Chef extends SuperSmoothMover
                 }
             }
         }
-
-    }
-
-    protected void makeBurger() {
 
     }
 
