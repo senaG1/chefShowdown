@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Arrays;
 /**
  * Write a description of class Customer here.
  * 
@@ -11,6 +12,7 @@ public class Customer extends SuperSmoothMover
 {
     private GreenfootImage image;
     private RestaurantWorld rw;
+    private Chef chef;
     private static int nextCustomerIndex = 0;
     protected int customerIndex;
     protected int LINE_X;
@@ -53,7 +55,12 @@ public class Customer extends SuperSmoothMover
         customerIndex = nextCustomerIndex;
         nextCustomerIndex++;
         inLine = true;
-        actTimer = 240;
+        actTimer = 180  ;
+        
+    }
+    
+    public void addedToWorld(World w){
+        chef = w.getObjects(Chef.class).get(0);
     }
     
     public void addedToWorld (World w){
@@ -166,12 +173,12 @@ public class Customer extends SuperSmoothMover
                         getWorld().addObject(orderBubble, getX(), getY());
                     }
                     
-                    actTimer = 240;
+                    actTimer = 180;
                 }
             }
             else
             {
-                actTimer = 240;
+                actTimer = 180;
             }
         }
         else if (orderTaken && !waitingOrder)
@@ -210,11 +217,6 @@ public class Customer extends SuperSmoothMover
         }
     }
     
-    public void takeOrder()
-    {
-        
-        
-    }
     
     // Has customer choose random items from menu
     // Can choose up to 3 items
@@ -222,11 +224,13 @@ public class Customer extends SuperSmoothMover
     {
         int numOrder = Greenfoot.getRandomNumber(2)+1;
         ArrayList<String> availibleItems = new ArrayList<>();
+        GreenfootImage currentOrder = new GreenfootImage("happy.png");
         for(String item : menu)
         {   
             availibleItems.add(item);
         }
         order = new String[numOrder];
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(order));
         
         ArrayList<GreenfootImage> itemImages = new ArrayList<>();
         
@@ -238,8 +242,9 @@ public class Customer extends SuperSmoothMover
             rw.teamBlueUI.updateCash(prices[i]);
             rw.teamBlueUI.updateRating(5);
             
+            currentOrder = getImageForItem(order[i]);
         }
-        
+        chef.takeOrder(currentOrder, arrayList);
         createCompositeOrderImage(itemImages);
         
         return order;
@@ -435,7 +440,14 @@ public class Customer extends SuperSmoothMover
         {
             int currentX = getX();
             int currentY = getY();
-            targetX = LINE_X;
+            if(getX() >= 480 && getX() <= 960)
+            {
+                targetX = LINE_X - 20;
+            }
+            else
+            {
+                targetX = LINE_X;
+            }
             targetY = LINE_START_Y + myPosition * SPACING;
             double dx = targetX - currentX;
             double dy = targetY - currentY;
