@@ -8,14 +8,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SettingsWorld extends World
 {
-
-    /**
-     * Constructor for objects of class SettingsWorld.
-     * 
-     */
+    private int numChefs;
+    private int money;
+    private GreenfootImage background;
+    
     public SettingsWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(960, 640, 1);
+        background = new GreenfootImage("bg_settings.png");
+        background.scale(background.getWidth() * 2, background.getHeight() * 2 );
+        setBackground(background);
+        addObjectsToWorld();
     }
+    
+    private void addObjectsToWorld(){
+        addObject(new Button("plus_1.png", "plus_2.png"), 300, 300);
+    }
+    
 }

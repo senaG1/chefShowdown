@@ -13,11 +13,9 @@ public class Button extends Actor {
     private GreenfootImage sImage;
     private Actor actorHoveredOver = null;
     
-    public Button(){
-        image = new GreenfootImage ("startButton.png");
-        sImage = new GreenfootImage("small_button.png");
-        image.scale(image.getWidth()*1/2, image.getHeight()*1/2);
-        //sImage.scale(sImage.getWidth()*4, sImage.getHeight()*4);
+    public Button(String image1, String image2){
+        image = new GreenfootImage (image1);
+        sImage = new GreenfootImage(image2);
         setImage(image);
     }
     

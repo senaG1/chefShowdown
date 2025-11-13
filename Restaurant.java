@@ -19,6 +19,7 @@ public class Restaurant extends SuperSmoothMover
     public Restaurant(String name, double money) {
         this.name = name;
         this.money = money;
+        orderItems = new ArrayList<String>();
         
         drawImage();
     }
