@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Rat
+comment0.text=\r\n\ Rat\ -\ Individual\ rat\ that\ scurries\ across\ the\ screen\ during\ a\ rat\ infestation.\r\n\ Runs\ from\ bottom\ to\ top\ and\ fades\ out\ after\ reaching\ the\ top.\r\n\ \r\n\ @author\ Sena\ Godek\ \r\n\ @version\ 2025\r\n
+comment1.params=speed\ side
+comment1.target=Rat(int,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ Rat.\r\n\ @param\ speed\ -\ How\ fast\ the\ rat\ moves\ upward\r\n
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=java.lang.String\ getSide()
+comment3.text=\r\n\ Get\ which\ side\ this\ rat\ is\ on\r\n\ @return\ "Red"\ or\ "Blue"\r\n
+numComments=4

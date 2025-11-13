@@ -30,6 +30,7 @@ public class Customer extends SuperSmoothMover
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage orderImage;
     protected boolean givingUp = false;
+    private boolean test = true;
     protected boolean orderTaken = false;
     protected boolean leavingStore = false;
     protected boolean waitingOrder = false;
@@ -37,12 +38,19 @@ public class Customer extends SuperSmoothMover
     
     private int rating;
     
-    public void addedToWorld(World world)
-    {
+    public void addedToWorld(World world){
         System.out.println("addedToWorld called");
         if (world instanceof RestaurantWorld) {
             rw = (RestaurantWorld) world;
             System.out.println("World assigned: " + rw);
+            @Override
+            public void addedToWorld(World w) {
+            System.out.println("addedToWorld called");
+            if (w instanceof RestaurantWorld) {
+                rw = (RestaurantWorld) w;
+                System.out.println("World assigned: " + rw);
+                order = generateOrder();
+            }
         }
     }
     
@@ -60,6 +68,9 @@ public class Customer extends SuperSmoothMover
         inLine = true;
         actTimer = 240;
     }
+
+        order = generateOrder();
+        
 
     
     // Has customer choose random items from menu
@@ -91,13 +102,27 @@ public class Customer extends SuperSmoothMover
         if(orderImages.size() > 0)
         {
             createCompositeOrderImage(orderImages);
+
+        int numOrder = Greenfoot.getRandomNumber(2);
+        ArrayList<String> availibleItems = new ArrayList<>();
+        for(String item : menu)
+        {
+            availibleItems.add(item);
+        }
+        order = new String[numOrder];
+        for(int i = 0; i < numOrder; i++)
+        {
+            int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
+            order[i] = availibleItems.remove(randomIndex);
+            orderImageSet(menu[randomIndex]);
+                
         }
         
         return order;
+        }
     }
     
-    private GreenfootImage getImageForItem(String item)
-    {
+    private GreenfootImage getImageForItem(String item){
         if(item.equals("nuggets"))
         {
             return new GreenfootImage("nuggets.png");
@@ -140,14 +165,74 @@ public class Customer extends SuperSmoothMover
         }
         return null;
     }
+        
+    public void orderImageSet(String order)
+    {
+        if(order == "nuggets")
+        {
+            orderImage = new GreenfootImage("nuggets.png");
+        }
+        else if(order == "fries")
+        {
+            orderImage = new GreenfootImage("fries.png");
+        }
+        else if(order == "hash")
+        {
+            orderImage = new GreenfootImage("hash.png");
+        }
+        else if(order == "big cohen")
+        {
+            orderImage = new GreenfootImage("burger.png");
+        }
+        else if(order == "crispy")
+        {
+            orderImage = new GreenfootImage("crispy.png");
+        }
+        else if(order == "filet")
+        {
+            orderImage = new GreenfootImage("filet.png");
+        }
+        else if(order == "apple")
+        {
+            orderImage = new GreenfootImage("apple.png");
+        }
+        else if(order == "mcflurry")
+        {
+            orderImage = new GreenfootImage("mcflurry.png");
+        }
+        else if(order == "coffee")
+        {
+            orderImage = new GreenfootImage("coffee.png");
+        }
+        else if(order == "smoothie")
+        {
+            orderImage = new GreenfootImage("smoothie.png");
+        }
+        else
+        {
+            return;
+        }
+    }
+    
+    public void addedToWorld(World world)
+    {
+        patience = new SuperStatBar(maxPatience, currentPatience, this, 50, 8, -30, Color.BLUE, Color.RED);
+        world.addObject(patience, getX(), getY());
+        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
+        world.addObject(orderBubble, getX(), getY());
+    }
     
     public void act()
     {
         if (givingUp || leavingStore)
+
+        if (givingUp)
+
         {
             walkToExit();
             return;  
         }
+
         
         if (orderRecieved)
         {
@@ -218,6 +303,27 @@ public class Customer extends SuperSmoothMover
         {
             waitOrder();
         }
+        actTimer--;
+        currentPatience--;
+        patience.update(currentPatience);
+        if(actTimer == 0)
+        {
+            inLine = false;
+            actTimer = 240;
+        }
+        if(isInLine())
+        {
+            lineUp();
+        }
+        else
+        {
+            waitOrder();
+        }
+        
+        if(currentPatience == 0)
+        {
+            giveUp();
+        }
     }
     
     // If patience runs out or an effect is caused, removes from world
@@ -228,6 +334,7 @@ public class Customer extends SuperSmoothMover
             givingUp = true;
             orderImage = new GreenfootImage("angry.png");
             
+            // Remove old bubble if it exists
             if (orderBubble != null && orderBubble.getWorld() != null)
             {
                 getWorld().removeObject(orderBubble);
@@ -247,6 +354,45 @@ public class Customer extends SuperSmoothMover
     
     public void takeOrder()
     {
+        
+        
+    }
+    
+    // Has customer choose random items from menu
+    // Can choose up to 3 items
+    public String[] generateOrder()
+    {
+        int numOrder = Greenfoot.getRandomNumber(2)+1;
+        ArrayList<String> availibleItems = new ArrayList<>();
+        for(String item : menu)
+        {   
+            availibleItems.add(item);
+        }
+        order = new String[numOrder];
+        
+        ArrayList<GreenfootImage> itemImages = new ArrayList<>();
+        
+        for(int i = 0; i < numOrder; i++)
+        {
+            int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
+            order[i] = availibleItems.remove(randomIndex);
+            itemImages.add(getItemImage(order[i]));
+            UI ui = new UI(this.getWorld());
+            ui.addCashToTeam(0, prices[i]);
+        }
+        
+        createCompositeOrderImage(itemImages);
+        
+        return order;
+    }
+
+    
+    public void takeOrder()
+    {
+        patience = new SuperStatBar(maxPatience, currentPatience, this, 50, 8, -30, Color.BLUE, Color.RED);
+        getWorld().addObject(patience, getX(), getY());
+        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
+        getWorld().addObject(orderBubble, getX(), getY());
         waitOrder();
     }
     
@@ -265,6 +411,16 @@ public class Customer extends SuperSmoothMover
         orderImage.setColor(new Color(0, 0, 0, 0));
         orderImage.fill();
         
+        int itemSize = 30; // Adjust size as needed
+        int spacing = 5;
+        int totalWidth = images.size() * (itemSize + spacing) - spacing;
+        
+        // Create a transparent canvas
+        orderImage = new GreenfootImage(totalWidth, itemSize);
+        orderImage.setColor(new Color(0, 0, 0, 0)); // Transparent
+        orderImage.fill();
+        
+        // Draw each item image
         int xPos = 0;
         for(GreenfootImage img : images)
         {
@@ -305,8 +461,7 @@ public class Customer extends SuperSmoothMover
     
     // Sends customers in line to wait at the waiting space
     // Currently needs implementation after method for taking customer's orders is made
-    public void waitOrder()
-    {
+    public void waitOrder(){
         int currentX = getX();
         int currentY = getY();
         if(!hasWaitingSpot)
@@ -315,7 +470,10 @@ public class Customer extends SuperSmoothMover
             boolean spotFound = false;
             // Ensures that customers don't wait at a spot where there is already a customer waiting
             while(!spotFound && attempts < 50)  
+
             {
+                {
+
                 int testX = Greenfoot.getRandomNumber(78 - 11 + 1) + 11;
                 int testY = Greenfoot.getRandomNumber(426 - 212 + 1) + 212;
                 
@@ -348,6 +506,7 @@ public class Customer extends SuperSmoothMover
             
             // If no spot found after 50 attempts, just pick a random one anyway
             if(!spotFound)
+            if(spotFound == false)
             {
                 waitingX = Greenfoot.getRandomNumber(78 - 11 + 1) + 11;
                 waitingY = Greenfoot.getRandomNumber(426 - 212 + 1) + 212;
@@ -355,6 +514,7 @@ public class Customer extends SuperSmoothMover
             }
         }
         
+        // Move towards the waiting spot
         double dx = waitingX - currentX;
         double dy = waitingY - currentY;
         double distance = Math.sqrt(dx * dx + dy * dy);
@@ -369,11 +529,11 @@ public class Customer extends SuperSmoothMover
         {
             setLocation(waitingX, waitingY);
         }
-    }    
+        } 
+    }
 
     
-    public void leaveWithFood()
-    {
+    public void leaveWithFood() {
         if (orderBubble != null && orderBubble.getWorld() != null)
         {
             getWorld().removeObject(orderBubble);
@@ -402,6 +562,28 @@ public class Customer extends SuperSmoothMover
             rating = 2;
         }
         else if(patiencePercent > 0)
+        orderImage = new GreenfootImage("happy.png");
+        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
+        getWorld().addObject(orderBubble, getX(), getY());
+        walkToExit();
+        // Give rating based off of time spent in restaurant waiting for food
+        if(currentPatience >= 29)
+        {
+            rating = 5;
+        }
+        else if(currentPatience < 29 && currentPatience >= 23)
+        {
+            rating = 4;
+        }
+        else if(currentPatience < 23 && currentPatience >= 17)
+        {
+            rating = 3;
+        }
+        else if(currentPatience < 17 && currentPatience >= 11)
+        {
+            rating = 2;
+        }
+        else if(currentPatience < 11 && currentPatience >= 5)
         {
             rating = 1;
         }
@@ -410,6 +592,7 @@ public class Customer extends SuperSmoothMover
             rating = 0;
         }
     }
+    
         
     
     // Has customers line up, max 5 customers at a time
@@ -447,16 +630,18 @@ public class Customer extends SuperSmoothMover
             {
                 setLocation(targetX, targetY);
             }
+        }    
         }
+        
     }
     
-    private void walkToExit()
-    {
+    private void walkToExit() {
         int currentY = getY();
         int worldHeight = getWorld().getHeight();
         if (currentY < worldHeight - 5)
         {
             setLocation(getX(), currentY + (int)MOVE_SPEED);
+            setLocation(getX(), currentY + (int)MOVE_SPEED * 1.5);
         }
         else
         {
@@ -472,23 +657,25 @@ public class Customer extends SuperSmoothMover
         }
     }
     
-    public boolean isInLine()
-    {
-        return inLine;    
-    }
-    
-    public void setOrderRecieved()
-    {
-        orderRecieved = true;
-    }
-    
-    public int getRating()
-    {
-        return rating;
-    }
-    
-    public String[] getOrder()
-    {
-        return order;
+    public boolean isInLine(){
+        {
+            return inLine;    
+        }
+        
+        public void setOrderRecieved()
+        {
+            orderRecieved = true;
+        }
+        
+        public int getRating()
+        {
+            return rating;
+        }
+        
+        public String[] getOrder()
+        {
+            return order;
+        }
     }
 }
+
