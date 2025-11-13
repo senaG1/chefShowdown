@@ -10,6 +10,7 @@ public abstract class Chef extends SuperSmoothMover
     protected SuperStatBar cookBar;
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage image;
+    protected int skill;
 
     public Chef()
     {
