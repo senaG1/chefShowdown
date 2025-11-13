@@ -12,6 +12,7 @@ public class StoryWorld extends World
     protected SuperSpeechBubble talkingBubble;
     private int timer = 0;
     
+    
     private Cohen goldenCohen;
     private Cohen redCohen;
     private Cohen blueCohen;
@@ -75,5 +76,14 @@ public class StoryWorld extends World
             talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Good luck.", true, false);
             addObject(talkingBubble, 0, 0);
         }
+        //redCohen.callAction();
+        
+    }
+    
+    protected void fade (int timeLeft, int totalFadeTime){
+        double percent = timeLeft / (double)totalFadeTime;
+        if (percent > 1.00) return;
+        int newTransparency = (int)(percent * 255);
+        background.setTransparency (newTransparency);
     }
 }
