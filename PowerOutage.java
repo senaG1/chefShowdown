@@ -12,7 +12,7 @@ public class PowerOutage extends Effect
     private int actCount;      // Tracks remaining duration of the power outage
     private int totalFadeTime; // Duration of the fade-out effect at the end
     private boolean customersRemoved = false; // Ensures customers are only removed once
-    
+    //random
     /**
      * Constructor for PowerOutage
      * @param side - "Red" or "Blue" to specify which restaurant loses power
