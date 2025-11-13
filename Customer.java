@@ -54,7 +54,7 @@ public class Customer extends SuperSmoothMover
         customerIndex = nextCustomerIndex;
         nextCustomerIndex++;
         inLine = true;
-        actTimer = 240;
+        actTimer = 180  ;
         
     }
     
@@ -168,12 +168,12 @@ public class Customer extends SuperSmoothMover
                         getWorld().addObject(orderBubble, getX(), getY());
                     }
                     
-                    actTimer = 240;
+                    actTimer = 180;
                 }
             }
             else
             {
-                actTimer = 240;
+                actTimer = 180;
             }
         }
         else if (orderTaken && !waitingOrder)
