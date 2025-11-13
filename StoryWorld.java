@@ -52,12 +52,12 @@ public class StoryWorld extends World
         }
         
         if(timer == 0){
-            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Hello, my Mctrainies . It’s time for your final test!", true, false);
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Hello, my McTrainees . It’s time for your final test!", true, false);
             addObject(talkingBubble, 0, 0);
         }
         
         if(timer == 190){
-            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Only one of you can become a real Cohen.", true, false);
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Only one of you can become a real Chef Cohen.", true, false);
             addObject(talkingBubble, 0, 0);
         }
         
@@ -67,7 +67,7 @@ public class StoryWorld extends World
         }
         
         if(timer == 550){
-            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Allowing them to become a Cohen just like me.", true, false);
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Allowing them to become a Chef Cohen just like me.", true, false);
             addObject(talkingBubble, 0, 0);
         }
         
