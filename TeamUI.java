@@ -14,6 +14,7 @@ public class TeamUI extends SuperSmoothMover {
     private UI_Image starIcon;
     
     private int profit;
+    private int salary;
     
     private Stars stars;
     private int numReviews = 0;
@@ -44,6 +45,10 @@ public class TeamUI extends SuperSmoothMover {
         world.addObject(cashIcon, xOffset + 110, labelHeight);
         world.addObject(ratingLabel, xOffset - 280, labelHeight);
         world.addObject(starIcon, xOffset - 140, labelHeight - 5);
+    }
+    
+    public void act() {
+        
     }
 
     public void updateCash(int newCash) {

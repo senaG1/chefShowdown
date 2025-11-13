@@ -237,6 +237,7 @@ public class Customer extends SuperSmoothMover
             itemImages.add(getImageForItem(order[i]));
             rw.teamBlueUI.updateCash(prices[i]);
             rw.teamBlueUI.updateRating(5);
+            
         }
         
         createCompositeOrderImage(itemImages);
