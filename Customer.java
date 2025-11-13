@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class Customer extends SuperSmoothMover
 {
     private GreenfootImage image;
-    private RestaurantWorld rw;
+    protected RestaurantWorld rw;
     private Chef chef;
     private static int nextCustomerIndex = 0;
     protected int customerIndex;
@@ -40,6 +40,7 @@ public class Customer extends SuperSmoothMover
     protected boolean leavingStore = false;
     protected boolean waitingOrder = false;
     protected boolean orderRecieved = false;
+    private boolean teamBlue = true;
     
     private int rating;
     
@@ -55,15 +56,11 @@ public class Customer extends SuperSmoothMover
         customerIndex = nextCustomerIndex;
         nextCustomerIndex++;
         inLine = true;
-        actTimer = 180  ;
-        
+        actTimer = 180;
     }
     
     public void addedToWorld(World w){
         chef = w.getObjects(Chef.class).get(0);
-    }
-    
-    public void addedToWorld (World w){
         rw = (RestaurantWorld) w;
     }
     
@@ -241,7 +238,8 @@ public class Customer extends SuperSmoothMover
             itemImages.add(getImageForItem(order[i]));
             rw.teamBlueUI.updateCash(prices[i]);
             rw.teamBlueUI.updateRating(5);
-            
+            rw.teamRedUI.updateCash(prices[i]);
+            rw.teamRedUI.updateRating(4);
             currentOrder = getImageForItem(order[i]);
         }
         chef.takeOrder(currentOrder, arrayList);

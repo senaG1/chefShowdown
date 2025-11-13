@@ -15,17 +15,13 @@ public class TeamUI extends SuperSmoothMover {
     
     private int profit;
     private int salary;
-    
-    private Stars stars;
     private int numReviews = 0;
-    
-    private static ArrayList<Stars> teamRating = new ArrayList<>();
     
     private static int maxRating = 5;
     private int cash;
-    private int rating = 0;
+    private int rating;
     
-    private GreenfootImage starImage;
+    private GreenfootImage starImage = new GreenfootImage("star_rating/stars11.png");
 
     public TeamUI(World world, int xOffset, int labelHeight, int labelSize, String teamColor) {
         cashLabel = new Label("CASH: ", labelSize);
@@ -35,7 +31,6 @@ public class TeamUI extends SuperSmoothMover {
         GreenfootImage cashImage = new GreenfootImage("cash.png");
         cashIcon = new UI_Image(cashImage);
 
-        starImage = new GreenfootImage("star_rating/stars11.png");
         starImage.scale(190, 40);
         starIcon = new UI_Image(starImage);
 
@@ -60,7 +55,8 @@ public class TeamUI extends SuperSmoothMover {
         numReviews++;
         rating = (rating + newRating) / numReviews;
         starImage = new GreenfootImage("star_rating/stars" + rating + ".png");
-        starIcon = new UI_Image(starImage);
+        starImage.scale(190, 40);
+        starIcon.setImage(starImage);
     }
 
     public int getCash() {

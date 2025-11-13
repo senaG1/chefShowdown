@@ -38,7 +38,7 @@ public class DayWorld extends World
     public void act(){
         timer++;
         
-        if(timer == 60){
+        if(timer == 150){
             Greenfoot.setWorld(new RestaurantWorld(day));
         }
     }

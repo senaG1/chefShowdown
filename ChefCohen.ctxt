@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=ChefCohen
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ ChefCohen\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=ChefCohen()
+comment1.params=spawnAtRed
+comment1.target=ChefCohen(boolean)
 comment2.params=
 comment2.target=void\ act()
 comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ ChefCohen\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
