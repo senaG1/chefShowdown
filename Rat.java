@@ -12,13 +12,14 @@ public class Rat extends SuperSmoothMover
     private GreenfootImage image;
     private int speed;
     private int fadeTimer;
+    private String side; // "Red" or "Blue"
     private boolean startFading;
     
     /**
      * Constructor for Rat.
      * @param speed - How fast the rat moves upward
      */
-    public Rat(int speed)
+    public Rat(int speed, String side)
     {
         image = new GreenfootImage("rat.png");
         image.scale(image.getWidth() / 2, image.getHeight() / 2);
@@ -26,6 +27,7 @@ public class Rat extends SuperSmoothMover
         this.speed = speed;
         this.fadeTimer = 120; // Fade over 2 seconds
         this.startFading = false;
+        this.side = side;
     }
     
     public void act()
@@ -66,5 +68,14 @@ public class Rat extends SuperSmoothMover
                 return;
             }
         }
+    }
+    
+     /**
+     * Get which side this rat is on
+     * @return "Red" or "Blue"
+     */
+    public String getSide()
+    {
+        return side;
     }
 }

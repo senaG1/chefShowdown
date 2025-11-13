@@ -10,7 +10,7 @@ public class ChefCohenBlue extends Chef
 {
     public ChefCohenBlue()
     {
-        cookSpeed = 210;   
+        cookSpeed = 210;
     }
     
     public void act()

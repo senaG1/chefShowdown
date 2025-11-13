@@ -29,6 +29,10 @@ public class Button extends Actor {
         else {
         setImage(image);
         }
+        
+        if(Greenfoot.mouseClicked(this)){
+            Greenfoot.setWorld(new StoryWorld());
+        }
     }
     /**
      * This method checks to see which button the mouse is hovering over
