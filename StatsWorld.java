@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class StatsWorld extends World
 {
-
+    private TeamUI ui;
     /**
      * Constructor for objects of class StatsWorld.
      * 
@@ -17,5 +17,9 @@ public class StatsWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        int money = ui.getCash();
+        double ratings = ui.getRating();
+        System.out.println(money);
+        System.out.println(ratings);
     }
 }
