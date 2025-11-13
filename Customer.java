@@ -10,7 +10,7 @@ import java.util.Random;
 public class Customer extends SuperSmoothMover
 {
     private GreenfootImage image;
-    private World rw;
+    private RestaurantWorld rw;
     private static int nextCustomerIndex = 0;
     protected int customerIndex;
     protected int LINE_X;
@@ -28,6 +28,7 @@ public class Customer extends SuperSmoothMover
     private int targetX;
     private int targetY;
     protected String[] menu = {"nuggets", "fries", "hash", "big cohen", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
+    protected int[] prices = {59, 39, 19, 109, 107, 79, 69, 22, 49, 75};
     protected String[] order;
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage orderImage;
@@ -53,6 +54,10 @@ public class Customer extends SuperSmoothMover
         nextCustomerIndex++;
         inLine = true;
         actTimer = 240;
+    }
+    
+    public void addedToWorld (World w){
+        rw = (RestaurantWorld) w;
     }
     
     private GreenfootImage getImageForItem(String item){
@@ -230,6 +235,8 @@ public class Customer extends SuperSmoothMover
             int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
             order[i] = availibleItems.remove(randomIndex);
             itemImages.add(getImageForItem(order[i]));
+            rw.teamBlueUI.updateCash(prices[i]);
+            rw.teamBlueUI.updateRating(5);
         }
         
         createCompositeOrderImage(itemImages);
