@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Influencer extends Customer
 {
     private GreenfootImage image;
+    private boolean firstAct = true;
     public Influencer(boolean spawnAtRed){
         super();
         image = new GreenfootImage ("influencer_00.png");
@@ -25,12 +26,16 @@ public class Influencer extends Customer
             LINE_START_Y = 512;
         }
     }
-    /**
-     * Act - do whatever the Influencer wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public void act()
     {
         super.act();
+        
+        if (firstAct) {
+            Paparazzi effect = new Paparazzi();
+            rw.addObject(effect, getX(), getY() - 100);
+            rw.teamRedUI.updateRating(5);
+            firstAct = false;
+        }   
     }
 }
