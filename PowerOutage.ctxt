@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=PowerOutage
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ PowerOutage\ here.\r\n\ \r\n\ @author\ Sena\ Godek\r\n\ @version\ 2025\r\n
+comment1.params=side
+comment1.target=PowerOutage(java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ PowerOutage\r\n\ @param\ side\ -\ "Red"\ or\ "Blue"\ to\ specify\ which\ restaurant\ loses\ power\r\n
+comment2.params=
+comment2.target=void\ loseCustomers()
+comment2.text=\r\n\ loseCustomers\ -\ Abstract\ method\ implementation\ from\ Effect\ class.\r\n\ Removes\ 50%\ of\ customers\ when\ power\ goes\ out\ (they\ leave\ due\ to\ the\ outage).\r\n\ It\ also\ gaurentees\ at\ least\ 2\ customers\ leaving.\r\n
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ drawimage()
+numComments=5

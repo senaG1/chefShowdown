@@ -8,31 +8,30 @@ public abstract class Chef extends SuperSmoothMover
     protected String side;
     protected boolean isCooking;
     protected SuperStatBar cookBar;
-    private GreenfootImage image;
+    protected SuperSpeechBubble orderBubble;
+    protected GreenfootImage currentOrder;
     
     public Chef()
     {
         isCooking = false;
-        cookBar = new SuperStatBar(cookSpeed, 0, this, 40, 10, -30, Color.YELLOW, Color.DARK_GRAY);
-        
-        cookCount = 1;
-        orders = 1;
 
+        cookCount = 0;
+        orders = 1;
+        
         walkSpeed = 5;
         
+        //setting movement box
         upperBound = 260;
-        lowerBound = 540;
+        lowerBound = 500;
         farBound = 240;
-        closeBound = 40;
+        closeBound = 80;
         
-        
-        image = new GreenfootImage ("ChefCohen.png");
-        setImage(image);
-        
+        setImage("ChefCohen.png");//testing
         enableStaticRotation();
     }
 
     public void addedToWorld(World w){
+        cookBar = new SuperStatBar(cookSpeed, cookCount, this, 40, 10, -20, Color.YELLOW, Color.DARK_GRAY);
         w.addObject(cookBar, getX(), getY());
         if(getX() <= w.getWidth() / 2){//on left side, works for blue restaurant
             side = "L";
@@ -44,24 +43,32 @@ public abstract class Chef extends SuperSmoothMover
 
     public void act(){
         walk();
-        cookBar.update(cookCount);
-        if(!isCooking && orders > 0){
+        if(orders > 0){
             cook();
+            cookBar.update(cookCount);
         }
     }
 
-    public void takeOrder(){
+    public void takeOrder(GreenfootImage item){
+        currentOrder = item;
         orders ++;
     }
 
     protected void cook(){
-        isCooking = true;
-        while(cookCount < 0){
+        if(cookSpeed == 0){
+            orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, currentOrder, true, true);
+            getWorld().addObject(orderBubble, getX(), getY());
+        }
+        if(cookCount < cookSpeed){
+            isCooking = true;
             cookCount++;
         }
-        isCooking = false;
-        orders--;
-        cookCount = 0;
+        if(cookCount >= cookSpeed){
+            cookCount = 0;
+            orders--;
+            isCooking = false;
+            getWorld().removeObject(orderBubble);
+        }
     }
     
     //walks in a rectangle
@@ -98,10 +105,6 @@ public abstract class Chef extends SuperSmoothMover
             }
         }
  
-    }
-    
-    protected void makeBurger() {
-        
     }
 
     protected void checkQueue(){

@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=RatInfestation
+comment0.text=\r\n\ RatInfestation\ -\ Spawns\ rats\ that\ run\ across\ the\ screen\ and\ causes\ customers\ to\ leave.\r\n\ Decreases\ restaurant\ popularity\ and\ removes\ customers\ who\ are\ disgusted\ by\ the\ rats.\r\n\ \r\n\ @author\ Sena\ Godek\ \r\n\ @version\ 2025\r\n
+comment1.params=side
+comment1.target=RatInfestation(java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ RatInfestation.\r\n\ Creates\ a\ rat\ infestation\ that\ lasts\ 60\ seconds\ (3600\ acts).\r\n
+comment2.params=
+comment2.target=void\ loseCustomers()
+comment2.text=\r\n\ loseCustomers\ -\ Removes\ customers\ who\ leave\ due\ to\ seeing\ rats.\r\n\ At\ least\ 3\ customers\ will\ leave,\ and\ remaining\ customers\ have\ a\ 60%\ chance\ of\ leaving.\r\n\ TODO\:\ Also\ decrease\ restaurant\ star\ rating\ when\ that\ system\ is\ implemented.\r\n
+comment3.params=
+comment3.target=void\ act()
+comment3.text=\r\n\ act\ -\ Spawns\ rats\ every\ 10\ seconds\ and\ manages\ the\ infestation\ duration.\r\n
+comment4.params=
+comment4.target=void\ spawnRats()
+comment4.text=\r\n\ spawnRats\ -\ Spawns\ 10-18\ rats\ at\ random\ positions\ at\ the\ bottom\ of\ the\ screen.\r\n\ Each\ rat\ runs\ upward\ at\ a\ slightly\ different\ speed\ for\ variety.\r\n
+numComments=5

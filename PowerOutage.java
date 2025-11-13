@@ -13,9 +13,13 @@ public class PowerOutage extends Effect
     private int totalFadeTime; // Duration of the fade-out effect at the end
     private boolean customersRemoved = false; // Ensures customers are only removed once
     
-    public PowerOutage()
+    /**
+     * Constructor for PowerOutage
+     * @param side - "Red" or "Blue" to specify which restaurant loses power
+     */
+    public PowerOutage(String side)
     {
-        super(300); 
+        super(300, side); 
         drawimage();
         actCount = 240;
         totalFadeTime = 90;
@@ -29,26 +33,36 @@ public class PowerOutage extends Effect
     public void loseCustomers()
     {
         // Remove 33% of customers when power goes out
-        ArrayList<Customer> customers = (ArrayList<Customer>)getWorld().getObjects(Customer.class);
+        ArrayList<Customer> allCustomers = (ArrayList<Customer>)getWorld().getObjects(Customer.class);
+        
+         // Filter to only customers on this side
+        ArrayList<Customer> customersOnThisSide = new ArrayList<Customer>();
+        for (Customer c : allCustomers)
+        {
+            if (c.isOnSide(restaurantSide))  // Use customer's isOnSide method
+            {
+                customersOnThisSide.add(c);
+            }
+        }
         
         // If there are no customers, nothing to do
-        if (customers.isEmpty()) {
+        if (customersOnThisSide.isEmpty()) {
             return;
         }
         
         // Remove at least 2 customers (or all if less than 2)
-        int guaranteedRemovals = Math.min(2, customers.size());
+        int guaranteedRemovals = Math.min(2, customersOnThisSide.size());
         
         // Remove the first 2 customers (guaranteed)
         for (int i = 0; i < guaranteedRemovals; i++) {
-            // customers.get(i).giveUp();
+            customersOnThisSide.get(i).giveUp();
         }
         
         // For remaining customers, 50% chance they leave
         // Go backwards to safely remove while iterating
-        for (int i = customers.size() - 1; i >= guaranteedRemovals; i--) {
+        for (int i = customersOnThisSide.size() - 1; i >= guaranteedRemovals; i--) {
             if (Greenfoot.getRandomNumber(2) == 0) {
-                // customers.get(i).giveUp();
+                customersOnThisSide.get(i).giveUp();
             }
         }
     }
@@ -70,9 +84,23 @@ public class PowerOutage extends Effect
     }
     
     private void drawimage() {
-        image = new GreenfootImage(2048, 800);
-        image.setColor(new Color(0, 0, 40, 80));
+        image = new GreenfootImage(1200, 800);
+        image.setColor(new Color(0, 0, 0, 0)); // Transparent by default
         image.fill();
+        
+        // Only darken the affected side
+        image.setColor(new Color(0, 0, 40, 80));
+        if (restaurantSide.equals("Blue"))
+        {
+            // Fill left half (Blue side)
+            image.fillRect(0, 0, 600, 800);
+        }
+        else // Red side
+        {
+            // Fill right half (Red side)
+            image.fillRect(600, 0, 600, 800);
+        }
+        
         setImage(image);
     }
 }

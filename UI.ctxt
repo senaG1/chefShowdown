@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=UI
+comment0.text=\r\n\ User\ Interface\ that\ shows\ the\ viewers\ the\ current\ ratings\ of\ each\ restaurant\r\n\ and\ how\ much\ cash\ they\ have.\r\n\ \r\n\ The\ rating\ counter\ will\ show\ a\ double\ from\ 1-5\ accompanied\ with\ star\ icons.\r\n\ \r\n\ The\ cash\ counter\ will\ update\ the\ amount\ of\ cash\ each\ team\ has.\r\n\ \r\n\ @author\ Jiayu\ Chen\r\n\ @version\ 2.2.0\r\n\ -\ added\ star\ images\ to\ UI\r\n
+comment1.params=world
+comment1.target=UI(greenfoot.World)
+comment1.text=\r\n\ \r\n\ @param\ world\ \r\n\ \r\n
+comment2.params=teamIndex\ cash
+comment2.target=void\ addCashToTeam(int,\ int)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=teamIndex\ newCash
+comment4.target=void\ updateTeamCash(int,\ int)
+comment5.params=teamIndex\ newRating
+comment5.target=void\ updateTeamRating(int,\ double)
+numComments=6

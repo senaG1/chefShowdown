@@ -11,24 +11,31 @@ public class RestaurantWorld extends World
     private GreenfootImage background;
     private int actCount;
     private int actTimer = 180;
+    private int dayTimer = 1200;
     public UI ui;
     private ArrayList<Customer> customers;
     private Restaurant restaurantBlue;
     private Restaurant restaurantRed;
     private int width = 960;
     private int height = 640;
+    private int currentDay;
     
-    public RestaurantWorld()
+    public RestaurantWorld(){
+        this(1);
+    }
+    
+    public RestaurantWorld(int currentDay)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(960, 640, 1);
+        this.currentDay = currentDay;
         
         background = new GreenfootImage("restaurant_bg.png");
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
         setBackground(background);
         
         ui = new UI(this);
-        
+        //hello
         actCount = 0;
         
         restaurantBlue = new Restaurant("Blue", 1000);
@@ -49,6 +56,7 @@ public class RestaurantWorld extends World
     {
         actTimer--;
         actCount++;
+        dayTimer--;
         if(actTimer == 0)
         {
             addCustomers();
@@ -56,11 +64,15 @@ public class RestaurantWorld extends World
         }
         
         if (actCount % 800 == 0){
-            addObject(new PowerOutage(), 512, 400);
+            addObject(new PowerOutage("Blue"), 512, 400);
         }
         
         if (actCount % 1200 == 0){
-            addObject(new RatInfestation(), 0, 0); // Position doesn't matter for this effect
+            addObject(new RatInfestation("Blue"), 0, 0);
+        }
+        
+        if(dayTimer == 0){
+            Greenfoot.setWorld(new DayWorld(currentDay + 1));
         }
     }
     

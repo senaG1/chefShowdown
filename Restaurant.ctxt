@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Restaurant
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Restaurant\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=name\ money
+comment1.target=Restaurant(java.lang.String,\ double)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=chef
+comment3.target=void\ hireChef(Chef)
+comment4.params=
+comment4.target=void\ upgrade()
+comment5.params=
+comment5.target=void\ levelUp()
+comment6.params=amount
+comment6.target=void\ earnMoney(double)
+comment7.params=amount
+comment7.target=void\ loseMoney(double)
+comment8.params=
+comment8.target=void\ drawImage()
+comment9.params=
+comment9.target=java.lang.String\ getName()
+numComments=10
