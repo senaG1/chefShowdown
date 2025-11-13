@@ -13,8 +13,8 @@ public class Customer extends SuperSmoothMover
     private World rw;
     private static int nextCustomerIndex = 0;
     protected int customerIndex;
-    private static final int LINE_X = 62;
-    private static final int LINE_START_Y = 512;
+    protected int LINE_X;
+    protected int LINE_START_Y;
     private static final int SPACING = 30;
     private static final double MOVE_SPEED = 3.0;
     protected boolean inLine;    
@@ -25,6 +25,8 @@ public class Customer extends SuperSmoothMover
     protected SuperStatBar patience;
     protected int maxPatience = 2100; // 35 secs before patience runs out
     protected int currentPatience = 2100;
+    private int targetX;
+    private int targetY;
     protected String[] menu = {"nuggets", "fries", "hash", "big cohen", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
     protected String[] order;
     protected SuperSpeechBubble orderBubble;
@@ -297,11 +299,21 @@ public class Customer extends SuperSmoothMover
         {
             int attempts = 0;
             boolean spotFound = false;
+            int testX = 0;
+            int testY = 0;
             // Ensures that customers don't wait at a spot where there is already a customer waiting
             while(!spotFound && attempts < 50)
             {
-                int testX = Greenfoot.getRandomNumber(78 - 11 + 1) + 11;
-                int testY = Greenfoot.getRandomNumber(426 - 212 + 1) + 212;
+                if(LINE_X == 909)
+                {
+                    testX = Greenfoot.getRandomNumber(946 - 884 + 1) + 884;
+                    testY = Greenfoot.getRandomNumber(426 - 212 + 1) + 212;
+                }
+                else
+                {
+                    testX = Greenfoot.getRandomNumber(78 - 11 + 1) + 11;
+                    testY = Greenfoot.getRandomNumber(426 - 212 + 1) + 212;
+                }
                 
                 boolean occupied = false;
                 ArrayList<Customer> customers = (ArrayList<Customer>) getWorld().getObjects(Customer.class);
@@ -415,8 +427,8 @@ public class Customer extends SuperSmoothMover
         {
             int currentX = getX();
             int currentY = getY();
-            int targetX = LINE_X;
-            int targetY = LINE_START_Y + myPosition * SPACING;
+            targetX = LINE_X;
+            targetY = LINE_START_Y + myPosition * SPACING;
             double dx = targetX - currentX;
             double dy = targetY - currentY;
             double distance = Math.sqrt(dx * dx + dy * dy);
