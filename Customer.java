@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Arrays;
 /**
  * Write a description of class Customer here.
  * 
@@ -11,6 +12,7 @@ public class Customer extends SuperSmoothMover
 {
     private GreenfootImage image;
     private World rw;
+    private Chef chef;
     private static int nextCustomerIndex = 0;
     protected int customerIndex;
     protected int LINE_X;
@@ -53,6 +55,11 @@ public class Customer extends SuperSmoothMover
         nextCustomerIndex++;
         inLine = true;
         actTimer = 240;
+        
+    }
+    
+    public void addedToWorld(World w){
+        chef = w.getObjects(Chef.class).get(0);
     }
     
     private GreenfootImage getImageForItem(String item){
@@ -205,11 +212,6 @@ public class Customer extends SuperSmoothMover
         }
     }
     
-    public void takeOrder()
-    {
-        
-        
-    }
     
     // Has customer choose random items from menu
     // Can choose up to 3 items
@@ -217,6 +219,8 @@ public class Customer extends SuperSmoothMover
     {
         int numOrder = Greenfoot.getRandomNumber(2)+1;
         ArrayList<String> availibleItems = new ArrayList<>();
+        GreenfootImage currentOrder = new GreenfootImage("happy.png");
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(order));
         for(String item : menu)
         {   
             availibleItems.add(item);
@@ -230,8 +234,9 @@ public class Customer extends SuperSmoothMover
             int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
             order[i] = availibleItems.remove(randomIndex);
             itemImages.add(getImageForItem(order[i]));
+            currentOrder = getImageForItem(order[i]);
         }
-        
+        chef.takeOrder(currentOrder, arrayList);
         createCompositeOrderImage(itemImages);
         
         return order;
