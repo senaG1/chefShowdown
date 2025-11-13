@@ -1,6 +1,38 @@
-**.class
-**.ctxt
-project.greenfoot
-**/greenfoot.jar
-project.greenfoot
-RestaurantWorld.class
+# Greenfoot/BlueJ
+*.class
+*.ctxt
+.classpath
+.project
+standalone.properties
+*.lock
+
+# Keep the blank project.greenfoot for Greenfoot project
+!greenfoot_project/project.greenfoot
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Compiled output
+bin/
+build/
+dist/
+out/
+
+# Logs and temp
+*.log
+*.tmp
+*.bak
+*~
+
+# Save files (keep in repo for testing, but can exclude later)
+# saves/
+
+# Don't ignore JARs we need for compilation
+!bluej.jar
+!greenfoot.jar
