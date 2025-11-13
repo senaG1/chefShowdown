@@ -35,6 +35,7 @@ public class Customer extends SuperSmoothMover
     protected boolean leavingStore = false;
     protected boolean waitingOrder = false;
     protected boolean orderRecieved = false;
+    protected Restaurant restaurant;
     
     private int rating;
     
@@ -211,8 +212,9 @@ public class Customer extends SuperSmoothMover
     
     // Has customer choose random items from menu
     // Can choose up to 3 items
-    public String[] generateOrder()
-    {
+    public String[] generateOrder(){
+        restaurant = (Restaurant) getOneIntersectingObject(Restaurant.class);
+        
         int numOrder = Greenfoot.getRandomNumber(2)+1;
         ArrayList<String> availibleItems = new ArrayList<>();
         for(String item : menu)
@@ -231,6 +233,7 @@ public class Customer extends SuperSmoothMover
         }
         
         createCompositeOrderImage(itemImages);
+        restaurant.addItemsToOrder(order);
         
         return order;
     }

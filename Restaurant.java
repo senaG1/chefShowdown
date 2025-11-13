@@ -9,11 +9,12 @@ import java.util.ArrayList;
  */
 public class Restaurant extends SuperSmoothMover
 {
-    protected String name;
-    protected double money;
-    protected double rating;
-    protected ArrayList<Chef> chefs;
-    protected ArrayList<Customer> customers;
+    private String name;
+    private double money;
+    private double rating;
+    private ArrayList<Chef> chefs;
+    private ArrayList<Customer> customers;
+    private ArrayList<String> orderItems;
     
     public Restaurant(String name, double money) {
         this.name = name;
@@ -57,6 +58,12 @@ public class Restaurant extends SuperSmoothMover
         img.fill();
     
         setImage(img);
+    }
+    
+    public void addItemsToOrder(String[] items) {
+        for(String item: items) {
+            orderItems.add(item);
+        }
     }
     
     public String getName() {
