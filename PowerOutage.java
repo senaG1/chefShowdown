@@ -93,12 +93,12 @@ public class PowerOutage extends Effect
         if (restaurantSide.equals("Blue"))
         {
             // Fill left half (Blue side)
-            image.fillRect(0, 0, 600, 800);
+            image.fillRect(0, 0, 570, 800);
         }
         else // Red side
         {
             // Fill right half (Red side)
-            image.fillRect(600, 0, 600, 800);
+            image.fillRect(600, 0, 570, 800);
         }
         
         setImage(image);
