@@ -12,7 +12,7 @@ public abstract class Chef extends SuperSmoothMover
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage image;
     protected ArrayList<GreenfootImage> orderImages;
-    protected ArrayList<String> foodItems;
+    protected ArrayList<ArrayList<String>> foodItems;
 
     public Chef()
     {
@@ -34,7 +34,7 @@ public abstract class Chef extends SuperSmoothMover
         enableStaticRotation();
         
         orderImages = new ArrayList<GreenfootImage>();
-        foodItems = new ArrayList<String>();
+        foodItems = new ArrayList<ArrayList<String>>();
     }
 
     public void addedToWorld(World w){
@@ -57,7 +57,7 @@ public abstract class Chef extends SuperSmoothMover
         }
     }
     
-    public void nextOrder(){
+    protected void nextOrder(){
         World w = getWorld();
         orderImages.remove(0);
         foodItems.remove(0);
@@ -68,10 +68,12 @@ public abstract class Chef extends SuperSmoothMover
         w.addObject(orderBubble, getX(), getY());
     }
     
-    public void takeOrder(GreenfootImage img, String order){
+    
+    //gets the image and name of the order from a customer
+    public void takeOrder(GreenfootImage img, ArrayList<String> orderNames){
         orders ++;
         orderImages.add(img);
-        foodItems.add(order);
+        foodItems.add(orderNames);
         orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, img, true, true);
         getWorld().addObject(orderBubble, getX(), getY());
     }
@@ -81,6 +83,7 @@ public abstract class Chef extends SuperSmoothMover
             isCooking = true;
             cookCount++;
         }else{
+            nextOrder();
             isCooking = false;
             orders--;
             cookCount = 0;
