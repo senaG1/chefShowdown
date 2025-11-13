@@ -96,62 +96,7 @@ public class Customer extends SuperSmoothMover
         }
         return null;
     }
-        
-    public void orderImageSet(String order)
-    {
-        if(order.equals("nuggets"))
-        {
-            orderImage = new GreenfootImage("nuggets.png");
-        }
-        else if(order.equals("fries"))
-        {
-            orderImage = new GreenfootImage("fries.png");
-        }
-        else if(order.equals("hash"))
-        {
-            orderImage = new GreenfootImage("hash.png");
-        }
-        else if(order.equals("big cohen"))
-        {
-            orderImage = new GreenfootImage("burger.png");
-        }
-        else if(order.equals("crispy"))
-        {
-            orderImage = new GreenfootImage("crispy.png");
-        }
-        else if(order.equals("filet"))
-        {
-            orderImage = new GreenfootImage("filet.png");
-        }
-        else if(order.equals("apple"))
-        {
-            orderImage = new GreenfootImage("apple.png");
-        }
-        else if(order.equals("mcflurry"))
-        {
-            orderImage = new GreenfootImage("mcflurry.png");
-        }
-        else if(order.equals("coffee"))
-        {
-            orderImage = new GreenfootImage("coffee.png");
-        }
-        else if(order.equals("smoothie"))
-        {
-            orderImage = new GreenfootImage("smoothie.png");
-        }
-        else
-        {
-            return;
-        }
-    }
     
-    public void addedToWorld(World world)
-    {
-        patience = new SuperStatBar(maxPatience, currentPatience, this, 50, 8, -30, Color.BLUE, Color.RED);
-        world.addObject(patience, getX(), getY());
-        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
-        world.addObject(orderBubble, getX(), getY());
-    }
     
     public void act()
     {
