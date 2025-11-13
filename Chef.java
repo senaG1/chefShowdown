@@ -59,13 +59,21 @@ public abstract class Chef extends SuperSmoothMover
     
     protected void nextOrder(){
         World w = getWorld();
-        orderImages.remove(0);
-        foodItems.remove(0);
+        if(!orderImages.isEmpty()){
+            orderImages.remove(0);
+        }
+        if(!foodItems.isEmpty()){
+            foodItems.remove(0);
+        }
         if(orderBubble != null){
             w.removeObject(orderBubble);
         }
-        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImages.get(0), true, true);
-        w.addObject(orderBubble, getX(), getY());
+        if(!orderImages.isEmpty()){
+            orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImages.get(0), true, true);
+        }
+        if(orderBubble != null){
+            w.addObject(orderBubble, getX(), getY());
+        }
     }
     
     
