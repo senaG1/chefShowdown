@@ -119,33 +119,32 @@ public class RestaurantWorld extends World
         int rand = Greenfoot.getRandomNumber(30);
         int customerType = Greenfoot.getRandomNumber(10);
         
-            //boolean spawnAtRed = Greenfoot.getRandomNumber(2) == 0 ? true : false;
-            boolean spawnAtRed = false;
+        boolean spawnAtRed = Greenfoot.getRandomNumber(2) == 0 ? true : false;
         if (spawnAtRed){
             if(customerType <= 4) {
-                addObject(new RegularCustomer(), 908, 628);
+                addObject(new RegularCustomer(true), 909, 628);
             }
             else if(customerType <= 6) {
-                addObject(new Karen(), 908, 628);
+                addObject(new Karen(true), 909, 628);
             }
             else if(customerType <= 9){
-                addObject(new Influencer(), 908, 628);
+                addObject(new Influencer(true), 909, 628);
             }
             else{
-                addObject(new ChefCohen(), 908, 628);
+                addObject(new ChefCohen(true), 909, 628);
             }
             } else {
             if(customerType <= 4) {
-                addObject(new RegularCustomer(), 51, 628);
+                addObject(new RegularCustomer(false), 51, 628);
             }
             else if(customerType <= 6) {
-                addObject(new Karen(), 51, 628);
+                addObject(new Karen(false), 51, 628);
             }
             else if(customerType <= 9){
-                addObject(new Influencer(), 51, 628);
+                addObject(new Influencer(false), 51, 628);
             }
             else{
-                addObject(new ChefCohen(), 51, 628);
+                addObject(new ChefCohen(false), 51, 628);
             }
             
         }

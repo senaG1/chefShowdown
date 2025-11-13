@@ -19,7 +19,5 @@ public class StatsWorld extends World
         super(600, 400, 1); 
         int money = ui.getCash();
         double ratings = ui.getRating();
-        System.out.println(money);
-        System.out.println(ratings);
     }
 }
