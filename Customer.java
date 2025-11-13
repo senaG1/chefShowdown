@@ -220,12 +220,12 @@ public class Customer extends SuperSmoothMover
         int numOrder = Greenfoot.getRandomNumber(2)+1;
         ArrayList<String> availibleItems = new ArrayList<>();
         GreenfootImage currentOrder = new GreenfootImage("happy.png");
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(order));
         for(String item : menu)
         {   
             availibleItems.add(item);
         }
         order = new String[numOrder];
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(order));
         
         ArrayList<GreenfootImage> itemImages = new ArrayList<>();
         
@@ -432,7 +432,14 @@ public class Customer extends SuperSmoothMover
         {
             int currentX = getX();
             int currentY = getY();
-            targetX = LINE_X;
+            if(getX() >= 480 && getX() <= 960)
+            {
+                targetX = LINE_X - 20;
+            }
+            else
+            {
+                targetX = LINE_X;
+            }
             targetY = LINE_START_Y + myPosition * SPACING;
             double dx = targetX - currentX;
             double dy = targetY - currentY;
