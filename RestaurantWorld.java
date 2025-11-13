@@ -11,14 +11,18 @@ public class RestaurantWorld extends World
     private GreenfootImage background;
     private int actCount;
     private int actTimer = 180;
-    private int dayTimer = 1800;
-    public UI ui;
+    private int dayTimer = 1200;
+    public TeamUI teamBlueUI;
+    public TeamUI teamRedUI;
     private ArrayList<Customer> customers;
     private Restaurant restaurantBlue;
     private Restaurant restaurantRed;
     private int width = 960;
     private int height = 640;
     private int currentDay;
+    
+    private static int labelHeight = 38;
+    private static int labelSize = 25;
     
     public RestaurantWorld(){
         this(1);
@@ -34,7 +38,9 @@ public class RestaurantWorld extends World
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
         setBackground(background);
         
-        ui = new UI(this);
+        teamBlueUI = new TeamUI(this, 340, labelHeight, labelSize, "red");
+        teamRedUI = new TeamUI(this, 810, labelHeight, labelSize, "blue");
+        
         //hello
         actCount = 0;
         

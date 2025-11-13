@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class Customer extends SuperSmoothMover
 {
     private GreenfootImage image;
-    private World rw;
+    private RestaurantWorld rw;
     private Chef chef;
     private static int nextCustomerIndex = 0;
     protected int customerIndex;
@@ -30,6 +30,7 @@ public class Customer extends SuperSmoothMover
     private int targetX;
     private int targetY;
     protected String[] menu = {"nuggets", "fries", "hash", "big cohen", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
+    protected int[] prices = {59, 39, 19, 109, 107, 79, 69, 22, 49, 75};
     protected String[] order;
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage orderImage;
@@ -60,6 +61,10 @@ public class Customer extends SuperSmoothMover
     
     public void addedToWorld(World w){
         chef = w.getObjects(Chef.class).get(0);
+    }
+    
+    public void addedToWorld (World w){
+        rw = (RestaurantWorld) w;
     }
     
     private GreenfootImage getImageForItem(String item){
@@ -234,6 +239,9 @@ public class Customer extends SuperSmoothMover
             int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
             order[i] = availibleItems.remove(randomIndex);
             itemImages.add(getImageForItem(order[i]));
+            rw.teamBlueUI.updateCash(prices[i]);
+            rw.teamBlueUI.updateRating(5);
+            
             currentOrder = getImageForItem(order[i]);
         }
         chef.takeOrder(currentOrder, arrayList);

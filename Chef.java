@@ -11,6 +11,7 @@ public abstract class Chef extends SuperSmoothMover
     protected SuperStatBar cookBar;
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage image;
+    protected int skill;
     protected ArrayList<GreenfootImage> orderImages;
     protected ArrayList<ArrayList<String>> foodItems;
 
