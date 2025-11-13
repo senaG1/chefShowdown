@@ -98,7 +98,7 @@ public class PowerOutage extends Effect
         else // Red side
         {
             // Fill right half (Red side)
-            image.fillRect(600, 0, 570, 800);
+            image.fillRect(600, 0, 650, 800);
         }
         
         setImage(image);
