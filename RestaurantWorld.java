@@ -22,7 +22,7 @@ public class RestaurantWorld extends World
     private int currentDay;
     private boolean spawnAtRed;
 
-    private static int labelHeight = 38;
+    private static int labelHeight = 30;
     private static int labelSize = 25;
 
     public RestaurantWorld(){
