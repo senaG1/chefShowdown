@@ -54,7 +54,9 @@ public class RestaurantWorld extends World
 
         //testing
         addObject(new ChefCohenBlue(), 415, 265);
-        addObject(new ChefCohenBlue(), 525, 265);
+        addObject(new ChefCohenRed(), 525, 265);
+        addObject(new HungryChef(), 415, 465);
+        addObject(new HungryChef(), 525, 465);
 
         addKitchenObjects();
         setPaintOrder(SuperStatBar.class, SuperSpeechBubble.class);

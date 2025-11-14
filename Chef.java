@@ -20,7 +20,7 @@ public abstract class Chef extends SuperSmoothMover
         isCooking = false;
 
         cookCount = 0;
-        orders = 2;
+        orders = 0;
 
         walkSpeed = 5;
 
@@ -29,6 +29,7 @@ public abstract class Chef extends SuperSmoothMover
         farBound = 240;
         closeBound = 40;
 
+        //image for testing purposes
         image = new GreenfootImage ("ChefCohen.png");
         setImage(image);
         
@@ -56,6 +57,14 @@ public abstract class Chef extends SuperSmoothMover
         if(orders > 0){
             cook();
         }
+    }
+    
+    public boolean onTeamBlue(){
+        return side.equals("L");
+    }
+    
+    public boolean isCooking(){
+        return isCooking;
     }
     
     protected void nextOrder(){
@@ -144,10 +153,6 @@ public abstract class Chef extends SuperSmoothMover
     }
 
     protected void checkQueue(){
-
-    }
-
-    protected void setRestaurant(){
 
     }
 
