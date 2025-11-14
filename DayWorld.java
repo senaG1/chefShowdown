@@ -12,8 +12,6 @@ public class DayWorld extends World
     private int timer = 0;
     private GreenfootImage background;
     private Font dayFont;
-    private int blueCash;
-    private int redCash;
     
     /**
      * Constructor for objects of class DayWorld.
@@ -38,7 +36,7 @@ public class DayWorld extends World
     public void act(){
         timer++;
         
-        if(timer == 150){
+        if(timer == 60){
             Greenfoot.setWorld(new RestaurantWorld(day));
         }
     }
