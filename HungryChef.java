@@ -14,27 +14,10 @@ public class HungryChef extends Chef
     
     public void act()
     {
-        super.act();
+        // Add your action code here.
     }
     
-    protected void cook(){
-        if(cookCount < cookSpeed){
-            isCooking = true;
-            cookCount++;
-            if(Greenfoot.getRandomNumber(10) == 0){//eats a customer's food occasionally and resets the timer
-                cookCount = 0;
-                //play sound effect 
-            }
-        }else{
-            //nextOrder();
-            isCooking = false;
-            orders--;
-            cookCount = 0;
-            if(orderBubble != null){
-                getWorld().removeObject(orderBubble);
-            }
-            sleepFor(45);
-        }
+    private void eatFood(){
+        
     }
-
 }

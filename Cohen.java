@@ -10,14 +10,6 @@ public class Cohen extends SuperSmoothMover
 {
     private GreenfootImage image;
     private boolean isGold;
-    
-    private double gravity = 0.2;
-    private double verSpeed = -6;
-    private double horSpeed;
-    private boolean flying;
-    
-    private boolean doAction;
-    
     public Cohen(String img, boolean gold){
         isGold = gold;
         image = new GreenfootImage(img);
@@ -35,20 +27,8 @@ public class Cohen extends SuperSmoothMover
      */
     public void act()
     {
-        if(doAction){
-            hop();
-        }
+        // Add your action code here.
     }
     
-    private void hop(){
-        setLocation(getPreciseX(), getPreciseY() + verSpeed);
-        turn(2); 
-        verSpeed += gravity; 
-        doAction = false;
-    }
-    
-    public void callAction(){
-        doAction = true;
-    }
     
 }
