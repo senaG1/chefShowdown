@@ -10,33 +10,37 @@ import greenfoot.*;
  */
 public class Button extends Actor {
     private GreenfootImage image;
-    private GreenfootImage sImage;
+    private GreenfootImage image_2;
     private Actor actorHoveredOver = null;
+    private boolean clicked = false;
     
-    public Button(){
-        image = new GreenfootImage ("startButton.png");
-        sImage = new GreenfootImage("small_button.png");
-        image.scale(image.getWidth()*1/2, image.getHeight()*1/2);
-        //sImage.scale(sImage.getWidth()*4, sImage.getHeight()*4);
+    public Button(String image1, String image2){
+        image = new GreenfootImage (image1);
+        image_2 = new GreenfootImage(image2);
         setImage(image);
     }
     
     public void act(){
         if (mouseHoveringOver(this)) {
-            
-            setImage(sImage);
+            setImage(image_2);
         }
         else {
         setImage(image);
         }
         
         if(Greenfoot.mouseClicked(this)){
-            Greenfoot.setWorld(new StoryWorld());
+            clicked = true;
+        } else {
+            clicked = false;
         }
     }
     /**
      * This method checks to see which button the mouse is hovering over
      */
+    public boolean isClicked() {
+        return clicked;
+    }
+    
     private void hoverOwner() {
         if ((actorHoveredOver == null || actorHoveredOver.getWorld() == null)
                 && Greenfoot.mouseMoved(this)) {
@@ -57,6 +61,12 @@ public class Button extends Actor {
     public boolean mouseHoveringOver(Actor actor) {
         hoverOwner();
         return actorHoveredOver == actor;
+    }
+    
+    public void scale(int ratio) {
+        image.scale(image.getWidth()*ratio, image.getHeight()*ratio);
+        image_2.scale(image_2.getWidth()*ratio, image_2.getHeight()*ratio);
+        
     }
  
     /**

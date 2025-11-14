@@ -21,7 +21,7 @@ public class StartWorld extends World
         background = new GreenfootImage("start_Screen.png");
         setBackground(background);
         
-        addObject(new Button(), 480, 376);
+        addObject(new Button("small_button.png", "startButton.png"), 480, 376);
     }
    
 }
