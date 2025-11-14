@@ -11,7 +11,7 @@ public class RestaurantWorld extends World
     private GreenfootImage background;
     private int actCount;
     private int actTimer = 180;
-    private int dayTimer = 1200;
+    private int dayTimer = 1800;
     public TeamUI teamBlueUI;
     public TeamUI teamRedUI;
     private ArrayList<Customer> customers;
