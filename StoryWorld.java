@@ -75,6 +75,7 @@ public class StoryWorld extends World
         if(timer == 720){
             talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Good luck.", true, false);
             addObject(talkingBubble, 0, 0);
+            Greenfoot.setWorld(new RestaurantWorld());
         }
         //redCohen.callAction();
         
