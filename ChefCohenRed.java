@@ -14,6 +14,6 @@ public class ChefCohenRed extends Chef
     
     public void act()
     {
-        // Add your action code here.
+        super.act();
     }
 }
