@@ -8,20 +8,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class HungryChef extends Chef
 {
+    private int actCount;
+
     public HungryChef(){
         cookSpeed = 180;
+        actCount = 0;
     }
-    
+
     public void act()
     {
         super.act();
+        actCount++;
     }
-    
+
     protected void cook(){
         if(cookCount < cookSpeed){
             isCooking = true;
             cookCount++;
-            if(Greenfoot.getRandomNumber(10) == 0){//eats a customer's food occasionally and resets the timer
+            if(actCount % 300 == 0){//eats a customer's food every 5 seconds and restarts cooking
+                actCount = 0;
                 cookCount = 0;
                 //play sound effect 
             }
