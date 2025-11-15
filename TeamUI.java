@@ -17,9 +17,10 @@ public class TeamUI extends SuperSmoothMover {
     private int salary;
     private int numReviews = 0;
     
-    private static int maxRating = 5;
+    private static double maxRating = 5.0;
     private int cash;
-    private int rating;
+    private double rating;
+    private double totalRating;
     
     private GreenfootImage starImage = new GreenfootImage("star_rating/stars11.png");
 
@@ -51,14 +52,29 @@ public class TeamUI extends SuperSmoothMover {
         cashCounter.setValue(cash); // This updates the label
     }
 
-    public void updateRating(int newRating) {
+    public void updateRating(double newRating) {
         numReviews++;
-        rating = (rating + newRating) / numReviews;
-        starImage = new GreenfootImage("star_rating/stars" + rating + ".png");
+        totalRating += newRating;
+        rating = totalRating / numReviews;
+        double roundedRating = roundNearestRating(rating);
+        starImage = new GreenfootImage("star_rating/stars" + roundedRating + ".png");
         starImage.scale(190, 40);
         starIcon.setImage(starImage);
     }
 
+    private double roundNearestRating(double rating) {
+        int integerRating = (int) rating;
+        double decimalRating = rating - integerRating;
+        if (decimalRating < 0.25) {
+            decimalRating = 0.0;
+        } else if (decimalRating >= 0.75) {
+            decimalRating = 1.0;
+        } else {
+            decimalRating = 0.5;
+        }
+        return integerRating + decimalRating;
+    }
+    
     public int getCash() {
         return cash;
     }

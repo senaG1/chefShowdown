@@ -30,12 +30,14 @@ public class Influencer extends Customer
     public void act()
     {
         super.act();
-        
+        Paparazzi effect;
         if (firstAct) {
-            Paparazzi effect = new Paparazzi();
+            effect = new Paparazzi();
             rw.addObject(effect, getX(), getY() - 100);
             rw.teamRedUI.updateRating(5);
             firstAct = false;
-        }   
+        } else {
+            
+        }
     }
 }

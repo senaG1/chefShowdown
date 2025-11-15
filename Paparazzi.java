@@ -8,13 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Paparazzi extends Effect
 {
-    private GreenfootImage flash;
+    private int imageCount;
     public Paparazzi()
     {
         super(240);
         
-        actCount = 30;
-        totalFadeTime = 15;
+        image = new GreenfootImage("flash/flash0.png");
+        
+        actCount = 120;
+        totalFadeTime = 45;
+        imageCount = 0;
     }
     
     public void loseCustomers()
@@ -24,10 +27,12 @@ public class Paparazzi extends Effect
     
     public void act()
     {
-        for (int i = 0; i < 8; i++) {
-            flash = new GreenfootImage("flash/flash" + i + ".png");
-            flash.scale(400, 400);
-            setImage(flash);
+        super.act();
+        image = new GreenfootImage("flash/flash" + imageCount + ".png");
+        image.scale(400, 400);
+        setImage(image);
+        if (actCount % 10 == 0 && imageCount < 8) {
+            imageCount++;
         }
     }
 }
