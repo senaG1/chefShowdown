@@ -5,8 +5,8 @@ import java.util.Arrays;
 /**
  * Write a description of class Customer here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Oscar Ho 
+ * @version 15-11
  */
 public class Customer extends SuperSmoothMover
 {

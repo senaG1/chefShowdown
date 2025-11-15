@@ -92,6 +92,22 @@ public class RestaurantWorld extends World
         if(dayTimer == 0){
             Greenfoot.setWorld(new DayWorld(currentDay + 1));
         }
+        
+        if(currentDay == 4)
+        {
+            endGame();
+        }
+        
+    }
+    
+    private void endGame()
+    {
+        int leftCash = teamBlueUI.getCash();
+        int rightCash = teamRedUI.getCash();
+        double leftRating = teamBlueUI.getRating();
+        double rightRating = teamRedUI.getRating();
+        Greenfoot.setWorld(new StatsWorld(leftCash, rightCash, leftRating, rightRating));
+        
     }
 
     private void addKitchenObjects() {
