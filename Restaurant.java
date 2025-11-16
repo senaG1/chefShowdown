@@ -4,47 +4,64 @@ import java.util.ArrayList;
 /**
  * Write a description of class Restaurant here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jiayu Chen
+ * @version 11-15 1.1
  */
 public class Restaurant extends SuperSmoothMover
 {
-    protected String name;
-    protected double money;
-    protected double rating;
-    protected ArrayList<Chef> chefs;
-    protected ArrayList<Customer> customers;
+    private RestaurantWorld rw;
     
-    public Restaurant(String name, double money) {
-        this.name = name;
-        this.money = money;
+    private String team;
+    private int currentCash;
+    private double finalRating;
+    
+    public TeamUI teamBlueUI;
+    public TeamUI teamRedUI;
+    
+    private static int labelHeight = 30;
+    private static int labelSize = 25;
+    private int uiOffset = 340;
+    
+    private ArrayList<Chef> chefs;
+    private ArrayList<Customer> customers;
+    
+    public Restaurant(String team, int xLocation) {
+        this.team = team;
         
         drawImage();
     }
     
-    public void act()
-    {
-        // Add your action code here.
+    public void addedToWorld(World w){
+        rw = (RestaurantWorld) w;
+        teamBlueUI = new TeamUI(rw, 340, labelHeight, labelSize, team);
+        teamRedUI = new TeamUI(rw, 810, labelHeight, labelSize, team);
     }
     
-    protected void hireChef(Chef chef) {
-        
+    public void act() {
+            
     }
     
-    protected void upgrade() {
-        
+    private void hireChef(Chef chef) {
+        // based on setting world, spawns specified chef at its respective points
     }
     
-    protected void levelUp() {
-        
+    private void spawnCustomer() {
+        // spawns random customer at it's specific lane
     }
     
-    protected void earnMoney(double amount) {
-        money += amount;
+    private void purchaseEffect() {
+        // check how much cash it has
+        // decide which effect it wants to buy
+        // "buff" --> Influencer
+        // "sabatoge" --> rat infestation/power outage (power outage can just be a random occurance though)
     }
     
-    protected void loseMoney(double amount) {
-        money -= amount;
+    private void addUI(String team) {
+        if (team.equals("Blue")) {
+            
+        } else {
+            
+        }
     }
     
     private void drawImage() {
@@ -59,7 +76,11 @@ public class Restaurant extends SuperSmoothMover
         setImage(img);
     }
     
-    public String getName() {
-        return name;
+    public String getTeam() {
+        return team;
+    }
+    
+    public double getFinalRating() {
+        return finalRating;
     }
 }

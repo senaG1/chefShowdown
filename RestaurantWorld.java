@@ -15,8 +15,8 @@ public class RestaurantWorld extends World
     public TeamUI teamBlueUI;
     public TeamUI teamRedUI;
     private ArrayList<Customer> customers;
-    private Restaurant restaurantBlue;
-    private Restaurant restaurantRed;
+    public Restaurant restaurantBlue;
+    public Restaurant restaurantRed;
     private int width = 960;
     private int height = 640;
     private int currentDay;
@@ -39,18 +39,16 @@ public class RestaurantWorld extends World
         background = new GreenfootImage("restaurant_bg.png");
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
         setBackground(background);
-        
-        teamBlueUI = new TeamUI(this, 340, labelHeight, labelSize, "red");
-        teamRedUI = new TeamUI(this, 810, labelHeight, labelSize, "blue");
 
         //hello
         actCount = 0;
+        
+        // create the two restaurants but
+        restaurantBlue = new Restaurant("Blue", 0);
+        addObject(restaurantBlue, 0, height);
 
-        restaurantBlue = new Restaurant("Blue", 1000);
-        addObject(restaurantBlue, getWidth()/4, getHeight()/2);
-
-        restaurantBlue = new Restaurant("Red", 1000);
-        addObject(restaurantBlue, width/2 + width/4, height/2);           
+        restaurantRed = new Restaurant("Red", width/2);
+        addObject(restaurantRed, width/2, height);           
 
         //testing
         addObject(new ChefCohenBlue(), 415, 265);

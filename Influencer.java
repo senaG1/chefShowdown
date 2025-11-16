@@ -34,7 +34,7 @@ public class Influencer extends Customer
         if (firstAct) {
             effect = new Paparazzi();
             rw.addObject(effect, getX(), getY() - 100);
-            rw.teamRedUI.updateRating(5);
+            rw.restaurantRed.teamRedUI.updateRating(5);
             firstAct = false;
         } else {
             

@@ -255,10 +255,10 @@ public class Customer extends SuperSmoothMover
             int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
             order[i] = availibleItems.remove(randomIndex);
             itemImages.add(getImageForItem(order[i]));
-            rw.teamBlueUI.updateCash(prices[i]);
-            rw.teamBlueUI.updateRating(5);
-            rw.teamRedUI.updateCash(prices[i]);
-            rw.teamRedUI.updateRating(4);
+            // if on blue side
+            rw.restaurantBlue.teamBlueUI.updateCash(prices[i]);
+            // if on red side
+            // Restaurant.teamRedUI.updateCash(prices[i]);
             currentOrder = getImageForItem(order[i]);
         }
         chef.takeOrder(currentOrder, arrayList);
