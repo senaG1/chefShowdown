@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class StoryWorld here.
  * 
- * @author (your name) 
+ * @author Isabel Powell
  * @version (a version number or a date)
  */
 public class StoryWorld extends World
@@ -75,7 +75,7 @@ public class StoryWorld extends World
         if(timer == 720){
             talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Good luck.", true, false);
             addObject(talkingBubble, 0, 0);
-            Greenfoot.setWorld(new RestaurantWorld());
+            // Greenfoot.setWorld(new RestaurantWorld());
         }
         //redCohen.callAction();
         

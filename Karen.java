@@ -4,31 +4,24 @@ import java.util.ArrayList;
 /**
  * Write a description of class Karen here.
  * 
- * @author (your name) 
+ * @author Isabel Powell
  * @version (a version number or a date)
  */
 public class Karen extends Customer
 {
     private GreenfootImage image;
-    private int diameter = 50;
+    private int diameter = 50; //Size of circle
     private boolean complained;
-    private int decreaseRate = 1;
+    private int decreaseRate = 1; //Drains patence by 1
     
-    public Karen(boolean spawnAtRed){
-        super();
+    public Karen(Restaurant restaurant){
+        super(restaurant);
         image = new GreenfootImage ("Karen_00.png");
         image.scale(image.getWidth()*2, image.getHeight()*2);
         setImage(image);
-        if(spawnAtRed)
-        {
-            LINE_X = 909;
-            LINE_START_Y = 512;
-        }
-        else
-        {
-            LINE_X = 62;
-            LINE_START_Y = 512;
-        }
+        
+        LINE_X = restaurant.getCustLineX();
+        LINE_START_Y = restaurant.getCustLineY();
     }
     
     public void addedToWorld() {

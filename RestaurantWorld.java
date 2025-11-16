@@ -13,15 +13,11 @@ public class RestaurantWorld extends World
     private int actCount;
     private int actTimer = 180;
     private int dayTimer = 1800;
-    //TeamUI
-    public TeamUI teamBlueUI;
-    public TeamUI teamRedUI;
     
     private ArrayList<Customer> customers;
     //Restaurants
     public Restaurant restaurantBlue;
     public Restaurant restaurantRed;
-    
     
     private int width = 960;
     private int height = 640;
@@ -32,9 +28,10 @@ public class RestaurantWorld extends World
     //Constants
     private static int labelHeight = 30;
     private static int labelSize = 25;
-
-    public RestaurantWorld(){
+    
+    public RestaurantWorld() {
         this(1);
+        
         prepare();
     }
 
@@ -50,22 +47,20 @@ public class RestaurantWorld extends World
         
         actCount = 0;
         
-        // create the two restaurants but
-        restaurantBlue = new Restaurant("Blue", 0);
-        addObject(restaurantBlue, 0, height);
-
-        restaurantRed = new Restaurant("Red", width/2);
-        addObject(restaurantRed, width/2, height);           
-
+        if (restaurantBlue == null) {
+            restaurantBlue = new Restaurant(SettingsWorld.getNumBlueChefs(), SettingsWorld.getStartMoneyBlue(), "Blue", 0);
+            addObject(restaurantBlue, 0, height);
+        }
+        if (restaurantRed == null) {
+            restaurantRed = new Restaurant(SettingsWorld.getNumRedChefs(), SettingsWorld.getStartMoneyRed(), "Red", width/2);
+            addObject(restaurantRed, width/2, height);
+        }
         //testing
         addObject(new ChefCohenBlue(), 415, 265);
         addObject(new ChefCohenRed(), 525, 265);
         addObject(new HungryChef(), 415, 465);
         addObject(new HungryChef(), 525, 465);
         
-        teamBlueUI = restaurantBlue.teamBlueUI;
-        teamRedUI = restaurantRed.teamRedUI;
-
         addKitchenObjects();
         setPaintOrder(SuperStatBar.class, SuperSpeechBubble.class);
     }
@@ -81,25 +76,26 @@ public class RestaurantWorld extends World
             actTimer = 180;
         }
 
-        if (actCount % 1200 == 0){
-            addObject(new PowerOutage("Blue"), 512, 400);
+        if (actCount % 600 == 0){
+            //addObject(new PowerOutage("Blue"), 512, 400);
         }
 
-        if (actCount % 1600 == 0){
-            addObject(new RatInfestation("Blue"), 0, 0);
+        if (actCount % 800 == 0){
+            //addObject(new RatInfestation("Blue"), 0, 0);
         }
 
-        if (actCount % 1000 == 0){
-            addObject(new PowerOutage("Red"), 485, 400);
+        if (actCount % 500 == 0){
+            //addObject(new PowerOutage("Red"), 485, 400);
         }
 
-        if (actCount % 1800 == 0){
-            addObject(new RatInfestation("Red"), 0, 0);
+        if (actCount % 900 == 0){
+            //addObject(new RatInfestation("Red"), 0, 0);
         }
 
         if(dayTimer == 0){
+            removeCustomers();
             Greenfoot.setWorld(new DayWorld(this));
-            dayTimer = 1800;
+            dayTimer = 3600;
         }
         
         if(currentDay == 4)
@@ -119,12 +115,11 @@ public class RestaurantWorld extends World
     
     private void endGame()
     {
-        int leftCash = teamBlueUI.getCash();
-        int rightCash = teamRedUI.getCash();
-        double leftRating = teamBlueUI.getRating();
-        double rightRating = teamRedUI.getRating();
+        int leftCash = restaurantBlue.getCash();
+        int rightCash = restaurantRed.getCash();
+        double leftRating = restaurantBlue.getRating();
+        double rightRating = restaurantRed.getRating();
         Greenfoot.setWorld(new StatsWorld(leftCash, rightCash, leftRating, rightRating));
-        
     }
 
     private void addKitchenObjects() {
@@ -162,43 +157,53 @@ public class RestaurantWorld extends World
         addObject(new KitchenObject("stove_back_off.png"), 622, 596);
         addObject(new KitchenObject("counter_shelf_veggies.png"), 696, 590);
     }
-    //Currently the right side spawn does not work
+    //Spawns customers
     private void addCustomers()
     {
-        int rand = Greenfoot.getRandomNumber(30);
         int customerType = Greenfoot.getRandomNumber(10);
-
-        spawnAtRed = Greenfoot.getRandomNumber(2) == 0 ? true : false;
-        if (spawnAtRed){
-            if(customerType <= 4) {
-                addObject(new RegularCustomer(true), 909, 628);
-            }
-            else if(customerType <= 6) {
-                addObject(new Karen(true), 909, 628);
-            }
-            else if(customerType <= 9){
-                addObject(new Influencer(true), 909, 628);
-            }
-            else{
-                addObject(new ChefCohen(true), 909, 628);
-            }
-        } else {
-            if(customerType <= 4) {
-                addObject(new RegularCustomer(false), 51, 628);
-            }
-            else if(customerType <= 6) {
-                addObject(new Karen(false), 51, 628);
-            }
-            else if(customerType <= 9){
-                addObject(new Influencer(false), 51, 628);
-            }
-            else{
-                addObject(new ChefCohen(false), 51, 628);
-            }
-
+        
+        Restaurant spawnRestaurant = Greenfoot.getRandomNumber(2) == 0 ? restaurantBlue : restaurantRed;
+        if(customerType <= 4) {
+            addObject(new RegularCustomer(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
+        }
+        else if(customerType <= 6) {
+            addObject(new Karen(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
+        }
+        else if(customerType <= 9){
+            addObject(new Influencer(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
+        }
+        else{
+            addObject(new ChefCohen(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
         }
     }
-
+    
+    //Removes all customers when it switches the day
+    private void removeCustomers(){
+        ArrayList<Customer> cust = (ArrayList<Customer>) getObjects(Customer.class);
+        
+        for(Customer c : cust){
+            removeObject(c);
+        }
+    }
+    
+    public void spawnCustomers(int amountOfCust, String restaurant){
+        Restaurant rest = restaurant.equals("Blue") ? restaurantBlue : restaurantRed;
+        for(int i = 0; i < amountOfCust; i++){
+            int customerType = Greenfoot.getRandomNumber(10);
+            
+            if(customerType <= 5) {
+                addObject(new RegularCustomer(rest), rest.getCustSpawnX(), rest.getCustSpawnY());
+            }
+            else if(customerType <= 7) {
+                addObject(new Karen(rest), rest.getCustSpawnX(), rest.getCustSpawnY());
+            }
+            else{
+                addObject(new ChefCohen(rest), rest.getCustSpawnX(), rest.getCustSpawnY());
+            }
+            
+        }
+    }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.

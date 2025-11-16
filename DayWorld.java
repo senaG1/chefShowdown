@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Write a description of class DayWorld here.
  * 
- * @author (your name) 
+ * @author Isabel Powell
  * @version (a version number or a date)
  */
 public class DayWorld extends World

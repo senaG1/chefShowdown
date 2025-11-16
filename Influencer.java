@@ -3,41 +3,44 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Influencer here.
  * 
- * @author (your name) 
+ * @author Isabel Powell
  * @version (a version number or a date)
  */
 public class Influencer extends Customer
 {
     private GreenfootImage image;
     private boolean firstAct = true;
-    public Influencer(boolean spawnAtRed){
-        super();
+    private boolean hasPaparzzi = false;
+    public Influencer(Restaurant restaurant){
+        super(restaurant);
         image = new GreenfootImage ("influencer_00.png");
         image.scale(image.getWidth()*2, image.getHeight()*2);
         setImage(image);
-        if(spawnAtRed)
-        {
-            LINE_X = 909;
-            LINE_START_Y = 512;
-        }
-        else
-        {
-            LINE_X = 62;
-            LINE_START_Y = 512;
-        }
+        
+        LINE_X = restaurant.getCustLineX();
+        LINE_START_Y = restaurant.getCustLineY();
     }
     
     public void act()
     {
         super.act();
         Paparazzi effect;
-        if (firstAct) {
+        if (!hasPaparzzi && isInPositon() && inLine) {
             effect = new Paparazzi();
             rw.addObject(effect, getX(), getY() - 100);
-            rw.restaurantRed.teamRedUI.updateRating(5);
-            firstAct = false;
-        } else {
             
+            RestaurantWorld w = (RestaurantWorld)getWorld();
+            w.spawnCustomers(1, restaurant.getTeam());
+            hasPaparzzi = true;
+            
+            //firstAct = false;
         }
     }
+    
+    private boolean isInPositon(){
+        int xCord = (getX() >= 480) ? LINE_X - 20 : LINE_X;
+        double distance = Math.abs(getX() - xCord);
+        return distance < 10;
+    }
+    
 }

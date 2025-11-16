@@ -9,12 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class SettingsWorld extends World
 {
     // Blue restaurant settings
-    private int numChefsBlue = 1;
-    private int startMoneyBlue = 1000;
+    private static int numChefsBlue = 1;
+    private static int startMoneyBlue = 1000;
     
     // Red restaurant settings
-    private int numChefsRed = 1;
-    private int startMoneyRed = 1000;
+    private static int numChefsRed = 1;
+    private static int startMoneyRed = 1000;
     
     private GreenfootImage blueMenu;
     private GreenfootImage redMenu;
@@ -35,6 +35,9 @@ public class SettingsWorld extends World
     
     private Button playBtn;
     
+    private Restaurant restaurantBlue;
+    private Restaurant restaurantRed;
+    
     private final int MIN_CHEFS = 1;
     private final int MAX_CHEFS = 5;
     private final int MIN_MONEY = 500;
@@ -42,12 +45,12 @@ public class SettingsWorld extends World
     private final int MONEY_INCREMENT = 100;
     
     private final int BLUE_CENTER_X = 280;
-    private final int BLUE_CHEF_Y = 270;
-    private final int BLUE_MONEY_Y = 340;
+    private final int BLUE_CHEF_Y = 320;
+    private final int BLUE_MONEY_Y = 390;
     
     private final int RED_CENTER_X = 680;
-    private final int RED_CHEF_Y = 270;
-    private final int RED_MONEY_Y = 340;
+    private final int RED_CHEF_Y = 320;
+    private final int RED_MONEY_Y = 390;
     
     public SettingsWorld()
     {    
@@ -171,12 +174,12 @@ public class SettingsWorld extends World
         
         // Draw title
         bg.setFont(new Font("Consolas", true, false, 64));
-        bg.drawString("SETUP", 400, 150);
+        bg.drawString("OPTIONS", 360, 200);
         
         // BLUE RESTAURANT (LEFT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
         bg.setColor(new Color(50, 100, 200)); 
-        bg.drawString("BLUE", BLUE_CENTER_X - 50, 200);
+        bg.drawString("BLUE", BLUE_CENTER_X - 50, 250);
         
         bg.setColor(new Color(99, 66, 66));
         bg.setFont(new Font("Consolas", false, false, 24));
@@ -194,7 +197,7 @@ public class SettingsWorld extends World
         // RED RESTAURANT (RIGHT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
         bg.setColor(new Color(200, 50, 50)); 
-        bg.drawString("RED", RED_CENTER_X - 40, 200);
+        bg.drawString("RED", RED_CENTER_X - 40, 250);
         
         bg.setColor(new Color(99, 66, 66));
         bg.setFont(new Font("Consolas", false, false, 24));
@@ -212,6 +215,25 @@ public class SettingsWorld extends World
     
     private void startGame()
     {
+        restaurantBlue = new Restaurant(numChefsBlue, startMoneyBlue, "Blue", 0);
+        restaurantRed = new Restaurant(numChefsRed, startMoneyRed, "Red", getWidth()/2);
         
+        Greenfoot.setWorld(new RestaurantWorld());
+    }
+    
+    public static int getStartMoneyBlue() {
+        return startMoneyBlue;
+    }
+    
+    public static int getStartMoneyRed() {
+        return startMoneyRed;
+    }
+    
+    public static int getNumBlueChefs() {
+        return numChefsBlue;
+    }
+    
+    public static int getNumRedChefs() {
+        return numChefsRed;
     }
 }

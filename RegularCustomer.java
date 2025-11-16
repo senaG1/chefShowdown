@@ -9,21 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class RegularCustomer extends Customer
 {
     private GreenfootImage image;
-    public RegularCustomer(boolean spawnAtRed){
-        super();
+    public RegularCustomer(Restaurant restaurant){
+        super(restaurant);
         image = new GreenfootImage ("regular_Cust.png");
         image.scale(image.getWidth()*2, image.getHeight()*2);
         setImage(image);
-        if(spawnAtRed)
-        {
-            LINE_X = 909;
-            LINE_START_Y = 512;
-        }
-        else
-        {
-            LINE_X = 62;
-            LINE_START_Y = 512;
-        }
+        LINE_X = restaurant.getCustLineX();
+        LINE_START_Y = restaurant.getCustLineY();
     }
     
     /**

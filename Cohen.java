@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class CohenMaker here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Isabel Powell
+ * @version 2 
  */
 public class Cohen extends SuperSmoothMover
 {
@@ -14,7 +14,6 @@ public class Cohen extends SuperSmoothMover
     private double gravity = 0.2;
     private double verSpeed = -6;
     private double horSpeed;
-    private boolean flying;
     
     private boolean doAction;
     

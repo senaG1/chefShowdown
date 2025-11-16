@@ -20,11 +20,10 @@ public class TeamUI extends SuperSmoothMover {
     private static double maxRating = 5.0;
     private int cash;
     private double rating;
-    private double totalRating;
     
     private GreenfootImage starImage = new GreenfootImage("star_rating/stars11.png");
 
-    public TeamUI(World world, int xOffset, int labelHeight, int labelSize, String team) {
+    public TeamUI(World world, int xOffset, int labelHeight, int labelSize, String team, int cash) {
         cashLabel = new Label("CASH: ", labelSize);
         cashCounter = new Label(cash, labelSize);
         ratingLabel = new Label("RATING: ", labelSize);
@@ -48,38 +47,12 @@ public class TeamUI extends SuperSmoothMover {
     }
 
     public void updateCash(int newCash) {
-        cash += newCash;
-        cashCounter.setValue(cash); // This updates the label
+        cashCounter.setValue(newCash); // This updates the label
     }
 
-    public void updateRating(double newRating) {
-        numReviews++;
-        totalRating += newRating;
-        rating = totalRating / numReviews;
-        double roundedRating = roundNearestRating(rating);
+    public void updateRating(double roundedRating) {
         starImage = new GreenfootImage("star_rating/stars" + roundedRating + ".png");
         starImage.scale(190, 40);
         starIcon.setImage(starImage);
-    }
-
-    private double roundNearestRating(double rating) {
-        int integerRating = (int) rating;
-        double decimalRating = rating - integerRating;
-        if (decimalRating < 0.25) {
-            decimalRating = 0.0;
-        } else if (decimalRating >= 0.75) {
-            decimalRating = 1.0;
-        } else {
-            decimalRating = 0.5;
-        }
-        return integerRating + decimalRating;
-    }
-    
-    public int getCash() {
-        return cash;
-    }
-
-    public double getRating() {
-        return rating;
     }
 }

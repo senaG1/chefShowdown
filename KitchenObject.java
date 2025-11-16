@@ -20,4 +20,5 @@ public class KitchenObject extends Actor
     {
         // Add your action code here.
     }
+    
 }

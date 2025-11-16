@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Cohen
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ CohenMaker\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ CohenMaker\ here.\r\n\ \r\n\ @author\ Isabel\ Powell\r\n\ @version\ 2\ \r\n
 comment1.params=img\ gold
 comment1.target=Cohen(java.lang.String,\ boolean)
 comment2.params=
