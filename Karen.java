@@ -4,15 +4,15 @@ import java.util.ArrayList;
 /**
  * Write a description of class Karen here.
  * 
- * @author (your name) 
+ * @author Isabel Powell
  * @version (a version number or a date)
  */
 public class Karen extends Customer
 {
     private GreenfootImage image;
-    private int diameter = 50;
+    private int diameter = 50; //Size of circle
     private boolean complained;
-    private int decreaseRate = 1;
+    private int decreaseRate = 1; //Drains patence by 1
     
     public Karen(Restaurant restaurant){
         super(restaurant);

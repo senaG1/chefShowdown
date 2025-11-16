@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class StatsWorld extends World
 {
-
+    private GreenfootImage background;
     private int leftTeamCash;
     private int rightTeamCash;
     private double leftTeamRating;
@@ -28,6 +28,12 @@ public class StatsWorld extends World
     
     // will change later depending on image given
     private void prepare() {
+        background = new GreenfootImage("bg_stat.png");
+        setBackground(background);
+        StatScreen screen = new StatScreen("blueStat.png", 320);
+        addObject(screen, 480, -500);
+        screen.callAction();
+        
         Label leftCashLabel = new Label("Left Team Cash: " + leftTeamCash, 30);
         Label leftRatingLabel = new Label("Left Team Rating: " + String.format("%.2f", leftTeamRating), 30);
         Label rightCashLabel = new Label("Right Team Cash: " + rightTeamCash, 30);

@@ -93,6 +93,7 @@ public class RestaurantWorld extends World
         }
 
         if(dayTimer == 0){
+            removeCustomers();
             Greenfoot.setWorld(new DayWorld(this));
             dayTimer = 3600;
         }
@@ -156,10 +157,9 @@ public class RestaurantWorld extends World
         addObject(new KitchenObject("stove_back_off.png"), 622, 596);
         addObject(new KitchenObject("counter_shelf_veggies.png"), 696, 590);
     }
-    //Currently the right side spawn does not work
+    //Spawns customers
     private void addCustomers()
     {
-        int rand = Greenfoot.getRandomNumber(30);
         int customerType = Greenfoot.getRandomNumber(10);
         
         Restaurant spawnRestaurant = Greenfoot.getRandomNumber(2) == 0 ? restaurantBlue : restaurantRed;
@@ -176,7 +176,34 @@ public class RestaurantWorld extends World
             addObject(new ChefCohen(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
         }
     }
-
+    
+    //Removes all customers when it switches the day
+    private void removeCustomers(){
+        ArrayList<Customer> cust = (ArrayList<Customer>) getObjects(Customer.class);
+        
+        for(Customer c : cust){
+            removeObject(c);
+        }
+    }
+    
+    public void spawnCustomers(int amountOfCust, String restaurant){
+        Restaurant rest = restaurant.equals("Blue") ? restaurantBlue : restaurantRed;
+        for(int i = 0; i < amountOfCust; i++){
+            int customerType = Greenfoot.getRandomNumber(10);
+            
+            if(customerType <= 5) {
+                addObject(new RegularCustomer(rest), rest.getCustSpawnX(), rest.getCustSpawnY());
+            }
+            else if(customerType <= 7) {
+                addObject(new Karen(rest), rest.getCustSpawnX(), rest.getCustSpawnY());
+            }
+            else{
+                addObject(new ChefCohen(rest), rest.getCustSpawnX(), rest.getCustSpawnY());
+            }
+            
+        }
+    }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
