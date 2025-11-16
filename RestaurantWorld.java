@@ -32,9 +32,19 @@ public class RestaurantWorld extends World
     //Constants
     private static int labelHeight = 30;
     private static int labelSize = 25;
-
-    public RestaurantWorld(){
+    
+    public RestaurantWorld(Restaurant blue, Restaurant red) {
         this(1);
+        // create the two restaurants 
+        restaurantBlue = blue;
+        addObject(restaurantBlue, 0, height);
+
+        restaurantRed = red;
+        addObject(restaurantRed, width/2, height);
+        
+        teamBlueUI = restaurantBlue.teamBlueUI;
+        teamRedUI = restaurantRed.teamRedUI;
+        
         prepare();
     }
 
@@ -50,22 +60,12 @@ public class RestaurantWorld extends World
         
         actCount = 0;
         
-        // create the two restaurants but
-        restaurantBlue = new Restaurant("Blue", 0);
-        addObject(restaurantBlue, 0, height);
-
-        restaurantRed = new Restaurant("Red", width/2);
-        addObject(restaurantRed, width/2, height);           
-
         //testing
         addObject(new ChefCohenBlue(), 415, 265);
         addObject(new ChefCohenRed(), 525, 265);
         addObject(new HungryChef(), 415, 465);
         addObject(new HungryChef(), 525, 465);
         
-        teamBlueUI = restaurantBlue.teamBlueUI;
-        teamRedUI = restaurantRed.teamRedUI;
-
         addKitchenObjects();
         setPaintOrder(SuperStatBar.class, SuperSpeechBubble.class);
     }
