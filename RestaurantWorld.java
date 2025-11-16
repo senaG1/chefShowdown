@@ -61,11 +61,11 @@ public class RestaurantWorld extends World
         actCount = 0;
         
         if (restaurantBlue == null) {
-            restaurantBlue = new Restaurant("Blue", 0);
+            restaurantBlue = new Restaurant(SettingsWorld.getNumBlueChefs(), SettingsWorld.getStartMoneyBlue(), "Blue", 0);
             addObject(restaurantBlue, 0, height);
         }
         if (restaurantRed == null) {
-            restaurantRed = new Restaurant("Red", width/2);
+            restaurantRed = new Restaurant(SettingsWorld.getNumRedChefs(), SettingsWorld.getStartMoneyRed(), "Red", width/2);
             addObject(restaurantRed, width/2, height);           
         }
         //testing

@@ -9,12 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class SettingsWorld extends World
 {
     // Blue restaurant settings
-    private int numChefsBlue = 1;
-    private int startMoneyBlue = 1000;
+    private static int numChefsBlue = 1;
+    private static int startMoneyBlue = 1000;
     
     // Red restaurant settings
-    private int numChefsRed = 1;
-    private int startMoneyRed = 1000;
+    private static int numChefsRed = 1;
+    private static int startMoneyRed = 1000;
     
     private GreenfootImage blueMenu;
     private GreenfootImage redMenu;
@@ -219,5 +219,21 @@ public class SettingsWorld extends World
         restaurantRed = new Restaurant(numChefsRed, startMoneyRed, "Red", getWidth()/2);
         
         Greenfoot.setWorld(new RestaurantWorld(restaurantBlue, restaurantRed));
+    }
+    
+    public static int getStartMoneyBlue() {
+        return startMoneyBlue;
+    }
+    
+    public static int getStartMoneyRed() {
+        return startMoneyRed;
+    }
+    
+    public static int getNumBlueChefs() {
+        return numChefsBlue;
+    }
+    
+    public static int getNumRedChefs() {
+        return numChefsRed;
     }
 }
