@@ -24,7 +24,7 @@ public class TeamUI extends SuperSmoothMover {
     
     private GreenfootImage starImage = new GreenfootImage("star_rating/stars11.png");
 
-    public TeamUI(World world, int xOffset, int labelHeight, int labelSize, String team) {
+    public TeamUI(World world, int xOffset, int labelHeight, int labelSize, String team, int cash) {
         cashLabel = new Label("CASH: ", labelSize);
         cashCounter = new Label(cash, labelSize);
         ratingLabel = new Label("RATING: ", labelSize);

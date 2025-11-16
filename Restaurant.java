@@ -12,6 +12,7 @@ public class Restaurant extends SuperSmoothMover
     private RestaurantWorld rw;
     
     private String team;
+    private int numChefs;
     private int currentCash;
     private double finalRating;
     
@@ -30,7 +31,10 @@ public class Restaurant extends SuperSmoothMover
     private int custLineX;
     private int custLineY;
     
-    public Restaurant(String team, int xLocation) {
+    public Restaurant(int chefs, int cash, String team, int xLocation) {
+        numChefs = chefs;
+        currentCash = cash;
+        
         this.team = team;
         
         if (team.equals("Red")) {
@@ -50,8 +54,8 @@ public class Restaurant extends SuperSmoothMover
     
     public void addedToWorld(World w){
         rw = (RestaurantWorld) w;
-        teamBlueUI = new TeamUI(rw, 340, labelHeight, labelSize, team);
-        teamRedUI = new TeamUI(rw, 810, labelHeight, labelSize, team);
+        teamBlueUI = new TeamUI(rw, 340, labelHeight, labelSize, team, currentCash);
+        teamRedUI = new TeamUI(rw, 810, labelHeight, labelSize, team, currentCash);
     }
     
     public void act() {
@@ -71,6 +75,10 @@ public class Restaurant extends SuperSmoothMover
         // decide which effect it wants to buy
         // "buff" --> Influencer
         // "sabatoge" --> rat infestation/power outage (power outage can just be a random occurance though)
+    }
+    
+    public void updateCash() {
+        
     }
     
     private void addUI(String team) {
