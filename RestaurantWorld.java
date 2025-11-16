@@ -50,13 +50,14 @@ public class RestaurantWorld extends World
         
         actCount = 0;
         
-        // create the two restaurants but
-        restaurantBlue = new Restaurant("Blue", 0);
-        addObject(restaurantBlue, 0, height);
-
-        restaurantRed = new Restaurant("Red", width/2);
-        addObject(restaurantRed, width/2, height);           
-
+        if (restaurantBlue == null) {
+            restaurantBlue = new Restaurant("Blue", 0);
+            addObject(restaurantBlue, 0, height);
+        }
+        if (restaurantRed == null) {
+            restaurantRed = new Restaurant("Red", width/2);
+            addObject(restaurantRed, width/2, height);           
+        }
         //testing
         addObject(new ChefCohenBlue(), 415, 265);
         addObject(new ChefCohenRed(), 525, 265);
@@ -167,35 +168,19 @@ public class RestaurantWorld extends World
     {
         int rand = Greenfoot.getRandomNumber(30);
         int customerType = Greenfoot.getRandomNumber(10);
-
-        spawnAtRed = Greenfoot.getRandomNumber(2) == 0 ? true : false;
-        if (spawnAtRed){
-            if(customerType <= 4) {
-                addObject(new RegularCustomer(true), 909, 628);
-            }
-            else if(customerType <= 6) {
-                addObject(new Karen(true), 909, 628);
-            }
-            else if(customerType <= 9){
-                addObject(new Influencer(true), 909, 628);
-            }
-            else{
-                addObject(new ChefCohen(true), 909, 628);
-            }
-        } else {
-            if(customerType <= 4) {
-                addObject(new RegularCustomer(false), 51, 628);
-            }
-            else if(customerType <= 6) {
-                addObject(new Karen(false), 51, 628);
-            }
-            else if(customerType <= 9){
-                addObject(new Influencer(false), 51, 628);
-            }
-            else{
-                addObject(new ChefCohen(false), 51, 628);
-            }
-
+        
+        Restaurant spawnRestaurant = Greenfoot.getRandomNumber(2) == 0 ? restaurantBlue : restaurantRed;
+        if(customerType <= 4) {
+            addObject(new RegularCustomer(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
+        }
+        else if(customerType <= 6) {
+            addObject(new Karen(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
+        }
+        else if(customerType <= 9){
+            addObject(new Influencer(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
+        }
+        else{
+            addObject(new ChefCohen(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
         }
     }
 

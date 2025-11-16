@@ -25,8 +25,25 @@ public class Restaurant extends SuperSmoothMover
     private ArrayList<Chef> chefs;
     private ArrayList<Customer> customers;
     
+    private int custSpawnX;
+    private int custSpawnY;
+    private int custLineX;
+    private int custLineY;
+    
     public Restaurant(String team, int xLocation) {
         this.team = team;
+        
+        if (team.equals("Red")) {
+            custLineX = 909;
+            custLineY = 512;
+            custSpawnX = 909;
+            custSpawnY = 628;
+        } else {
+            custLineX = 62;
+            custLineY = 512;
+            custSpawnX = 51;
+            custSpawnY = 628;
+        }
         
         drawImage();
     }
@@ -64,6 +81,10 @@ public class Restaurant extends SuperSmoothMover
         }
     }
     
+    public void collectCash(int amount) {
+        this.currentCash += amount;
+    }
+    
     private void drawImage() {
         int worldWidth = 960;
         int worldHeight = 640;
@@ -76,8 +97,28 @@ public class Restaurant extends SuperSmoothMover
         setImage(img);
     }
     
+    public int getCustSpawnX() {
+        return this.custSpawnX;
+    }
+    
+    public int getCustSpawnY() {
+        return this.custSpawnY;
+    }
+    
+    public int getCustLineX() {
+        return this.custLineX;
+    }
+    
+    public int getCustLineY() {
+        return this.custLineY;
+    }
+    
     public String getTeam() {
         return team;
+    }
+    
+    public int getCash() {
+        return currentCash;
     }
     
     public double getFinalRating() {

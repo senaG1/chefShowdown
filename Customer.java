@@ -43,13 +43,15 @@ public class Customer extends SuperSmoothMover
     private boolean teamBlue;
 
     private int rating;
+    
+    protected Restaurant restaurant;
 
     private static final int BLUE_MIN_X = 0;
     private static final int BLUE_MAX_X = 480;  // Left half of 960
     private static final int RED_MIN_X = 480;
     private static final int RED_MAX_X = 960;   // Right half of 960
 
-    public Customer()
+    public Customer(Restaurant restaurant)
     {
         image = new GreenfootImage("regular_Cust.png");
         setImage(image);
@@ -57,6 +59,7 @@ public class Customer extends SuperSmoothMover
         nextCustomerIndex++;
         inLine = true;
         actTimer = 180;
+        this.restaurant = restaurant;
     }
 
     public void addedToWorld(World w){
@@ -255,16 +258,17 @@ public class Customer extends SuperSmoothMover
             int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
             order[i] = availibleItems.remove(randomIndex);
             itemImages.add(getImageForItem(order[i]));
-            // if on blue side
-            rw.restaurantBlue.teamBlueUI.updateCash(prices[i]);
-            // if on red side
-            // Restaurant.teamRedUI.updateCash(prices[i]);
+            
             currentOrder = getImageForItem(order[i]);
         }
         chef.takeOrder(currentOrder, arrayList);
         createCompositeOrderImage(itemImages);
 
         return order;
+    }
+    
+    private void pay(int amount) {
+        this.restaurant.collectCash(amount);
     }
 
     private void createCompositeOrderImage(ArrayList<GreenfootImage> images)
