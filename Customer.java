@@ -29,7 +29,7 @@ public class Customer extends SuperSmoothMover
     protected int currentPatience = 2100;
     private int targetX;
     private int targetY;
-    protected String[] menu = {"nuggets", "fries", "hash", "big cohen", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
+    protected String[] menu = {"nuggets", "fries", "hash", "burger", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
     protected int[] prices = {59, 39, 19, 109, 107, 79, 69, 22, 49, 75};
     protected String[] order;
     protected SuperSpeechBubble orderBubble;
@@ -98,7 +98,7 @@ public class Customer extends SuperSmoothMover
         {
             return new GreenfootImage("hash.png");
         }
-        else if(item.equals("big cohen"))
+        else if(item.equals("burger"))
         {
             return new GreenfootImage("burger.png");
         }
@@ -246,7 +246,7 @@ public class Customer extends SuperSmoothMover
             availibleItems.add(item);
         }
         order = new String[numOrder];
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(order));
+        
 
         ArrayList<GreenfootImage> itemImages = new ArrayList<>();
 
@@ -261,6 +261,7 @@ public class Customer extends SuperSmoothMover
             // Restaurant.teamRedUI.updateCash(prices[i]);
             currentOrder = getImageForItem(order[i]);
         }
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(order));
         chef.takeOrder(currentOrder, arrayList);
         createCompositeOrderImage(itemImages);
 

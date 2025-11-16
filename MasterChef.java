@@ -10,6 +10,7 @@ public class MasterChef extends Chef
 {
     public MasterChef(){
         cookSpeed = 120;
+        skill = 5;
     }
     
     public void act()

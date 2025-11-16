@@ -12,7 +12,8 @@ public class Food extends SuperSmoothMover
     private int quality;
     private int orderNumber;
     public Food(String type, int quality, int orderNumber) {
-        image = new GreenfootImage("food/" + type + ".png");
+        image = new GreenfootImage(type + ".png");
+        image.scale(52, 52);
         setImage(image);
         
         this.quality = quality;

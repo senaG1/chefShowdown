@@ -13,6 +13,7 @@ public class HungryChef extends Chef
     public HungryChef(){
         cookSpeed = 180;
         actCount = 0;
+        skill = 4;
     }
 
     public void act()

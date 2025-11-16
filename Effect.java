@@ -71,7 +71,6 @@ public abstract class Effect extends SuperSmoothMover
             loseCustomers(); // this method is done once
             hasTriggered = true;
         }
-        System.out.println("act count: " + actCount + " image: " + this.image);
         actCount--;
         fade(actCount, totalFadeTime);
         
