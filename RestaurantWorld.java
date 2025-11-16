@@ -9,19 +9,27 @@ import java.util.ArrayList;
 public class RestaurantWorld extends World
 {
     private GreenfootImage background;
+    //Counters
     private int actCount;
     private int actTimer = 180;
     private int dayTimer = 1800;
+    //TeamUI
     public TeamUI teamBlueUI;
     public TeamUI teamRedUI;
+    
     private ArrayList<Customer> customers;
+    //Restaurants
     public Restaurant restaurantBlue;
     public Restaurant restaurantRed;
+    
+    
     private int width = 960;
     private int height = 640;
+    
     private int currentDay;
     private boolean spawnAtRed;
 
+    //Constants
     private static int labelHeight = 30;
     private static int labelSize = 25;
 
@@ -39,8 +47,7 @@ public class RestaurantWorld extends World
         background = new GreenfootImage("restaurant_bg.png");
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
         setBackground(background);
-
-        //hello
+        
         actCount = 0;
         
         // create the two restaurants but
@@ -55,6 +62,9 @@ public class RestaurantWorld extends World
         addObject(new ChefCohenRed(), 525, 265);
         addObject(new HungryChef(), 415, 465);
         addObject(new HungryChef(), 525, 465);
+        
+        teamBlueUI = restaurantBlue.teamBlueUI;
+        teamRedUI = restaurantRed.teamRedUI;
 
         addKitchenObjects();
         setPaintOrder(SuperStatBar.class, SuperSpeechBubble.class);
@@ -88,7 +98,8 @@ public class RestaurantWorld extends World
         }
 
         if(dayTimer == 0){
-            Greenfoot.setWorld(new DayWorld(currentDay + 1));
+            Greenfoot.setWorld(new DayWorld(this));
+            dayTimer = 1800;
         }
         
         if(currentDay == 4)
@@ -96,6 +107,14 @@ public class RestaurantWorld extends World
             endGame();
         }
         
+    }
+    
+    public void tomorrow(){
+        currentDay++;
+    }
+    
+    public int getCurrentDay(){
+        return currentDay;
     }
     
     private void endGame()
