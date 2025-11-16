@@ -218,7 +218,7 @@ public class SettingsWorld extends World
         restaurantBlue = new Restaurant(numChefsBlue, startMoneyBlue, "Blue", 0);
         restaurantRed = new Restaurant(numChefsRed, startMoneyRed, "Red", getWidth()/2);
         
-        Greenfoot.setWorld(new RestaurantWorld(restaurantBlue, restaurantRed));
+        Greenfoot.setWorld(new RestaurantWorld());
     }
     
     public static int getStartMoneyBlue() {

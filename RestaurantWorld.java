@@ -33,17 +33,8 @@ public class RestaurantWorld extends World
     private static int labelHeight = 30;
     private static int labelSize = 25;
     
-    public RestaurantWorld(Restaurant blue, Restaurant red) {
+    public RestaurantWorld() {
         this(1);
-        // create the two restaurants 
-        restaurantBlue = blue;
-        addObject(restaurantBlue, 0, height);
-
-        restaurantRed = red;
-        addObject(restaurantRed, width/2, height);
-        
-        teamBlueUI = restaurantBlue.teamBlueUI;
-        teamRedUI = restaurantRed.teamRedUI;
         
         prepare();
     }
