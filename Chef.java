@@ -103,9 +103,9 @@ public abstract class Chef extends SuperSmoothMover
     }
 
     protected void cook(){
+        cookCount++;
         if(cookCount < cookSpeed){
             isCooking = true;
-            cookCount++;
         }else{
             nextOrder();
             isCooking = false;
