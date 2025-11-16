@@ -10,14 +10,12 @@ import java.util.ArrayList;
 public class Restaurant extends SuperSmoothMover
 {
     private RestaurantWorld rw;
+    public TeamUI teamUI;
     
     private String team;
     private int numChefs;
     private int currentCash;
     private double finalRating;
-    
-    public TeamUI teamBlueUI;
-    public TeamUI teamRedUI;
     
     private static int labelHeight = 30;
     private static int labelSize = 25;
@@ -30,6 +28,10 @@ public class Restaurant extends SuperSmoothMover
     private int custSpawnY;
     private int custLineX;
     private int custLineY;
+    private int teamBannerX;
+    
+    private int numReviews = 0;
+    private int totalRating;
     
     public Restaurant(int chefs, int cash, String team, int xLocation) {
         numChefs = chefs;
@@ -42,24 +44,25 @@ public class Restaurant extends SuperSmoothMover
             custLineY = 512;
             custSpawnX = 909;
             custSpawnY = 628;
+            teamBannerX = 810;
         } else {
             custLineX = 62;
             custLineY = 512;
             custSpawnX = 51;
             custSpawnY = 628;
+            teamBannerX = 340;
         }
         
         drawImage();
     }
     
-    public void addedToWorld(World w){
+    public void addedToWorld(World w) {
         rw = (RestaurantWorld) w;
-        teamBlueUI = new TeamUI(rw, 340, labelHeight, labelSize, team, currentCash);
-        teamRedUI = new TeamUI(rw, 810, labelHeight, labelSize, team, currentCash);
+        teamUI = new TeamUI(rw, teamBannerX, labelHeight, labelSize, team, SettingsWorld.getStartMoneyRed()); 
     }
     
     public void act() {
-            
+    
     }
     
     private void hireChef(Chef chef) {
@@ -77,20 +80,30 @@ public class Restaurant extends SuperSmoothMover
         // "sabatoge" --> rat infestation/power outage (power outage can just be a random occurance though)
     }
     
-    public void updateCash() {
-        
-    }
-    
-    private void addUI(String team) {
-        if (team.equals("Blue")) {
-            
-        } else {
-            
-        }
-    }
-    
     public void collectCash(int amount) {
-        this.currentCash += amount;
+        currentCash += amount;
+        teamUI.updateCash(currentCash);
+    }
+    
+    public void recordRating(int rating) {
+        numReviews++;
+        totalRating += rating;
+        double averageRating = totalRating / numReviews;
+        double roundedRating = roundNearestRating(averageRating);
+        teamUI.updateRating(roundedRating);
+    }
+
+    private double roundNearestRating(double rating) {
+        int integerRating = (int) rating;
+        double decimalRating = rating - integerRating;
+        if (decimalRating < 0.25) {
+            decimalRating = 0.0;
+        } else if (decimalRating >= 0.75) {
+            decimalRating = 1.0;
+        } else {
+            decimalRating = 0.5;
+        }
+        return integerRating + decimalRating;
     }
     
     private void drawImage() {
@@ -127,6 +140,10 @@ public class Restaurant extends SuperSmoothMover
     
     public int getCash() {
         return currentCash;
+    }
+    
+    public double getRating() {
+        return finalRating;
     }
     
     public double getFinalRating() {

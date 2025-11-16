@@ -13,15 +13,11 @@ public class RestaurantWorld extends World
     private int actCount;
     private int actTimer = 180;
     private int dayTimer = 1800;
-    //TeamUI
-    public TeamUI teamBlueUI;
-    public TeamUI teamRedUI;
     
     private ArrayList<Customer> customers;
     //Restaurants
     public Restaurant restaurantBlue;
     public Restaurant restaurantRed;
-    
     
     private int width = 960;
     private int height = 640;
@@ -57,7 +53,7 @@ public class RestaurantWorld extends World
         }
         if (restaurantRed == null) {
             restaurantRed = new Restaurant(SettingsWorld.getNumRedChefs(), SettingsWorld.getStartMoneyRed(), "Red", width/2);
-            addObject(restaurantRed, width/2, height);           
+            addObject(restaurantRed, width/2, height);
         }
         //testing
         addObject(new ChefCohenBlue(), 415, 265);
@@ -81,24 +77,24 @@ public class RestaurantWorld extends World
         }
 
         if (actCount % 600 == 0){
-            addObject(new PowerOutage("Blue"), 512, 400);
+            //addObject(new PowerOutage("Blue"), 512, 400);
         }
 
         if (actCount % 800 == 0){
-            addObject(new RatInfestation("Blue"), 0, 0);
+            //addObject(new RatInfestation("Blue"), 0, 0);
         }
 
         if (actCount % 500 == 0){
-            addObject(new PowerOutage("Red"), 485, 400);
+            //addObject(new PowerOutage("Red"), 485, 400);
         }
 
         if (actCount % 900 == 0){
-            addObject(new RatInfestation("Red"), 0, 0);
+            //addObject(new RatInfestation("Red"), 0, 0);
         }
 
         if(dayTimer == 0){
             Greenfoot.setWorld(new DayWorld(this));
-            dayTimer = 1800;
+            dayTimer = 3600;
         }
         
         if(currentDay == 4)
@@ -118,12 +114,11 @@ public class RestaurantWorld extends World
     
     private void endGame()
     {
-        int leftCash = teamBlueUI.getCash();
-        int rightCash = teamRedUI.getCash();
-        double leftRating = teamBlueUI.getRating();
-        double rightRating = teamRedUI.getRating();
+        int leftCash = restaurantBlue.getCash();
+        int rightCash = restaurantRed.getCash();
+        double leftRating = restaurantBlue.getRating();
+        double rightRating = restaurantRed.getRating();
         Greenfoot.setWorld(new StatsWorld(leftCash, rightCash, leftRating, rightRating));
-        
     }
 
     private void addKitchenObjects() {

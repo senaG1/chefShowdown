@@ -234,6 +234,8 @@ public class Customer extends SuperSmoothMover
             getWorld().addObject(orderBubble, getX(), getY());
             inLine = false;
             hasWaitingSpot = false;
+            
+            restaurant.recordRating(1);
         }
     }
 
@@ -258,8 +260,8 @@ public class Customer extends SuperSmoothMover
             int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
             order[i] = availibleItems.remove(randomIndex);
             itemImages.add(getImageForItem(order[i]));
-            
             currentOrder = getImageForItem(order[i]);
+            pay(prices[i]);
         }
         chef.takeOrder(currentOrder, arrayList);
         createCompositeOrderImage(itemImages);
@@ -438,6 +440,8 @@ public class Customer extends SuperSmoothMover
         {
             rating = 0;
         }
+        
+        restaurant.recordRating(rating);
     }
 
     // Has customers line up, max 5 customers at a time
