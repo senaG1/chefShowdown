@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class UI_Images here.
+ * The UI_Image class creates the images for the UI
  * 
  * @author Jiayu Chen
- * @version 11-6
+ * @version Nov 17th, 2025
  */
 public class UI_Image extends SuperSmoothMover
 {
