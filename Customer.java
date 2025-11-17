@@ -63,31 +63,26 @@ public class Customer extends SuperSmoothMover
     }
 
     public void addedToWorld(World w){
+        rw = (RestaurantWorld) w;
         if(getX() > w.getWidth()/2){
             teamBlue = false;
         }else{
             teamBlue = true;
         }
-        ArrayList<Chef> chefs = (ArrayList<Chef>) w.getObjects(Chef.class);
-        for(Chef c : w.getObjects(Chef.class)){//preferably takes an order to a chef that is not busy
+    }
+    
+    private void findChef(){
+        ArrayList<Chef> chefs = (ArrayList<Chef>) rw.getObjects(Chef.class);
+        for(Chef c : rw.getObjects(Chef.class)){//takes an order to a chef that is not busy
             if(!c.isCooking()){
                 if((teamBlue && c.onTeamBlue()) || (!teamBlue && !c.onTeamBlue())){//chef and customer on same side
                     chef = c;
                     break;
                 }
             }
-        }
-        if(chef == null){//no chef without an order, take an order with the first chef on the correct side
-            for(Chef c : w.getObjects(Chef.class)){
-                if((teamBlue && c.onTeamBlue()) || (!teamBlue && !c.onTeamBlue())){//chef and customer on same side
-                    chef = c;
-                    break;
-                }
-            }
-        }
-        rw = (RestaurantWorld) w;
+        }       
     }
-
+    
     private GreenfootImage getImageForItem(String item){
         if(item.equals("nuggets"))
         {
@@ -134,6 +129,10 @@ public class Customer extends SuperSmoothMover
 
     public void act()
     {
+        if(chef == null){
+            findChef();
+        }
+        
         if (givingUp)
         {
             walkToExit();
@@ -264,7 +263,9 @@ public class Customer extends SuperSmoothMover
             pay(prices[i]);
         }
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(order));
-        chef.takeOrder(currentOrder, arrayList);
+        if(chef != null){
+            chef.takeOrder(currentOrder, arrayList);
+        }
         createCompositeOrderImage(itemImages);
 
         return order;
