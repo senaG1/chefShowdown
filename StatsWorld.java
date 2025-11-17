@@ -31,7 +31,7 @@ public class StatsWorld extends World
         background = new GreenfootImage("bg_stat.png");
         setBackground(background);
         StatScreen screen = new StatScreen("blueStat.png", 320);
-        addObject(screen, 480, 300);
+        addObject(screen, 480, 320);
         screen.callAction();
         
         Label gameOverLabel = new Label("Game Over!", 30);
@@ -40,11 +40,11 @@ public class StatsWorld extends World
         Label rightCashLabel = new Label("Red Team Cash: $" + rightTeamCash, 30);
         Label rightRatingLabel = new Label("Red Team Rating: " + String.format("%.2f", rightTeamRating) + " Stars", 30);
         
-        addObject(gameOverLabel, 960 / 2, 150);
-        addObject(leftCashLabel, 960 / 2, 220);
-        addObject(leftRatingLabel, 960 / 2, 270);
-        addObject(rightCashLabel, 960 / 2, 350);
-        addObject(rightRatingLabel, 960 / 2, 400);
+        addObject(gameOverLabel, 960 / 2, 180);
+        addObject(leftCashLabel, 960 / 2, 250);
+        addObject(leftRatingLabel, 960 / 2, 300);
+        addObject(rightCashLabel, 960 / 2, 380);
+        addObject(rightRatingLabel, 960 / 2, 430);
     }
     
     public int getLeftTeamCash() {
