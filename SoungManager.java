@@ -6,6 +6,7 @@ import greenfoot.*;
  * pop sound by OxidVideos from pixabay
  * paprazzi by SoundReality from pixabay
  * leave by AberrantRealities from pixabay
+ * rat by SOUND_GARAGE from pixabay
  * 
  * @author Sena Godek
  * @version 2025
@@ -17,12 +18,14 @@ public class SoungManager
     private static GreenfootSound[] popSounds;
     private static GreenfootSound[] paparazziSounds;
     private static GreenfootSound[] leaveSounds;
+    private static GreenfootSound[] ratSounds;
     
     // Indices to track which copy to play next
     private static int coinIndex = 0;
     private static int popIndex = 0;
     private static int paparazziIndex = 0;
     private static int leaveIndex = 0;
+    private static int ratIndex = 0;
     
     static {
         initializeSounds();
@@ -55,6 +58,13 @@ public class SoungManager
         for (int i = 0; i < leaveSounds.length; i++) {
             leaveSounds[i] = new GreenfootSound("leave.wav");
             leaveSounds[i].setVolume(45);
+        }
+        
+        // rat - 
+        ratSounds = new GreenfootSound[15];
+        for (int i = 0; i < ratSounds.length; i++) {
+            ratSounds[i] = new GreenfootSound("rat.wav");
+            ratSounds[i].setVolume(45);
         }
         
     }
