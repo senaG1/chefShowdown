@@ -30,8 +30,8 @@ public abstract class Chef extends SuperSmoothMover
         closeBound = 40;
 
         //image for testing purposes
-        image = new GreenfootImage ("ChefCohen.png");
-        setImage(image);
+        //image = new GreenfootImage ("ChefCohen.png");
+        //setImage(image);
         
         enableStaticRotation();
         
