@@ -31,18 +31,20 @@ public class StatsWorld extends World
         background = new GreenfootImage("bg_stat.png");
         setBackground(background);
         StatScreen screen = new StatScreen("blueStat.png", 320);
-        addObject(screen, 480, -500);
+        addObject(screen, 480, 320);
         screen.callAction();
         
-        Label leftCashLabel = new Label("Left Team Cash: " + leftTeamCash, 30);
-        Label leftRatingLabel = new Label("Left Team Rating: " + String.format("%.2f", leftTeamRating), 30);
-        Label rightCashLabel = new Label("Right Team Cash: " + rightTeamCash, 30);
-        Label rightRatingLabel = new Label("Right Team Rating: " + String.format("%.2f", rightTeamRating), 30);
+        Label gameOverLabel = new Label("Game Over!", 30);
+        Label leftCashLabel = new Label("Blue Team Cash: $" + leftTeamCash, 30);
+        Label leftRatingLabel = new Label("Blue Team Rating: " + String.format("%.2f", leftTeamRating) + " Stars", 30);
+        Label rightCashLabel = new Label("Red Team Cash: $" + rightTeamCash, 30);
+        Label rightRatingLabel = new Label("Red Team Rating: " + String.format("%.2f", rightTeamRating) + " Stars", 30);
         
-        addObject(leftCashLabel, 960 / 2, 200);
-        addObject(leftRatingLabel, 960 / 2, 250);
-        addObject(rightCashLabel, 960 / 2, 350);
-        addObject(rightRatingLabel, 960 / 2, 400);
+        addObject(gameOverLabel, 960 / 2, 180);
+        addObject(leftCashLabel, 960 / 2, 250);
+        addObject(leftRatingLabel, 960 / 2, 300);
+        addObject(rightCashLabel, 960 / 2, 380);
+        addObject(rightRatingLabel, 960 / 2, 430);
     }
     
     public int getLeftTeamCash() {
