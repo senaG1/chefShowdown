@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Karen
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Karen\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=spawnAtRed
-comment1.target=Karen(boolean)
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Karen\ here.\r\n\ \r\n\ @author\ Isabel\ Powell\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=restaurant
+comment1.target=Karen(Restaurant)
 comment2.params=
 comment2.target=void\ addedToWorld()
 comment3.params=
