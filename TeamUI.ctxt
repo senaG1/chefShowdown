@@ -1,12 +1,13 @@
 #BlueJ class context
 comment0.target=TeamUI
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ TeamUI\ here.\r\n\ \r\n\ @author\ Jiayu\ Chen\r\n\ @version\ 11-13\r\n
-comment1.params=world\ xOffset\ labelHeight\ labelSize\ team\ cash
+comment0.text=\r\n\ The\ TeamUI\ class\ updates\ the\ cash\ and\ rating\ data\ for\ each\ respective\ team.\r\n\ \r\n\ @author\ Jiayu\ Chen\r\n\ @version\ Nov\ 17th,\ 2025\r\n
+comment1.params=world\ xOffset\ labelHeight\ labelSize\ team\ startingCash
 comment1.target=TeamUI(greenfoot.World,\ int,\ int,\ int,\ java.lang.String,\ int)
-comment2.params=
-comment2.target=void\ act()
-comment3.params=newCash
-comment3.target=void\ updateCash(int)
-comment4.params=roundedRating
-comment4.target=void\ updateRating(double)
-numComments=5
+comment1.text=\r\n\ Constructor\ for\ the\ TeamUI\ class.\r\n\ Initializes\ the\ UI\ with\ a\ reference\ to\ the\ world,\ location\ and\ team.\r\n\ \r\n\ @param\ world\ \ \ \ \ \ \ \ \ The\ world\ it\ gets\ added\ to.\r\n\ @param\ xOffset\ \ \ \ \ \ \ The\ x\ location\ of\ the\ label.\r\n\ @param\ labelHeight\ \ \ The\ y\ location\ from\ the\ top\ of\ the\ world.\r\n\ @param\ labelSize\ \ \ \ \ The\ size\ of\ the\ label.\r\n\ @param\ team\ \ \ \ \ \ \ \ \ \ The\ team\ assigned\ to\ the\ UI.\r\n\ @param\ startingCash\ \ The\ starting\ cash\ for\ each\ team.\r\n
+comment2.params=newCash
+comment2.target=void\ updateCash(int)
+comment2.text=\r\n\ Updates\ the\ cash\ label\ each\ time\ Restaurant\ collects\ or\ spends\ cash.\r\n\ \r\n\ @param\ newCash\ \ \ Takes\ the\ current\ cash\ value\ from\ each\ restaurant.\r\n
+comment3.params=roundedRating
+comment3.target=void\ updateRating(double)
+comment3.text=\r\n\ Updates\ the\ rating\ images\ each\ time\ the\ Restaurant\ recieves\ a\ new\ rating.\r\n\ \r\n\ @param\ roundedRating\ \ \ \ \ Takes\ the\ rounded\ rating\ from\ the\ restaurant\ to\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ set\ the\ closest\ represented\ image\ of\ the\ actual\ average\ rating.\r\n
+numComments=4
