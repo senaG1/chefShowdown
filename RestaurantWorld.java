@@ -74,7 +74,6 @@ public class RestaurantWorld extends World
         if (actCount % 500 == 0){
             addObject(new PowerOutage("Red"), 485, 400);
         }
-        
         if (actCount % 900 == 0){
             addObject(new RatInfestation("Red"), 0, 0);
         }
