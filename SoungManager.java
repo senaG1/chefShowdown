@@ -1,3 +1,4 @@
+import greenfoot.*;
 /**
  * Write a description of class SoungManager here.
  * 
@@ -6,25 +7,25 @@
  */
 public class SoungManager  
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class SoungManager
-     */
-    public SoungManager()
-    {
+    // Arrays to store multiple copies of each sound
+    private static GreenfootSound[] coinSounds;
+    private static GreenfootSound[] wearMaskSounds;
+    
+    // Indices to track which copy to play next
+    private static int coinIndex = 0;
+    private static int wearMaskIndex = 0;
+    
+    static {
+        initializeSounds();
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    
+    private static void initializeSounds() {
+        // Thud - knocked down frequently, needs more copies
+        coinSounds = new GreenfootSound[15];
+        for (int i = 0; i < coinSounds.length; i++) {
+            coinSounds[i] = new GreenfootSound("coin.wav");
+            coinSounds[i].setVolume(45);
+        }
+        
     }
 }
