@@ -34,7 +34,6 @@ public class HungryChef extends Chef
         }else{
             nextOrder();
             isCooking = false;
-            orders--;
             cookCount = 0;
             if(orderBubble != null){
                 getWorld().removeObject(orderBubble);
