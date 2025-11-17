@@ -13,6 +13,7 @@ public class HungryChef extends Chef
     public HungryChef(){
         cookSpeed = 180;
         actCount = 0;
+        skill = 4;
     }
 
     public void act()
@@ -22,13 +23,13 @@ public class HungryChef extends Chef
     }
 
     protected void cook(){
+        cookCount++;
         if(cookCount < cookSpeed){
             isCooking = true;
-            cookCount++;
             if(actCount % 300 == 0){//eats a customer's food every 5 seconds and restarts cooking
                 actCount = 0;
                 cookCount = 0;
-                //play sound effect 
+                //play sound effect (to be added
             }
         }else{
             nextOrder();

@@ -10,6 +10,7 @@ public class LazyChef extends Chef
 {
     public LazyChef(){
         cookSpeed = 300;
+        skill = 2;
     }
     
     public void act()

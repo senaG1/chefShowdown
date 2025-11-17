@@ -11,7 +11,7 @@ public abstract class Chef extends SuperSmoothMover
     protected SuperStatBar cookBar;
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage image;
-    protected int skill;
+    protected int skill, foodX, foodY;
     protected ArrayList<GreenfootImage> orderImages;
     protected ArrayList<ArrayList<String>> foodItems;
 
@@ -21,7 +21,7 @@ public abstract class Chef extends SuperSmoothMover
 
         cookCount = 0;
         orders = 0;
-
+        
         walkSpeed = 5;
 
         upperBound = 260;
@@ -45,9 +45,12 @@ public abstract class Chef extends SuperSmoothMover
         if(getX() <= w.getWidth() / 2){//on left side, works for blue restaurant
             side = "L";
             turn(180);
+            foodX = 100;
         }else{//on right side, works for red restaurant
             side = "R";
+            foodX = 860;
         }
+        foodY = 300;
         centreX = w.getWidth()/2;
     }
 
@@ -69,6 +72,9 @@ public abstract class Chef extends SuperSmoothMover
     
     protected void nextOrder(){
         World w = getWorld();
+        if(w != null){
+            w.addObject(new Food(foodItems.get(0).get(0), skill, 0), foodX, foodY);
+        }
         if(!orderImages.isEmpty()){
             orderImages.remove(0);
         }
@@ -97,9 +103,9 @@ public abstract class Chef extends SuperSmoothMover
     }
 
     protected void cook(){
+        cookCount++;
         if(cookCount < cookSpeed){
             isCooking = true;
-            cookCount++;
         }else{
             nextOrder();
             isCooking = false;

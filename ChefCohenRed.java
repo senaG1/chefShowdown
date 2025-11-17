@@ -10,6 +10,7 @@ public class ChefCohenRed extends Chef
 {
     public ChefCohenRed(){
         cookSpeed = 210;
+        skill = 3;
     }
     
     public void act()
