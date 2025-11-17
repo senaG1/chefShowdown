@@ -56,6 +56,8 @@ public class RestaurantWorld extends World
             addObject(restaurantRed, width/2, height);
         }
         //testing
+        
+        addChefs();
         addObject(new ChefCohenBlue(), 415, 265);
         addObject(new ChefCohenRed(), 525, 265);
         addObject(new HungryChef(), 415, 465);
@@ -87,7 +89,7 @@ public class RestaurantWorld extends World
         if (actCount % 500 == 0){
             //addObject(new PowerOutage("Red"), 485, 400);
         }
-
+        
         if (actCount % 900 == 0){
             //addObject(new RatInfestation("Red"), 0, 0);
         }
@@ -103,6 +105,10 @@ public class RestaurantWorld extends World
             endGame();
         }
         
+    }
+    
+    private void addChefs() {
+        // Add blue chefs
     }
     
     public void tomorrow(){

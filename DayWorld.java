@@ -32,7 +32,7 @@ public class DayWorld extends World
         getBackground().fill();
         
         getBackground().setColor(Color.WHITE);        
-        dayFont = new Font ("Comic Sans MS", false, false, 100);
+        dayFont = new Font ("Times New Roman", true, false, 100);
         getBackground().setFont(dayFont); 
         getBackground().drawString("Day " + restWorld.getCurrentDay(), 360, 320);
     }
@@ -40,7 +40,7 @@ public class DayWorld extends World
     public void act(){
         timer++;
         
-        if(timer == 150){
+        if(timer == 300){
             Greenfoot.setWorld(restWorld);
         }
     }

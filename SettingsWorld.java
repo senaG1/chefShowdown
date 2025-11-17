@@ -1,9 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class SettingsWorld here.
  * 
- * @author (your name) 
+ * @author Grace Tao
  * @version (a version number or a date)
  */
 public class SettingsWorld extends World
@@ -33,6 +34,19 @@ public class SettingsWorld extends World
     private Button moneyPlusRed;
     private Button moneyMinusRed;
     
+    // Blue chef buttons
+    private Button masterBlue;
+    private Button cohenBlue;
+    private Button hungryBlue;
+    private Button lazyBlue;
+    
+    // Red chef buttons
+    private Button masterRed;
+    private Button cohenRed;
+    private Button hungryRed;
+    private Button lazyRed;
+    
+    private Button nextBtn;
     private Button playBtn;
     
     private Restaurant restaurantBlue;
@@ -101,9 +115,13 @@ public class SettingsWorld extends World
         addObject(moneyMinusRed, RED_CENTER_X - 60, RED_MONEY_Y);
         addObject(moneyPlusRed, RED_CENTER_X + 60, RED_MONEY_Y);
         
+        nextBtn = new Button("next_1.png", "next_2.png");
+        nextBtn.scale(3);
+        addObject(nextBtn, 775, 520);
+        
         playBtn = new Button("play_1.png", "play_2.png");
         playBtn.scale(2);
-        addObject(playBtn, 480, 500);
+        //addObject(playBtn, 480, 500);
         
         updateDisplay();
     }
@@ -158,6 +176,12 @@ public class SettingsWorld extends World
             updateDisplay();
         }
         
+        if(nextBtn.isClicked()) {
+            List objects = getObjects(null); 
+            removeObjects(objects);  
+            setBackground(new GreenfootImage(background));
+            chooseChefs();
+        }
         
         if (playBtn.isClicked())
         {
@@ -211,6 +235,36 @@ public class SettingsWorld extends World
         
         bg.setFont(new Font("Consolas", true, false, 28));
         bg.drawString("$" + startMoneyRed, RED_CENTER_X - 40, RED_MONEY_Y + 5);
+    }
+    
+    private void chooseChefs() {
+        // Get the background image
+        setBackground(new GreenfootImage(background));
+        GreenfootImage bg = getBackground();
+        
+        bg.setColor(new Color(99, 66, 66));
+        
+        // Draw title
+        bg.setFont(new Font("Consolas", true, false, 64));
+        bg.drawString("CHOOSE CHEFS", 285, 200);
+        
+        // BLUE RESTAURANT (LEFT SIDE)
+        bg.setFont(new Font("Consolas", true, false, 32));
+        bg.setColor(new Color(50, 100, 200)); 
+        bg.drawString("BLUE", BLUE_CENTER_X - 50, 250);
+        
+        masterBlue = new Button("masterBtn_1.png", "masterBtn_2.png");
+        masterBlue.scale(3/2);
+        addObject(masterBlue, BLUE_CENTER_X - 40, BLUE_CHEF_Y);
+        
+        cohenBlue = new Button("cohenBtn_1.png", "cohenBtn_2.png");
+        cohenBlue.scale(3/2);
+        addObject(cohenBlue, BLUE_CENTER_X + 40, BLUE_CHEF_Y);
+        
+        // RED RESTAURANT (RIGHT SIDE)
+        bg.setFont(new Font("Consolas", true, false, 32));
+        bg.setColor(new Color(200, 50, 50)); 
+        bg.drawString("RED", RED_CENTER_X - 40, 250);
     }
     
     private void startGame()

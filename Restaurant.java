@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Restaurant extends SuperSmoothMover
 {
     private RestaurantWorld rw;
-    public TeamUI teamUI;
+    private TeamUI teamUI;
     
     private String team;
     private int numChefs;
@@ -58,7 +58,7 @@ public class Restaurant extends SuperSmoothMover
     
     public void addedToWorld(World w) {
         rw = (RestaurantWorld) w;
-        teamUI = new TeamUI(rw, teamBannerX, labelHeight, labelSize, team, SettingsWorld.getStartMoneyRed()); 
+        teamUI = new TeamUI(rw, teamBannerX, labelHeight, labelSize, team, currentCash); 
     }
     
     public void act() {
