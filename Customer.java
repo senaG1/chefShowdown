@@ -327,7 +327,6 @@ public class Customer extends SuperSmoothMover
     }
 
     // Sends customers in line to wait at the waiting space
-    // Currently needs implementation after method for taking customer's orders is made
     public void waitOrder(){
         int currentX = getX();
         int currentY = getY();
