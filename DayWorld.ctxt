@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=DayWorld
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ DayWorld\ here.\r\n\ \r\n\ @author\ Isabel\ Powell\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=restWorld
-comment1.target=DayWorld(RestaurantWorld)
+comment1.params=restWorld\ blueCash\ blueRating\ redCash\ redRating
+comment1.target=DayWorld(RestaurantWorld,\ int,\ double,\ int,\ double)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ DayWorld.\r\n\ \r\n
 comment2.params=
 comment2.target=void\ act()

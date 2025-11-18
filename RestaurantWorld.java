@@ -96,7 +96,11 @@ public class RestaurantWorld extends World
 
         if(dayTimer == 0){
             removeCustomers();
-            Greenfoot.setWorld(new DayWorld(this));
+            int leftCash = restaurantBlue.getCash();
+            int rightCash = restaurantRed.getCash();
+            double leftRating = restaurantBlue.getRating();
+            double rightRating = restaurantRed.getRating();
+            Greenfoot.setWorld(new DayWorld(this, leftCash, leftRating, rightCash, rightRating));
             dayTimer = 3600;
         }
         
