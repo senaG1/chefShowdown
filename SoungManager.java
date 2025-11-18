@@ -35,7 +35,7 @@ public class SoungManager
     private static int leaveIndex = 0;
     private static int ratIndex = 0;
     private static int endGameIndex = 0;
-    private static int gameStartSoundsIndex = 0;
+    private static int gameStartIndex = 0;
     private static int increaseStarIndex = 0;
     private static int electrivityOutIndex = 0;
     
@@ -43,6 +43,9 @@ public class SoungManager
         initializeSounds();
     }
     
+    /**
+     * Initialize all sound arrays with multiple copies.
+     */
     private static void initializeSounds() {
         // coin - 
         coinSounds = new GreenfootSound[15];
@@ -105,6 +108,104 @@ public class SoungManager
             electrivityOutSounds[i] = new GreenfootSound("electrivityOut.wav");
             electrivityOutSounds[i].setVolume(45);
         }
-        
+    }
+    
+    /**
+     * Play coin sound
+     */
+    public static void playCoin() {
+        coinSounds[coinIndex].play();
+        coinIndex++;
+        if (coinIndex >= coinSounds.length) {
+            coinIndex = 0;
+        }
+    }
+    
+    /**
+     * Play nextDay sound
+     */
+    public static void playnextDay() {
+        nextDaySounds[nextDayIndex].play();
+        nextDayIndex++;
+        if (nextDayIndex >= nextDaySounds.length) {
+            nextDayIndex = 0;
+        }
+    }
+    
+    /**
+     * Play nextDay sound
+     */
+    public static void playPaparazzi() {
+        paparazziSounds[paparazziIndex].play();
+        paparazziIndex++;
+        if (paparazziIndex >= paparazziSounds.length) {
+            paparazziIndex = 0;
+        }
+    }
+    
+    /**
+     * Play leave sound
+     */
+    public static void playLeave() {
+        leaveSounds[leaveIndex].play();
+        leaveIndex++;
+        if (leaveIndex >= leaveSounds.length) {
+            leaveIndex = 0;
+        }
+    }
+    
+    /**
+     * Play rat sound
+     */
+    public static void playRat() {
+        ratSounds[ratIndex].play();
+        ratIndex++;
+        if (ratIndex >= ratSounds.length) {
+            ratIndex = 0;
+        }
+    }
+    
+    /**
+     * Play EndGame sound
+     */
+    public static void playEndGame() {
+        endGameSounds[endGameIndex].play();
+        endGameIndex++;
+        if (endGameIndex >= endGameSounds.length) {
+            endGameIndex = 0;
+        }
+    }
+    
+    /**
+     * Play GameStart sound
+     */
+    public static void playGameStart() {
+        gameStartSounds[gameStartIndex].play();
+        gameStartIndex++;
+        if (gameStartIndex >= gameStartSounds.length) {
+            gameStartIndex = 0;
+        }
+    }
+    
+    /**
+     * Play IncreaseStar sound
+     */
+    public static void playIncreaseStar() {
+        increaseStarSounds[increaseStarIndex].play();
+        increaseStarIndex++;
+        if (increaseStarIndex >= increaseStarSounds.length) {
+            increaseStarIndex = 0;
+        }
+    }
+    
+    /**
+     * Play electrivityOut sound
+     */
+    public static void playElectrivityOut() {
+        electrivityOutSounds[electrivityOutIndex].play();
+        electrivityOutIndex++;
+        if (electrivityOutIndex >= electrivityOutSounds.length) {
+            electrivityOutIndex = 0;
+        }
     }
 }
