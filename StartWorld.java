@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class StartWorld extends World
 {
     private GreenfootImage background;
+    private Button button;
     /**
      * Constructor for objects of class StartWorld.
      * 
@@ -20,8 +21,16 @@ public class StartWorld extends World
         
         background = new GreenfootImage("start_Screen.png");
         setBackground(background);
-        
-        addObject(new Button("small_button.png", "startButton.png"), 480, 376);
+        button = new Button("small_button.png", "startButton.png");
+        addObject(button, 480, 376);
+    }
+    
+    public void act()
+    {
+        if(Greenfoot.mouseClicked(button))
+        {
+            Greenfoot.setWorld(new StoryWorld());
+        }
     }
    
 }

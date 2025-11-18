@@ -3,25 +3,23 @@ import java.util.ArrayList;
 
 public abstract class Chef extends SuperSmoothMover
 {
-    protected int cookSpeed, cost, salary, cookCount, orders, walkSpeed;
+    protected int cookSpeed, cost, salary, cookCount, foodPerOrder, walkSpeed, currentFood;
     protected int upperBound, lowerBound, farBound, closeBound;//movement box (close and far from center x of screen)
     protected int centreX;
-    protected String side;
+    protected String side, foodItem;
     protected boolean isCooking;
     protected SuperStatBar cookBar;
     protected SuperSpeechBubble orderBubble;
-    protected GreenfootImage image;
+    protected GreenfootImage image, orderImage;
     protected int skill, foodX, foodY;
-    protected ArrayList<GreenfootImage> orderImages;
-    protected ArrayList<ArrayList<String>> foodItems;
-
+    protected Customer currentCustomer;
+    protected Food food;
+    
     public Chef()
     {
         isCooking = false;
 
         cookCount = 0;
-        orders = 0;
-        
         walkSpeed = 5;
 
         upperBound = 260;
@@ -30,13 +28,10 @@ public abstract class Chef extends SuperSmoothMover
         closeBound = 40;
 
         //image for testing purposes
-        //image = new GreenfootImage ("ChefCohen.png");
-        //setImage(image);
-        
+        image = new GreenfootImage ("ChefCohen.png");
+        setImage(image);
+
         enableStaticRotation();
-        
-        orderImages = new ArrayList<GreenfootImage>();
-        foodItems = new ArrayList<ArrayList<String>>();
     }
 
     public void addedToWorld(World w){
@@ -57,59 +52,67 @@ public abstract class Chef extends SuperSmoothMover
     public void act(){
         walk();
         cookBar.update(cookCount);
-        if(orders > 0){
+        if(isCooking){
             cook();
         }
+        
     }
-    
+
     public boolean onTeamBlue(){
         return side.equals("L");
     }
-    
+
     public boolean isCooking(){
         return isCooking;
     }
-    
+
     protected void nextOrder(){
         World w = getWorld();
-        if(w != null){
-            w.addObject(new Food(foodItems.get(0).get(0), skill, 0), foodX, foodY);
+        
+        //customer gets food
+        if(w != null && foodItem != null){
+            food = new Food(foodItem, skill, 0);
+            w.addObject(food, foodX, foodY);
         }
-        if(!orderImages.isEmpty()){
-            orderImages.remove(0);
-        }
-        if(!foodItems.isEmpty()){
-            foodItems.remove(0);
-        }
+        currentCustomer.pickUpOrder(food);
+    
+        //next order starts
         if(orderBubble != null){
             w.removeObject(orderBubble);
         }
-        if(!orderImages.isEmpty()){
-            orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImages.get(0), true, true);
+        if(orderImage != null && foodItem != null){
+            GreenfootImage foodImg = new GreenfootImage(foodItem + ".png");
+            orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, foodImg, true, true);
         }
         if(orderBubble != null){
             w.addObject(orderBubble, getX(), getY());
         }
     }
-    
-    
+
     //gets the image and name of the order from a customer
-    public void takeOrder(GreenfootImage img, ArrayList<String> orderNames){
-        orders ++;
-        orderImages.add(img);
-        foodItems.add(orderNames);
-        orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, img, true, true);
-        getWorld().addObject(orderBubble, getX(), getY());
+    //returns whether or not the order was received
+    public boolean takeOrder(GreenfootImage img, String orderNames, Customer c){
+        if(!isCooking){
+            isCooking = true;
+            currentFood = 0;
+            orderImage = new GreenfootImage(img);
+            foodItem = orderNames;
+            orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, img, true, true);
+            getWorld().addObject(orderBubble, getX(), getY());
+            currentCustomer = c;
+            return true;
+        }else{
+            return false;
+        }
     }
 
     protected void cook(){
-        cookCount++;
         if(cookCount < cookSpeed){
             isCooking = true;
+            cookCount++;
         }else{
             nextOrder();
             isCooking = false;
-            orders--;
             cookCount = 0;
             if(orderBubble != null){
                 getWorld().removeObject(orderBubble);
@@ -155,10 +158,6 @@ public abstract class Chef extends SuperSmoothMover
                 }
             }
         }
-
-    }
-
-    protected void checkQueue(){
 
     }
 

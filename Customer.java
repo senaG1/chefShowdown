@@ -31,7 +31,7 @@ public class Customer extends SuperSmoothMover
     private int targetY;
     protected String[] menu = {"nuggets", "fries", "hash", "burger", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
     protected int[] prices = {59, 39, 19, 109, 107, 79, 69, 22, 49, 75};
-    protected String[] order;
+    protected String order;
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage orderImage;
     protected boolean givingUp = false;
@@ -43,7 +43,7 @@ public class Customer extends SuperSmoothMover
     private boolean teamBlue;
 
     private int rating;
-    
+
     protected Restaurant restaurant;
 
     private static final int BLUE_MIN_X = 0;
@@ -63,29 +63,24 @@ public class Customer extends SuperSmoothMover
     }
 
     public void addedToWorld(World w){
+        rw = (RestaurantWorld) w;
         if(getX() > w.getWidth()/2){
             teamBlue = false;
         }else{
             teamBlue = true;
         }
-        ArrayList<Chef> chefs = (ArrayList<Chef>) w.getObjects(Chef.class);
-        for(Chef c : w.getObjects(Chef.class)){//preferably takes an order to a chef that is not busy
+    }
+
+    private void findChef(){
+        ArrayList<Chef> chefs = (ArrayList<Chef>) rw.getObjects(Chef.class);
+        for(Chef c : rw.getObjects(Chef.class)){//takes an order to a chef that is not busy
             if(!c.isCooking()){
                 if((teamBlue && c.onTeamBlue()) || (!teamBlue && !c.onTeamBlue())){//chef and customer on same side
                     chef = c;
                     break;
                 }
             }
-        }
-        if(chef == null){//no chef without an order, take an order with the first chef on the correct side
-            for(Chef c : w.getObjects(Chef.class)){
-                if((teamBlue && c.onTeamBlue()) || (!teamBlue && !c.onTeamBlue())){//chef and customer on same side
-                    chef = c;
-                    break;
-                }
-            }
-        }
-        rw = (RestaurantWorld) w;
+        }       
     }
 
     private GreenfootImage getImageForItem(String item){
@@ -134,6 +129,10 @@ public class Customer extends SuperSmoothMover
 
     public void act()
     {
+        if(chef == null){
+            findChef();
+        }
+
         if (givingUp)
         {
             walkToExit();
@@ -234,42 +233,35 @@ public class Customer extends SuperSmoothMover
             getWorld().addObject(orderBubble, getX(), getY());
             inLine = false;
             hasWaitingSpot = false;
-            
+
             restaurant.recordRating(1);
         }
     }
 
     // Has customer choose random items from menu
     // Can choose up to 3 items
-    public String[] generateOrder()
+    public void generateOrder()
     {
-        int numOrder = Greenfoot.getRandomNumber(2)+1;
         ArrayList<String> availibleItems = new ArrayList<>();
         GreenfootImage currentOrder = new GreenfootImage("happy.png");
         for(String item : menu)
         {   
             availibleItems.add(item);
         }
-        order = new String[numOrder];
-        
 
         ArrayList<GreenfootImage> itemImages = new ArrayList<>();
+        int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
+        order = availibleItems.remove(randomIndex);
+        itemImages.add(getImageForItem(order));
+        currentOrder = getImageForItem(order);
+        pay(prices[0]);
 
-        for(int i = 0; i < numOrder; i++)
-        {
-            int randomIndex = Greenfoot.getRandomNumber(availibleItems.size());
-            order[i] = availibleItems.remove(randomIndex);
-            itemImages.add(getImageForItem(order[i]));
-            currentOrder = getImageForItem(order[i]);
-            pay(prices[i]);
+        if(chef != null){
+            chef.takeOrder(currentOrder, order, this);
         }
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(order));
-        chef.takeOrder(currentOrder, arrayList);
         createCompositeOrderImage(itemImages);
-
-        return order;
     }
-    
+
     private void pay(int amount) {
         this.restaurant.collectCash(amount);
     }
@@ -441,7 +433,7 @@ public class Customer extends SuperSmoothMover
         {
             rating = 0;
         }
-        
+
         restaurant.recordRating(rating);
     }
 
@@ -511,7 +503,15 @@ public class Customer extends SuperSmoothMover
             getWorld().removeObject(this);
         }
     }
-
+    
+    public void pickUpOrder(Food f){
+        World w = getWorld();
+        if(w != null){
+            w.removeObject(f);
+            w.removeObject(this);
+        }
+    }
+    
     public boolean isInLine(){
         return inLine;    
     }
@@ -526,7 +526,7 @@ public class Customer extends SuperSmoothMover
         return rating;
     }
 
-    public String[] getOrder()
+    public String getOrder()
     {
         return order;
     }
