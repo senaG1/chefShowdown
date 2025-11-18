@@ -242,7 +242,7 @@ public class Customer extends SuperSmoothMover
     // Can choose up to 3 items
     public String[] generateOrder()
     {
-        int numOrder = Greenfoot.getRandomNumber(2)+1;
+        int numOrder = Greenfoot.getRandomNumber(1)+1;
         ArrayList<String> availibleItems = new ArrayList<>();
         GreenfootImage currentOrder = new GreenfootImage("happy.png");
         for(String item : menu)
