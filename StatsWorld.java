@@ -34,6 +34,10 @@ public class StatsWorld extends World
         addObject(screen, 480, 320);
         screen.callAction();
         
+        GreenfootImage poster = new GreenfootImage("jesuspixel.png");
+        poster.scale(45, 62);
+        background.drawImage(poster, 694 , 209);
+        
         Label gameOverLabel = new Label("Game Over!", 30);
         Label leftCashLabel = new Label("Blue Team Cash: $" + leftTeamCash, 30);
         Label leftRatingLabel = new Label("Blue Team Rating: " + String.format("%.2f", leftTeamRating) + " Stars", 30);
