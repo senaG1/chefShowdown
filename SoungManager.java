@@ -3,10 +3,13 @@ import greenfoot.*;
  * Write a description of class SoungManager here.
  * 
  * coin sound by chieuk from pixabay
- * pop sound by OxidVideos from pixabay
- * paprazzi by SoundReality from pixabay
+ * paprazzi by ShidenBeatsMusic from pixabay
  * leave by AberrantRealities from pixabay
  * rat by SOUND_GARAGE from pixabay
+ * endGame by Superpuyofãns1234 from pixabay
+ * gameStart by Universfield from pixabay
+ * increaseStar by freesound_CrunchpixStudio from pixabay
+ * nextDay by MixKit
  * 
  * @author Sena Godek
  * @version 2025
@@ -15,14 +18,14 @@ public class SoungManager
 {
     // Arrays to store multiple copies of each sound
     private static GreenfootSound[] coinSounds;
-    private static GreenfootSound[] popSounds;
+    private static GreenfootSound[] nextDaySounds;
     private static GreenfootSound[] paparazziSounds;
     private static GreenfootSound[] leaveSounds;
     private static GreenfootSound[] ratSounds;
     
     // Indices to track which copy to play next
     private static int coinIndex = 0;
-    private static int popIndex = 0;
+    private static int nextDayIndex = 0;
     private static int paparazziIndex = 0;
     private static int leaveIndex = 0;
     private static int ratIndex = 0;
@@ -39,11 +42,10 @@ public class SoungManager
             coinSounds[i].setVolume(45);
         }
         
-        // pop - 
-        popSounds = new GreenfootSound[15];
-        for (int i = 0; i < popSounds.length; i++) {
-            popSounds[i] = new GreenfootSound("pop.wav");
-            popSounds[i].setVolume(45);
+        // nextDay - 
+        nextDaySounds = new GreenfootSound[15];
+        for (int i = 0; i < nextDaySounds.length; i++) {
+            nextDaySounds[i].setVolume(45);
         }
         
         // paparazzi - 
