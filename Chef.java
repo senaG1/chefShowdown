@@ -6,14 +6,15 @@ public abstract class Chef extends SuperSmoothMover
     protected int cookSpeed, cost, salary, cookCount, foodPerOrder, walkSpeed, currentFood;
     protected int upperBound, lowerBound, farBound, closeBound;//movement box (close and far from center x of screen)
     protected int centreX;
-    protected String side;
+    protected String side, foodItem;
     protected boolean isCooking;
     protected SuperStatBar cookBar;
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage image, orderImage;
     protected int skill, foodX, foodY;
-    protected ArrayList<String> foodItems;
-
+    protected Customer currentCustomer;
+    protected Food food;
+    
     public Chef()
     {
         isCooking = false;
@@ -31,8 +32,6 @@ public abstract class Chef extends SuperSmoothMover
         setImage(image);
 
         enableStaticRotation();
-
-        foodItems = new ArrayList<String>();
     }
 
     public void addedToWorld(World w){
@@ -70,19 +69,19 @@ public abstract class Chef extends SuperSmoothMover
     protected void nextOrder(){
         World w = getWorld();
         
-        if(w != null && !foodItems.isEmpty()){
-            w.addObject(new Food(foodItems.get(0), skill, 0), foodX, foodY);
+        //customer gets food
+        if(w != null && foodItem != null){
+            food = new Food(foodItem, skill, 0);
+            w.addObject(food, foodX, foodY);
         }
-        if(currentFood == foodPerOrder - 1){
-            foodItems.clear();
-        }else{
-            currentFood++;
-        }
+        currentCustomer.pickUpOrder(food);
+    
+        //next order starts
         if(orderBubble != null){
             w.removeObject(orderBubble);
         }
-        if(orderImage != null && foodItems != null && !foodItems.isEmpty()){
-            GreenfootImage foodImg = new GreenfootImage(foodItems.get(currentFood)+ ".png");
+        if(orderImage != null && foodItem != null){
+            GreenfootImage foodImg = new GreenfootImage(foodItem + ".png");
             orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, foodImg, true, true);
         }
         if(orderBubble != null){
@@ -92,15 +91,15 @@ public abstract class Chef extends SuperSmoothMover
 
     //gets the image and name of the order from a customer
     //returns whether or not the order was received
-    public boolean takeOrder(GreenfootImage img, ArrayList<String> orderNames){
+    public boolean takeOrder(GreenfootImage img, String orderNames, Customer c){
         if(!isCooking){
             isCooking = true;
-            foodPerOrder = orderNames.size();
             currentFood = 0;
             orderImage = new GreenfootImage(img);
-            foodItems = orderNames;
+            foodItem = orderNames;
             orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, img, true, true);
             getWorld().addObject(orderBubble, getX(), getY());
+            currentCustomer = c;
             return true;
         }else{
             return false;
