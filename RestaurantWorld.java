@@ -24,6 +24,8 @@ public class RestaurantWorld extends World
     
     private int currentDay;
     private boolean spawnAtRed;
+    //Here for now, will change when settings world added days 
+    private int maxDays = 3;
 
     //Constants
     private static int labelHeight = 30;
@@ -104,7 +106,7 @@ public class RestaurantWorld extends World
             dayTimer = 3600;
         }
         
-        if(currentDay == 4)
+        if(currentDay == maxDays)
         {
             endGame();
         }
@@ -129,7 +131,7 @@ public class RestaurantWorld extends World
         int rightCash = restaurantRed.getCash();
         double leftRating = restaurantBlue.getRating();
         double rightRating = restaurantRed.getRating();
-        Greenfoot.setWorld(new StatsWorld(leftCash, rightCash, leftRating, rightRating));
+        Greenfoot.setWorld(new EndingWorld(leftCash, rightCash, leftRating, rightRating));
     }
 
     private void addKitchenObjects() {
