@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MasterChef extends Chef
 {
     public MasterChef(){
+        setImage("master_chef.png");
         cookSpeed = 120;
         skill = 5;
     }

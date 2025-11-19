@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Write a description of class SettingsWorld here.
  * 
  * @author Grace Tao
- * @version (a version number or a date)
+ * @version Nov 2025
  */
 public class SettingsWorld extends World
 {
@@ -36,22 +36,37 @@ public class SettingsWorld extends World
     private Button moneyMinusRed;
     
     // Blue chef buttons
-    private Button masterBlue;
-    private Button cohenBlue;
-    private Button hungryBlue;
-    private Button lazyBlue;
+    private Button plusMasterBlue;
+    private Button minusMasterBlue;
+    private Button plusCohenBlue;
+    private Button minusCohenBlue;
+    private Button plusHungryBlue;
+    private Button minusHungryBlue;
+    private Button plusLazyBlue;
+    private Button minusLazyBlue;
     
     // Red chef buttons
-    private Button masterRed;
-    private Button cohenRed;
-    private Button hungryRed;
-    private Button lazyRed;
+    private Button plusMasterRed;
+    private Button minusMasterRed;
+    private Button plusCohenRed;
+    private Button minusCohenRed;
+    private Button plusHungryRed;
+    private Button minusHungryRed;
+    private Button plusLazyRed;
+    private Button minusLazyRed;
     
     private Button nextBtn;
     private Button playBtn;
     
-    private ArrayList<Chef> blueChefs;
-    private ArrayList<Chef> redChefs;
+    private int numMasterRed;
+    private int numCohenRed;
+    private int numHungryRed;
+    private int numLazyRed;
+    
+    private int numMasterBlue;
+    private int numCohenBlue;
+    private int numHungryBlue;
+    private int numLazyBlue;
     
     private Restaurant restaurantBlue;
     private Restaurant restaurantRed;
@@ -87,6 +102,7 @@ public class SettingsWorld extends World
         setBackground(background);
         
         blueMenu = new GreenfootImage(140, 100);
+        
         
         addObjectsToWorld();
     }
@@ -132,30 +148,54 @@ public class SettingsWorld extends World
         
         // FOR CHEF CHOOSING SCREEN
         // Blue chef buttons
-        masterBlue = new Button("masterBtn_1.png", "masterBtn_2.png");
-        masterBlue.scale(3/2);
+        plusMasterBlue = new Button("plus_1.png", "plus_2.png");
+        plusMasterBlue.scale(2);
         
-        cohenBlue = new Button("cohenBtn_1.png", "cohenBtn_2.png");
-        cohenBlue.scale(3/2);
+        plusCohenBlue = new Button("plus_1.png", "plus_2.png");
+        plusCohenBlue.scale(2);
         
-        hungryBlue = new Button("hungryBtn_1.png", "hungryBtn_2.png");
-        hungryBlue.scale(3/2);
+        plusHungryBlue = new Button("plus_1.png", "plus_2.png");
+        plusHungryBlue.scale(2);
         
-        lazyBlue = new Button("lazyBtn_1.png", "lazyBtn_2.png");
-        lazyBlue.scale(3/2);
+        plusLazyBlue = new Button("plus_1.png", "plus_2.png");
+        plusLazyBlue.scale(2);
+        
+        minusMasterBlue = new Button("minus_1.png", "minus_2.png");
+        minusMasterBlue.scale(2);
+        
+        minusCohenBlue = new Button("minus_1.png", "minus_2.png");
+        minusCohenBlue.scale(2);
+        
+        minusHungryBlue = new Button("minus_1.png", "minus_2.png");
+        minusHungryBlue.scale(2);
+        
+        minusLazyBlue = new Button("minus_1.png", "minus_2.png");
+        minusLazyBlue.scale(2);
         
         // Red chef buttons
-        masterRed = new Button("masterBtn_1.png", "masterBtn_2.png");
-        masterRed.scale(3/2);
+        plusMasterRed = new Button("plus_1.png", "plus_2.png");
+        plusMasterRed.scale(2);
         
-        cohenRed = new Button("cohenBtn_1.png", "cohenBtn_2.png");
-        cohenRed.scale(3/2);
+        plusCohenRed = new Button("plus_1.png", "plus_2.png");
+        plusCohenRed.scale(2);
         
-        hungryRed = new Button("hungryBtn_1.png", "hungryBtn_2.png");
-        hungryRed.scale(3/2);
+        plusHungryRed = new Button("plus_1.png", "plus_2.png");
+        plusHungryRed.scale(2);
         
-        lazyRed = new Button("lazyBtn_1.png", "lazyBtn_2.png");
-        lazyRed.scale(3/2);
+        plusLazyRed = new Button("plus_1.png", "plus_2.png");
+        plusLazyRed.scale(2);
+        
+        minusMasterRed = new Button("minus_1.png", "minus_2.png");
+        minusMasterRed.scale(2);
+        
+        minusCohenRed = new Button("minus_1.png", "minus_2.png");
+        minusCohenRed.scale(2);
+        
+        minusHungryRed = new Button("minus_1.png", "minus_2.png");
+        minusHungryRed.scale(2);
+        
+        minusLazyRed = new Button("minus_1.png", "minus_2.png");
+        minusLazyRed.scale(2);
         
         playBtn = new Button("play_1.png", "play_2.png");
         playBtn.scale(2);
@@ -220,9 +260,76 @@ public class SettingsWorld extends World
             chooseChefs();
         }
         
-        if(masterRed.isClicked()) {
-            redChefs.add(new MasterChef());
+        if((numMasterRed + numCohenRed + numHungryRed + numLazyRed) < numChefsRed) {
+            if(plusMasterRed.isClicked()) {
+                numMasterRed++;
+                updateDisplay2();
+            }
+            if(plusCohenRed.isClicked()) {
+                numCohenRed++;
+                updateDisplay2();
+            }
+            if(plusHungryRed.isClicked()) {
+                numHungryRed++;
+                updateDisplay2();
+            }
+            if(plusLazyRed.isClicked()) {
+                numLazyRed++;
+                updateDisplay2();
+            }
             
+            if(minusMasterRed.isClicked()) {
+                numMasterRed--;
+                updateDisplay2();
+            }
+            if(minusCohenRed.isClicked()) {
+                numCohenRed--;
+                updateDisplay2();
+            }
+            if(minusHungryRed.isClicked()) {
+                numHungryRed--;
+                updateDisplay2();
+            }
+            if(minusLazyRed.isClicked()) {
+                numLazyRed--;
+                updateDisplay2();
+            }
+        }
+        
+        if((numMasterBlue + numCohenBlue + numHungryBlue + numLazyBlue) < numChefsBlue) {
+            if(plusMasterBlue.isClicked()) {
+                numMasterBlue++;
+                updateDisplay2();
+            }
+            if(plusCohenBlue.isClicked()) {
+                numCohenBlue++;
+                updateDisplay2();
+            }
+            if(plusHungryBlue.isClicked()) {
+                numHungryBlue++;
+                updateDisplay2();
+            }
+            if(plusLazyBlue.isClicked()) {
+                numLazyBlue++;
+                updateDisplay2();
+            }
+            
+            if(minusMasterBlue.isClicked()) {
+                numMasterBlue--;
+                updateDisplay2();
+            }
+            if(minusCohenBlue.isClicked()) {
+                numCohenBlue--;
+                updateDisplay2();
+            }
+            if(minusHungryBlue.isClicked()) {
+                numHungryBlue--;
+                updateDisplay2();
+            }
+            if(minusLazyBlue.isClicked()) {
+                numLazyBlue--;
+                updateDisplay2();
+            }
         }
         
         if (playBtn.isClicked())
@@ -298,21 +405,24 @@ public class SettingsWorld extends World
         // BLUE RESTAURANT (LEFT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
         bg.setColor(new Color(50, 100, 200)); 
-        bg.drawString("BLUE", BLUE_CENTER_X - 35, 240);
+        bg.drawString("BLUE", BLUE_CENTER_X - 35, 260);
         
         bg.setColor(new Color(99, 66, 66));
         bg.setFont(new Font("Consolas", true, false, 20));
         
-        bg.drawString("Master", BLUE_CENTER_X - 78, BLUE_CHEF_Y - 45);
-        addObject(masterBlue, BLUE_CENTER_X - 50, BLUE_CHEF_Y - 10);
-        bg.drawString("Cohen", BLUE_CENTER_X + 22, BLUE_CHEF_Y - 45);
-        addObject(cohenBlue, BLUE_CENTER_X + 50, BLUE_CHEF_Y - 10);
-        bg.drawString("Hungry", BLUE_CENTER_X - 78, BLUE_CHEF_Y + 45);
-        addObject(hungryBlue, BLUE_CENTER_X - 50, BLUE_CHEF_Y + 80);
-        bg.drawString("Lazy", BLUE_CENTER_X + 22, BLUE_CHEF_Y + 45);
-        addObject(lazyBlue, BLUE_CENTER_X + 50, BLUE_CHEF_Y + 80);
+        bg.drawString("Master", BLUE_CENTER_X - 68, BLUE_CHEF_Y - 15);
+        addObject(minusMasterBlue, BLUE_CENTER_X - 88, BLUE_CHEF_Y + 15);
+        addObject(plusMasterBlue, BLUE_CENTER_X - 8, BLUE_CHEF_Y + 15);
+        bg.drawImage(new GreenfootImage("master_chef.png"), BLUE_CENTER_X - 98, BLUE_CHEF_Y - 45);
         
-        bg.drawString("Selection: ", BLUE_CENTER_X - 80, 470);
+        bg.drawString("Cohen", BLUE_CENTER_X + 42, BLUE_CHEF_Y - 15);
+        addObject(minusCohenBlue, BLUE_CENTER_X - 88, BLUE_CHEF_Y + 15);
+        addObject(plusCohenBlue, BLUE_CENTER_X - 8, BLUE_CHEF_Y + 15);
+        bg.drawImage(new GreenfootImage("master_chef.png"), BLUE_CENTER_X - 98, BLUE_CHEF_Y - 45);
+        
+        bg.drawString("Hungry", BLUE_CENTER_X - 98, BLUE_CHEF_Y + 85);
+        bg.drawString("Lazy", BLUE_CENTER_X + 52, BLUE_CHEF_Y + 85);        
+        
         
         // RED RESTAURANT (RIGHT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
@@ -322,16 +432,10 @@ public class SettingsWorld extends World
         bg.setColor(new Color(99, 66, 66));
         bg.setFont(new Font("Consolas", true, false, 20));
         
-        bg.drawString("Master", RED_CENTER_X - 78, RED_CHEF_Y - 45);
-        addObject(masterRed, RED_CENTER_X - 50, RED_CHEF_Y - 10);
-        bg.drawString("Cohen", RED_CENTER_X + 22, RED_CHEF_Y - 45);
-        addObject(cohenRed, RED_CENTER_X + 50, RED_CHEF_Y - 10);
-        bg.drawString("Hungry", RED_CENTER_X - 78, RED_CHEF_Y + 45);
-        addObject(hungryRed, RED_CENTER_X - 50, RED_CHEF_Y + 80);
-        bg.drawString("Lazy", RED_CENTER_X + 22, RED_CHEF_Y + 45);
-        addObject(lazyRed, RED_CENTER_X + 50, RED_CHEF_Y + 80);
-        
-        bg.drawString("Selection: ", RED_CENTER_X - 80, 470);;
+        bg.drawString("Master", RED_CENTER_X - 98, RED_CHEF_Y - 45);
+        bg.drawString("Cohen", RED_CENTER_X + 42, RED_CHEF_Y - 45);
+        bg.drawString("Hungry", RED_CENTER_X - 98, RED_CHEF_Y + 45);
+        bg.drawString("Lazy", RED_CENTER_X + 42, RED_CHEF_Y + 45);  
         
         addObject(playBtn, 480, 520);
     }

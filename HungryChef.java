@@ -11,6 +11,7 @@ public class HungryChef extends Chef
     private int actCount;
 
     public HungryChef(){
+        setImage("hungry_chef.png");
         cookSpeed = 180;
         actCount = 0;
         skill = 4;
