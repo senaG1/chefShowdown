@@ -25,8 +25,8 @@ public class Customer extends SuperSmoothMover
     protected int waitingY;
     protected int actTimer;
     protected SuperStatBar patience;
-    protected int maxPatience = 2100; // 35 secs before patience runs out
-    protected int currentPatience = 2100;
+    protected int maxPatience = 1800; // 35 secs before patience runs out
+    protected int currentPatience = 1800;
     private int targetX;
     private int targetY;
     protected String[] menu = {"nuggets", "fries", "hash", "burger", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
@@ -133,7 +133,7 @@ public class Customer extends SuperSmoothMover
             findChef();
         }
 
-        if (givingUp)
+        if (givingUp && !leavingStore)
         {
             walkToExit();
             return;  
@@ -154,7 +154,7 @@ public class Customer extends SuperSmoothMover
                 patience.update(currentPatience);
             }
 
-            if (currentPatience <= 0)
+            if (currentPatience <= 0 && !leavingStore)
             {
                 giveUp();
                 return;
@@ -435,6 +435,7 @@ public class Customer extends SuperSmoothMover
         }
 
         restaurant.recordRating(rating);
+        walkToExit();
     }
 
     // Has customers line up, max 5 customers at a time
@@ -508,7 +509,7 @@ public class Customer extends SuperSmoothMover
         World w = getWorld();
         if(w != null){
             w.removeObject(f);
-            w.removeObject(this);
+            orderRecieved = true;
         }
     }
     
