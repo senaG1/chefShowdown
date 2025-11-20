@@ -71,6 +71,9 @@ public class SettingsWorld extends World
     private Restaurant restaurantBlue;
     private Restaurant restaurantRed;
     
+    private static ArrayList<Integer> blueChefs;
+    private static ArrayList<Integer> redChefs;
+    
     private final int MIN_CHEFS = 1;
     private final int MAX_CHEFS = 3;
     private final int MIN_MONEY = 500;
@@ -103,6 +106,8 @@ public class SettingsWorld extends World
         
         blueMenu = new GreenfootImage(140, 100);
         
+        blueChefs = new ArrayList<Integer>();
+        redChefs = new ArrayList<Integer>();
         
         addObjectsToWorld();
     }
@@ -150,50 +155,42 @@ public class SettingsWorld extends World
         // Blue chef buttons
         plusMasterBlue = new Button("plus_1.png", "plus_2.png");
         plusMasterBlue.scale(2);
-        
-        plusCohenBlue = new Button("plus_1.png", "plus_2.png");
-        plusCohenBlue.scale(2);
-        
-        plusHungryBlue = new Button("plus_1.png", "plus_2.png");
-        plusHungryBlue.scale(2);
-        
-        plusLazyBlue = new Button("plus_1.png", "plus_2.png");
-        plusLazyBlue.scale(2);
-        
         minusMasterBlue = new Button("minus_1.png", "minus_2.png");
         minusMasterBlue.scale(2);
         
+        plusCohenBlue = new Button("plus_1.png", "plus_2.png");
+        plusCohenBlue.scale(2);
         minusCohenBlue = new Button("minus_1.png", "minus_2.png");
         minusCohenBlue.scale(2);
         
+        plusHungryBlue = new Button("plus_1.png", "plus_2.png");
+        plusHungryBlue.scale(2);
         minusHungryBlue = new Button("minus_1.png", "minus_2.png");
         minusHungryBlue.scale(2);
         
+        plusLazyBlue = new Button("plus_1.png", "plus_2.png");
+        plusLazyBlue.scale(2);
         minusLazyBlue = new Button("minus_1.png", "minus_2.png");
         minusLazyBlue.scale(2);
         
         // Red chef buttons
         plusMasterRed = new Button("plus_1.png", "plus_2.png");
         plusMasterRed.scale(2);
-        
-        plusCohenRed = new Button("plus_1.png", "plus_2.png");
-        plusCohenRed.scale(2);
-        
-        plusHungryRed = new Button("plus_1.png", "plus_2.png");
-        plusHungryRed.scale(2);
-        
-        plusLazyRed = new Button("plus_1.png", "plus_2.png");
-        plusLazyRed.scale(2);
-        
         minusMasterRed = new Button("minus_1.png", "minus_2.png");
         minusMasterRed.scale(2);
         
+        plusCohenRed = new Button("plus_1.png", "plus_2.png");
+        plusCohenRed.scale(2);
         minusCohenRed = new Button("minus_1.png", "minus_2.png");
         minusCohenRed.scale(2);
         
+        plusHungryRed = new Button("plus_1.png", "plus_2.png");
+        plusHungryRed.scale(2);
         minusHungryRed = new Button("minus_1.png", "minus_2.png");
         minusHungryRed.scale(2);
         
+        plusLazyRed = new Button("plus_1.png", "plus_2.png");
+        plusLazyRed.scale(2);
         minusLazyRed = new Button("minus_1.png", "minus_2.png");
         minusLazyRed.scale(2);
         
@@ -260,42 +257,7 @@ public class SettingsWorld extends World
             chooseChefs();
         }
         
-        if((numMasterRed + numCohenRed + numHungryRed + numLazyRed) < numChefsRed) {
-            if(plusMasterRed.isClicked()) {
-                numMasterRed++;
-                updateDisplay2();
-            }
-            if(plusCohenRed.isClicked()) {
-                numCohenRed++;
-                updateDisplay2();
-            }
-            if(plusHungryRed.isClicked()) {
-                numHungryRed++;
-                updateDisplay2();
-            }
-            if(plusLazyRed.isClicked()) {
-                numLazyRed++;
-                updateDisplay2();
-            }
-            
-            if(minusMasterRed.isClicked()) {
-                numMasterRed--;
-                updateDisplay2();
-            }
-            if(minusCohenRed.isClicked()) {
-                numCohenRed--;
-                updateDisplay2();
-            }
-            if(minusHungryRed.isClicked()) {
-                numHungryRed--;
-                updateDisplay2();
-            }
-            if(minusLazyRed.isClicked()) {
-                numLazyRed--;
-                updateDisplay2();
-            }
-        }
-        
+        // Blue chef selection
         if((numMasterBlue + numCohenBlue + numHungryBlue + numLazyBlue) < numChefsBlue) {
             if(plusMasterBlue.isClicked()) {
                 numMasterBlue++;
@@ -313,23 +275,60 @@ public class SettingsWorld extends World
                 numLazyBlue++;
                 updateDisplay2();
             }
-            
-            if(minusMasterBlue.isClicked()) {
-                numMasterBlue--;
+        }
+        
+        if(minusMasterBlue.isClicked() && numMasterBlue > 0) {
+            numMasterBlue--;
+            updateDisplay2();
+        }
+        if(minusCohenBlue.isClicked() && numCohenBlue > 0) {
+            numCohenBlue--;
+            updateDisplay2();
+        }
+        if(minusHungryBlue.isClicked() && numHungryBlue > 0) {
+            numHungryBlue--;
+            updateDisplay2();
+        }
+        if(minusLazyBlue.isClicked() && numLazyBlue > 0) {
+            numLazyBlue--;
+            updateDisplay2();
+        }
+        
+        // Red chef selection
+        if((numMasterRed + numCohenRed + numHungryRed + numLazyRed) < numChefsRed) {
+            if(plusMasterRed.isClicked()) {
+                numMasterRed++;
                 updateDisplay2();
             }
-            if(minusCohenBlue.isClicked()) {
-                numCohenBlue--;
+            if(plusCohenRed.isClicked()) {
+                numCohenRed++;
                 updateDisplay2();
             }
-            if(minusHungryBlue.isClicked()) {
-                numHungryBlue--;
+            if(plusHungryRed.isClicked()) {
+                numHungryRed++;
                 updateDisplay2();
             }
-            if(minusLazyBlue.isClicked()) {
-                numLazyBlue--;
+            if(plusLazyRed.isClicked()) {
+                numLazyRed++;
                 updateDisplay2();
             }
+        }
+        
+        if(minusMasterRed.isClicked() && numMasterRed > 0) {
+            numMasterRed--;
+            updateDisplay2();
+        }
+        if(minusCohenRed.isClicked() && numCohenRed > 0) {
+            numCohenRed--;
+            updateDisplay2();
+        }
+        if(minusHungryRed.isClicked() && numHungryRed > 0) {
+            numHungryRed--;
+            updateDisplay2();
+        }
+        if(minusLazyRed.isClicked() && numLazyRed > 0) {
+            numLazyRed--;
+            updateDisplay2();
         }
         
         if (playBtn.isClicked())
@@ -387,7 +386,86 @@ public class SettingsWorld extends World
     }
     
     private void updateDisplay2() {
+        // Reload background
+        setBackground(new GreenfootImage(background));
+        GreenfootImage bg = getBackground();
         
+        bg.setColor(new Color(99, 66, 66));
+        
+        // Draw title
+        bg.setFont(new Font("Consolas", true, false, 64));
+        bg.drawString("CHOOSE CHEFS", 280, 200);
+        
+        // BLUE RESTAURANT (LEFT SIDE)
+        bg.setFont(new Font("Consolas", true, false, 32));
+        bg.setColor(new Color(50, 100, 200)); 
+        bg.drawString("BLUE", BLUE_CENTER_X - 35, 260);
+        
+        bg.setColor(new Color(99, 66, 66));
+        bg.setFont(new Font("Consolas", true, false, 20));
+        
+        // Master Blue - Top Left
+        bg.drawString("Master", BLUE_CENTER_X - 68, BLUE_CHEF_Y - 15);
+        bg.drawImage(new GreenfootImage("master_chef.png"), BLUE_CENTER_X - 98, BLUE_CHEF_Y - 45);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numMasterBlue), BLUE_CENTER_X - 60, BLUE_CHEF_Y + 20);
+        bg.setFont(new Font("Consolas", true, false, 20));
+        
+        // Cohen Blue - Top Right
+        bg.drawString("Cohen", BLUE_CENTER_X + 42, BLUE_CHEF_Y - 15);
+        bg.drawImage(new GreenfootImage("ChefCohen.png"), BLUE_CENTER_X + 12, BLUE_CHEF_Y - 45);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numCohenBlue), BLUE_CENTER_X + 52, BLUE_CHEF_Y + 20);
+        bg.setFont(new Font("Consolas", true, false, 20));
+        
+        // Hungry Blue - Bottom Left
+        bg.drawString("Hungry", BLUE_CENTER_X - 68, BLUE_CHEF_Y + 85);
+        bg.drawImage(new GreenfootImage("hungry_chef.png"), BLUE_CENTER_X - 98, BLUE_CHEF_Y + 55);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numHungryBlue), BLUE_CENTER_X - 60, BLUE_CHEF_Y + 120);
+        bg.setFont(new Font("Consolas", true, false, 20));
+        
+        // Lazy Blue - Bottom Right
+        bg.drawString("Lazy", BLUE_CENTER_X + 52, BLUE_CHEF_Y + 85);
+        bg.drawImage(new GreenfootImage("lazy_chef.png"), BLUE_CENTER_X + 12, BLUE_CHEF_Y + 55);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numLazyBlue), BLUE_CENTER_X + 52, BLUE_CHEF_Y + 120);
+        bg.setFont(new Font("Consolas", true, false, 20));
+        
+        // RED RESTAURANT (RIGHT SIDE)
+        bg.setFont(new Font("Consolas", true, false, 32));
+        bg.setColor(new Color(200, 50, 50)); 
+        bg.drawString("RED", RED_CENTER_X - 35, 260);
+        
+        bg.setColor(new Color(99, 66, 66));
+        bg.setFont(new Font("Consolas", true, false, 20));
+        
+        // Master Red - Top Left
+        bg.drawString("Master", RED_CENTER_X - 68, RED_CHEF_Y - 15);
+        bg.drawImage(new GreenfootImage("master_chef.png"), RED_CENTER_X - 98, RED_CHEF_Y - 45);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numMasterRed), RED_CENTER_X - 60, RED_CHEF_Y + 20);
+        bg.setFont(new Font("Consolas", true, false, 20));
+        
+        // Cohen Red - Top Right
+        bg.drawString("Cohen", RED_CENTER_X + 42, RED_CHEF_Y - 15);
+        bg.drawImage(new GreenfootImage("ChefCohen.png"), RED_CENTER_X + 12, RED_CHEF_Y - 45);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numCohenRed), RED_CENTER_X + 52, RED_CHEF_Y + 20);
+        bg.setFont(new Font("Consolas", true, false, 20));
+        
+        // Hungry Red - Bottom Left
+        bg.drawString("Hungry", RED_CENTER_X - 68, RED_CHEF_Y + 85);
+        bg.drawImage(new GreenfootImage("hungry_chef.png"), RED_CENTER_X - 98, RED_CHEF_Y + 55);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numHungryRed), RED_CENTER_X - 60, RED_CHEF_Y + 120);
+        bg.setFont(new Font("Consolas", true, false, 20));
+        
+        // Lazy Red - Bottom Right
+        bg.drawString("Lazy", RED_CENTER_X + 52, RED_CHEF_Y + 85);
+        bg.drawImage(new GreenfootImage("lazy_chef.png"), RED_CENTER_X + 12, RED_CHEF_Y + 55);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numLazyRed), RED_CENTER_X + 52, RED_CHEF_Y + 120);
     }
     
     private void chooseChefs() {
@@ -400,7 +478,6 @@ public class SettingsWorld extends World
         // Draw title
         bg.setFont(new Font("Consolas", true, false, 64));
         bg.drawString("CHOOSE CHEFS", 280, 200);
-        bg.setFont(new Font("Consolas", true, false, 24));
         
         // BLUE RESTAURANT (LEFT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
@@ -410,42 +487,112 @@ public class SettingsWorld extends World
         bg.setColor(new Color(99, 66, 66));
         bg.setFont(new Font("Consolas", true, false, 20));
         
+        // Master Blue - Top Left
         bg.drawString("Master", BLUE_CENTER_X - 68, BLUE_CHEF_Y - 15);
         addObject(minusMasterBlue, BLUE_CENTER_X - 88, BLUE_CHEF_Y + 15);
-        addObject(plusMasterBlue, BLUE_CENTER_X - 8, BLUE_CHEF_Y + 15);
+        addObject(plusMasterBlue, BLUE_CENTER_X - 18, BLUE_CHEF_Y + 15);
         bg.drawImage(new GreenfootImage("master_chef.png"), BLUE_CENTER_X - 98, BLUE_CHEF_Y - 45);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numMasterBlue), BLUE_CENTER_X - 60, BLUE_CHEF_Y + 20);
+        bg.setFont(new Font("Consolas", true, false, 20));
         
+        // Cohen Blue - Top Right
         bg.drawString("Cohen", BLUE_CENTER_X + 42, BLUE_CHEF_Y - 15);
-        addObject(minusCohenBlue, BLUE_CENTER_X - 88, BLUE_CHEF_Y + 15);
-        addObject(plusCohenBlue, BLUE_CENTER_X - 8, BLUE_CHEF_Y + 15);
-        bg.drawImage(new GreenfootImage("master_chef.png"), BLUE_CENTER_X - 98, BLUE_CHEF_Y - 45);
+        addObject(minusCohenBlue, BLUE_CENTER_X + 22, BLUE_CHEF_Y + 15);
+        addObject(plusCohenBlue, BLUE_CENTER_X + 92, BLUE_CHEF_Y + 15);
+        bg.drawImage(new GreenfootImage("ChefCohen.png"), BLUE_CENTER_X + 12, BLUE_CHEF_Y - 45);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numCohenBlue), BLUE_CENTER_X + 52, BLUE_CHEF_Y + 20);
+        bg.setFont(new Font("Consolas", true, false, 20));
         
-        bg.drawString("Hungry", BLUE_CENTER_X - 98, BLUE_CHEF_Y + 85);
-        bg.drawString("Lazy", BLUE_CENTER_X + 52, BLUE_CHEF_Y + 85);        
+        // Hungry Blue - Bottom Left
+        bg.drawString("Hungry", BLUE_CENTER_X - 68, BLUE_CHEF_Y + 85);
+        addObject(minusHungryBlue, BLUE_CENTER_X - 88, BLUE_CHEF_Y + 115);
+        addObject(plusHungryBlue, BLUE_CENTER_X - 18, BLUE_CHEF_Y + 115);
+        bg.drawImage(new GreenfootImage("hungry_chef.png"), BLUE_CENTER_X - 98, BLUE_CHEF_Y + 55);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numHungryBlue), BLUE_CENTER_X - 60, BLUE_CHEF_Y + 120);
+        bg.setFont(new Font("Consolas", true, false, 20));
         
+        // Lazy Blue - Bottom Right
+        bg.drawString("Lazy", BLUE_CENTER_X + 52, BLUE_CHEF_Y + 85);
+        addObject(minusLazyBlue, BLUE_CENTER_X + 22, BLUE_CHEF_Y + 115);
+        addObject(plusLazyBlue, BLUE_CENTER_X + 92, BLUE_CHEF_Y + 115);
+        bg.drawImage(new GreenfootImage("lazy_chef.png"), BLUE_CENTER_X + 12, BLUE_CHEF_Y + 55);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numLazyBlue), BLUE_CENTER_X + 52, BLUE_CHEF_Y + 120);
+        bg.setFont(new Font("Consolas", true, false, 20));
         
         // RED RESTAURANT (RIGHT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
         bg.setColor(new Color(200, 50, 50)); 
-        bg.drawString("RED", RED_CENTER_X - 35, 240);
+        bg.drawString("RED", RED_CENTER_X - 35, 260);
         
         bg.setColor(new Color(99, 66, 66));
         bg.setFont(new Font("Consolas", true, false, 20));
         
-        bg.drawString("Master", RED_CENTER_X - 98, RED_CHEF_Y - 45);
-        bg.drawString("Cohen", RED_CENTER_X + 42, RED_CHEF_Y - 45);
-        bg.drawString("Hungry", RED_CENTER_X - 98, RED_CHEF_Y + 45);
-        bg.drawString("Lazy", RED_CENTER_X + 42, RED_CHEF_Y + 45);  
+        // Master Red - Top Left
+        bg.drawString("Master", RED_CENTER_X - 68, RED_CHEF_Y - 15);
+        addObject(minusMasterRed, RED_CENTER_X - 88, RED_CHEF_Y + 15);
+        addObject(plusMasterRed, RED_CENTER_X - 18, RED_CHEF_Y + 15);
+        bg.drawImage(new GreenfootImage("master_chef.png"), RED_CENTER_X - 98, RED_CHEF_Y - 45);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numMasterRed), RED_CENTER_X - 60, RED_CHEF_Y + 20);
+        bg.setFont(new Font("Consolas", true, false, 20));
+        
+        // Cohen Red - Top Right
+        bg.drawString("Cohen", RED_CENTER_X + 42, RED_CHEF_Y - 15);
+        addObject(minusCohenRed, RED_CENTER_X + 22, RED_CHEF_Y + 15);
+        addObject(plusCohenRed, RED_CENTER_X + 92, RED_CHEF_Y + 15);
+        bg.drawImage(new GreenfootImage("ChefCohen.png"), RED_CENTER_X + 12, RED_CHEF_Y - 45);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numCohenRed), RED_CENTER_X + 52, RED_CHEF_Y + 20);
+        bg.setFont(new Font("Consolas", true, false, 20));
+        
+        // Hungry Red - Bottom Left
+        bg.drawString("Hungry", RED_CENTER_X - 68, RED_CHEF_Y + 85);
+        addObject(minusHungryRed, RED_CENTER_X - 88, RED_CHEF_Y + 115);
+        addObject(plusHungryRed, RED_CENTER_X - 18, RED_CHEF_Y + 115);
+        bg.drawImage(new GreenfootImage("hungry_chef.png"), RED_CENTER_X - 98, RED_CHEF_Y + 55);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numHungryRed), RED_CENTER_X - 60, RED_CHEF_Y + 120);
+        bg.setFont(new Font("Consolas", true, false, 20));
+        
+        // Lazy Red - Bottom Right
+        bg.drawString("Lazy", RED_CENTER_X + 52, RED_CHEF_Y + 85);
+        addObject(minusLazyRed, RED_CENTER_X + 22, RED_CHEF_Y + 115);
+        addObject(plusLazyRed, RED_CENTER_X + 92, RED_CHEF_Y + 115);
+        bg.drawImage(new GreenfootImage("lazy_chef.png"), RED_CENTER_X + 12, RED_CHEF_Y + 55);
+        bg.setFont(new Font("Consolas", true, false, 24));
+        bg.drawString(String.valueOf(numLazyRed), RED_CENTER_X + 52, RED_CHEF_Y + 120);
         
         addObject(playBtn, 480, 520);
     }
     
     private void startGame()
     {
-        restaurantBlue = new Restaurant(numChefsBlue, startMoneyBlue, "Blue", 0);
-        restaurantRed = new Restaurant(numChefsRed, startMoneyRed, "Red", getWidth()/2);
+        blueChefs.add(numMasterBlue);
+        blueChefs.add(numCohenBlue);
+        blueChefs.add(numHungryBlue);
+        blueChefs.add(numLazyBlue);
+        
+        redChefs.add(numMasterRed);
+        redChefs.add(numCohenRed);
+        redChefs.add(numHungryRed);
+        redChefs.add(numLazyRed);
+        
+        restaurantBlue = new Restaurant(blueChefs, startMoneyBlue, "Blue", 0);
+        restaurantRed = new Restaurant(redChefs, startMoneyRed, "Red", getWidth()/2);
         
         Greenfoot.setWorld(new RestaurantWorld());
+    }
+    
+    public static ArrayList<Integer> getBlueChefs() {
+        return blueChefs;
+    }
+    
+    public static ArrayList<Integer> getRedChefs() {
+        return redChefs;
     }
     
     public static int getStartMoneyBlue() {

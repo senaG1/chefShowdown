@@ -48,20 +48,17 @@ public class RestaurantWorld extends World
         actCount = 0;
         
         if (restaurantBlue == null) {
-            restaurantBlue = new Restaurant(SettingsWorld.getNumBlueChefs(), SettingsWorld.getStartMoneyBlue(), "Blue", 0);
+            restaurantBlue = new Restaurant(SettingsWorld.getBlueChefs(), SettingsWorld.getStartMoneyBlue(), "Blue", 0);
             addObject(restaurantBlue, 0, height);
         }
         if (restaurantRed == null) {
-            restaurantRed = new Restaurant(SettingsWorld.getNumRedChefs(), SettingsWorld.getStartMoneyRed(), "Red", width/2);
+            restaurantRed = new Restaurant(SettingsWorld.getRedChefs(), SettingsWorld.getStartMoneyRed(), "Red", width/2);
             addObject(restaurantRed, width/2, height);
         }
         //testing
         
         addChefs();
-        addObject(new ChefCohenBlue(), 415, 265);
-        addObject(new ChefCohenRed(), 525, 265);
-        addObject(new HungryChef(), 415, 465);
-        addObject(new HungryChef(), 525, 465);
+       
         
         addKitchenObjects();
         setPaintOrder(SuperStatBar.class, SuperSpeechBubble.class);
@@ -112,7 +109,75 @@ public class RestaurantWorld extends World
     }
     
     private void addChefs() {
-        // Add blue chefs
+        // Get the chef counts from SettingsWorld
+        ArrayList<Integer> blueChefCounts = SettingsWorld.getBlueChefs();
+        ArrayList<Integer> redChefCounts = SettingsWorld.getRedChefs();
+        
+        // Define spawn positions for blue side (left side of screen)
+        int[] blueXPositions = {210, 282, 340, 415};
+        int[] blueYPositions = {265, 265, 465, 465};
+        
+        // Define spawn positions for red side (right side of screen)
+        int[] redXPositions = {540, 628, 702, 760};
+        int[] redYPositions = {265, 265, 465, 465};
+        
+        // Create and add blue chefs based on counts
+        ArrayList<Chef> blueChefs = new ArrayList<Chef>();
+        
+        // Add Master Chefs (index 0)
+        for (int i = 0; i < blueChefCounts.get(0); i++) {
+            blueChefs.add(new MasterChef());
+        }
+        // Add Cohen Chefs (index 1)
+        for (int i = 0; i < blueChefCounts.get(1); i++) {
+            blueChefs.add(new ChefCohenBlue());
+        }
+        // Add Hungry Chefs (index 2)
+        for (int i = 0; i < blueChefCounts.get(2); i++) {
+            blueChefs.add(new HungryChef());
+        }
+        // Add Lazy Chefs (index 3)
+        for (int i = 0; i < blueChefCounts.get(3); i++) {
+            blueChefs.add(new LazyChef());
+        }
+        
+        // Add blue chefs to the world
+        int blueIndex = 0;
+        for (Chef chef : blueChefs) {
+            if (blueIndex < blueXPositions.length) {
+                addObject(chef, blueXPositions[blueIndex], blueYPositions[blueIndex]);
+                blueIndex++;
+            }
+        }
+        
+        // Create and add red chefs based on counts
+        ArrayList<Chef> redChefs = new ArrayList<Chef>();
+        
+        // Add Master Chefs (index 0)
+        for (int i = 0; i < redChefCounts.get(0); i++) {
+            redChefs.add(new MasterChef());
+        }
+        // Add Cohen Chefs (index 1)
+        for (int i = 0; i < redChefCounts.get(1); i++) {
+            redChefs.add(new ChefCohenRed());
+        }
+        // Add Hungry Chefs (index 2)
+        for (int i = 0; i < redChefCounts.get(2); i++) {
+            redChefs.add(new HungryChef());
+        }
+        // Add Lazy Chefs (index 3)
+        for (int i = 0; i < redChefCounts.get(3); i++) {
+            redChefs.add(new LazyChef());
+        }
+        
+        // Add red chefs to the world
+        int redIndex = 0;
+        for (Chef chef : redChefs) {
+            if (redIndex < redXPositions.length) {
+                addObject(chef, redXPositions[redIndex], redYPositions[redIndex]);
+                redIndex++;
+            }
+        }
     }
     
     public void tomorrow(){
