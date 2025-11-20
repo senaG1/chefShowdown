@@ -15,7 +15,7 @@ import greenfoot.*;
  * @author Sena Godek
  * @version 2025
  */
-public class SoungManager  
+public class SoundManager  
 {
     // Arrays to store multiple copies of each sound
     private static GreenfootSound[] coinSounds;
@@ -57,6 +57,7 @@ public class SoungManager
         // nextDay - 
         nextDaySounds = new GreenfootSound[15];
         for (int i = 0; i < nextDaySounds.length; i++) {
+            nextDaySounds[i] = new GreenfootSound("nextDay.wav");
             nextDaySounds[i].setVolume(45);
         }
         
