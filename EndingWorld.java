@@ -90,7 +90,7 @@ public class EndingWorld extends World
         
         if(timer == 720){
             
-            talkingBubble = new SuperSpeechBubble(winCohen, 200, 400, 80, 30, 60, "Yay!! OF COURSE I WON! ", true, false);
+            talkingBubble = new SuperSpeechBubble(blueCohen, 200, 400, 80, 30, 60, "Yay!! OF COURSE I WON! ", true, false);
             addObject(talkingBubble, 0, 0);
         }
         
