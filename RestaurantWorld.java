@@ -81,19 +81,19 @@ public class RestaurantWorld extends World
         }
 
         if (actCount % 600 == 0){
-            //addObject(new PowerOutage("Blue"), 512, 400);
+            addObject(new PowerOutage("Blue"), 512, 400);
         }
 
         if (actCount % 800 == 0){
-            //addObject(new RatInfestation("Blue"), 0, 0);
+            addObject(new RatInfestation("Blue"), 0, 0);
         }
 
         if (actCount % 500 == 0){
-            //addObject(new PowerOutage("Red"), 485, 400);
+            addObject(new PowerOutage("Red"), 485, 400);
         }
         
         if (actCount % 900 == 0){
-            //addObject(new RatInfestation("Red"), 0, 0);
+            addObject(new RatInfestation("Red"), 0, 0);
         }
 
         if(dayTimer == 0){
