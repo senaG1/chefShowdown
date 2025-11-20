@@ -57,6 +57,7 @@ public class SoundManager
         // nextDay - 
         nextDaySounds = new GreenfootSound[15];
         for (int i = 0; i < nextDaySounds.length; i++) {
+            nextDaySounds[i] = new GreenfootSound("nextDay.wav");
             nextDaySounds[i].setVolume(45);
         }
         
