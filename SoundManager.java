@@ -15,7 +15,7 @@ import greenfoot.*;
  * @author Sena Godek
  * @version 2025
  */
-public class SoungManager  
+public class SoundManager  
 {
     // Arrays to store multiple copies of each sound
     private static GreenfootSound[] coinSounds;
