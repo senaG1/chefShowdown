@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MasterChef extends Chef
 {
+    private int actCount;
+
     public MasterChef(){
         setImage("master_chef.png");
         cookSpeed = 120;
@@ -16,6 +18,7 @@ public class MasterChef extends Chef
     
     public void act()
     {
-        // Add your action code here.
+        super.act();
+        actCount++;
     }
 }

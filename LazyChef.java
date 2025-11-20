@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class LazyChef extends Chef
 {
+    private int actCount;
+
     public LazyChef(){
         setImage("lazy_chef.png");
         cookSpeed = 300;
@@ -16,6 +18,7 @@ public class LazyChef extends Chef
     
     public void act()
     {
-        // Add your action code here.
+        super.act();
+        actCount++;
     }
 }

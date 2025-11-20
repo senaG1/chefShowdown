@@ -33,8 +33,9 @@ public class Restaurant extends SuperSmoothMover
     private int numReviews = 0;
     private int totalRating;
     
-    public Restaurant(int chefs, int cash, String team, int xLocation) {
-        numChefs = chefs;
+    public Restaurant(ArrayList<Integer> numChefs, int cash, String team, int xLocation) {
+        
+        
         currentCash = cash;
         
         this.team = team;
@@ -116,6 +117,10 @@ public class Restaurant extends SuperSmoothMover
         img.fill();
     
         setImage(img);
+    }
+    
+    public ArrayList<Chef> getChefs() {
+        return chefs;
     }
     
     public int getCustSpawnX() {
