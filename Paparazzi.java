@@ -33,6 +33,7 @@ public class Paparazzi extends Effect
         setImage(image);
         if (actCount % 10 == 0 && imageCount < 8) {
             imageCount++;
+            SoundManager.playPaparazzi();
         }
     }
 }

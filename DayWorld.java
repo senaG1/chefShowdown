@@ -54,6 +54,7 @@ public class DayWorld extends World
         getBackground().drawString("Current Cash: $" + redCash, 575, 460);
         getBackground().drawString("Current Rating: " + blueRating + " Stars", 95, 500);
         getBackground().drawString("Current Rating: " + redRating + " Stars", 575, 500);
+        SoundManager.playNextDay();
     }
     
     public void act(){

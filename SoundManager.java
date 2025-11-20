@@ -51,63 +51,63 @@ public class SoundManager
         coinSounds = new GreenfootSound[15];
         for (int i = 0; i < coinSounds.length; i++) {
             coinSounds[i] = new GreenfootSound("coin.wav");
-            coinSounds[i].setVolume(45);
+            coinSounds[i].setVolume(75);
         }
         
         // nextDay - 
         nextDaySounds = new GreenfootSound[15];
         for (int i = 0; i < nextDaySounds.length; i++) {
             nextDaySounds[i] = new GreenfootSound("nextDay.wav");
-            nextDaySounds[i].setVolume(45);
+            nextDaySounds[i].setVolume(75);
         }
         
         // paparazzi - 
         paparazziSounds = new GreenfootSound[15];
         for (int i = 0; i < paparazziSounds.length; i++) {
             paparazziSounds[i] = new GreenfootSound("paparazzi.wav");
-            paparazziSounds[i].setVolume(45);
+            paparazziSounds[i].setVolume(75);
         }
         
         // leave - 
         leaveSounds = new GreenfootSound[15];
         for (int i = 0; i < leaveSounds.length; i++) {
             leaveSounds[i] = new GreenfootSound("leave.wav");
-            leaveSounds[i].setVolume(45);
+            leaveSounds[i].setVolume(75);
         }
         
         // rat - 
         ratSounds = new GreenfootSound[15];
         for (int i = 0; i < ratSounds.length; i++) {
             ratSounds[i] = new GreenfootSound("rat.wav");
-            ratSounds[i].setVolume(45);
+            ratSounds[i].setVolume(75);
         }
         
         // endGame - 
         endGameSounds = new GreenfootSound[15];
         for (int i = 0; i < endGameSounds.length; i++) {
             endGameSounds[i] = new GreenfootSound("endGame.wav");
-            endGameSounds[i].setVolume(45);
+            endGameSounds[i].setVolume(75);
         }
         
         // gameStart - 
         gameStartSounds = new GreenfootSound[15];
         for (int i = 0; i < gameStartSounds.length; i++) {
             gameStartSounds[i] = new GreenfootSound("gameStart.wav");
-            gameStartSounds[i].setVolume(45);
+            gameStartSounds[i].setVolume(75);
         }
         
         // increaseStar - 
         increaseStarSounds = new GreenfootSound[15];
         for (int i = 0; i < increaseStarSounds.length; i++) {
             increaseStarSounds[i] = new GreenfootSound("increaseStar.wav");
-            increaseStarSounds[i].setVolume(45);
+            increaseStarSounds[i].setVolume(75);
         }
         
         // electrivityOut - 
         electrivityOutSounds = new GreenfootSound[15];
         for (int i = 0; i < electrivityOutSounds.length; i++) {
-            electrivityOutSounds[i] = new GreenfootSound("electrivityOut.wav");
-            electrivityOutSounds[i].setVolume(45);
+            electrivityOutSounds[i] = new GreenfootSound("electricityOut.wav");
+            electrivityOutSounds[i].setVolume(75);
         }
     }
     
@@ -125,7 +125,7 @@ public class SoundManager
     /**
      * Play nextDay sound
      */
-    public static void playnextDay() {
+    public static void playNextDay() {
         nextDaySounds[nextDayIndex].play();
         nextDayIndex++;
         if (nextDayIndex >= nextDaySounds.length) {

@@ -102,5 +102,6 @@ public class PowerOutage extends Effect
         }
         
         setImage(image);
+        SoundManager.playElectrivityOut();
     }
 }

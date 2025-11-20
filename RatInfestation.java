@@ -110,5 +110,6 @@ public class RatInfestation extends Effect
             // Add the rat to the world
             getWorld().addObject(new Rat(speed, restaurantSide), x, y);
         }
+        SoundManager.playRat();
     }
 }
