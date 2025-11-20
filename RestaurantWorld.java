@@ -40,6 +40,7 @@ public class RestaurantWorld extends World
     public RestaurantWorld(int currentDay)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        //Random
         super(960, 640, 1);
         this.currentDay = currentDay;
 
