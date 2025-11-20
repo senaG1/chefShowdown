@@ -38,6 +38,7 @@ public abstract class Effect extends SuperSmoothMover
      * @param side - "Red" or "Blue" to specify which restaurant is affected
      */
     public Effect(int duration, String side)
+    //not important
     {
         this.actCount = duration;
         this.totalFadeTime = duration;
