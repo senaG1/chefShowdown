@@ -10,6 +10,8 @@ public class StartWorld extends World
 {
     private GreenfootImage background;
     private Button button;
+    private int timer = -1;
+    private boolean switching = false;
     /**
      * Constructor for objects of class StartWorld.
      * 
@@ -29,7 +31,16 @@ public class StartWorld extends World
     {
         if(Greenfoot.mouseClicked(button))
         {
-            Greenfoot.setWorld(new StoryWorld());
+            SoundManager.playGameStart();
+            switching = true;
+            timer = 195;
+        }
+        
+        if(switching){
+            timer--;
+            if(timer <=0){
+                Greenfoot.setWorld(new StoryWorld());  
+            }
         }
     }
    

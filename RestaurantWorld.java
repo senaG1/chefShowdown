@@ -110,6 +110,10 @@ public class RestaurantWorld extends World
         
     }
     
+    public void stopped() {
+        SoundManager.stopAllSounds();
+    }
+    
     private void addChefs() {
         // Get the chef counts from SettingsWorld
         ArrayList<Integer> blueChefCounts = SettingsWorld.getBlueChefs();

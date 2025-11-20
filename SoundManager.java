@@ -209,4 +209,54 @@ public class SoundManager
             electrivityOutIndex = 0;
         }
     }
+    
+    /**
+     * Stop all sounds (call this when game ends or is stopped)
+     */
+    public static void stopAllSounds() {
+        // Stop all coin sounds
+        for (int i = 0; i < coinSounds.length; i++) {
+            coinSounds[i].stop();
+        }
+        
+        // Stop all nextDay sounds
+        for (int i = 0; i < nextDaySounds.length; i++) {
+            nextDaySounds[i].stop();
+        }
+        
+        // Stop all paparazzi sounds
+        for (int i = 0; i < paparazziSounds.length; i++) {
+            paparazziSounds[i].stop();
+        }
+        
+        // Stop all leave sounds
+        for (int i = 0; i < leaveSounds.length; i++) {
+            leaveSounds[i].stop();
+        }
+        
+        // Stop all rat sounds
+        for (int i = 0; i < ratSounds.length; i++) {
+            ratSounds[i].stop();
+        }
+        
+        // Stop all endGame sounds
+        for (int i = 0; i < endGameSounds.length; i++) {
+            endGameSounds[i].stop();
+        }
+        
+        // Stop all gameStart sounds
+        for (int i = 0; i < gameStartSounds.length; i++) {
+            gameStartSounds[i].stop();
+        }
+        
+        // Stop all increaseStar sounds
+        for (int i = 0; i < increaseStarSounds.length; i++) {
+            increaseStarSounds[i].stop();
+        }
+        
+        // Stop all electricityOut sounds
+        for (int i = 0; i < electrivityOutSounds.length; i++) {
+            electrivityOutSounds[i].stop();
+        }
+    }
 }
