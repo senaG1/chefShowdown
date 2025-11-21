@@ -1,7 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 /**
- * Write a description of class DayWorld here.
+ * The DayWorld class is a Greenfoot World.
+ * <p>
+ * When added, it will show the user each team's cash, rating, and day count.
  * 
  * @author Isabel Powell
  * @version (a version number or a date)
@@ -20,7 +22,14 @@ public class DayWorld extends World
     private int redCash;
     private double redRating;
     /**
-     * Constructor for objects of class DayWorld.
+     * Constructor for DayWorld - creates a new DayWorld.
+     * This is called from Restaurant World.
+     * 
+     * @param restWorld    restaurant object
+     * @param blueCash     Amount of cash Blue team has
+     * @param blueRating    Amount of stars blue team has
+     * @param redCash       amount of cash Red team has
+     * @param redRating     amount of stars Red team has
      * 
      */
     public DayWorld(RestaurantWorld restWorld, int blueCash, double blueRating, int redCash, double redRating)

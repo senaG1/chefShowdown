@@ -1,8 +1,9 @@
 #BlueJ class context
 comment0.target=Influencer
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Influencer\ here.\r\n\ \r\n\ @author\ Isabel\ Powell\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ Influencer\ class\ is\ a\ Greenfoot\ actor,\ that\ inherits\ from\ Customer.\r\n\ <p>\r\n\ When\ added\ into\ world,\ it\ will\ add\ an\ effect,\ and\ add\ another\ customer\ with\ it.\r\n\ @author\ Isabel\ Powell\r\n\ @version\ Nov.\ 16th\ 2025\r\n
 comment1.params=restaurant
 comment1.target=Influencer(Restaurant)
+comment1.text=\r\n\ Constructor\ for\ Influencer\ -\ creates\ a\ new\ Influencer.\r\n\ This\ is\ called\ from\ Restaurant\ World.\r\n\ \r\n\ @param\ restaurant\ \ \ \ restaurant\ object\r\n
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
