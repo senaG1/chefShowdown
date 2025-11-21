@@ -2,10 +2,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class Karen here.
- * 
+ * The Karen class is a Greenfoot actor, that inherits from Customer.
+ * <p>
+ * When added into world, it lower the patence of other customers in a 25 pixel radius.
  * @author Isabel Powell
- * @version (a version number or a date)
+ * @version Nov. 13 2025
  */
 public class Karen extends Customer
 {
@@ -13,7 +14,12 @@ public class Karen extends Customer
     private int diameter = 50; //Size of circle
     private boolean complained;
     private int decreaseRate = 1; //Drains patence by 1
-    
+    /**
+     * Constructor for Karen - creates a new Karen.
+     * This is called from Restaurant World.
+     * 
+     * @param restaurant    restaurant object
+     */
     public Karen(Restaurant restaurant){
         super(restaurant);
         image = new GreenfootImage ("Karen_00.png");

@@ -1,10 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EndingWorld here.
+ * The EndingWorld class is a Greenfoot World.
+ * <p>
+ * When added, it will begin to display textboxes, created by SuperSpeechBubble.
+ * Will have images called from Cohen Class
  * 
  * @author Isabel Powel
- * @version (a version number or a date)
+ * @version 1 Nov. 19 2025
  */
 public class EndingWorld extends World
 {
@@ -28,8 +31,13 @@ public class EndingWorld extends World
     private String winner;
     
     /**
-     * Constructor for objects of class EndingWorld.
+     * Constructor for EndingWorld - creates a new EndingWorld.
+     * This is called from Restaurant World.
      * 
+     * @param leftCash     Amount of cash Blue team has
+     * @param leftRating    Amount of stars blue team has
+     * @param rightCash       amount of cash Red team has
+     * @param rightRating     amount of stars Red team has
      */
     public EndingWorld(int leftCash, int rightCash, double leftRating, double rightRating)
     {    
