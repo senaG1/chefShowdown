@@ -11,6 +11,7 @@ public class LazyChef extends Chef
     private int actCount;
 
     public LazyChef(){
+        salary = 5;
         setImage("lazy_chef.png");
         cookSpeed = 300;
         skill = 2;

@@ -160,6 +160,10 @@ public abstract class Chef extends SuperSmoothMover
         }
 
     }
+    
+    public int payChef() {
+        return salary;
+    }
 
     protected void quit(){//if the restaurant does not have enough money to pay the chef's salary, the chef will despawn
 

@@ -11,6 +11,7 @@ public class MasterChef extends Chef
     private int actCount;
 
     public MasterChef(){
+        salary = 30;
         setImage("master_chef.png");
         cookSpeed = 120;
         skill = 5;

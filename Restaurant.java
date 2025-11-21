@@ -34,8 +34,6 @@ public class Restaurant extends SuperSmoothMover
     private int totalRating;
     
     public Restaurant(ArrayList<Integer> numChefs, int cash, String team, int xLocation) {
-        
-        
         currentCash = cash;
         
         this.team = team;
@@ -63,7 +61,7 @@ public class Restaurant extends SuperSmoothMover
     }
     
     public void act() {
-    
+        
     }
     
     private void hireChef(Chef chef) {

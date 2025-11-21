@@ -10,6 +10,7 @@ public class ChefCohenBlue extends Chef
 {
     public ChefCohenBlue()
     {
+        salary = 10;
         setImage("ChefCohen.png");
         cookSpeed = 210;
         skill = 3;

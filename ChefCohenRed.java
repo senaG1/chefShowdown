@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class ChefCohenRed extends Chef
 {
     public ChefCohenRed(){
+        salary = 10;
         setImage("ChefCohen.png");
         cookSpeed = 210;
         skill = 3;
