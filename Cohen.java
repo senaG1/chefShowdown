@@ -48,6 +48,18 @@ public class Cohen extends SuperSmoothMover
         }
     }
     
+    public void switchImage(String newImage){
+        image = new GreenfootImage(newImage);
+        
+        if(isGold){
+            image.scale(image.getWidth() * 1/6, image.getHeight()*1/6);
+        }
+        else{
+            image.scale(image.getWidth() * 1/2, image.getHeight() * 1/2);
+        }
+        setImage(image);
+    }
+    
     private void hop(){
         setLocation(getPreciseX(), getPreciseY() + verSpeed);
         turn(2); 
