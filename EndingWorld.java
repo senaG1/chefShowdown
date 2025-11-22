@@ -64,7 +64,7 @@ public class EndingWorld extends World
 
         timer = 0;
         conversation();
-        SoundManager.playEndGame();
+        //SoundManager.playEndGame();
         prepare();
     }
 
@@ -139,7 +139,13 @@ public class EndingWorld extends World
             winner = "Blue";
             winCohen = blueCohen;
             loseCohen = redCohen;
-            ;imageColour = "happy_Blue.png";
+            imageColour = "happy_Blue.png";
+        }
+        else{
+            winner = "Blue";
+            winCohen = blueCohen;
+            loseCohen = redCohen;
+            imageColour = "happy_Blue.png";
         }
     }
 
