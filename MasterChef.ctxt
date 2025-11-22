@@ -1,8 +1,9 @@
 #BlueJ class context
 comment0.target=MasterChef
-comment0.text=\r\n\ High\ cost\ chef\ that\ cooks\ very\ fast\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ High\ cost\ chef\ that\ cooks\ very\ fast\r\n\ \r\n\ @author\ Cayden\ Chan\r\n\ @version\ November\ 2025\r\n
 comment1.params=
 comment1.target=MasterChef()
+comment1.text=\r\n\ Default\ constructor\ for\ MasterChef\:\ sets\ the\ salary,\ image,\ cook\ speed\ and\ skill\r\n
 comment2.params=
 comment2.target=void\ act()
 numComments=3

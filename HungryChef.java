@@ -1,15 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Medium speed chef who will occasionally eat the food he is cooking
+ * Medium speed chef who will occasionally eat the food he is cooking, resetting the cook timer
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Cayden Chan
+ * @version November 2025
  */
 public class HungryChef extends Chef
 {
     private int actCount;
-
+    
+    /**
+     * Default constructor for HungryChef: sets the salary, image, cook speed and skill
+     */
     public HungryChef(){
         salary = 8;
         setImage("hungry_chef.png");

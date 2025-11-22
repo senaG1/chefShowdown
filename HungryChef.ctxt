@@ -1,8 +1,9 @@
 #BlueJ class context
 comment0.target=HungryChef
-comment0.text=\r\n\ Medium\ speed\ chef\ who\ will\ occasionally\ eat\ the\ food\ he\ is\ cooking\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Medium\ speed\ chef\ who\ will\ occasionally\ eat\ the\ food\ he\ is\ cooking,\ resetting\ the\ cook\ timer\r\n\ \r\n\ @author\ Cayden\ Chan\r\n\ @version\ November\ 2025\r\n
 comment1.params=
 comment1.target=HungryChef()
+comment1.text=\r\n\ Default\ constructor\ for\ HungryChef\:\ sets\ the\ salary,\ image,\ cook\ speed\ and\ skill\r\n
 comment2.params=
 comment2.target=void\ act()
 comment3.params=

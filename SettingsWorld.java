@@ -13,28 +13,28 @@ public class SettingsWorld extends World
     // Blue restaurant settings
     private static int numChefsBlue;
     private static int startMoneyBlue;
-    
+
     // Red restaurant settings
     private static int numChefsRed;
     private static int startMoneyRed;
-    
+
     private GreenfootImage blueMenu;
     private GreenfootImage redMenu;
-    
+
     private GreenfootImage background;
-    
+
     // Blue restaurant buttons
     private Button chefPlusBlue;
     private Button chefMinusBlue;
     private Button moneyPlusBlue;
     private Button moneyMinusBlue;
-    
+
     // Red restaurant buttons
     private Button chefPlusRed;
     private Button chefMinusRed;
     private Button moneyPlusRed;
     private Button moneyMinusRed;
-    
+
     // Blue chef buttons
     private Button plusMasterBlue;
     private Button minusMasterBlue;
@@ -44,7 +44,7 @@ public class SettingsWorld extends World
     private Button minusHungryBlue;
     private Button plusLazyBlue;
     private Button minusLazyBlue;
-    
+
     // Red chef buttons
     private Button plusMasterRed;
     private Button minusMasterRed;
@@ -54,64 +54,65 @@ public class SettingsWorld extends World
     private Button minusHungryRed;
     private Button plusLazyRed;
     private Button minusLazyRed;
-    
+
     private Button nextBtn;
     private Button playBtn;
-    
+
     private int numMasterRed;
     private int numCohenRed;
     private int numHungryRed;
     private int numLazyRed;
-    
+
     private int numMasterBlue;
     private int numCohenBlue;
     private int numHungryBlue;
     private int numLazyBlue;
-    
+
     private Restaurant restaurantBlue;
     private Restaurant restaurantRed;
-    
+
     private static ArrayList<Integer> blueChefs;
     private static ArrayList<Integer> redChefs;
-    
+
     private final int MIN_CHEFS = 1;
     private final int MAX_CHEFS = 3;
     private final int MIN_MONEY = 500;
     private final int MAX_MONEY = 5000;
     private final int MONEY_INCREMENT = 100;
-    
+
     private final int BLUE_CENTER_X = 280;
     private final int BLUE_CHEF_Y = 320;
     private final int BLUE_MONEY_Y = 390;
-    
+
     private final int RED_CENTER_X = 680;
     private final int RED_CHEF_Y = 320;
     private final int RED_MONEY_Y = 390;
-    
+
     public SettingsWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(960, 640, 1);
-        
+
         numChefsBlue = 1;
         startMoneyBlue = 1000;
-        
+
         // Red restaurant settings
         numChefsRed = 1;
         startMoneyRed = 1000;
-        
+
         background = new GreenfootImage("bg_settings.png");
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
         setBackground(background);
-        
+
         blueMenu = new GreenfootImage(140, 100);
-        
+
         blueChefs = new ArrayList<Integer>();
         redChefs = new ArrayList<Integer>();
-        
+
         addObjectsToWorld();
+        prepare();
     }
-    
+
     private void addObjectsToWorld(){
         // BLUE RESTAURANT BUTTONS
         // Buttons for chefs
@@ -121,7 +122,7 @@ public class SettingsWorld extends World
         chefPlusBlue.scale(2);
         addObject(chefMinusBlue, BLUE_CENTER_X - 60, BLUE_CHEF_Y);
         addObject(chefPlusBlue, BLUE_CENTER_X + 20, BLUE_CHEF_Y);
-        
+
         // Buttons for money
         moneyMinusBlue = new Button("minus_1.png", "minus_2.png");
         moneyMinusBlue.scale(2);
@@ -129,7 +130,7 @@ public class SettingsWorld extends World
         moneyPlusBlue.scale(2);
         addObject(moneyMinusBlue, BLUE_CENTER_X - 60, BLUE_MONEY_Y);
         addObject(moneyPlusBlue, BLUE_CENTER_X + 60, BLUE_MONEY_Y);
-        
+
         // RED RESTAURANT BUTTONS
         // Buttons for chefs
         chefMinusRed = new Button("minus_1.png", "minus_2.png");
@@ -138,7 +139,7 @@ public class SettingsWorld extends World
         chefPlusRed.scale(2);
         addObject(chefMinusRed, RED_CENTER_X - 60, RED_CHEF_Y);
         addObject(chefPlusRed, RED_CENTER_X + 20, RED_CHEF_Y);
-        
+
         // Buttons for money
         moneyMinusRed = new Button("minus_1.png", "minus_2.png");
         moneyMinusRed.scale(2);
@@ -146,64 +147,64 @@ public class SettingsWorld extends World
         moneyPlusRed.scale(2);
         addObject(moneyMinusRed, RED_CENTER_X - 60, RED_MONEY_Y);
         addObject(moneyPlusRed, RED_CENTER_X + 60, RED_MONEY_Y);
-        
+
         nextBtn = new Button("next_1.png", "next_2.png");
         nextBtn.scale(3);
         addObject(nextBtn, 775, 520);
-        
+
         // FOR CHEF CHOOSING SCREEN
         // Blue chef buttons
         plusMasterBlue = new Button("plus_1.png", "plus_2.png");
         plusMasterBlue.scale(2);
         minusMasterBlue = new Button("minus_1.png", "minus_2.png");
         minusMasterBlue.scale(2);
-        
+
         plusCohenBlue = new Button("plus_1.png", "plus_2.png");
         plusCohenBlue.scale(2);
         minusCohenBlue = new Button("minus_1.png", "minus_2.png");
         minusCohenBlue.scale(2);
-        
+
         plusHungryBlue = new Button("plus_1.png", "plus_2.png");
         plusHungryBlue.scale(2);
         minusHungryBlue = new Button("minus_1.png", "minus_2.png");
         minusHungryBlue.scale(2);
-        
+
         plusLazyBlue = new Button("plus_1.png", "plus_2.png");
         plusLazyBlue.scale(2);
         minusLazyBlue = new Button("minus_1.png", "minus_2.png");
         minusLazyBlue.scale(2);
-        
+
         // Red chef buttons
         plusMasterRed = new Button("plus_1.png", "plus_2.png");
         plusMasterRed.scale(2);
         minusMasterRed = new Button("minus_1.png", "minus_2.png");
         minusMasterRed.scale(2);
-        
+
         plusCohenRed = new Button("plus_1.png", "plus_2.png");
         plusCohenRed.scale(2);
         minusCohenRed = new Button("minus_1.png", "minus_2.png");
         minusCohenRed.scale(2);
-        
+
         plusHungryRed = new Button("plus_1.png", "plus_2.png");
         plusHungryRed.scale(2);
         minusHungryRed = new Button("minus_1.png", "minus_2.png");
         minusHungryRed.scale(2);
-        
+
         plusLazyRed = new Button("plus_1.png", "plus_2.png");
         plusLazyRed.scale(2);
         minusLazyRed = new Button("minus_1.png", "minus_2.png");
         minusLazyRed.scale(2);
-        
+
         playBtn = new Button("play_1.png", "play_2.png");
         playBtn.scale(2);
-        
+
         updateDisplay1();
     }
-    
+
     public void act() {
         checkButtons();
     }
-    
+
     private void checkButtons()
     {
         if (chefMinusBlue.isClicked() && numChefsBlue > MIN_CHEFS)
@@ -216,7 +217,7 @@ public class SettingsWorld extends World
             numChefsBlue++;
             updateDisplay1();
         }
-        
+
         if (moneyMinusBlue.isClicked() && startMoneyBlue > MIN_MONEY)
         {
             startMoneyBlue -= MONEY_INCREMENT;
@@ -227,7 +228,7 @@ public class SettingsWorld extends World
             startMoneyBlue += MONEY_INCREMENT;
             updateDisplay1();
         }
-        
+
         if (chefMinusRed.isClicked() && numChefsRed > MIN_CHEFS)
         {
             numChefsRed--;
@@ -238,7 +239,7 @@ public class SettingsWorld extends World
             numChefsRed++;
             updateDisplay1();
         }
-        
+
         if (moneyMinusRed.isClicked() && startMoneyRed > MIN_MONEY)
         {
             startMoneyRed -= MONEY_INCREMENT;
@@ -249,14 +250,14 @@ public class SettingsWorld extends World
             startMoneyRed += MONEY_INCREMENT;
             updateDisplay1();
         }
-        
+
         if(nextBtn.isClicked()) {
             List objects = getObjects(null); 
             removeObjects(objects);  
             setBackground(new GreenfootImage(background));
             chooseChefs();
         }
-        
+
         // Blue chef selection
         if((numMasterBlue + numCohenBlue + numHungryBlue + numLazyBlue) < numChefsBlue) {
             if(plusMasterBlue.isClicked()) {
@@ -276,7 +277,7 @@ public class SettingsWorld extends World
                 updateDisplay2();
             }
         }
-        
+
         if(minusMasterBlue.isClicked() && numMasterBlue > 0) {
             numMasterBlue--;
             updateDisplay2();
@@ -293,7 +294,7 @@ public class SettingsWorld extends World
             numLazyBlue--;
             updateDisplay2();
         }
-        
+
         // Red chef selection
         if((numMasterRed + numCohenRed + numHungryRed + numLazyRed) < numChefsRed) {
             if(plusMasterRed.isClicked()) {
@@ -313,7 +314,7 @@ public class SettingsWorld extends World
                 updateDisplay2();
             }
         }
-        
+
         if(minusMasterRed.isClicked() && numMasterRed > 0) {
             numMasterRed--;
             updateDisplay2();
@@ -330,163 +331,163 @@ public class SettingsWorld extends World
             numLazyRed--;
             updateDisplay2();
         }
-        
+
         if (playBtn.isClicked())
         {
             startGame();
         }
     }
-    
+
     private void updateDisplay1() {
         // Get the background image
         setBackground(new GreenfootImage(background));
         GreenfootImage bg = getBackground();
-        
+
         bg.setColor(new Color(99, 66, 66));
-        
+
         // Draw title
         bg.setFont(new Font("Consolas", true, false, 64));
         bg.drawString("OPTIONS", 360, 200);
-        
+
         // BLUE RESTAURANT (LEFT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
         bg.setColor(new Color(50, 100, 200)); 
         bg.drawString("BLUE", BLUE_CENTER_X - 50, 250);
-        
+
         bg.setColor(new Color(99, 66, 66));
         bg.setFont(new Font("Consolas", false, false, 24));
         bg.drawString("Chefs", BLUE_CENTER_X - 70, BLUE_CHEF_Y - 20);
-        
+
         bg.setFont(new Font("Consolas", true, false, 28));
         bg.drawString(String.valueOf(numChefsBlue), BLUE_CENTER_X - 25, BLUE_CHEF_Y + 5);
-        
+
         bg.setFont(new Font("Consolas", false, false, 24));
         bg.drawString("Money", BLUE_CENTER_X - 70, BLUE_MONEY_Y - 20);
-        
+
         bg.setFont(new Font("Consolas", true, false, 28));
         bg.drawString("$" + startMoneyBlue, BLUE_CENTER_X - 40, BLUE_MONEY_Y + 5);
-        
+
         // RED RESTAURANT (RIGHT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
         bg.setColor(new Color(200, 50, 50)); 
         bg.drawString("RED", RED_CENTER_X - 40, 250);
-        
+
         bg.setColor(new Color(99, 66, 66));
         bg.setFont(new Font("Consolas", false, false, 24));
         bg.drawString("Chefs", RED_CENTER_X - 70, RED_CHEF_Y - 20);
-        
+
         bg.setFont(new Font("Consolas", true, false, 28));
         bg.drawString(String.valueOf(numChefsRed), RED_CENTER_X - 25, RED_CHEF_Y + 5);
-        
+
         bg.setFont(new Font("Consolas", false, false, 24));
         bg.drawString("Money", RED_CENTER_X - 70, RED_MONEY_Y - 20);
-        
+
         bg.setFont(new Font("Consolas", true, false, 28));
         bg.drawString("$" + startMoneyRed, RED_CENTER_X - 40, RED_MONEY_Y + 5);
     }
-    
+
     private void updateDisplay2() {
         // Reload background
         setBackground(new GreenfootImage(background));
         GreenfootImage bg = getBackground();
-        
+
         bg.setColor(new Color(99, 66, 66));
-        
+
         // Draw title
         bg.setFont(new Font("Consolas", true, false, 64));
         bg.drawString("CHOOSE CHEFS", 280, 200);
-        
+
         // BLUE RESTAURANT (LEFT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
         bg.setColor(new Color(50, 100, 200)); 
         bg.drawString("BLUE", BLUE_CENTER_X - 35, 260);
-        
+
         bg.setColor(new Color(99, 66, 66));
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Master Blue - Top Left
         bg.drawString("Master", BLUE_CENTER_X - 68, BLUE_CHEF_Y - 15);
         bg.drawImage(new GreenfootImage("master_chef.png"), BLUE_CENTER_X - 98, BLUE_CHEF_Y - 45);
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numMasterBlue), BLUE_CENTER_X - 60, BLUE_CHEF_Y + 20);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Cohen Blue - Top Right
         bg.drawString("Cohen", BLUE_CENTER_X + 42, BLUE_CHEF_Y - 15);
         bg.drawImage(new GreenfootImage("ChefCohen.png"), BLUE_CENTER_X + 12, BLUE_CHEF_Y - 45);
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numCohenBlue), BLUE_CENTER_X + 52, BLUE_CHEF_Y + 20);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Hungry Blue - Bottom Left
         bg.drawString("Hungry", BLUE_CENTER_X - 68, BLUE_CHEF_Y + 85);
         bg.drawImage(new GreenfootImage("hungry_chef.png"), BLUE_CENTER_X - 98, BLUE_CHEF_Y + 55);
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numHungryBlue), BLUE_CENTER_X - 60, BLUE_CHEF_Y + 120);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Lazy Blue - Bottom Right
         bg.drawString("Lazy", BLUE_CENTER_X + 52, BLUE_CHEF_Y + 85);
         bg.drawImage(new GreenfootImage("lazy_chef.png"), BLUE_CENTER_X + 12, BLUE_CHEF_Y + 55);
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numLazyBlue), BLUE_CENTER_X + 52, BLUE_CHEF_Y + 120);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // RED RESTAURANT (RIGHT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
         bg.setColor(new Color(200, 50, 50)); 
         bg.drawString("RED", RED_CENTER_X - 35, 260);
-        
+
         bg.setColor(new Color(99, 66, 66));
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Master Red - Top Left
         bg.drawString("Master", RED_CENTER_X - 68, RED_CHEF_Y - 15);
         bg.drawImage(new GreenfootImage("master_chef.png"), RED_CENTER_X - 98, RED_CHEF_Y - 45);
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numMasterRed), RED_CENTER_X - 60, RED_CHEF_Y + 20);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Cohen Red - Top Right
         bg.drawString("Cohen", RED_CENTER_X + 42, RED_CHEF_Y - 15);
         bg.drawImage(new GreenfootImage("ChefCohen.png"), RED_CENTER_X + 12, RED_CHEF_Y - 45);
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numCohenRed), RED_CENTER_X + 52, RED_CHEF_Y + 20);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Hungry Red - Bottom Left
         bg.drawString("Hungry", RED_CENTER_X - 68, RED_CHEF_Y + 85);
         bg.drawImage(new GreenfootImage("hungry_chef.png"), RED_CENTER_X - 98, RED_CHEF_Y + 55);
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numHungryRed), RED_CENTER_X - 60, RED_CHEF_Y + 120);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Lazy Red - Bottom Right
         bg.drawString("Lazy", RED_CENTER_X + 52, RED_CHEF_Y + 85);
         bg.drawImage(new GreenfootImage("lazy_chef.png"), RED_CENTER_X + 12, RED_CHEF_Y + 55);
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numLazyRed), RED_CENTER_X + 52, RED_CHEF_Y + 120);
     }
-    
+
     private void chooseChefs() {
         // Get the background image
         setBackground(new GreenfootImage(background));
         GreenfootImage bg = getBackground();
-        
+
         bg.setColor(new Color(99, 66, 66));
-        
+
         // Draw title
         bg.setFont(new Font("Consolas", true, false, 64));
         bg.drawString("CHOOSE CHEFS", 280, 200);
-        
+
         // BLUE RESTAURANT (LEFT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
         bg.setColor(new Color(50, 100, 200)); 
         bg.drawString("BLUE", BLUE_CENTER_X - 35, 260);
-        
+
         bg.setColor(new Color(99, 66, 66));
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Master Blue - Top Left
         bg.drawString("Master", BLUE_CENTER_X - 68, BLUE_CHEF_Y - 15);
         addObject(minusMasterBlue, BLUE_CENTER_X - 88, BLUE_CHEF_Y + 15);
@@ -495,7 +496,7 @@ public class SettingsWorld extends World
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numMasterBlue), BLUE_CENTER_X - 60, BLUE_CHEF_Y + 20);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Cohen Blue - Top Right
         bg.drawString("Cohen", BLUE_CENTER_X + 42, BLUE_CHEF_Y - 15);
         addObject(minusCohenBlue, BLUE_CENTER_X + 22, BLUE_CHEF_Y + 15);
@@ -504,7 +505,7 @@ public class SettingsWorld extends World
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numCohenBlue), BLUE_CENTER_X + 52, BLUE_CHEF_Y + 20);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Hungry Blue - Bottom Left
         bg.drawString("Hungry", BLUE_CENTER_X - 68, BLUE_CHEF_Y + 85);
         addObject(minusHungryBlue, BLUE_CENTER_X - 88, BLUE_CHEF_Y + 115);
@@ -513,7 +514,7 @@ public class SettingsWorld extends World
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numHungryBlue), BLUE_CENTER_X - 60, BLUE_CHEF_Y + 120);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Lazy Blue - Bottom Right
         bg.drawString("Lazy", BLUE_CENTER_X + 52, BLUE_CHEF_Y + 85);
         addObject(minusLazyBlue, BLUE_CENTER_X + 22, BLUE_CHEF_Y + 115);
@@ -522,15 +523,15 @@ public class SettingsWorld extends World
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numLazyBlue), BLUE_CENTER_X + 52, BLUE_CHEF_Y + 120);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // RED RESTAURANT (RIGHT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
         bg.setColor(new Color(200, 50, 50)); 
         bg.drawString("RED", RED_CENTER_X - 35, 260);
-        
+
         bg.setColor(new Color(99, 66, 66));
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Master Red - Top Left
         bg.drawString("Master", RED_CENTER_X - 68, RED_CHEF_Y - 15);
         addObject(minusMasterRed, RED_CENTER_X - 88, RED_CHEF_Y + 15);
@@ -539,7 +540,7 @@ public class SettingsWorld extends World
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numMasterRed), RED_CENTER_X - 60, RED_CHEF_Y + 20);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Cohen Red - Top Right
         bg.drawString("Cohen", RED_CENTER_X + 42, RED_CHEF_Y - 15);
         addObject(minusCohenRed, RED_CENTER_X + 22, RED_CHEF_Y + 15);
@@ -548,7 +549,7 @@ public class SettingsWorld extends World
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numCohenRed), RED_CENTER_X + 52, RED_CHEF_Y + 20);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Hungry Red - Bottom Left
         bg.drawString("Hungry", RED_CENTER_X - 68, RED_CHEF_Y + 85);
         addObject(minusHungryRed, RED_CENTER_X - 88, RED_CHEF_Y + 115);
@@ -557,7 +558,7 @@ public class SettingsWorld extends World
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numHungryRed), RED_CENTER_X - 60, RED_CHEF_Y + 120);
         bg.setFont(new Font("Consolas", true, false, 20));
-        
+
         // Lazy Red - Bottom Right
         bg.drawString("Lazy", RED_CENTER_X + 52, RED_CHEF_Y + 85);
         addObject(minusLazyRed, RED_CENTER_X + 22, RED_CHEF_Y + 115);
@@ -565,49 +566,56 @@ public class SettingsWorld extends World
         bg.drawImage(new GreenfootImage("lazy_chef.png"), RED_CENTER_X + 12, RED_CHEF_Y + 55);
         bg.setFont(new Font("Consolas", true, false, 24));
         bg.drawString(String.valueOf(numLazyRed), RED_CENTER_X + 52, RED_CHEF_Y + 120);
-        
+
         addObject(playBtn, 480, 520);
     }
-    
+
     private void startGame()
     {
         blueChefs.add(numMasterBlue);
         blueChefs.add(numCohenBlue);
         blueChefs.add(numHungryBlue);
         blueChefs.add(numLazyBlue);
-        
+
         redChefs.add(numMasterRed);
         redChefs.add(numCohenRed);
         redChefs.add(numHungryRed);
         redChefs.add(numLazyRed);
-        
+
         restaurantBlue = new Restaurant(blueChefs, startMoneyBlue, "Blue", 0);
         restaurantRed = new Restaurant(redChefs, startMoneyRed, "Red", getWidth()/2);
-        
+
         Greenfoot.setWorld(new RestaurantWorld());
     }
-    
+
     public static ArrayList<Integer> getBlueChefs() {
         return blueChefs;
     }
-    
+
     public static ArrayList<Integer> getRedChefs() {
         return redChefs;
     }
-    
+
     public static int getStartMoneyBlue() {
         return startMoneyBlue;
     }
-    
+
     public static int getStartMoneyRed() {
         return startMoneyRed;
     }
-    
+
     public static int getNumBlueChefs() {
         return numChefsBlue;
     }
-    
+
     public static int getNumRedChefs() {
         return numChefsRed;
+    }
+    /**
+     * Prepare the world for the start of the program.
+     * That is: create the initial objects and add them to the world.
+     */
+    private void prepare()
+    {
     }
 }

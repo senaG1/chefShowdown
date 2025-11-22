@@ -1,6 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
-
+/**
+ * Chef is an actor that walks around in a Restaurant and cooks orders of food for Customers.
+ * <p>
+ * It will only interact with Customers on the same side (L/R) of the world.
+ * 
+ * @author Cayden Chan
+ * @version November 2025
+ */
 public abstract class Chef extends SuperSmoothMover
 {
     protected int cookSpeed, cost, salary, cookCount, foodPerOrder, walkSpeed, currentFood;
@@ -15,6 +22,10 @@ public abstract class Chef extends SuperSmoothMover
     protected Customer currentCustomer;
     protected Food food;
     
+    /**
+     * Default constructor called by all Chef subclasses.
+     * Sets up the same walk cycle for all chefs.
+     */
     public Chef()
     {
         isCooking = false;
@@ -26,10 +37,6 @@ public abstract class Chef extends SuperSmoothMover
         lowerBound = 540;
         farBound = 240;
         closeBound = 40;
-
-        //image for testing purposes
-        image = new GreenfootImage ("ChefCohen.png");
-        setImage(image);
 
         enableStaticRotation();
     }
@@ -48,20 +55,34 @@ public abstract class Chef extends SuperSmoothMover
         foodY = 300;
         centreX = w.getWidth()/2;
     }
-
+    
+    /**
+     * <li> walks in a rectangle in the kitchen area of its restaurant </li>
+     * <li> if there is an order, cook the order (update the timer) </li>
+     * <li> updates the superStatBar for cooking time </li>
+     */
     public void act(){
         walk();
         cookBar.update(cookCount);
         if(isCooking){
             cook();
-        }
-        
+        }   
     }
-
+    
+    /**
+     * Returns which side of the screen the chef is on
+     * 
+     * @return boolean  left side returns true, right side returns false
+     */
     public boolean onTeamBlue(){
         return side.equals("L");
     }
-
+    
+    /**
+     * Returns if the chef is currently cooking an order
+     * 
+     * @return boolean  true if cooking, false if not cooking
+     */
     public boolean isCooking(){
         return isCooking;
     }
@@ -89,14 +110,21 @@ public abstract class Chef extends SuperSmoothMover
         }
     }
 
-    //gets the image and name of the order from a customer
-    //returns whether or not the order was received
-    public boolean takeOrder(GreenfootImage img, String orderNames, Customer c){
+    /**
+     * If the chef is not currently cooking, it will take a customer's order and begin cooking it
+     * <p>
+     * Creates new superSpeechBubble with the order image
+     * 
+     * @param img   the image of the customer's order
+     * @param orderName    the name of the food the customer is ordering
+     * @param c the customer that is ordering
+     */
+    public boolean takeOrder(GreenfootImage img, String orderName, Customer c){
         if(!isCooking){
             isCooking = true;
             currentFood = 0;
             orderImage = new GreenfootImage(img);
-            foodItem = orderNames;
+            foodItem = orderName;
             orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, img, true, true);
             getWorld().addObject(orderBubble, getX(), getY());
             currentCustomer = c;
@@ -161,11 +189,14 @@ public abstract class Chef extends SuperSmoothMover
 
     }
     
-    public int payChef() {
+    public int getSalary() {
         return salary;
     }
-
-    protected void quit(){//if the restaurant does not have enough money to pay the chef's salary, the chef will despawn
-
+    
+    /**
+     * if the restaurant does not have enough money to pay the chef's salary, the chef will despawn
+     */
+    public void quit(){
+        getWorld().removeObject(this);
     }   
 }
