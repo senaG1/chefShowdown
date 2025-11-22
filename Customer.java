@@ -141,6 +141,7 @@ public class Customer extends SuperSmoothMover
 
         if (orderRecieved)
         {
+            restaurant.addNumReviews(1);
             leaveWithFood();
             leavingStore = true;
             return;
