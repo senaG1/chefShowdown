@@ -89,6 +89,7 @@ public class Restaurant extends SuperSmoothMover
         totalRating += rating;
         double averageRating = totalRating / numReviews;
         double roundedRating = roundNearestRating(averageRating);
+        finalRating = roundedRating;
         teamUI.updateRating(roundedRating);
     }
 

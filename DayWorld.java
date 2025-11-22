@@ -66,6 +66,7 @@ public class DayWorld extends World
         getBackground().drawString("Current Rating: " + redRating + " Stars", 575, 500);
         
         SoundManager.playNextDay();
+        SoundManager.pauseBackgroundMusic();
     }
     
     public void act(){
@@ -73,6 +74,7 @@ public class DayWorld extends World
         
         if(timer == 300){
             Greenfoot.setWorld(restWorld);
+            SoundManager.resumeBackgroundMusic();
         }
     }
 }

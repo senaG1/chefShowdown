@@ -27,6 +27,8 @@ public class SoundManager
     private static GreenfootSound[] gameStartSounds;
     private static GreenfootSound[] increaseStarSounds;
     private static GreenfootSound[] electrivityOutSounds;
+    private static GreenfootSound[] moneySounds;
+    private static GreenfootSound backgroundSound; // background music
     
     // Indices to track which copy to play next
     private static int coinIndex = 0;
@@ -38,6 +40,7 @@ public class SoundManager
     private static int gameStartIndex = 0;
     private static int increaseStarIndex = 0;
     private static int electrivityOutIndex = 0;
+    private static int moneyIndex = 0;
     
      static {
         initializeSounds();
@@ -109,6 +112,17 @@ public class SoundManager
             electrivityOutSounds[i] = new GreenfootSound("electricityOut.wav");
             electrivityOutSounds[i].setVolume(75);
         }
+        
+        // generateOrder -
+        moneySounds = new GreenfootSound[15];
+        for (int i = 0; i < moneySounds.length; i++){
+            moneySounds[i] = new GreenfootSound("money.wav");
+            moneySounds[i].setVolume(75);
+        }
+        
+        backgroundSound = new GreenfootSound("backgroundmusic.mp3");
+        backgroundSound.setVolume(20);
+        
     }
     
     /**
@@ -211,6 +225,43 @@ public class SoundManager
     }
     
     /**
+     * Play money sound
+     */
+    public static void playMoney() {
+        moneySounds[moneyIndex].play();
+        moneyIndex++;
+        if (moneyIndex >= moneySounds.length) {
+            moneyIndex = 0;
+        }
+    }
+    
+    
+    public static void playBackground(){
+        backgroundSound.playLoop();
+        if (backgroundSound != null && backgroundSound.isPlaying()) {
+            return;
+        }
+    }
+    
+        public static void stopBackgroundMusic() {
+        if (backgroundSound != null) {
+            backgroundSound.stop();
+        }
+    }
+    
+    public static void pauseBackgroundMusic() {
+        if (backgroundSound != null && backgroundSound.isPlaying()) {
+            backgroundSound.pause();
+        }
+    }
+    
+    public static void resumeBackgroundMusic() {
+        if (backgroundSound != null) {
+            backgroundSound.play();
+        }
+    }
+    
+    /**
      * Stop all sounds (call this when game ends or is stopped)
      */
     public static void stopAllSounds() {
@@ -258,5 +309,13 @@ public class SoundManager
         for (int i = 0; i < electrivityOutSounds.length; i++) {
             electrivityOutSounds[i].stop();
         }
+        
+        // Stop all money sounds
+        for (int i = 0; i < moneySounds.length; i++) {
+            moneySounds[i].stop();
+        }
+        
+        // Stop background sound
+        backgroundSound.stop();
     }
 }

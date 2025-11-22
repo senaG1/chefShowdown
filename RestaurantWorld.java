@@ -33,7 +33,6 @@ public class RestaurantWorld extends World
     
     public RestaurantWorld() {
         this(1);
-        
         prepare();
     }
 
@@ -46,6 +45,8 @@ public class RestaurantWorld extends World
         background = new GreenfootImage("restaurant_bg.png");
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
         setBackground(background);
+        
+        SoundManager.playBackground();
         
         actCount = 0;
         
