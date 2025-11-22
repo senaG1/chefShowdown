@@ -181,6 +181,7 @@ public class Customer extends SuperSmoothMover
                 if (actTimer <= 0)
                 {
                     generateOrder();
+                    SoundManager.playMoney();
                     inLine = false;
                     orderTaken = true;
 
