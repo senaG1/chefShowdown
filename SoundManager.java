@@ -237,15 +237,19 @@ public class SoundManager
     
     
     public static void playBackground(){
-        backgroundSound.playLoop();
-        if (backgroundSound != null && backgroundSound.isPlaying()) {
-            return;
+        if(backgroundSound != null)
+        {
+            backgroundSound.stop();
         }
+        backgroundSound = new GreenfootSound("backgroundmusic.mp3");
+        backgroundSound.setVolume(20);
+        backgroundSound.playLoop();
     }
     
         public static void stopBackgroundMusic() {
         if (backgroundSound != null) {
             backgroundSound.stop();
+            backgroundSound = null;
         }
     }
     
@@ -316,6 +320,6 @@ public class SoundManager
         }
         
         // Stop background sound
-        backgroundSound.stop();
+        stopBackgroundMusic();
     }
 }

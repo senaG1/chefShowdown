@@ -40,6 +40,7 @@ public class Customer extends SuperSmoothMover
     protected boolean leavingStore = false;
     protected boolean waitingOrder = false;
     protected boolean orderRecieved = false;
+    protected boolean reviewCounted = false;
     private boolean teamBlue;
 
     private int rating;
@@ -51,6 +52,10 @@ public class Customer extends SuperSmoothMover
     private static final int RED_MIN_X = 480;
     private static final int RED_MAX_X = 960;   // Right half of 960
 
+    /**
+     *  Creates new Customer
+     *  @param restaurant either Blue or Red
+     */
     public Customer(Restaurant restaurant)
     {
         image = new GreenfootImage("regular_Cust.png");
@@ -61,7 +66,11 @@ public class Customer extends SuperSmoothMover
         actTimer = 180;
         this.restaurant = restaurant;
     }
-
+    
+    /**
+     * Called when Customer is added to world
+     * @param w given world
+     */
     public void addedToWorld(World w){
         rw = (RestaurantWorld) w;
         if(getX() > w.getWidth()/2){
@@ -141,7 +150,11 @@ public class Customer extends SuperSmoothMover
 
         if (orderRecieved)
         {
-            restaurant.addNumReviews(1);
+            if(!reviewCounted)
+            {
+                restaurant.addNumReviews(1);
+                reviewCounted = true;
+            }
             leaveWithFood();
             leavingStore = true;
             return;
@@ -212,7 +225,11 @@ public class Customer extends SuperSmoothMover
         }
     }
 
-    // If patience runs out or an effect is caused, removes from world
+    
+    /**
+     * Makes customers exit the building
+     * and displays angry speech bubble
+     */
     public void giveUp()
     {
         if (!givingUp)
@@ -240,9 +257,7 @@ public class Customer extends SuperSmoothMover
         }
     }
 
-    // Has customer choose random items from menu
-    // Can choose up to 3 items
-    public void generateOrder()
+    private void generateOrder()
     {
         ArrayList<String> availibleItems = new ArrayList<>();
         GreenfootImage currentOrder = new GreenfootImage("happy.png");
@@ -321,9 +336,7 @@ public class Customer extends SuperSmoothMover
         return getRestaurantSide().equals(side);
     }
 
-    // Sends customers in line to wait at the waiting space
-    // Currently needs implementation after method for taking customer's orders is made
-    public void waitOrder(){
+    private void waitOrder(){
         int currentX = getX();
         int currentY = getY();
         if(!hasWaitingSpot)
@@ -399,7 +412,7 @@ public class Customer extends SuperSmoothMover
         }
     }
 
-    public void leaveWithFood() {
+    private void leaveWithFood() {
         if (orderBubble != null && orderBubble.getWorld() != null)
         {
             getWorld().removeObject(orderBubble);
@@ -440,8 +453,7 @@ public class Customer extends SuperSmoothMover
         walkToExit();
     }
 
-    // Has customers line up, max 5 customers at a time
-    public void lineUp()
+    private void lineUp()
     {
         ArrayList<Customer> customers = (ArrayList<Customer>) getWorld().getObjects(Customer.class);
 
