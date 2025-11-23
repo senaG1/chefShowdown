@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Write a description of class MyWorld here.
  * 
- * @author (your name) 
+ * @author Sena, Isabel, Cayden, Grace
  * @version (a version number or a date)
  */
 public class RestaurantWorld extends World
