@@ -64,7 +64,7 @@ public class EndingWorld extends World
 
         timer = 0;
         conversation();
-        //SoundManager.playEndGame();
+        SoundManager.playEndGame();
         prepare();
     }
 
