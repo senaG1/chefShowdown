@@ -150,12 +150,13 @@ public class Customer extends SuperSmoothMover
 
         if (orderRecieved)
         {
+            leaveWithFood();
             if(!reviewCounted)
             {
                 restaurant.addNumReviews(1);
+                restaurant.recordRating(rating);
                 reviewCounted = true;
             }
-            leaveWithFood();
             leavingStore = true;
             return;
         }
@@ -448,8 +449,6 @@ public class Customer extends SuperSmoothMover
         {
             rating = 0;
         }
-
-        restaurant.recordRating(rating);
         walkToExit();
     }
 
