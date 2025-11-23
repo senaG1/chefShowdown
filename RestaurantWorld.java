@@ -93,19 +93,19 @@ public class RestaurantWorld extends World
         }
 
         if (actCount % 2300 == 0){
-            //addObject(new PowerOutage("Blue"), 512, 400);
+            addObject(new PowerOutage("Blue"), 512, 400);
         }
 
         if (actCount % 1500 == 0){
-            //addObject(new RatInfestation("Blue"), 0, 0);
+            addObject(new RatInfestation("Blue"), 0, 0);
         }
 
         if (actCount % 1200 == 0){
-            //addObject(new PowerOutage("Red"), 485, 400);
+            addObject(new PowerOutage("Red"), 485, 400);
         }
         
         if (actCount % 1900 == 0){
-            //addObject(new RatInfestation("Red"), 0, 0);
+            addObject(new RatInfestation("Red"), 0, 0);
         }
 
         if(dayTimer == 0){
@@ -264,8 +264,7 @@ public class RestaurantWorld extends World
         
         Restaurant spawnRestaurant = Greenfoot.getRandomNumber(2) == 0 ? restaurantBlue : restaurantRed;
         if(customerType <= 4) {
-            addObject(new JordanRamsay(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
-            //addObject(new RegularCustomer(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
+            addObject(new RegularCustomer(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
         }
         else if(customerType <= 6) {
             addObject(new Karen(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
@@ -280,13 +279,29 @@ public class RestaurantWorld extends World
     
     //Removes all customers when it switches the day
     private void removeCustomers(){
-        ArrayList<Customer> cust = (ArrayList<Customer>) getObjects(Customer.class);
+        ArrayList<Customer> cust = new ArrayList<Customer>(getObjects(Customer.class));
         
         for(Customer c : cust){
             if(c.getWorld() != null){
                 removeObject(c);
             }
         }
+        
+        ArrayList<SuperSpeechBubble> bubs = new ArrayList<SuperSpeechBubble>(getObjects(SuperSpeechBubble.class));
+        for(SuperSpeechBubble b : bubs){
+            if(b.getWorld() != null){
+                removeObject(b);
+            }
+        }
+        
+        ArrayList<SuperStatBar> bars = new ArrayList<SuperStatBar>(getObjects(SuperStatBar.class));
+        for(SuperStatBar bar : bars){
+            if(bar.getWorld() != null){
+                removeObject(bar);
+            }
+        }
+        
+        
     }
     
     //For Jordan Ramsay Class 

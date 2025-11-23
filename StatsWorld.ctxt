@@ -17,5 +17,5 @@ comment5.target=double\ getLeftTeamRating()
 comment5.text=\r\n\ Returns\ Blue\ team\ rating\r\n\ @return\ double\ Blue\ team\ rating\r\n
 comment6.params=
 comment6.target=double\ getRightTeamRating()
-comment6.text=\r\n\ Returns\ Red\ team\ rating\r\n\ \r\n
+comment6.text=\r\n\ Returns\ Red\ team\ rating\r\n\ @return\ double\ Red\ team\ rating\r\n
 numComments=7
