@@ -29,16 +29,12 @@ public class Paparazzi extends Effect
      */
     public void loseCustomers()
     {
-        int diameter = 200;
+        int diameter = 500;
         ArrayList<Karen> karensInRange = (ArrayList<Karen>)getObjectsInRange(diameter/2, Karen.class);
         
         for(Karen karen : karensInRange){
             if(karen.orderTaken){
-                karen.currentPatience -= decreaseRate;
-            }
-            
-            if(karen.currentPatience < 0){
-                karen.currentPatience = 0;
+                karen.giveUp();
             }
         }
     }

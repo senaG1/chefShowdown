@@ -91,21 +91,16 @@ public class RestaurantWorld extends World
             addCustomers();
             actTimer = 180;
         }
-
-        if (actCount % 2300 == 0){
-            addObject(new PowerOutage("Blue"), 512, 400);
-        }
-
-        if (actCount % 1500 == 0){
-            addObject(new RatInfestation("Blue"), 0, 0);
-        }
-
-        if (actCount % 1200 == 0){
-            addObject(new PowerOutage("Red"), 485, 400);
-        }
         
-        if (actCount % 1900 == 0){
+        int spawnRandomEffect = Greenfoot.getRandomNumber(50000);
+        if (spawnRandomEffect == 50) {
             addObject(new RatInfestation("Red"), 0, 0);
+        } else if (spawnRandomEffect == 51) {
+            addObject(new PowerOutage("Red"), 485, 400);
+        } else if (spawnRandomEffect == 53) {
+            addObject(new RatInfestation("Blue"), 0, 0);
+        } else if (spawnRandomEffect == 54) {
+            addObject(new PowerOutage("Blue"), 512, 400);
         }
 
         if(dayTimer == 0){
