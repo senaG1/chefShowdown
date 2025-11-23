@@ -7,7 +7,7 @@ import greenfoot.*;
  * leave by AberrantRealities from pixabay
  * rat by SOUND_GARAGE from pixabay
  * endGame by Superpuyofãns1234 from pixabay
- * gameStart by Universfield from pixabay
+ * fasterGameStart by Universfield from pixabay
  * increaseStar by freesound_CrunchpixStudio from pixabay
  * nextDay by MixKit
  * electrivityOut by DB sound from pixabay 
@@ -24,7 +24,7 @@ public class SoundManager
     private static GreenfootSound[] leaveSounds;
     private static GreenfootSound[] ratSounds;
     private static GreenfootSound[] endGameSounds;
-    private static GreenfootSound[] gameStartSounds;
+    private static GreenfootSound[] fasterGameStartSounds;
     private static GreenfootSound[] increaseStarSounds;
     private static GreenfootSound[] electrivityOutSounds;
     private static GreenfootSound[] moneySounds;
@@ -37,7 +37,7 @@ public class SoundManager
     private static int leaveIndex = 0;
     private static int ratIndex = 0;
     private static int endGameIndex = 0;
-    private static int gameStartIndex = 0;
+    private static int fasterGameStartIndex = 0;
     private static int increaseStarIndex = 0;
     private static int electrivityOutIndex = 0;
     private static int moneyIndex = 0;
@@ -92,11 +92,11 @@ public class SoundManager
             endGameSounds[i].setVolume(100);
         }
         
-        // gameStart - 
-        gameStartSounds = new GreenfootSound[15];
-        for (int i = 0; i < gameStartSounds.length; i++) {
-            gameStartSounds[i] = new GreenfootSound("gameStart.wav");
-            gameStartSounds[i].setVolume(100);
+        // fasterGameStart - 
+        fasterGameStartSounds = new GreenfootSound[15];
+        for (int i = 0; i < fasterGameStartSounds.length; i++) {
+            fasterGameStartSounds[i] = new GreenfootSound("fasterGameStart.wav");
+            fasterGameStartSounds[i].setVolume(100);
         }
         
         // increaseStar - 
@@ -192,13 +192,13 @@ public class SoundManager
     }
     
     /**
-     * Play GameStart sound
+     * Play fasterGameStart sound
      */
-    public static void playGameStart() {
-        gameStartSounds[gameStartIndex].play();
-        gameStartIndex++;
-        if (gameStartIndex >= gameStartSounds.length) {
-            gameStartIndex = 0;
+    public static void playFasterGameStart() {
+        fasterGameStartSounds[fasterGameStartIndex].play();
+        fasterGameStartIndex++;
+        if (fasterGameStartIndex >= fasterGameStartSounds.length) {
+            fasterGameStartIndex = 0;
         }
     }
     
@@ -295,9 +295,9 @@ public class SoundManager
             endGameSounds[i].stop();
         }
         
-        // Stop all gameStart sounds
-        for (int i = 0; i < gameStartSounds.length; i++) {
-            gameStartSounds[i].stop();
+        // Stop all fasterGameStart sounds
+        for (int i = 0; i < fasterGameStartSounds.length; i++) {
+            fasterGameStartSounds[i].stop();
         }
         
         // Stop all increaseStar sounds
