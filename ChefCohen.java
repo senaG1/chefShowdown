@@ -1,26 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ChefCohen here.
+ * A regular Chef with a modest salary and average quality
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Cayden Chan
+ * @version November 2025
  */
-public class ChefCohen extends Customer
+public class ChefCohen extends Chef
 {
-    private GreenfootImage image;
-    public ChefCohen(Restaurant restaurant){
-        super(restaurant);
-        image = new GreenfootImage ("ChefCohen.png");
-        setImage(image);
-        
-        LINE_X = restaurant.getCustLineX();
-        LINE_START_Y = restaurant.getCustLineY();
-    }
     /**
-     * Act - do whatever the ChefCohen wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Default constructor for ChefCohen: sets the salary, image, cook speed and skill
      */
+    public ChefCohen()
+    {
+        salary = 10;
+        setImage("ChefCohen.png");
+        cookSpeed = 210;
+        skill = 3;
+    }
+    
     public void act()
     {
         super.act();

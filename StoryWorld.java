@@ -1,10 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class StoryWorld here.
+ * The StoryWorld class is a Greenfoot World.
+ * <p>
+ * When added, it will begin to display textboxes, created by SuperSpeechBubble.
+ * Will have images called from Cohen Class
  * 
  * @author Isabel Powell
- * @version (a version number or a date)
+ * @version Nov. 11 2025
  */
 public class StoryWorld extends World
 {
@@ -18,7 +21,8 @@ public class StoryWorld extends World
     private Cohen blueCohen;
     
     /**
-     * Constructor for objects of class StoryWorld.
+     * Constructor for StoryWorld - creates a new StoryWorld.
+     * This is called from StartWorld.
      * 
      */
     public StoryWorld()

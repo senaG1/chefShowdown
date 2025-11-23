@@ -1,13 +1,17 @@
 #BlueJ class context
 comment0.target=Cohen
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ CohenMaker\ here.\r\n\ \r\n\ @author\ Isabel\ Powell\r\n\ @version\ 2\ \r\n
+comment0.text=\r\n\ The\ Cohen\ class\ is\ a\ Greenfoot\ actor,\ that\ inherits\ from\ SuperSmoothMover.\r\n\ <p>\r\n\ This\ class\ is\ mostly\ used\ for\ the\ muitple\ Mr.\ Cohen\ images\ and\ to\ let\ the\ image\ "move".\r\n\ \r\n\ @author\ Isabel\ Powell\r\n\ @version\ 2\ \r\n
 comment1.params=img\ gold
 comment1.target=Cohen(java.lang.String,\ boolean)
+comment1.text=\r\n\ Constructor\ for\ Cohen\ -\ creates\ a\ new\ Cohen.\r\n\ This\ is\ called\ from\ Story\ World\ and\ End\ World.\r\n\ \r\n\ @param\ img\ \ \ \ Lets\ other\ classes\ call\ this\ class\ to\ create\ an\ image\ as\ an\ object\r\n\ @param\ gold\ \ True\ if\ image\ is\ the\ special\ gold\ image\r\n\ \r\n
 comment2.params=
 comment2.target=void\ act()
 comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ CohenMaker\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-comment3.params=
-comment3.target=void\ hop()
+comment3.params=newImage
+comment3.target=void\ switchImage(java.lang.String)
 comment4.params=
-comment4.target=void\ callAction()
-numComments=5
+comment4.target=void\ hop()
+comment5.params=
+comment5.target=void\ callAction()
+comment5.text=\r\n\ This\ method\ is\ for\ other\ classes\ such\ as\ story\ world,\ and\ end\ World\ to\ call\ from.\r\n\ To\ get\ the\ Cohens\ to\ do\ actions.\r\n\ \r\n\ @return\ void\ \ \ \ if\ called\ from,\ doAction\ will\ become\ true\r\n
+numComments=6

@@ -1,8 +1,9 @@
 #BlueJ class context
 comment0.target=LazyChef
-comment0.text=\r\n\ Cheap\ chef\ that\ cooks\ very\ slowly\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Cheap\ chef\ that\ cooks\ very\ slowly\r\n\ \r\n\ @author\ Cayden\ Chan\r\n\ @version\ November\ 2025\r\n
 comment1.params=
 comment1.target=LazyChef()
+comment1.text=\r\n\ Default\ constructor\ for\ LazyChef\:\ sets\ the\ salary,\ image,\ cook\ speed\ and\ skill\r\n
 comment2.params=
 comment2.target=void\ act()
 numComments=3

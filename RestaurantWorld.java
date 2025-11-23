@@ -38,7 +38,6 @@ public class RestaurantWorld extends World
     
     public RestaurantWorld() {
         this(1);
-        
         prepare();
     }
 
@@ -51,6 +50,8 @@ public class RestaurantWorld extends World
         background = new GreenfootImage("restaurant_bg.png");
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
         setBackground(background);
+        
+        SoundManager.playBackground();
         
         actCount = 0;
         
@@ -176,7 +177,7 @@ public class RestaurantWorld extends World
         }
         // Add Cohen Chefs (index 1)
         for (int i = 0; i < blueChefCounts.get(1); i++) {
-            blueChefs.add(new ChefCohenBlue());
+            blueChefs.add(new ChefCohen());
         }
         // Add Hungry Chefs (index 2)
         for (int i = 0; i < blueChefCounts.get(2); i++) {
@@ -205,7 +206,7 @@ public class RestaurantWorld extends World
         }
         // Add Cohen Chefs (index 1)
         for (int i = 0; i < redChefCounts.get(1); i++) {
-            redChefs.add(new ChefCohenRed());
+            redChefs.add(new ChefCohen());
         }
         // Add Hungry Chefs (index 2)
         for (int i = 0; i < redChefCounts.get(2); i++) {
@@ -294,7 +295,7 @@ public class RestaurantWorld extends World
             addObject(new Influencer(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
         }
         else{
-            addObject(new ChefCohen(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
+            addObject(new JordanRamsay(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
         }
     }
     
@@ -319,7 +320,7 @@ public class RestaurantWorld extends World
                 addObject(new Karen(rest), rest.getCustSpawnX(), rest.getCustSpawnY());
             }
             else{
-                addObject(new ChefCohen(rest), rest.getCustSpawnX(), rest.getCustSpawnY());
+                addObject(new JordanRamsay(rest), rest.getCustSpawnX(), rest.getCustSpawnY());
             }
             
         }

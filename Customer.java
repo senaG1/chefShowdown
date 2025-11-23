@@ -141,6 +141,7 @@ public class Customer extends SuperSmoothMover
 
         if (orderRecieved)
         {
+            restaurant.addNumReviews(1);
             leaveWithFood();
             leavingStore = true;
             return;
@@ -181,6 +182,7 @@ public class Customer extends SuperSmoothMover
                 if (actTimer <= 0)
                 {
                     generateOrder();
+                    SoundManager.playMoney();
                     inLine = false;
                     orderTaken = true;
 
@@ -409,23 +411,23 @@ public class Customer extends SuperSmoothMover
 
         // Give rating based off of time spent in restaurant waiting for food
         double patiencePercent = (double)currentPatience / maxPatience * 100;
-        if(patiencePercent >= 80)
+        if(patiencePercent >= 90)
         {
             rating = 5;
         }
-        else if(patiencePercent >= 60)
+        else if(patiencePercent >= 80)
         {
             rating = 4;
         }
-        else if(patiencePercent >= 40)
+        else if(patiencePercent >= 70)
         {
             rating = 3;
         }
-        else if(patiencePercent >= 20)
+        else if(patiencePercent >= 60)
         {
             rating = 2;
         }
-        else if(patiencePercent > 0)
+        else if(patiencePercent > 50)
         {
             rating = 1;
         }

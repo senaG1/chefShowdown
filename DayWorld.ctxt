@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=DayWorld
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ DayWorld\ here.\r\n\ \r\n\ @author\ Isabel\ Powell\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ DayWorld\ class\ is\ a\ Greenfoot\ World.\r\n\ <p>\r\n\ When\ added,\ it\ will\ show\ the\ user\ each\ team's\ cash,\ rating,\ and\ day\ count.\r\n\ \r\n\ @author\ Isabel\ Powell\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=restWorld\ blueCash\ blueRating\ redCash\ redRating
 comment1.target=DayWorld(RestaurantWorld,\ int,\ double,\ int,\ double)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ DayWorld.\r\n\ \r\n
+comment1.text=\r\n\ Constructor\ for\ DayWorld\ -\ creates\ a\ new\ DayWorld.\r\n\ This\ is\ called\ from\ Restaurant\ World.\r\n\ \r\n\ @param\ restWorld\ \ \ \ restaurant\ object\r\n\ @param\ blueCash\ \ \ \ \ Amount\ of\ cash\ Blue\ team\ has\r\n\ @param\ blueRating\ \ \ \ Amount\ of\ stars\ blue\ team\ has\r\n\ @param\ redCash\ \ \ \ \ \ \ amount\ of\ cash\ Red\ team\ has\r\n\ @param\ redRating\ \ \ \ \ amount\ of\ stars\ Red\ team\ has\r\n\ \r\n
 comment2.params=
 comment2.target=void\ act()
 numComments=3

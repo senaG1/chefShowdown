@@ -1,10 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class StartWorld here.
+ * The StartWorld class is a Greenfoot World.
+ * <p>
+ * When added, it will have a button object that will setWorld to StoryWorld.
  * 
  * @author Isabel Powell 
- * @version (a version number or a date)
+ * @version Nov 10 2025
  */
 public class StartWorld extends World
 {
@@ -13,7 +15,8 @@ public class StartWorld extends World
     private int timer = -1;
     private boolean switching = false;
     /**
-     * Constructor for objects of class StartWorld.
+     * Constructor for StartWorld - creates a new StartWorld.
+     * Added when Simulation is first opened.
      * 
      */
     public StartWorld()
