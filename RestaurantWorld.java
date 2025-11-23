@@ -1,10 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 /**
- * Write a description of class MyWorld here.
+ * The ResraurantWorld class is a Greenfoot World.
+ * <p>
+ * When added, it will begin the simulation,where customers (Greenfoot actors) will be added.
+ * Depending on SettingsWorld, there may be 0 - 3 chefs added with effects randomly added.
  * 
- * @author Sena, Isabel, Cayden, Grace
- * @version (a version number or a date)
+ * @author Cayden Chan, Jiayu C, Sena G, Oscar H, Isabel P, Grace T
+ * @version Nov. 22 2025
  */
 public class RestaurantWorld extends World
 {
@@ -30,12 +33,24 @@ public class RestaurantWorld extends World
     //Constants
     private static int labelHeight = 30;
     private static int labelSize = 25;
-    
+    /**
+     * Constructor for RestaurantWorld - creates a new RestaurantWorld.
+     * This is called from SettingsWorld, and is the second Constructor for RestaurantWorld.
+     * <p>
+     * Used for the first starting this World and for DayWorld to count the days.
+     * 
+     */
     public RestaurantWorld() {
         this(1);
         prepare();
     }
-
+    
+    /**
+     * Constructor for RestaurantWorld - creates a new RestaurantWorld.
+     * This is called from SettingsWorld.
+     * 
+     * @param currentDay     Tracks day count between DayWorld and RestaurantWorld
+     */
     public RestaurantWorld(int currentDay)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -61,8 +76,7 @@ public class RestaurantWorld extends World
         //testing
         
         addChefs();
-       
-        
+    
         addKitchenObjects();
         setPaintOrder(SuperStatBar.class, SuperSpeechBubble.class);
     }
@@ -186,7 +200,11 @@ public class RestaurantWorld extends World
             }
         }
     }
-    
+    /**
+     * This method is for DayWorld to call from
+     * 
+     * @return void    if called from, doAction will become true
+     */
     public void tomorrow(){
         currentDay++;
     }

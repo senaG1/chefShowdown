@@ -12,7 +12,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class EndingWorld extends World
 {
     private GreenfootImage background;
-    protected SuperSpeechBubble talkingBubble;
     private int timer = 0;
     private String imageColour;
 
@@ -24,11 +23,17 @@ public class EndingWorld extends World
     private double rightRating;
     private int rightCash;
     private double leftRating;
+    
+    //Speech bubbles
+    private SuperSpeechBubble talkingBubble;
+    private SuperSpeechBubble secondBubble;
 
     //Win/lose varibles
     private Cohen winCohen;
     private Cohen loseCohen;
     private String winner;
+    //Checks if the players tied
+    private boolean tie = false;
 
     /**
      * Constructor for EndingWorld - creates a new EndingWorld.
@@ -72,56 +77,141 @@ public class EndingWorld extends World
         timer++;
         conversation();
     }
-
+    
     private void conversation(){
         if(talkingBubble != null && talkingBubble.getWorld() != null && timer%180 == 0){
             removeObject(talkingBubble);
         }
-
+        
+        if(secondBubble != null && secondBubble.getWorld() != null && timer%180 == 0){
+            removeObject(secondBubble);
+        }
+        
+        if(tie){
+            tieConversation();
+        }
+        else{
+            winConversation();
+        }
+        
+    }
+    
+    private void tieConversation(){
+        
         if(timer == 0){
-            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, " Both players fought long and hard. Only one can win this challenge.", true, false);
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, " Both players fought long and hard.", true, false);
             addObject(talkingBubble, 0, 0);
         }
-
+        
         if(timer == 190){
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "But only one can win this challenge.", true, false);
+            addObject(talkingBubble, 0, 0);
+        }
+        
+        if(timer == 370){
             talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Will it be Red Cohen or Blue Cohen?", true, false);
             addObject(talkingBubble, 0, 0);
         }
 
-        if(timer == 370){
+        if(timer == 550){
             talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "The winner is…", true, false);
             addObject(talkingBubble, 0, 0);
         }
-
-        if(timer == 550){
-            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, winner, true, false);
-            addObject(talkingBubble, 0, 0);
-            winCohen.switchImage(imageColour);
-        }
-
+        //This is TIE
         if(timer == 720){
-            
-            talkingBubble = new SuperSpeechBubble(winCohen, 200, 400, 80, 30, 60, "Yay!! OF COURSE I WON! ", true, false);
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "both, just kidding, you guys will share this hat", true, false);
             addObject(talkingBubble, 0, 0);
         }
 
         if(timer == 920){
+            talkingBubble = new SuperSpeechBubble(blueCohen, 200, 400, 80, 30, 60, "Yay!! I WON! ", true, false);
+            addObject(talkingBubble, 0, 0);
+            blueCohen.switchImage("happy_Blue.png");
+            
+        }
+        
+        if(timer == 1100){
+            secondBubble = new SuperSpeechBubble(redCohen, 200, 400, 80, 30, 60, "You mean WE won, right? ", true, false);
+            addObject(secondBubble, 0, 0);
+            redCohen.switchImage("happy_Red.png");
+        }
+        
+        if(timer == 1280){
+            
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Take this hat and split it into Two pieces.", true, false);
+            addObject(talkingBubble, 0, 0);
+            goldenCohen.switchImage("golden_Hat.png");
+        }
+        //This IS TIE
+        if(timer == 1460){
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Become the half Cohens you were meant to be!", true, false);
+            addObject(talkingBubble, 0, 0);
+        }
+
+        if(timer == 1640){
+            talkingBubble = new SuperSpeechBubble(blueCohen, 200, 400, 80, 30, 60, " Thank you, Master Chef Cohen!", true, false);
+            addObject(talkingBubble, 0, 0);
+            secondBubble = new SuperSpeechBubble(redCohen, 200, 400, 80, 30, 60, "Thank you, Master Chef Cohen!", true, false);
+            addObject(secondBubble, 0, 0);
+        }
+
+        if(timer == 1820){
+            Greenfoot.setWorld(new StatsWorld(leftCash, rightCash, leftRating, rightRating));
+        }
+    }
+    
+    private void winConversation(){
+
+        if(timer == 0){
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, " Both players fought long and hard.", true, false);
+            addObject(talkingBubble, 0, 0);
+        }
+        
+        if(timer == 190){
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "But Only one can win this challenge.", true, false);
+            addObject(talkingBubble, 0, 0);
+        }
+        //THIS IS WIN
+        if(timer == 370){
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Will it be Red Cohen or Blue Cohen?", true, false);
+            addObject(talkingBubble, 0, 0);
+        }
+
+        if(timer == 550){
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "The winner is…", true, false);
+            addObject(talkingBubble, 0, 0);
+        }
+
+        if(timer == 720){
+            talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, winner, true, false);
+            addObject(talkingBubble, 0, 0);
+            winCohen.switchImage(imageColour);
+            
+        }
+
+        if(timer == 920){
+            
+            talkingBubble = new SuperSpeechBubble(winCohen, 200, 400, 80, 30, 60, "Yay!! OF COURSE I WON! ", true, false);
+            addObject(talkingBubble, 0, 0);
+        }
+        //THIS IS WIN
+        if(timer == 1100){
             talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Take this hat. It’s yours now.", true, false);
             addObject(talkingBubble, 0, 0);
             goldenCohen.switchImage("golden_Hat.png");
         }
 
-        if(timer == 1100){
+        if(timer == 1280){
             talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Become the Cohen you were meant to be!", true, false);
             addObject(talkingBubble, 0, 0);
         }
-
-        if(timer == 1280){
+        //THIS IS WIN
+        if(timer == 1460){
             talkingBubble = new SuperSpeechBubble(winCohen, 200, 400, 80, 30, 60, " Thank you, Master Chef Cohen!", true, false);
             addObject(talkingBubble, 0, 0);
         }
 
-        if(timer == 1460){
+        if(timer == 1640){
             Greenfoot.setWorld(new StatsWorld(leftCash, rightCash, leftRating, rightRating));
         }
 
@@ -142,7 +232,8 @@ public class EndingWorld extends World
             imageColour = "happy_Blue.png";
         }
         else{
-            winner = "Blue";
+            winner = "Tie";
+            tie = true;
             winCohen = blueCohen;
             loseCohen = redCohen;
             imageColour = "happy_Blue.png";
