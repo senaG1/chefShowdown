@@ -127,7 +127,7 @@ public class EndingWorld extends World
             talkingBubble = new SuperSpeechBubble(blueCohen, 200, 400, 80, 30, 60, "Yay!! I WON! ", true, false);
             addObject(talkingBubble, 0, 0);
             blueCohen.switchImage("happy_Blue.png");
-            
+            blueCohen.callAction();
         }
         
         if(timer == 1100){
@@ -193,6 +193,7 @@ public class EndingWorld extends World
             
             talkingBubble = new SuperSpeechBubble(winCohen, 200, 400, 80, 30, 60, "Yay!! OF COURSE I WON! ", true, false);
             addObject(talkingBubble, 0, 0);
+            winCohen.callAction();
         }
         //THIS IS WIN
         if(timer == 1100){

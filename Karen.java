@@ -30,10 +30,6 @@ public class Karen extends Customer
         LINE_START_Y = restaurant.getCustLineY();
     }
     
-    public void addedToWorld() {
-        
-    }
-    
     /**
      * Act - do whatever the Karen wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

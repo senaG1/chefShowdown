@@ -6,18 +6,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * This class is mostly used for the muitple Mr. Cohen images and to let the image "move".
  * 
  * @author Isabel Powell
- * @version 2 
+ * @version 3 Nov. 22 2025 
  */
 public class Cohen extends SuperSmoothMover
 {
     private GreenfootImage image;
     private boolean isGold;
     
-    private double gravity = 0.2;
-    private double verSpeed = -6;
-    private double horSpeed;
+    private double gravity = 0.5;
+    private double verSpeed = 0;
     
     private boolean doAction;
+    private boolean jumping;
+    private double ogY;
+    
     /**
      * Constructor for Cohen - creates a new Cohen.
      * This is called from Story World and End World.
@@ -43,7 +45,10 @@ public class Cohen extends SuperSmoothMover
      */
     public void act()
     {
-        if(doAction){
+        if(doAction && !jumping){
+            initalHop();
+        }
+        if(jumping){
             hop();
         }
     }
@@ -60,11 +65,21 @@ public class Cohen extends SuperSmoothMover
         setImage(image);
     }
     
-    private void hop(){
-        setLocation(getPreciseX(), getPreciseY() + verSpeed);
-        turn(2); 
-        verSpeed += gravity; 
+    private void initalHop(){
+        jumping = true;
+        ogY = getPreciseY();
+        verSpeed = -8;
         doAction = false;
+    }
+    
+    private void hop(){
+        setLocation(getPreciseX(), getPreciseY() + verSpeed); 
+        verSpeed += gravity; 
+        if(getPreciseY() >= ogY){
+            setLocation(getPreciseX(), ogY);
+            jumping = false;
+            verSpeed = 0;
+        }
     }
     /**
      * This method is for other classes such as story world, and end World to call from.

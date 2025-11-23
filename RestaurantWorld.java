@@ -93,19 +93,19 @@ public class RestaurantWorld extends World
         }
 
         if (actCount % 2300 == 0){
-            addObject(new PowerOutage("Blue"), 512, 400);
+            //addObject(new PowerOutage("Blue"), 512, 400);
         }
 
         if (actCount % 1500 == 0){
-            addObject(new RatInfestation("Blue"), 0, 0);
+            //addObject(new RatInfestation("Blue"), 0, 0);
         }
 
         if (actCount % 1200 == 0){
-            addObject(new PowerOutage("Red"), 485, 400);
+            //addObject(new PowerOutage("Red"), 485, 400);
         }
         
         if (actCount % 1900 == 0){
-            addObject(new RatInfestation("Red"), 0, 0);
+            //addObject(new RatInfestation("Red"), 0, 0);
         }
 
         if(dayTimer == 0){
@@ -264,7 +264,8 @@ public class RestaurantWorld extends World
         
         Restaurant spawnRestaurant = Greenfoot.getRandomNumber(2) == 0 ? restaurantBlue : restaurantRed;
         if(customerType <= 4) {
-            addObject(new RegularCustomer(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
+            addObject(new JordanRamsay(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
+            //addObject(new RegularCustomer(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
         }
         else if(customerType <= 6) {
             addObject(new Karen(spawnRestaurant), spawnRestaurant.getCustSpawnX(), spawnRestaurant.getCustSpawnY());
@@ -282,7 +283,29 @@ public class RestaurantWorld extends World
         ArrayList<Customer> cust = (ArrayList<Customer>) getObjects(Customer.class);
         
         for(Customer c : cust){
-            removeObject(c);
+            if(c.getWorld() != null){
+                removeObject(c);
+            }
+        }
+    }
+    
+    //For Jordan Ramsay Class 
+    public void deductCash(int amount, String restaurant){
+        
+        if(restaurant.equals("Blue")){
+            restaurantBlue.collectCash(-amount);
+        }
+        else{
+            restaurantRed.collectCash(-amount);
+        }
+    }
+    
+    public void giveCash(int amount, String restaurant){
+        if(restaurant.equals("Blue")){
+            restaurantBlue.collectCash(amount);
+        }
+        else{
+            restaurantRed.collectCash(amount);
         }
     }
     

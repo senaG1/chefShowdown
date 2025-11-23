@@ -4,4 +4,6 @@ comment0.text=\r\n\ The\ Food\ class\ spawns\ food\ for\ the\ customers\ to\ pic
 comment1.params=type\ quality
 comment1.target=Food(java.lang.String,\ int)
 comment1.text=\r\n\ The\ constructor\ for\ the\ Food\ class\ that\ creates\ the\ food\ and\ determines\ its\ quality.\r\n\ \r\n\ @param\ type\ Takes\ in\ the\ type\ of\ food\ the\ customer\ orders.\r\n\ @param\ quality\ The\ quality\ of\ food\ based\ on\ the\ chefs\ cooking\ skill\ and/or\ who\ cooks\ the\ food\ (hungry\ chef\ decreases\ the\ food\ quality)\r\n
-numComments=2
+comment2.params=
+comment2.target=int\ getQuality()
+numComments=3
