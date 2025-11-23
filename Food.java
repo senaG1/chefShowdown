@@ -22,5 +22,10 @@ public class Food extends SuperSmoothMover
         setImage(image);
         
         this.quality = quality;
+        this.orderNumber = orderNumber;
+    }
+   
+    public int getQuality(){
+        return quality;
     }
 }

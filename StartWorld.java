@@ -34,9 +34,9 @@ public class StartWorld extends World
     {
         if(Greenfoot.mouseClicked(button))
         {
-            SoundManager.playGameStart();
+            SoundManager.playFasterGameStart();
             switching = true;
-            timer = 195;
+            timer = 110;
         }
         
         if(switching){
