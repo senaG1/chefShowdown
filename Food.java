@@ -25,6 +25,10 @@ public class Food extends SuperSmoothMover
         
     }
     
+    public int getQuality(){
+        return quality;
+    }
+    
     public int getOrderNumber() {
         return orderNumber;
     }

@@ -25,8 +25,8 @@ public class Customer extends SuperSmoothMover
     protected int waitingY;
     protected int actTimer;
     protected SuperStatBar patience;
-    protected int maxPatience = 1800; // 35 secs before patience runs out
-    protected int currentPatience = 1800;
+    protected int maxPatience = 1200; // 20 secs before patience runs out
+    protected int currentPatience = 1200;
     private int targetX;
     private int targetY;
     protected String[] menu = {"nuggets", "fries", "hash", "burger", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
@@ -42,6 +42,7 @@ public class Customer extends SuperSmoothMover
     protected boolean orderRecieved = false;
     protected boolean reviewCounted = false;
     private boolean teamBlue;
+    protected int foodQuality;
 
     private int rating;
 
@@ -418,36 +419,50 @@ public class Customer extends SuperSmoothMover
         {
             getWorld().removeObject(orderBubble);
         }
-
-        orderImage = new GreenfootImage("happy.png");
+        
+        if(foodQuality <= 2)
+        {
+            orderImage = new GreenfootImage("disgust.png");
+        }
+        else
+        {
+            orderImage = new GreenfootImage("happy.png");
+        }
         orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
         getWorld().addObject(orderBubble, getX(), getY());
 
         // Give rating based off of time spent in restaurant waiting for food
         double patiencePercent = (double)currentPatience / maxPatience * 100;
-        if(patiencePercent >= 90)
+        if(foodQuality >= 3)
         {
-            rating = 5;
-        }
-        else if(patiencePercent >= 80)
-        {
-            rating = 4;
-        }
-        else if(patiencePercent >= 70)
-        {
-            rating = 3;
-        }
-        else if(patiencePercent >= 60)
-        {
-            rating = 2;
-        }
-        else if(patiencePercent > 50)
-        {
-            rating = 1;
+            if(patiencePercent >= 90)
+            {
+                rating = 5;
+            }
+            else if(patiencePercent >= 80)
+            {
+                rating = 4;
+            }
+            else if(patiencePercent >= 70)
+            {
+                rating = 3;
+            }
+            else if(patiencePercent >= 60)
+            {
+                rating = 2;
+            }
+            else if(patiencePercent > 50)
+            {
+                rating = 1;
+            }
+            else
+            {
+                rating = 0;
+            }
         }
         else
         {
-            rating = 0;
+            rating = 2;
         }
         walkToExit();
     }
@@ -524,6 +539,7 @@ public class Customer extends SuperSmoothMover
             w.removeObject(f);
             orderRecieved = true;
         }
+        foodQuality = f.getQuality();
     }
     
     public boolean isInLine(){
