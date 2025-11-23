@@ -31,6 +31,11 @@ public class RestaurantWorld extends World
     private static int labelHeight = 30;
     private static int labelSize = 25;
     
+    // Effect cooldown timers - prevent multiple effects on same side at once
+    private int blueEffectCooldown = 0;
+    private int redEffectCooldown = 0;
+    private static final int EFFECT_COOLDOWN_TIME = 600; // 10 seconds
+    
     public RestaurantWorld() {
         this(1);
         
@@ -71,6 +76,12 @@ public class RestaurantWorld extends World
         actTimer--;
         actCount++;
         dayTimer--;
+        
+        // Countdown cooldown timers
+        if (blueEffectCooldown > 0) blueEffectCooldown--;
+        
+        if (redEffectCooldown > 0) redEffectCooldown--;
+        
         if(actTimer == 0)
         {
             addCustomers();
@@ -78,19 +89,19 @@ public class RestaurantWorld extends World
         }
 
         if (actCount % 2300 == 0){
-            addObject(new PowerOutage("Blue"), 512, 400);
+            trySpawnEffect("Blue", "PowerOutage");
         }
 
         if (actCount % 1500 == 0){
-            addObject(new RatInfestation("Blue"), 0, 0);
+            trySpawnEffect("Blue", "RatInfestation");
         }
 
         if (actCount % 1200 == 0){
-            addObject(new PowerOutage("Red"), 485, 400);
+            trySpawnEffect("Red", "PowerOutage");
         }
         
         if (actCount % 1900 == 0){
-            addObject(new RatInfestation("Red"), 0, 0);
+            trySpawnEffect("Red", "RatInfestation");
         }
 
         if(dayTimer == 0){
@@ -107,7 +118,36 @@ public class RestaurantWorld extends World
         {
             endGame();
         }
-        
+    }
+    
+    /**
+     * Attempts to spawn an effect on the specified side.
+     * If that side already has an active effect, waits for cooldown.
+     */
+    private void trySpawnEffect(String side, String effectType){
+        if(side.equals("Blue")){
+            //No active effect on Blue side, spawn it
+            spawnEffect(side, effectType);
+            blueEffectCooldown = EFFECT_COOLDOWN_TIME;
+        }else if(side.equals("Red")){ 
+            if(redEffectCooldown == 0){
+                // No active effect on Red side, spawn it
+                spawnEffect(side, effectType);
+                redEffectCooldown = EFFECT_COOLDOWN_TIME;
+            }
+        }
+    }
+    
+    /**
+     * Actually spawns the effect
+     */
+    private void spawnEffect(String side, String effectType){
+        if(effectType.equals("PowerOutage")){
+            int x = side.equals("Blue")? 512 : 485;
+            addObject(new PowerOutage(side), x, 400);
+        } else if(effectType.equals("RatInfestation")){
+            addObject(new RatInfestation(side), 0, 0);
+        }
     }
     
     public void stopped() {
