@@ -341,28 +341,18 @@ public class RestaurantWorld extends World
     //Removes all customers when it switches the day
     private void removeCustomers(){
         ArrayList<Customer> cust = new ArrayList<Customer>(getObjects(Customer.class));
-        
         for(Customer c : cust){
             if(c.getWorld() != null){
                 removeObject(c);
             }
         }
-        
+        //For error checks
         ArrayList<SuperSpeechBubble> bubs = new ArrayList<SuperSpeechBubble>(getObjects(SuperSpeechBubble.class));
         for(SuperSpeechBubble b : bubs){
             if(b.getWorld() != null){
                 removeObject(b);
             }
         }
-        
-        ArrayList<SuperStatBar> bars = new ArrayList<SuperStatBar>(getObjects(SuperStatBar.class));
-        for(SuperStatBar bar : bars){
-            if(bar.getWorld() != null){
-                removeObject(bar);
-            }
-        }
-        
-        
     }
     
     /**
@@ -411,6 +401,7 @@ public class RestaurantWorld extends World
      */
     public void spawnCustomers(int amountOfCust, String restaurant){
         Restaurant rest = restaurant.equals("Blue") ? restaurantBlue : restaurantRed;
+        //Will run method the number of times given
         for(int i = 0; i < amountOfCust; i++){
             int customerType = Greenfoot.getRandomNumber(10);
             //Uses almost same method as add customers

@@ -48,7 +48,7 @@ public class EndingWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(960, 640, 1);
-
+        //To pass to statsWorld
         this.leftCash = leftCash;
         this.rightCash = rightCash;
         this.leftRating = leftRating;
@@ -56,18 +56,18 @@ public class EndingWorld extends World
 
         background = new GreenfootImage("end_Bg.png");
         setBackground(background);
-
-        goldenCohen = new Cohen("golden_Cohen.PNG", true);
+        //Images
+        goldenCohen = new Cohen("golden_Cohen.PNG", true);//Golden is for some reason bigger than other ones
         redCohen = new Cohen("red_Cohen.PNG", false);
         blueCohen = new Cohen("blue_Cohen.PNG", false);
 
         addObject(goldenCohen, 178, 444);
         addObject(redCohen, 490, 398);
         addObject(blueCohen, 743, 398);
-
+        //Finds the winner of the game
         findWiner();
 
-        timer = 0;
+        timer = 0; //Tracks how long each speech bubble will appear for
         conversation();
         SoundManager.playEndGame();
         prepare();
@@ -79,14 +79,15 @@ public class EndingWorld extends World
     }
     
     private void conversation(){
+        //Removes bubble every ~3 seconds
         if(talkingBubble != null && talkingBubble.getWorld() != null && timer%180 == 0){
             removeObject(talkingBubble);
         }
-        
+        //For when 2 Actors want to "talk"
         if(secondBubble != null && secondBubble.getWorld() != null && timer%180 == 0){
             removeObject(secondBubble);
         }
-        
+        //If teams tie, different conversations will play
         if(tie){
             tieConversation();
         }
@@ -95,7 +96,7 @@ public class EndingWorld extends World
         }
         
     }
-    
+    //THIS IS TIE
     private void tieConversation(){
         
         if(timer == 0){
@@ -141,7 +142,7 @@ public class EndingWorld extends World
             
             talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "Take this hat and split it into Two pieces.", true, false);
             addObject(talkingBubble, 0, 0);
-            goldenCohen.switchImage("golden_Hat.png");
+            goldenCohen.switchImage("golden_Hat.png"); //Calls from Cohen Class
         }
         //This IS TIE
         if(timer == 1460){
@@ -160,7 +161,7 @@ public class EndingWorld extends World
             Greenfoot.setWorld(new StatsWorld(leftCash, rightCash, leftRating, rightRating));
         }
     }
-    
+    //THIS IS WIN
     private void winConversation(){
 
         if(timer == 0){
@@ -223,7 +224,7 @@ public class EndingWorld extends World
     private void findWiner(){
         if(rightRating > leftRating){
             winner = "Red";
-            winCohen = redCohen;
+            winCohen = redCohen; //Lets conversation use the same method
             loseCohen = blueCohen;
             imageColour = "happy_Red.png";
         }
@@ -234,11 +235,11 @@ public class EndingWorld extends World
             imageColour = "happy_Blue.png";
         }
         else{
-            winner = "Tie";
+            winner = "Tie"; //Does not matter
             tie = true;
             winCohen = blueCohen;
             loseCohen = redCohen;
-            imageColour = "happy_Blue.png";
+            imageColour = "happy_Blue.png"; //Defalt this for errors
         }
     }
 

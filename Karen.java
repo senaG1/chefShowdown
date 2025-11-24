@@ -37,14 +37,14 @@ public class Karen extends Customer
     public void act()
     {
         super.act();
-        
+        //As long as customers are waiting for food, Karen will drain patience
         if(orderTaken && !orderRecieved && !givingUp){
             complain();
         }
     }
     //Decreases the patience of other customers --> decreases the rating of the restaurant
     private void complain(){
-        ArrayList<Customer> closeCustomers = (ArrayList<Customer>)getObjectsInRange(diameter/2, Customer.class);
+        ArrayList<Customer> closeCustomers = (ArrayList<Customer>)getObjectsInRange(diameter/2, Customer.class); //Gets array list
         
         for(Customer cust : closeCustomers){
             //System.out.println("I am in range" + cust.getX());
@@ -52,7 +52,7 @@ public class Karen extends Customer
                 cust.currentPatience -= decreaseRate;
                 //System.out.println("I am decreasing" + currentPatience);
             }
-            
+            //Stops patience from going into negative
             if(cust.currentPatience < 0){
                 cust.currentPatience = 0;
             }

@@ -46,7 +46,7 @@ public class Cohen extends SuperSmoothMover
     public void act()
     {
         if(doAction && !jumping){
-            initalHop();
+            initalHop(); 
         }
         if(jumping){
             hop();
@@ -80,11 +80,11 @@ public class Cohen extends SuperSmoothMover
     }
     
     private void hop(){
-        setLocation(getPreciseX(), getPreciseY() + verSpeed); 
-        verSpeed += gravity; 
+        setLocation(getPreciseX(), getPreciseY() + verSpeed); //Moves object up
+        verSpeed += gravity; //Creates sorta realisic gravity
         if(getPreciseY() >= ogY){
-            setLocation(getPreciseX(), ogY);
-            jumping = false;
+            setLocation(getPreciseX(), ogY); //Forces object to snap to OG coord
+            jumping = false; //Stops muitple jumps
             verSpeed = 0;
         }
     }
