@@ -25,8 +25,8 @@ public class Customer extends SuperSmoothMover
     protected int waitingY;
     protected int actTimer;
     protected SuperStatBar patience;
-    protected int maxPatience = 1800; // 35 secs before patience runs out
-    protected int currentPatience = 1800;
+    protected int maxPatience = 1200; // 20 secs before patience runs out
+    protected int currentPatience = 1200;
     private int targetX;
     private int targetY;
     protected String[] menu = {"nuggets", "fries", "hash", "burger", "crispy", "filet", "mcflurry", "apple", "coffee", "smoothie"};
@@ -40,7 +40,9 @@ public class Customer extends SuperSmoothMover
     protected boolean leavingStore = false;
     protected boolean waitingOrder = false;
     protected boolean orderRecieved = false;
+    protected boolean reviewCounted = false;
     private boolean teamBlue;
+    protected int foodQuality;
 
     private int rating;
 
@@ -51,6 +53,10 @@ public class Customer extends SuperSmoothMover
     private static final int RED_MIN_X = 480;
     private static final int RED_MAX_X = 960;   // Right half of 960
 
+    /**
+     *  Creates new Customer
+     *  @param restaurant either Blue or Red
+     */
     public Customer(Restaurant restaurant)
     {
         image = new GreenfootImage("regular_Cust.png");
@@ -61,7 +67,11 @@ public class Customer extends SuperSmoothMover
         actTimer = 180;
         this.restaurant = restaurant;
     }
-
+    
+    /**
+     * Called when Customer is added to world
+     * @param w given world
+     */
     public void addedToWorld(World w){
         rw = (RestaurantWorld) w;
         if(getX() > w.getWidth()/2){
@@ -135,14 +145,25 @@ public class Customer extends SuperSmoothMover
 
         if (givingUp && !leavingStore)
         {
+            if(!reviewCounted)
+            {
+                restaurant.addNumReviews(1);
+                restaurant.recordRating(rating);
+                reviewCounted = true;
+            }
             walkToExit();
             return;  
         }
 
         if (orderRecieved)
         {
-            restaurant.addNumReviews(1);
             leaveWithFood();
+            if(!reviewCounted)
+            {
+                restaurant.addNumReviews(1);
+                restaurant.recordRating(rating);
+                reviewCounted = true;
+            }
             leavingStore = true;
             return;
         }
@@ -212,7 +233,11 @@ public class Customer extends SuperSmoothMover
         }
     }
 
-    // If patience runs out or an effect is caused, removes from world
+    
+    /**
+     * Makes customers exit the building
+     * and displays angry speech bubble
+     */
     public void giveUp()
     {
         if (!givingUp)
@@ -240,9 +265,7 @@ public class Customer extends SuperSmoothMover
         }
     }
 
-    // Has customer choose random items from menu
-    // Can choose up to 3 items
-    public void generateOrder()
+    private void generateOrder()
     {
         ArrayList<String> availibleItems = new ArrayList<>();
         GreenfootImage currentOrder = new GreenfootImage("happy.png");
@@ -321,9 +344,7 @@ public class Customer extends SuperSmoothMover
         return getRestaurantSide().equals(side);
     }
 
-    // Sends customers in line to wait at the waiting space
-    // Currently needs implementation after method for taking customer's orders is made
-    public void waitOrder(){
+    private void waitOrder(){
         int currentX = getX();
         int currentY = getY();
         if(!hasWaitingSpot)
@@ -399,49 +420,60 @@ public class Customer extends SuperSmoothMover
         }
     }
 
-    public void leaveWithFood() {
+    private void leaveWithFood() {
         if (orderBubble != null && orderBubble.getWorld() != null)
         {
             getWorld().removeObject(orderBubble);
         }
-
-        orderImage = new GreenfootImage("happy.png");
+        
+        if(foodQuality <= 2)
+        {
+            orderImage = new GreenfootImage("disgust.png");
+        }
+        else
+        {
+            orderImage = new GreenfootImage("happy.png");
+        }
         orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
         getWorld().addObject(orderBubble, getX(), getY());
 
         // Give rating based off of time spent in restaurant waiting for food
         double patiencePercent = (double)currentPatience / maxPatience * 100;
-        if(patiencePercent >= 90)
+        if(foodQuality >= 3)
         {
-            rating = 5;
-        }
-        else if(patiencePercent >= 80)
-        {
-            rating = 4;
-        }
-        else if(patiencePercent >= 70)
-        {
-            rating = 3;
-        }
-        else if(patiencePercent >= 60)
-        {
-            rating = 2;
-        }
-        else if(patiencePercent > 50)
-        {
-            rating = 1;
+            if(patiencePercent >= 90)
+            {
+                rating = 5;
+            }
+            else if(patiencePercent >= 80)
+            {
+                rating = 4;
+            }
+            else if(patiencePercent >= 70)
+            {
+                rating = 3;
+            }
+            else if(patiencePercent >= 60)
+            {
+                rating = 2;
+            }
+            else if(patiencePercent > 50)
+            {
+                rating = 1;
+            }
+            else
+            {
+                rating = 0;
+            }
         }
         else
         {
-            rating = 0;
+            rating = 2;
         }
-
-        restaurant.recordRating(rating);
         walkToExit();
     }
 
-    // Has customers line up, max 5 customers at a time
-    public void lineUp()
+    private void lineUp()
     {
         ArrayList<Customer> customers = (ArrayList<Customer>) getWorld().getObjects(Customer.class);
 
@@ -513,6 +545,7 @@ public class Customer extends SuperSmoothMover
             w.removeObject(f);
             orderRecieved = true;
         }
+        foodQuality = f.getQuality();
     }
     
     public boolean isInLine(){

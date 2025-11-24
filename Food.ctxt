@@ -1,10 +1,9 @@
 #BlueJ class context
 comment0.target=Food
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Food\ here.\r\n\ \r\n\ @author\ Jiayu\ Chen\r\n\ @version\ 11-13\ 1.0\r\n
-comment1.params=type\ quality\ orderNumber
-comment1.target=Food(java.lang.String,\ int,\ int)
+comment0.text=\r\n\ The\ Food\ class\ spawns\ food\ for\ the\ customers\ to\ pick\ up\ and\ affects\ the\ customer\ review.\r\n\ \r\n\ @author\ Jiayu\ Chen\r\n\ @version\ Novermber\ 23,\ 2025\r\n
+comment1.params=type\ quality
+comment1.target=Food(java.lang.String,\ int)
+comment1.text=\r\n\ The\ constructor\ for\ the\ Food\ class\ that\ creates\ the\ food\ and\ determines\ its\ quality.\r\n\ \r\n\ @param\ type\ Takes\ in\ the\ type\ of\ food\ the\ customer\ orders.\r\n\ @param\ quality\ The\ quality\ of\ food\ based\ on\ the\ chefs\ cooking\ skill\ and/or\ who\ cooks\ the\ food\ (hungry\ chef\ decreases\ the\ food\ quality)\r\n
 comment2.params=
-comment2.target=void\ act()
-comment3.params=
-comment3.target=int\ getOrderNumber()
-numComments=4
+comment2.target=int\ getQuality()
+numComments=3

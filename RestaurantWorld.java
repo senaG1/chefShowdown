@@ -1,10 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 /**
- * Write a description of class MyWorld here.
+ * The ResraurantWorld class is a Greenfoot World.
+ * <p>
+ * When added, it will begin the simulation,where customers (Greenfoot actors) will be added.
+ * Depending on SettingsWorld, there may be 0 - 3 chefs added with effects randomly added.
  * 
- * @author Sena, Isabel, Cayden, Grace
- * @version (a version number or a date)
+ * @author Cayden Chan, Jiayu C, Sena G, Oscar H, Isabel P, Grace T
+ * @version Nov. 23 2025
  */
 public class RestaurantWorld extends World
 {
@@ -30,17 +33,24 @@ public class RestaurantWorld extends World
     //Constants
     private static int labelHeight = 30;
     private static int labelSize = 25;
-    
-    // Effect cooldown timers - prevent multiple effects on same side at once
-    private int blueEffectCooldown = 0;
-    private int redEffectCooldown = 0;
-    private static final int EFFECT_COOLDOWN_TIME = 600; // 10 seconds
-    
+    /**
+     * Constructor for RestaurantWorld - creates a new RestaurantWorld.
+     * This is called from SettingsWorld, and is the second Constructor for RestaurantWorld.
+     * <p>
+     * Used for the first starting this World and for DayWorld to count the days.
+     * 
+     */
     public RestaurantWorld() {
         this(1);
         prepare();
     }
-
+    
+    /**
+     * Constructor for RestaurantWorld - creates a new RestaurantWorld.
+     * This is called from SettingsWorld.
+     * 
+     * @param currentDay     Tracks day count between DayWorld and RestaurantWorld
+     */
     public RestaurantWorld(int currentDay)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -66,8 +76,7 @@ public class RestaurantWorld extends World
         //testing
         
         addChefs();
-       
-        
+    
         addKitchenObjects();
         setPaintOrder(SuperStatBar.class, SuperSpeechBubble.class);
     }
@@ -77,32 +86,21 @@ public class RestaurantWorld extends World
         actTimer--;
         actCount++;
         dayTimer--;
-        
-        // Countdown cooldown timers
-        if (blueEffectCooldown > 0) blueEffectCooldown--;
-        
-        if (redEffectCooldown > 0) redEffectCooldown--;
-        
         if(actTimer == 0)
         {
             addCustomers();
             actTimer = 180;
         }
-
-        if (actCount % 2300 == 0){
-            trySpawnEffect("Blue", "PowerOutage");
-        }
-
-        if (actCount % 1500 == 0){
-            trySpawnEffect("Blue", "RatInfestation");
-        }
-
-        if (actCount % 1200 == 0){
-            trySpawnEffect("Red", "PowerOutage");
-        }
         
-        if (actCount % 1900 == 0){
-            trySpawnEffect("Red", "RatInfestation");
+        int spawnRandomEffect = Greenfoot.getRandomNumber(50000);
+        if (spawnRandomEffect == 50) {
+            addObject(new RatInfestation("Red"), 0, 0);
+        } else if (spawnRandomEffect == 51) {
+            addObject(new PowerOutage("Red"), 485, 400);
+        } else if (spawnRandomEffect == 53) {
+            addObject(new RatInfestation("Blue"), 0, 0);
+        } else if (spawnRandomEffect == 54) {
+            addObject(new PowerOutage("Blue"), 512, 400);
         }
 
         if(dayTimer == 0){
@@ -236,7 +234,11 @@ public class RestaurantWorld extends World
             }
         }
     }
-    
+    /**
+     * This method is for DayWorld to call from
+     * 
+     * @return void    if called from, doAction will become true
+     */
     public void tomorrow(){
         currentDay++;
     }
@@ -311,10 +313,48 @@ public class RestaurantWorld extends World
     
     //Removes all customers when it switches the day
     private void removeCustomers(){
-        ArrayList<Customer> cust = (ArrayList<Customer>) getObjects(Customer.class);
+        ArrayList<Customer> cust = new ArrayList<Customer>(getObjects(Customer.class));
         
         for(Customer c : cust){
-            removeObject(c);
+            if(c.getWorld() != null){
+                removeObject(c);
+            }
+        }
+        
+        ArrayList<SuperSpeechBubble> bubs = new ArrayList<SuperSpeechBubble>(getObjects(SuperSpeechBubble.class));
+        for(SuperSpeechBubble b : bubs){
+            if(b.getWorld() != null){
+                removeObject(b);
+            }
+        }
+        
+        ArrayList<SuperStatBar> bars = new ArrayList<SuperStatBar>(getObjects(SuperStatBar.class));
+        for(SuperStatBar bar : bars){
+            if(bar.getWorld() != null){
+                removeObject(bar);
+            }
+        }
+        
+        
+    }
+    
+    //For Jordan Ramsay Class 
+    public void deductCash(int amount, String restaurant){
+        
+        if(restaurant.equals("Blue")){
+            restaurantBlue.collectCash(-amount);
+        }
+        else{
+            restaurantRed.collectCash(-amount);
+        }
+    }
+    
+    public void giveCash(int amount, String restaurant){
+        if(restaurant.equals("Blue")){
+            restaurantBlue.collectCash(amount);
+        }
+        else{
+            restaurantRed.collectCash(amount);
         }
     }
     
@@ -335,7 +375,6 @@ public class RestaurantWorld extends World
             
         }
     }
-    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.

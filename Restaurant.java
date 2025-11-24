@@ -94,10 +94,6 @@ public class Restaurant extends SuperSmoothMover
         }
     }
     
-    private void spawnCustomer() {
-        // spawns random customer at it's specific lane
-    }
-    
     private void purchaseEffect() {
         // check how much cash it has
         // decide which effect it wants to buy

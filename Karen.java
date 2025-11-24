@@ -13,7 +13,7 @@ public class Karen extends Customer
     private GreenfootImage image;
     private int diameter = 50; //Size of circle
     private boolean complained;
-    private int decreaseRate = 1; //Drains patence by 1
+    private int decreaseRate = 5; //Drains patence by 5
     /**
      * Constructor for Karen - creates a new Karen.
      * This is called from Restaurant World.
@@ -28,10 +28,6 @@ public class Karen extends Customer
         
         LINE_X = restaurant.getCustLineX();
         LINE_START_Y = restaurant.getCustLineY();
-    }
-    
-    public void addedToWorld() {
-        
     }
     
     /**

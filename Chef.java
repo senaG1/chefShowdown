@@ -92,7 +92,7 @@ public abstract class Chef extends SuperSmoothMover
         
         //customer gets food
         if(w != null && foodItem != null){
-            food = new Food(foodItem, skill, 0);
+            food = new Food(foodItem, skill);
             w.addObject(food, foodX, foodY);
         }
         currentCustomer.pickUpOrder(food);
@@ -198,5 +198,6 @@ public abstract class Chef extends SuperSmoothMover
      */
     public void quit(){
         getWorld().removeObject(this);
+        // play angry sound
     }   
 }

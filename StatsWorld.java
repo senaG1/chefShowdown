@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class StatsWorld here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Oscar Ho 
+ * @version 11-22
  */
 public class StatsWorld extends World
 {
@@ -14,6 +14,15 @@ public class StatsWorld extends World
     private double leftTeamRating;
     private double rightTeamRating;
     
+    /**
+     * Constructor for StatsWorld - creates a new StatsWorld
+     * This is called from EndingWorld
+     * 
+     * @param leftCash  Amount of cash Blue team has
+     * @param rightCash Amount of cash Red team has
+     * @param leftRating   End rating for Blue team
+     * @param rightRating   End rating for Red team
+     */
     public StatsWorld(int leftCash, int rightCash, double leftRating, double rightRating) {    
         super(960, 640, 1); 
         
@@ -51,18 +60,34 @@ public class StatsWorld extends World
         addObject(rightRatingLabel, 960 / 2, 430);
     }
     
+    /**
+     * Returns Blue team cash
+     * @return int Blue team cash
+     */
     public int getLeftTeamCash() {
         return leftTeamCash;
     }
     
+    /**
+     * Returns Red team cash
+     * @return int Red team cash
+     */
     public int getRightTeamCash() {
         return rightTeamCash;
     }
     
+    /**
+     * Returns Blue team rating
+     * @return double Blue team rating
+     */
     public double getLeftTeamRating() {
         return leftTeamRating;
     }
     
+    /**
+     * Returns Red team rating
+     * @return double Red team rating
+     */
     public double getRightTeamRating() {
         return rightTeamRating;
     }
