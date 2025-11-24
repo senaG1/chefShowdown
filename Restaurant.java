@@ -77,7 +77,7 @@ public class Restaurant extends SuperSmoothMover
     
     public void act() {
         actCount++;
-        if(actCount >= 200){
+        if(actCount >= 500){
             actCount = 0;
             chefs = new ArrayList(getWorld().getObjects(Chef.class));
             for(Chef c : chefs){//each restaurant will only pay its own chefs
