@@ -33,6 +33,12 @@ public class RestaurantWorld extends World
     //Constants
     private static int labelHeight = 30;
     private static int labelSize = 25;
+    
+    // Effect cooldown timers - prevent multiple effects on same side at once
+    private int blueEffectCooldown = 0;
+    private int redEffectCooldown = 0;
+    private static final int EFFECT_COOLDOWN_TIME = 600; // 10 seconds
+    
     /**
      * Constructor for RestaurantWorld - creates a new RestaurantWorld.
      * This is called from SettingsWorld, and is the second Constructor for RestaurantWorld.
