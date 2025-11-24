@@ -104,14 +104,20 @@ public class RestaurantWorld extends World
         }
         
         int spawnRandomEffect = Greenfoot.getRandomNumber(50000);
-        if (spawnRandomEffect == 50) {
-            addObject(new RatInfestation("Red"), 0, 0);
-        } else if (spawnRandomEffect == 51) {
-            addObject(new PowerOutage("Red"), 485, 400);
-        } else if (spawnRandomEffect == 53) {
-            addObject(new RatInfestation("Blue"), 0, 0);
-        } else if (spawnRandomEffect == 54) {
-            addObject(new PowerOutage("Blue"), 512, 400);
+         if (actCount % 1500 == 0) {
+            trySpawnEffect("Blue", "PowerOutage");
+        }
+    
+        if (actCount % 2400 == 0) {  // Every 40 seconds
+            trySpawnEffect("Blue", "RatInfestation");
+        }
+        
+        if (actCount % 2000 == 0) {  // Every 35 seconds
+            trySpawnEffect("Red", "PowerOutage");
+        }
+        
+        if (actCount % 2700 == 0) {  // Every 45 seconds
+            trySpawnEffect("Red", "RatInfestation");
         }
 
         if(dayTimer == 0){
