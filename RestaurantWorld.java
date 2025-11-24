@@ -39,6 +39,12 @@ public class RestaurantWorld extends World
     private int redEffectCooldown = 0;
     private static final int EFFECT_COOLDOWN_TIME = 600; // 10 seconds
     
+    private static final int POWER_OUTAGE_BLUE_X = 512;
+    private static final int POWER_OUTAGE_RED_X = 485;
+    private static final int POWER_OUTAGE_Y = 400;
+    private static final int RAT_SPAWN_X = 0;
+    private static final int RAT_SPAWN_Y = 0;
+    
     /**
      * Constructor for RestaurantWorld - creates a new RestaurantWorld.
      * This is called from SettingsWorld, and is the second Constructor for RestaurantWorld.
@@ -103,7 +109,6 @@ public class RestaurantWorld extends World
             actTimer = 180;
         }
         
-        int spawnRandomEffect = Greenfoot.getRandomNumber(50000);
          if (actCount % 1500 == 0) {
             trySpawnEffect("Blue", "PowerOutage");
         }
@@ -167,11 +172,11 @@ public class RestaurantWorld extends World
      * @param effectType The type of effect to spawn ("PowerOutage" or "RatInfestation")
      */
     private void spawnEffect(String side, String effectType){
-        if(effectType.equals("PowerOutage")){
-            int x = side.equals("Blue")? 512 : 485;
-            addObject(new PowerOutage(side), x, 400);
-        } else if(effectType.equals("RatInfestation")){
-            addObject(new RatInfestation(side), 0, 0);
+        if (effectType.equals("PowerOutage")) {
+            int x = side.equals("Blue") ? POWER_OUTAGE_BLUE_X : POWER_OUTAGE_RED_X;
+            addObject(new PowerOutage(side), x, POWER_OUTAGE_Y);
+        } else if (effectType.equals("RatInfestation")) {
+            addObject(new RatInfestation(side), RAT_SPAWN_X, RAT_SPAWN_Y);
         }
     }
     
