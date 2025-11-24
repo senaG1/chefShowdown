@@ -260,12 +260,16 @@ public class RestaurantWorld extends World
     /**
      * This method is for DayWorld to call from
      * 
-     * @return void    if called from, doAction will become true
+     * @return void    returns nothing
      */
     public void tomorrow(){
         currentDay++;
     }
-    
+    /**
+     * This method gets the current Day, gets called from Day World
+     * 
+     * @return int  When called, it will return the number of days 
+     */
     public int getCurrentDay(){
         return currentDay;
     }
@@ -361,7 +365,14 @@ public class RestaurantWorld extends World
         
     }
     
-    //For Jordan Ramsay Class 
+    /**
+     * Minus the amount of money to either side, depending on where an object of Jordan Cohen is
+     * 
+     * @param amount    Amount of money to deduct from the current Cash
+     * @param restaurant    The side (restaurant colour) Jordan Cohen is at
+     * @return void     Will run if called, returns nothings
+     * 
+     */
     public void deductCash(int amount, String restaurant){
         
         if(restaurant.equals("Blue")){
@@ -372,6 +383,14 @@ public class RestaurantWorld extends World
         }
     }
     
+     /**
+     * Adds the amount of money to either side, depending on where an object of Jordan Cohen is
+     * 
+     * @param amount    Amount of money to add from the current Cash
+     * @param restaurant    The side (restaurant colour) Jordan Cohen is at
+     * @return void     Will run if called, returns nothings
+     * 
+     */
     public void giveCash(int amount, String restaurant){
         if(restaurant.equals("Blue")){
             restaurantBlue.collectCash(amount);
@@ -381,11 +400,20 @@ public class RestaurantWorld extends World
         }
     }
     
+     /**
+     * Will add a certain amount of customers on either side depending on the string given 
+     * This method cannot spawn Influencers.
+     * 
+     * @param amountOfCust    The amount of customers to add
+     * @param restaurant    The side of restaurant that customer will spawn on
+     * @return void     Will run if called, returns nothings
+     * 
+     */
     public void spawnCustomers(int amountOfCust, String restaurant){
         Restaurant rest = restaurant.equals("Blue") ? restaurantBlue : restaurantRed;
         for(int i = 0; i < amountOfCust; i++){
             int customerType = Greenfoot.getRandomNumber(10);
-            
+            //Uses almost same method as add customers
             if(customerType <= 5) {
                 addObject(new RegularCustomer(rest), rest.getCustSpawnX(), rest.getCustSpawnY());
             }

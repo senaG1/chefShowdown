@@ -52,7 +52,14 @@ public class Cohen extends SuperSmoothMover
             hop();
         }
     }
-    
+
+    /**
+     * Switches current image to new image, can be used for any image
+     * 
+     * @param newImage    String word of new file name
+     * @return void     Will run if called, returns nothings
+     * 
+     */
     public void switchImage(String newImage){
         image = new GreenfootImage(newImage);
         

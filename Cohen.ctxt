@@ -9,6 +9,7 @@ comment2.target=void\ act()
 comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ CohenMaker\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 comment3.params=newImage
 comment3.target=void\ switchImage(java.lang.String)
+comment3.text=\r\n\ Switches\ current\ image\ to\ new\ image,\ can\ be\ used\ for\ any\ image\r\n\ \r\n\ @param\ newImage\ \ \ \ String\ word\ of\ new\ file\ name\r\n\ @return\ void\ \ \ \ \ Will\ run\ if\ called,\ returns\ nothings\r\n\ \r\n
 comment4.params=
 comment4.target=void\ initalHop()
 comment5.params=
