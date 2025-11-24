@@ -262,6 +262,7 @@ public class Customer extends SuperSmoothMover
             hasWaitingSpot = false;
 
             restaurant.recordRating(1);
+            SoundManager.playLeave();
         }
     }
 

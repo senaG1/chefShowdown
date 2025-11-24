@@ -77,7 +77,7 @@ public class SoundManager
         leaveSounds = new GreenfootSound[15];
         for (int i = 0; i < leaveSounds.length; i++) {
             leaveSounds[i] = new GreenfootSound("leave.wav");
-            leaveSounds[i].setVolume(100);
+            leaveSounds[i].setVolume(75);
         }
         
         // rat sound
