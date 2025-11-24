@@ -144,6 +144,8 @@ public class Customer extends SuperSmoothMover
 
     public void act()
     {
+        if (getWorld() == null) return;
+        
         if(chef == null){
             findChef();
         }
