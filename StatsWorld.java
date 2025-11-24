@@ -8,11 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class StatsWorld extends World
 {
-    private GreenfootImage background;
-    private int leftTeamCash;
-    private int rightTeamCash;
-    private double leftTeamRating;
-    private double rightTeamRating;
+    protected GreenfootImage background;
+    protected int leftTeamCash;
+    protected int rightTeamCash;
+    protected double leftTeamRating;
+    protected double rightTeamRating;
+    protected Font statFont;
     
     /**
      * Constructor for StatsWorld - creates a new StatsWorld
@@ -31,33 +32,34 @@ public class StatsWorld extends World
         this.rightTeamCash = rightCash;
         this.leftTeamRating = leftRating;
         this.rightTeamRating = rightRating;
+        statFont = new Font("Times New Roman", false, false, 30);
+        setPaintOrder(TextDisplay.class, StatScreen.class);
         
         prepare();
     }
     
     // will change later depending on image given
     private void prepare() {
+
         background = new GreenfootImage("bg_stat.png");
         setBackground(background);
-        StatScreen screen = new StatScreen("blueStat.png", 320);
-        addObject(screen, 480, 320);
-        screen.callAction();
-        
         GreenfootImage poster = new GreenfootImage("jesuspixel.png");
         poster.scale(45, 62);
         background.drawImage(poster, 694 , 209);
         
-        Label gameOverLabel = new Label("Game Over!", 30);
-        Label leftCashLabel = new Label("Blue Team Cash: $" + leftTeamCash, 30);
-        Label leftRatingLabel = new Label("Blue Team Rating: " + String.format("%.2f", leftTeamRating) + " Stars", 30);
-        Label rightCashLabel = new Label("Red Team Cash: $" + rightTeamCash, 30);
-        Label rightRatingLabel = new Label("Red Team Rating: " + String.format("%.2f", rightTeamRating) + " Stars", 30);
+        StatScreen screen = new StatScreen("blueStat.png", 320);
+        addObject(screen, 480, 320);
+        screen.callAction();
         
-        addObject(gameOverLabel, 960 / 2, 180);
-        addObject(leftCashLabel, 960 / 2, 250);
-        addObject(leftRatingLabel, 960 / 2, 300);
-        addObject(rightCashLabel, 960 / 2, 380);
-        addObject(rightRatingLabel, 960 / 2, 430);
+        String[] textLines = {
+        "Game Over!",
+        "Blue Team Cash: $" + leftTeamCash,
+        "Blue Team Rating: " + String.format("%.2f", leftTeamRating) + " Stars",
+        "Red Team Cash: $" + rightTeamCash,
+        "Red Team Rating: " + String.format("%.2f", rightTeamRating) + " Stars"
+        };
+        TextDisplay textDisplay = new TextDisplay(textLines, statFont, Color.BLACK, 960, 640);
+        addObject(textDisplay, 480, 320);
     }
     
     /**
