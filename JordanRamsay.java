@@ -1,16 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class JordanRamsay here.
+ * The JordanRamsay class is a Greenfoot actor, that inherits from Customer.
+ * <p>
+ * When added into world, after picking up its food, it will either give the restaurant it is at
+ * A lot of money or will deduct money from one of them.
  * 
  * @author Isabel Powell
- * @version (a version number or a date)
+ * @version Nov. 23 2025
  */
 public class JordanRamsay extends Customer
 {
     private GreenfootImage image;
     private boolean isPaying = false;
-    
+    /**
+     * Constructor for JordanRamsay - creates a new JordanRamsay.
+     * This is called from Restaurant World.
+     * 
+     * @param restaurant    restaurant object
+     */
     public JordanRamsay(Restaurant restaurant){
         super(restaurant);
         image = new GreenfootImage ("JordanRam.png");
@@ -26,15 +34,24 @@ public class JordanRamsay extends Customer
      */
     public void act()
     {
+        if(getWorld() == null){ return;}
         super.act();
         
     }
     
+    /**
+     * OverLoads pickUpOrder from Customer class, but also keeps the orignal code from Customer
+     * While changing it to, either deduct cash or add some as a tip
+     * 
+     * @param f    The food that Jordan Cohen will get
+     * @return void     Will run if called, returns nothings
+     * 
+     */
     public void pickUpOrder(Food f){
         super.pickUpOrder(f);
-        
+        //Gives patience percentage
         double patiencePercent = (double)currentPatience/maxPatience * 100;
-        RestaurantWorld w = (RestaurantWorld)getWorld();
+        RestaurantWorld w = (RestaurantWorld)getWorld(); //What side this is on
         String side = getRestaurantSide();
         
         //System.out.println("patance :" + patiencePercent);

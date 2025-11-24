@@ -1,10 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * WORK IN PROGRESS - INCOMPLETE!
+ * The SuperSpeechBubble class is a Greenfoot actor, that inherits from Actor.
+ * <p>
+ * It will draw Speech bubble of any size depending on the variables passed, and can
+ * draw words or show images on the bubbles depending on what is passed.
  * 
- * @author Jordan Cohen
- * @version Feb 2022
+ * @author Jordan Cohen, edited by Isabel Powell and Oscar Ho
+ * @version Nov. 20 2025
  */
 public class SuperSpeechBubble extends Actor
 {
@@ -24,7 +27,20 @@ public class SuperSpeechBubble extends Actor
     
     private int offsetX;
     private int offsetY;
-    
+    /**
+     * Constructor for SuperSpeechBubble - creates a new SuperSpeechBubble.
+     * This is called from Customer, and can create words in the bubble.
+     * 
+     * @param owner    The actor that this bubble should follow
+     * @param offset    The distance from the actor to the bubble
+     * @param width     The width of the bubble
+     * @param height    The height of the bubble
+     * @param stemHeight    The height of the stem of the bubble
+     * @param stemStart     Where the stem of the bubble will first appear (how far from actor)
+     * @param text        The words that will appear in the bubble
+     * @param facingRight   Is Actor facing right or left
+     * @param isThought     Is the actor speaking or thinking
+     */
     public SuperSpeechBubble (Actor owner, int offset, int width, int height, int stemHeight, int stemStart, String text, boolean facingRight, boolean isThought){
         
         font = STANDARD_FONT;
@@ -35,7 +51,19 @@ public class SuperSpeechBubble extends Actor
         
     }
 
-    // New constructor for creating speech bubbles with images instead of text
+    /**
+     * Second Constructor for SuperSpeechBubble - creates a new SuperSpeechBubble.
+     * This is called from Customer, and can create an image in the bubble.
+     * 
+     * @param owner    The actor that this bubble should follow
+     * @param offset    The distance from the actor to the bubble
+     * @param width     The width of the bubble
+     * @param height    The height of the bubble
+     * @param stemHeight    The height of the stem of the bubble
+     * @param contentImage  The image that should be placed into the bubble
+     * @param facingRight   Is Actor facing right or left
+     * @param isThought     Is the actor speaking or thinking
+     */
     public SuperSpeechBubble (Actor owner, int offset, int width, int height, int stemHeight, int stemStart, GreenfootImage contentImage, boolean facingRight, boolean isThought){
         
         image = drawBubbleWithImage (width, height, stemHeight, stemStart, contentImage, facingRight, isThought);
@@ -44,7 +72,12 @@ public class SuperSpeechBubble extends Actor
         this.offset = offset;
         
     }
-    
+    /**
+     * Adds object to World
+     * 
+     * @param w    The World that it will be added to
+     * @return void     Will run if called, returns nothings
+     */
     public void addedToWorld (World w){
         setLocation (owner.getX(), owner.getY() - offset);
     }

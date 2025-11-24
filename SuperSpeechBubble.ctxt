@@ -1,12 +1,15 @@
 #BlueJ class context
 comment0.target=SuperSpeechBubble
-comment0.text=\r\n\ WORK\ IN\ PROGRESS\ -\ INCOMPLETE\!\r\n\ \r\n\ @author\ Jordan\ Cohen\r\n\ @version\ Feb\ 2022\r\n
+comment0.text=\r\n\ The\ SuperSpeechBubble\ class\ is\ a\ Greenfoot\ actor,\ that\ inherits\ from\ Actor.\r\n\ <p>\r\n\ It\ will\ draw\ Speech\ bubble\ of\ any\ size\ depending\ on\ the\ variables\ passed,\ and\ can\r\n\ draw\ words\ or\ show\ images\ on\ the\ bubbles\ depending\ on\ what\ is\ passed.\r\n\ \r\n\ @author\ Jordan\ Cohen,\ edited\ by\ Isabel\ Powell\ and\ Oscar\ Ho\r\n\ @version\ Nov.\ 20\ 2025\r\n
 comment1.params=owner\ offset\ width\ height\ stemHeight\ stemStart\ text\ facingRight\ isThought
 comment1.target=SuperSpeechBubble(greenfoot.Actor,\ int,\ int,\ int,\ int,\ int,\ java.lang.String,\ boolean,\ boolean)
+comment1.text=\r\n\ Constructor\ for\ SuperSpeechBubble\ -\ creates\ a\ new\ SuperSpeechBubble.\r\n\ This\ is\ called\ from\ Customer,\ and\ can\ create\ words\ in\ the\ bubble.\r\n\ \r\n\ @param\ owner\ \ \ \ The\ actor\ that\ this\ bubble\ should\ follow\r\n\ @param\ offset\ \ \ \ The\ distance\ from\ the\ actor\ to\ the\ bubble\r\n\ @param\ width\ \ \ \ \ The\ width\ of\ the\ bubble\r\n\ @param\ height\ \ \ \ The\ height\ of\ the\ bubble\r\n\ @param\ stemHeight\ \ \ \ The\ height\ of\ the\ stem\ of\ the\ bubble\r\n\ @param\ stemStart\ \ \ \ \ Where\ the\ stem\ of\ the\ bubble\ will\ first\ appear\ (how\ far\ from\ actor)\r\n\ @param\ text\ \ \ \ \ \ \ \ The\ words\ that\ will\ appear\ in\ the\ bubble\r\n\ @param\ facingRight\ \ \ Is\ Actor\ facing\ right\ or\ left\r\n\ @param\ isThought\ \ \ \ \ Is\ the\ actor\ speaking\ or\ thinking\r\n
 comment2.params=owner\ offset\ width\ height\ stemHeight\ stemStart\ contentImage\ facingRight\ isThought
 comment2.target=SuperSpeechBubble(greenfoot.Actor,\ int,\ int,\ int,\ int,\ int,\ greenfoot.GreenfootImage,\ boolean,\ boolean)
+comment2.text=\r\n\ Second\ Constructor\ for\ SuperSpeechBubble\ -\ creates\ a\ new\ SuperSpeechBubble.\r\n\ This\ is\ called\ from\ Customer,\ and\ can\ create\ an\ image\ in\ the\ bubble.\r\n\ \r\n\ @param\ owner\ \ \ \ The\ actor\ that\ this\ bubble\ should\ follow\r\n\ @param\ offset\ \ \ \ The\ distance\ from\ the\ actor\ to\ the\ bubble\r\n\ @param\ width\ \ \ \ \ The\ width\ of\ the\ bubble\r\n\ @param\ height\ \ \ \ The\ height\ of\ the\ bubble\r\n\ @param\ stemHeight\ \ \ \ The\ height\ of\ the\ stem\ of\ the\ bubble\r\n\ @param\ contentImage\ \ The\ image\ that\ should\ be\ placed\ into\ the\ bubble\r\n\ @param\ facingRight\ \ \ Is\ Actor\ facing\ right\ or\ left\r\n\ @param\ isThought\ \ \ \ \ Is\ the\ actor\ speaking\ or\ thinking\r\n
 comment3.params=w
 comment3.target=void\ addedToWorld(greenfoot.World)
+comment3.text=\r\n\ Adds\ object\ to\ World\r\n\ \r\n\ @param\ w\ \ \ \ The\ World\ that\ it\ will\ be\ added\ to\r\n\ @return\ void\ \ \ \ \ Will\ run\ if\ called,\ returns\ nothings\r\n
 comment4.params=
 comment4.target=void\ act()
 comment5.params=width\ height\ stemHeight\ stemStart\ contentImage\ facingRight\ isThought

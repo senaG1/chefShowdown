@@ -1,14 +1,23 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class RegularCustomer here.
+ * The RegularCustomer class is a Greenfoot actor, that inherits from Customer.
+ * <p>
+ * When added into world, it will be exactly what Customer is with nothing different.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Isabel Powell
+ * @version Nov 12 2025
  */
 public class RegularCustomer extends Customer
 {
     private GreenfootImage image;
+    
+    /**
+     * Constructor for RegularCustomer - creates a new RegularCustomer.
+     * This is called from Restaurant World.
+     * 
+     * @param restaurant    restaurant object
+     */
     public RegularCustomer(Restaurant restaurant){
         super(restaurant);
         image = new GreenfootImage ("regular_Cust.png");

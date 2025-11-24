@@ -30,7 +30,7 @@ public class Influencer extends Customer
     
     public void act()
     {
-        if(getWorld() == null){ return;}
+        if(getWorld() == null){ return;} //Stops errors
         super.act();
         if(getWorld() == null){ return;}
         Paparazzi effect;
