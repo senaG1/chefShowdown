@@ -12,7 +12,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class JordanRamsay extends Customer
 {
     private GreenfootImage image;
-    private boolean isPaying = false;
+    private boolean isPaying = false; //Ensures JordanRamsay only pays or takes once
     /**
      * Constructor for JordanRamsay - creates a new JordanRamsay.
      * This is called from Restaurant World.
@@ -34,9 +34,8 @@ public class JordanRamsay extends Customer
      */
     public void act()
     {
-        if(getWorld() == null){ return;}
+        if(getWorld() == null){ return;} //Stops errors
         super.act();
-        
     }
     
     /**
@@ -48,14 +47,12 @@ public class JordanRamsay extends Customer
      * 
      */
     public void pickUpOrder(Food f){
-        super.pickUpOrder(f);
+        super.pickUpOrder(f); //Does Superclass' method
         //Gives patience percentage
         double patiencePercent = (double)currentPatience/maxPatience * 100;
         RestaurantWorld w = (RestaurantWorld)getWorld(); //What side this is on
-        String side = getRestaurantSide();
-        
+        String side = getRestaurantSide(); //Returns Blue or red
         //System.out.println("patance :" + patiencePercent);
-        
         if(patiencePercent > 70){
                 w.giveCash(100, side);
                 //System.out.println("I have given money" + side);
