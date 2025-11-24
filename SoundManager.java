@@ -1,6 +1,7 @@
 import greenfoot.*;
 /**
- * Write a description of class SoungManager here.
+ * SoundManager - Manages all game sounds and background music.
+ * Uses arrays of sound copies to allow overlapping sounds without cutting off.
  * 
  * coin sound by chieuk from pixabay
  * paprazzi by ShidenBeatsMusic from pixabay
@@ -13,7 +14,7 @@ import greenfoot.*;
  * electrivityOut by DB sound from pixabay 
  * 
  * @author Sena Godek
- * @version 2025
+ * @version November 2025
  */
 public class SoundManager  
 {
@@ -47,77 +48,78 @@ public class SoundManager
     }
     
     /**
-     * Initialize all sound arrays with multiple copies.
+     * Initialize all sound arrays with 15 copies each.
+     * Multiple copies prevent sounds from cutting off when played rapidly.
      */
     private static void initializeSounds() {
-        // coin - 
+        // coin sound
         coinSounds = new GreenfootSound[15];
         for (int i = 0; i < coinSounds.length; i++) {
             coinSounds[i] = new GreenfootSound("coin.wav");
             coinSounds[i].setVolume(100);
         }
         
-        // nextDay - 
+        // nextDay sound
         nextDaySounds = new GreenfootSound[15];
         for (int i = 0; i < nextDaySounds.length; i++) {
             nextDaySounds[i] = new GreenfootSound("nextDay.wav");
             nextDaySounds[i].setVolume(100);
         }
         
-        // paparazzi - 
+        // paparazzi sound 
         paparazziSounds = new GreenfootSound[15];
         for (int i = 0; i < paparazziSounds.length; i++) {
             paparazziSounds[i] = new GreenfootSound("paparazzi.wav");
             paparazziSounds[i].setVolume(100);
         }
         
-        // leave - 
+        // leave sound 
         leaveSounds = new GreenfootSound[15];
         for (int i = 0; i < leaveSounds.length; i++) {
             leaveSounds[i] = new GreenfootSound("leave.wav");
             leaveSounds[i].setVolume(100);
         }
         
-        // rat - 
+        // rat sound
         ratSounds = new GreenfootSound[15];
         for (int i = 0; i < ratSounds.length; i++) {
             ratSounds[i] = new GreenfootSound("rat.wav");
-            ratSounds[i].setVolume(100);
+            ratSounds[i].setVolume(120);
         }
         
-        // endGame - 
+        // endGame sound 
         endGameSounds = new GreenfootSound[15];
         for (int i = 0; i < endGameSounds.length; i++) {
             endGameSounds[i] = new GreenfootSound("endGame.wav");
             endGameSounds[i].setVolume(100);
         }
         
-        // fasterGameStart - 
+        // fasterGameStart sound 
         fasterGameStartSounds = new GreenfootSound[15];
         for (int i = 0; i < fasterGameStartSounds.length; i++) {
             fasterGameStartSounds[i] = new GreenfootSound("fasterGameStart.wav");
             fasterGameStartSounds[i].setVolume(100);
         }
         
-        // increaseStar - 
+        // increaseStar sound 
         increaseStarSounds = new GreenfootSound[15];
         for (int i = 0; i < increaseStarSounds.length; i++) {
             increaseStarSounds[i] = new GreenfootSound("increaseStar.wav");
             increaseStarSounds[i].setVolume(100);
         }
         
-        // electrivityOut - 
+        // electrivityOut sound 
         electrivityOutSounds = new GreenfootSound[15];
         for (int i = 0; i < electrivityOutSounds.length; i++) {
             electrivityOutSounds[i] = new GreenfootSound("electricityOut.wav");
             electrivityOutSounds[i].setVolume(100);
         }
         
-        // generateOrder -
+        // generateOrder sound
         moneySounds = new GreenfootSound[15];
         for (int i = 0; i < moneySounds.length; i++){
             moneySounds[i] = new GreenfootSound("money.wav");
-            moneySounds[i].setVolume(100);
+            moneySounds[i].setVolume(70);
         }
         
         backgroundSound = new GreenfootSound("backgroundmusic.mp3");
@@ -235,7 +237,9 @@ public class SoundManager
         }
     }
     
-    
+    /**
+     * Starts background music loop if not already playing.
+     */
     public static void playBackground(){
         backgroundSound.playLoop();
         if (backgroundSound != null && backgroundSound.isPlaying()) {
@@ -243,18 +247,27 @@ public class SoundManager
         }
     }
     
+    /**
+     * Stops background music completely.
+     */
         public static void stopBackgroundMusic() {
         if (backgroundSound != null) {
             backgroundSound.stop();
         }
     }
     
+    /**
+     * Pauses background music if currently playing.
+     */
     public static void pauseBackgroundMusic() {
         if (backgroundSound != null && backgroundSound.isPlaying()) {
             backgroundSound.pause();
         }
     }
     
+    /**
+     * Resumes background music from pause.
+     */
     public static void resumeBackgroundMusic() {
         if (backgroundSound != null) {
             backgroundSound.play();

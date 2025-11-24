@@ -122,8 +122,11 @@ public class RestaurantWorld extends World
     }
     
     /**
-     * Attempts to spawn an effect on the specified side.
-     * If that side already has an active effect, waits for cooldown.
+     * Attempts to spawn an effect on the specified side if no effect is currently active.
+     * Uses cooldown timer to prevent multiple effects on same side simultaneously.
+     * 
+     * @param side The restaurant side to affect ("Blue" or "Red")
+     * @param effectType The type of effect to spawn ("PowerOutage" or "RatInfestation")
      */
     private void trySpawnEffect(String side, String effectType){
         if(side.equals("Blue")){
@@ -140,7 +143,11 @@ public class RestaurantWorld extends World
     }
     
     /**
-     * Actually spawns the effect
+     * Spawns the specified effect on the given restaurant side.
+     * Creates the appropriate effect object and adds it to the world.
+     * 
+     * @param side The restaurant side to affect ("Blue" or "Red")
+     * @param effectType The type of effect to spawn ("PowerOutage" or "RatInfestation")
      */
     private void spawnEffect(String side, String effectType){
         if(effectType.equals("PowerOutage")){
@@ -151,6 +158,9 @@ public class RestaurantWorld extends World
         }
     }
     
+    /**
+     * Called when the world is stopped. Stops all background music and sound effects.
+     */
     public void stopped() {
         SoundManager.stopAllSounds();
     }

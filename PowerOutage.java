@@ -2,10 +2,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class PowerOutage here.
+ * Darkens one restaurant side causing customers to leave.
+ * At least 2 customers leave, with 50% chance for others. Lasts 4 seconds with fade-out.
+ * Plays electricity out sound effect.
  * 
  * @author Sena Godek
- * @version 2025
+ * @version November 2025
  */
 public class PowerOutage extends Effect
 {
