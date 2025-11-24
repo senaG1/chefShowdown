@@ -104,11 +104,11 @@ Borrowed Code:
 -https://www.greenfoot.org/topics/58859/0
 
 -SuperSmoothMover
--By Mr.Cohen
+-By Jordan Cohen
 
 -SuperStatBar
--By Mr.Cohen
+-By Jordan Cohen
 
 -SuperSpeechBubble
--By Mr.Cohen, edited by Isabel and Ocar
+-By Jordan Cohen, edited by Isabel and Ocar
 
