@@ -15,6 +15,7 @@ import greenfoot.*;
  * happySound by Universfield from pixabay
  * disgustSound by freesound_community from pixabay
  * celebrateSound by storegraphic from pixabay
+ * buttonSound by skyscraper_seven from pixabay
  * 
  * @author Sena Godek
  * @version November 2025
@@ -34,6 +35,7 @@ public class SoundManager
     private static GreenfootSound[] happySounds;
     private static GreenfootSound[] disgustSounds;
     private static GreenfootSound[] celebrateSounds;
+    private static GreenfootSound[] buttonSounds;
     private static GreenfootSound backgroundSound; // background music
     
     // Indices to track which copy to play next
@@ -49,6 +51,7 @@ public class SoundManager
     private static int happyIndex = 0;
     private static int disgustIndex = 0;
     private static int celebrateIndex = 0;
+    private static int buttonIndex = 0;
     
      static {
         initializeSounds();
@@ -142,6 +145,13 @@ public class SoundManager
         for (int i = 0; i < celebrateSounds.length; i++){
             celebrateSounds[i] = new GreenfootSound("celebrate.wav");
             celebrateSounds[i].setVolume(90);
+        }
+        
+        // Button presses
+        buttonSounds = new GreenfootSound[15];
+        for (int i = 0; i < buttonSounds.length; i++){
+            buttonSounds[i] = new GreenfootSound("button.wav");
+            buttonSounds[i].setVolume(80);
         }
         
         backgroundSound = new GreenfootSound("backgroundmusic.mp3");
@@ -283,6 +293,17 @@ public class SoundManager
     }
     
     /**
+     * Play button sound
+     */    
+    public static void playButton(){
+        buttonSounds[buttonIndex].play();
+        buttonIndex++;
+        if (buttonIndex >= buttonSounds.length){
+            buttonIndex = 0;
+        }
+    }
+    
+    /**
      * Starts background music loop if not already playing.
      */
     public static void playBackground(){
@@ -360,6 +381,11 @@ public class SoundManager
         // Stop all celebrate sounds
         for (int i = 0; i < celebrateSounds.length; i++) {
             celebrateSounds[i].stop();
+        }
+        
+        // Stop all button sounds
+        for (int i = 0; i < buttonSounds.length; i++) {
+            buttonSounds[i].stop();
         }
         
         
