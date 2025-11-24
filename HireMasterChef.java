@@ -14,8 +14,10 @@ public class HireMasterChef extends Actor
     private boolean isBought;
     private int teamCash;
     private RestaurantWorld rw;
+    private int purchaseRange;
     public HireMasterChef(int cost, int teamCash, Restaurant restaurant) {
         value = cost;
+        purchaseRange = value + 300;
         this.restaurant = restaurant;
         this.teamCash = teamCash;
         image = new GreenfootImage("Buffs/Hire_MasterChef.png");
@@ -28,12 +30,13 @@ public class HireMasterChef extends Actor
     
     public void act()
     {   
-        if (DayWorld.timer == 50 && teamCash > value + 200) {
+        teamCash = restaurant.getCash();
+        if (DayWorld.timer == 50 && teamCash > purchaseRange) {
             getWorld().removeObject(this);
             restaurant.collectCash(-value);
             MasterChef newChef = new MasterChef();
             restaurant.hireChef(newChef, restaurant);
-
+            
             SoundManager.playMoney();
             isBought = true;
         }
