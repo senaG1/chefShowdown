@@ -61,6 +61,9 @@ public class SettingsWorld extends World
     private Button minusHungryRed;
     private Button plusLazyRed;
     private Button minusLazyRed;
+    
+    private int blueChefCount = 0;
+    private int redChefCount = 0;
 
     private Button nextBtn;
     private Button playBtn;
@@ -117,7 +120,6 @@ public class SettingsWorld extends World
         redChefs = new ArrayList<Integer>();
 
         addObjectsToWorld();
-        prepare();
     }
 
     private void addObjectsToWorld(){
@@ -341,7 +343,29 @@ public class SettingsWorld extends World
 
         if (playBtn.isClicked())
         {
-            startGame();
+            blueChefs.add(numMasterBlue);
+            blueChefs.add(numCohenBlue);
+            blueChefs.add(numHungryBlue);
+            blueChefs.add(numLazyBlue);
+    
+            redChefs.add(numMasterRed);
+            redChefs.add(numCohenRed);
+            redChefs.add(numHungryRed);
+            redChefs.add(numLazyRed);
+            
+            for(int i : blueChefs) {
+                blueChefCount += i;
+            }
+            
+            for(int i : redChefs) {
+                redChefCount += i;
+            }
+            
+            if((blueChefCount == numChefsBlue) && (redChefCount == numChefsRed)) {
+                startGame();
+            }
+            
+            
         }
     }
 
@@ -579,16 +603,6 @@ public class SettingsWorld extends World
 
     private void startGame()
     {
-        blueChefs.add(numMasterBlue);
-        blueChefs.add(numCohenBlue);
-        blueChefs.add(numHungryBlue);
-        blueChefs.add(numLazyBlue);
-
-        redChefs.add(numMasterRed);
-        redChefs.add(numCohenRed);
-        redChefs.add(numHungryRed);
-        redChefs.add(numLazyRed);
-
         restaurantBlue = new Restaurant(blueChefs, startMoneyBlue, "Blue", 0);
         restaurantRed = new Restaurant(redChefs, startMoneyRed, "Red", getWidth()/2);
 
@@ -617,13 +631,5 @@ public class SettingsWorld extends World
 
     public static int getNumRedChefs() {
         return numChefsRed;
-    }
-    
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-    private void prepare()
-    {
     }
 }
