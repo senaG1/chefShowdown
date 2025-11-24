@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=RestaurantWorld
-comment0.text=\r\n\ The\ ResraurantWorld\ class\ is\ a\ Greenfoot\ World.\r\n\ <p>\r\n\ When\ added,\ it\ will\ begin\ the\ simulation,where\ customers\ (Greenfoot\ actors)\ will\ be\ added.\r\n\ Depending\ on\ SettingsWorld,\ there\ may\ be\ 0\ -\ 3\ chefs\ added\ with\ effects\ randomly\ added.\r\n\ \r\n\ @author\ Cayden\ Chan,\ Jiayu\ C,\ Sena\ G,\ Oscar\ H,\ Isabel\ P,\ Grace\ T\r\n\ @version\ Nov.\ 22\ 2025\r\n
+comment0.text=\r\n\ The\ ResraurantWorld\ class\ is\ a\ Greenfoot\ World.\r\n\ <p>\r\n\ When\ added,\ it\ will\ begin\ the\ simulation,where\ customers\ (Greenfoot\ actors)\ will\ be\ added.\r\n\ Depending\ on\ SettingsWorld,\ there\ may\ be\ 0\ -\ 3\ chefs\ added\ with\ effects\ randomly\ added.\r\n\ \r\n\ @author\ Cayden\ Chan,\ Jiayu\ C,\ Sena\ G,\ Oscar\ H,\ Isabel\ P,\ Grace\ T\r\n\ @version\ Nov.\ 23\ 2025\r\n
 comment1.params=
 comment1.target=RestaurantWorld()
 comment1.text=\r\n\ Constructor\ for\ RestaurantWorld\ -\ creates\ a\ new\ RestaurantWorld.\r\n\ This\ is\ called\ from\ SettingsWorld,\ and\ is\ the\ second\ Constructor\ for\ RestaurantWorld.\r\n\ <p>\r\n\ Used\ for\ the\ first\ starting\ this\ World\ and\ for\ DayWorld\ to\ count\ the\ days.\r\n\ \r\n

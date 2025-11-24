@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Depending on SettingsWorld, there may be 0 - 3 chefs added with effects randomly added.
  * 
  * @author Cayden Chan, Jiayu C, Sena G, Oscar H, Isabel P, Grace T
- * @version Nov. 22 2025
+ * @version Nov. 23 2025
  */
 public class RestaurantWorld extends World
 {
