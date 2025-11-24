@@ -457,23 +457,23 @@ public class Customer extends SuperSmoothMover
         double patiencePercent = (double)currentPatience / maxPatience * 100;
         if(foodQuality >= 3)
         {
-            if(patiencePercent >= 90)
+            if(patiencePercent >= 70)
             {
                 rating = 5;
             }
-            else if(patiencePercent >= 80)
+            else if(patiencePercent >= 60)
             {
                 rating = 4;
             }
-            else if(patiencePercent >= 70)
+            else if(patiencePercent >= 50)
             {
                 rating = 3;
             }
-            else if(patiencePercent >= 60)
+            else if(patiencePercent >= 40)
             {
                 rating = 2;
             }
-            else if(patiencePercent > 50)
+            else if(patiencePercent > 30)
             {
                 rating = 1;
             }

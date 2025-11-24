@@ -38,6 +38,7 @@ public class Restaurant extends SuperSmoothMover
     private int totalRating;
     
     private int actCount;
+    private int hireChefCount;
     
     /**
      * Sets up the UI display, and draws the image for the restaurant.
@@ -76,7 +77,7 @@ public class Restaurant extends SuperSmoothMover
     
     public void act() {
         actCount++;
-        if(actCount >= 600){
+        if(actCount >= 200){
             actCount = 0;
             chefs = new ArrayList(getWorld().getObjects(Chef.class));
             for(Chef c : chefs){//each restaurant will only pay its own chefs
@@ -94,11 +95,33 @@ public class Restaurant extends SuperSmoothMover
         }
     }
     
-    private void purchaseEffect() {
-        // check how much cash it has
-        // decide which effect it wants to buy
-        // "buff" --> Influencer
-        // "sabatoge" --> rat infestation/power outage (power outage can just be a random occurance though)
+    public void hireChef(Chef chef, Restaurant restaurant) {
+        chefs.add(chef);
+        if (hireChefCount == 0) {
+            if (restaurant == rw.restaurantBlue) {
+                rw.addObject(chef, 300, 200);
+                hireChefCount++;
+            } else {
+                rw.addObject(chef, 700, 200);
+                hireChefCount++;
+            }
+        } else if (hireChefCount == 1) {
+            if (restaurant == rw.restaurantBlue) {
+                rw.addObject(chef, 400, 200);
+                hireChefCount++;
+            } else {
+                rw.addObject(chef, 800, 200);
+                hireChefCount++;
+            }
+        } else {
+            if (restaurant == rw.restaurantBlue) {
+                rw.addObject(chef, 400, 200);
+                hireChefCount++;
+            } else {
+                rw.addObject(chef, 700, 300);
+                hireChefCount++;
+            }
+        }
     }
     
     /**
@@ -118,12 +141,15 @@ public class Restaurant extends SuperSmoothMover
      */
     public void recordRating(int rating) {
         // numReviews++;
-        //System.out.println("num reviews: " + numReviews);
+        System.out.println("num reviews: " + numReviews);
+        
         totalRating += rating;
         double averageRating = totalRating / numReviews;
         double roundedRating = roundNearestRating(averageRating);
         finalRating = roundedRating;
         teamUI.updateRating(roundedRating);
+        
+        System.out.println("rating: " + rating);
     }
 
     private double roundNearestRating(double rating) {
@@ -197,12 +223,14 @@ public class Restaurant extends SuperSmoothMover
     public String getTeam() {
         return team;
     }
+    
     /**
      * returns how much cash the restaurant currently has
      */
     public int getCash() {
         return currentCash;
     }
+    
     /**
      * returns the restaurant's current average rating
      */

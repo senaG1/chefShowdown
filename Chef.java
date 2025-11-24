@@ -21,7 +21,7 @@ public abstract class Chef extends SuperSmoothMover
     protected int skill, foodX, foodY;
     protected Customer currentCustomer;
     protected Food food;
-
+    
     /**
      * Default constructor called by all Chef subclasses.
      * Sets up the same walk cycle for all chefs.
@@ -30,7 +30,7 @@ public abstract class Chef extends SuperSmoothMover
     {
         isCooking = false;
         barAdded = false;
-
+        
         cookCount = 0;
         walkSpeed = 5;
 
@@ -51,12 +51,10 @@ public abstract class Chef extends SuperSmoothMover
             side = "R";
             foodX = 860;
         }
-        cookBar = new SuperStatBar(cookSpeed, 0, this, 40, 10, -30, Color.YELLOW, Color.DARK_GRAY);
-        getWorld().addObject(cookBar, getX(), getY());
         foodY = 300;
         centreX = w.getWidth()/2;
     }
-
+    
     /**
      * <li> walks in a rectangle in the kitchen area of its restaurant </li>
      * <li> if there is an order, cook the order (update the timer) </li>
@@ -67,7 +65,8 @@ public abstract class Chef extends SuperSmoothMover
             barAdded = false;
         }
         if(!barAdded){
-
+            cookBar = new SuperStatBar(cookSpeed, 0, this, 40, 10, -30, Color.YELLOW, Color.DARK_GRAY);
+            getWorld().addObject(cookBar, getX(), getY());
             barAdded = true;
         }
         walk();
@@ -76,7 +75,7 @@ public abstract class Chef extends SuperSmoothMover
             cook();
         }   
     }
-
+    
     /**
      * Returns which side of the screen the chef is on
      * 
@@ -85,7 +84,7 @@ public abstract class Chef extends SuperSmoothMover
     public boolean onTeamBlue(){
         return side.equals("L");
     }
-
+    
     /**
      * Returns if the chef is currently cooking an order
      * 
@@ -98,18 +97,13 @@ public abstract class Chef extends SuperSmoothMover
     protected void nextOrder(){
         World w = getWorld();
         
-        //new cookBar
-        w.removeObject(cookBar);
-        cookBar = new SuperStatBar(cookSpeed, 0, this, 40, 10, -30, Color.YELLOW, Color.DARK_GRAY);
-        w.addObject(cookBar, getX(), getY());
-
         //customer gets food
         if(w != null && foodItem != null){
             food = new Food(foodItem, skill);
             w.addObject(food, foodX, foodY);
         }
         currentCustomer.pickUpOrder(food);
-
+    
         //next order starts
         if(orderBubble != null){
             w.removeObject(orderBubble);
@@ -201,14 +195,14 @@ public abstract class Chef extends SuperSmoothMover
         }
 
     }
-
+    
     /**
      * returns how much the chef must be paid by its restaurant
      */
     public int getSalary() {
         return salary;
     }
-
+    
     /**
      * if the restaurant does not have enough money to pay the chef's salary, the chef will despawn
      */

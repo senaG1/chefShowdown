@@ -6,7 +6,7 @@ import greenfoot.*;
  * Write a description of class Buttons here.
  *
  * @author Yehuda (1/2 of Nosson1459 - greenfoot.org user name)
- * @version (a version number or a date)
+ * @version Nov 2025 - Modified by Grace Tao
  */
 public class Button extends Actor {
     private GreenfootImage image;
