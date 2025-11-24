@@ -131,6 +131,7 @@ public class Restaurant extends SuperSmoothMover
      */
     public void collectCash(int amount) {
         currentCash += amount;
+        currentCash = Math.max(currentCash, 0);
         teamUI.updateCash(currentCash);
     }
     

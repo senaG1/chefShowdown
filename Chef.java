@@ -14,14 +14,14 @@ public abstract class Chef extends SuperSmoothMover
     protected int upperBound, lowerBound, farBound, closeBound;//movement box (close and far from center x of screen)
     protected int centreX;
     protected String side, foodItem;
-    protected boolean isCooking, barAdded;
+    protected boolean isCooking;
     protected SuperStatBar cookBar;
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage image, orderImage;
     protected int skill, foodX, foodY;
     protected Customer currentCustomer;
     protected Food food;
-    
+
     /**
      * Default constructor called by all Chef subclasses.
      * Sets up the same walk cycle for all chefs.
@@ -29,8 +29,6 @@ public abstract class Chef extends SuperSmoothMover
     public Chef()
     {
         isCooking = false;
-        barAdded = false;
-        
         cookCount = 0;
         walkSpeed = 5;
 
@@ -43,6 +41,8 @@ public abstract class Chef extends SuperSmoothMover
     }
 
     public void addedToWorld(World w){
+        cookBar = new SuperStatBar(cookSpeed, 0, this, 40, 10, -30, Color.YELLOW, Color.DARK_GRAY);
+        getWorld().addObject(cookBar, getX(), getY());
         if(getX() <= w.getWidth() / 2){//on left side, works for blue restaurant
             side = "L";
             turn(180);
@@ -54,28 +54,20 @@ public abstract class Chef extends SuperSmoothMover
         foodY = 300;
         centreX = w.getWidth()/2;
     }
-    
+
     /**
      * <li> walks in a rectangle in the kitchen area of its restaurant </li>
      * <li> if there is an order, cook the order (update the timer) </li>
      * <li> updates the superStatBar for cooking time </li>
      */
     public void act(){
-        if(cookBar == null){
-            barAdded = false;
-        }
-        if(!barAdded){
-            cookBar = new SuperStatBar(cookSpeed, 0, this, 40, 10, -30, Color.YELLOW, Color.DARK_GRAY);
-            getWorld().addObject(cookBar, getX(), getY());
-            barAdded = true;
-        }
         walk();
         cookBar.update(cookCount);
         if(isCooking){
             cook();
         }   
     }
-    
+
     /**
      * Returns which side of the screen the chef is on
      * 
@@ -84,7 +76,7 @@ public abstract class Chef extends SuperSmoothMover
     public boolean onTeamBlue(){
         return side.equals("L");
     }
-    
+
     /**
      * Returns if the chef is currently cooking an order
      * 
@@ -97,13 +89,16 @@ public abstract class Chef extends SuperSmoothMover
     protected void nextOrder(){
         World w = getWorld();
         
+        w.removeObject(cookBar);
+        cookBar = new SuperStatBar(cookSpeed, 0, this, 40, 10, -30, Color.YELLOW, Color.DARK_GRAY);
+        getWorld().addObject(cookBar, getX(), getY());
         //customer gets food
         if(w != null && foodItem != null){
             food = new Food(foodItem, skill);
             w.addObject(food, foodX, foodY);
         }
         currentCustomer.pickUpOrder(food);
-    
+
         //next order starts
         if(orderBubble != null){
             w.removeObject(orderBubble);
@@ -195,14 +190,14 @@ public abstract class Chef extends SuperSmoothMover
         }
 
     }
-    
+
     /**
      * returns how much the chef must be paid by its restaurant
      */
     public int getSalary() {
         return salary;
     }
-    
+
     /**
      * if the restaurant does not have enough money to pay the chef's salary, the chef will despawn
      */
