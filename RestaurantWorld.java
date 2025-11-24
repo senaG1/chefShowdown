@@ -92,6 +92,11 @@ public class RestaurantWorld extends World
         actTimer--;
         actCount++;
         dayTimer--;
+        
+        // Countdown cooldown timers
+        if (blueEffectCooldown > 0) blueEffectCooldown--;
+        if (redEffectCooldown > 0) redEffectCooldown--;
+        
         if(actTimer == 0)
         {
             addCustomers();
@@ -134,9 +139,11 @@ public class RestaurantWorld extends World
      */
     private void trySpawnEffect(String side, String effectType){
         if(side.equals("Blue")){
-            //No active effect on Blue side, spawn it
-            spawnEffect(side, effectType);
-            blueEffectCooldown = EFFECT_COOLDOWN_TIME;
+            if(blueEffectCooldown == 0){
+                //No active effect on Blue side, spawn it
+                spawnEffect(side, effectType);
+                blueEffectCooldown = EFFECT_COOLDOWN_TIME;
+            }
         }else if(side.equals("Red")){ 
             if(redEffectCooldown == 0){
                 // No active effect on Red side, spawn it
