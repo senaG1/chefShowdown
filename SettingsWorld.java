@@ -218,44 +218,52 @@ public class SettingsWorld extends World
         {
             numChefsBlue--;
             updateDisplay1();
+            SoundManager.playButton();
         }
         if (chefPlusBlue.isClicked() && numChefsBlue < MAX_CHEFS)
         {
             numChefsBlue++;
             updateDisplay1();
+            SoundManager.playButton();
         }
 
         if (moneyMinusBlue.isClicked() && startMoneyBlue > MIN_MONEY)
         {
             startMoneyBlue -= MONEY_INCREMENT;
             updateDisplay1();
+            SoundManager.playButton();
         }
         if (moneyPlusBlue.isClicked() && startMoneyBlue < MAX_MONEY)
         {
             startMoneyBlue += MONEY_INCREMENT;
             updateDisplay1();
+            SoundManager.playButton();
         }
 
         if (chefMinusRed.isClicked() && numChefsRed > MIN_CHEFS)
         {
             numChefsRed--;
             updateDisplay1();
+            SoundManager.playButton();
         }
         if (chefPlusRed.isClicked() && numChefsRed < MAX_CHEFS)
         {
             numChefsRed++;
             updateDisplay1();
+            SoundManager.playButton();
         }
 
         if (moneyMinusRed.isClicked() && startMoneyRed > MIN_MONEY)
         {
             startMoneyRed -= MONEY_INCREMENT;
             updateDisplay1();
+            SoundManager.playButton();
         }
         if (moneyPlusRed.isClicked() && startMoneyRed < MAX_MONEY)
         {
             startMoneyRed += MONEY_INCREMENT;
             updateDisplay1();
+            SoundManager.playButton();
         }
 
         if(nextBtn.isClicked()) {
@@ -270,36 +278,44 @@ public class SettingsWorld extends World
             if(plusMasterBlue.isClicked()) {
                 numMasterBlue++;
                 updateDisplay2();
+                SoundManager.playButton();
             }
             if(plusCohenBlue.isClicked()) {
                 numCohenBlue++;
                 updateDisplay2();
+                SoundManager.playButton();
             }
             if(plusHungryBlue.isClicked()) {
                 numHungryBlue++;
                 updateDisplay2();
+                SoundManager.playButton();
             }
             if(plusLazyBlue.isClicked()) {
                 numLazyBlue++;
                 updateDisplay2();
+                SoundManager.playButton();
             }
         }
 
         if(minusMasterBlue.isClicked() && numMasterBlue > 0) {
             numMasterBlue--;
             updateDisplay2();
+            SoundManager.playButton();
         }
         if(minusCohenBlue.isClicked() && numCohenBlue > 0) {
             numCohenBlue--;
             updateDisplay2();
+            SoundManager.playButton();
         }
         if(minusHungryBlue.isClicked() && numHungryBlue > 0) {
             numHungryBlue--;
             updateDisplay2();
+            SoundManager.playButton();
         }
         if(minusLazyBlue.isClicked() && numLazyBlue > 0) {
             numLazyBlue--;
             updateDisplay2();
+            SoundManager.playButton();
         }
 
         // Red chef selection
@@ -307,40 +323,49 @@ public class SettingsWorld extends World
             if(plusMasterRed.isClicked()) {
                 numMasterRed++;
                 updateDisplay2();
+                SoundManager.playButton();
             }
             if(plusCohenRed.isClicked()) {
                 numCohenRed++;
                 updateDisplay2();
+                SoundManager.playButton();
             }
             if(plusHungryRed.isClicked()) {
                 numHungryRed++;
                 updateDisplay2();
+                SoundManager.playButton();
             }
             if(plusLazyRed.isClicked()) {
                 numLazyRed++;
                 updateDisplay2();
+                SoundManager.playButton();
             }
         }
 
         if(minusMasterRed.isClicked() && numMasterRed > 0) {
             numMasterRed--;
             updateDisplay2();
+            SoundManager.playButton();
         }
         if(minusCohenRed.isClicked() && numCohenRed > 0) {
             numCohenRed--;
             updateDisplay2();
+            SoundManager.playButton();
         }
         if(minusHungryRed.isClicked() && numHungryRed > 0) {
             numHungryRed--;
             updateDisplay2();
+            SoundManager.playButton();
         }
         if(minusLazyRed.isClicked() && numLazyRed > 0) {
             numLazyRed--;
             updateDisplay2();
+            SoundManager.playButton();
         }
 
         if (playBtn.isClicked())
         {
+            SoundManager.playButton();
             startGame();
         }
     }

@@ -102,7 +102,10 @@ public abstract class Chef extends SuperSmoothMover
             food = new Food(foodItem, skill);
             w.addObject(food, foodX, foodY);
         }
-        currentCustomer.pickUpOrder(food);
+        if(currentCustomer != null)
+        {
+            currentCustomer.pickUpOrder(food);
+        }
     
         //next order starts
         if(orderBubble != null){

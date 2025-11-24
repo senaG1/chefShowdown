@@ -328,16 +328,20 @@ public class Customer extends SuperSmoothMover
      */
     public String getRestaurantSide()
     {
-        int x = getX();
-
-        if (x >= BLUE_MIN_X && x < BLUE_MAX_X)
+        if(this.getWorld() != null)
         {
-            return "Blue";
+            int x = getX();
+    
+            if (x >= BLUE_MIN_X && x < BLUE_MAX_X)
+            {
+                return "Blue";
+            }
+            else
+            {
+                return "Red";
+            }
         }
-        else
-        {
-            return "Red";
-        }
+        return "Blue";
     }
 
     /**

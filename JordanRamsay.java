@@ -32,10 +32,13 @@ public class JordanRamsay extends Customer
     
     public void pickUpOrder(Food f){
         super.pickUpOrder(f);
-        
+        String side = "";
         double patiencePercent = (double)currentPatience/maxPatience * 100;
         RestaurantWorld w = (RestaurantWorld)getWorld();
-        String side = getRestaurantSide();
+        if(this.getWorld() != null)
+        {
+            side = getRestaurantSide();
+        }
         
         //System.out.println("patance :" + patiencePercent);
         
