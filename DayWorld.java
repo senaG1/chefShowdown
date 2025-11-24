@@ -10,13 +10,13 @@ import java.util.ArrayList;
  */
 public class DayWorld extends World
 {
-    private int timer = 0;
+    public static int timer = 0;
     private GreenfootImage background;
     private Font dayFont;
     private Font teamFont;
     private Font statFont;
     private RestaurantWorld restWorld;
-    
+        
     private int blueCash;
     private double blueRating;
     private int redCash;
@@ -55,16 +55,18 @@ public class DayWorld extends World
         teamFont = new Font("Times New Roman", true, false, 60);
         statFont = new Font("Times New Roman", false, false, 35);
         getBackground().setFont(dayFont); 
-        getBackground().drawString("Day " + restWorld.getCurrentDay(), 357, 220);
+        getBackground().drawString("Day " + restWorld.getCurrentDay(), 357, 120);
         getBackground().setFont(teamFont);
-        getBackground().drawString("Blue Team:", 90, 380);
-        getBackground().drawString("Red Team: ", 580, 380);
+        getBackground().drawString("Blue Team:", 90, 80);
+        getBackground().drawString("Red Team: ", 580, 80);
         getBackground().setFont(statFont);
-        getBackground().drawString("Current Cash: $" + blueCash, 95, 460);
-        getBackground().drawString("Current Cash: $" + redCash, 575, 460);
-        getBackground().drawString("Current Rating: " + blueRating + " Stars", 95, 500);
-        getBackground().drawString("Current Rating: " + redRating + " Stars", 575, 500);
+        getBackground().drawString("Current Cash: $" + blueCash, 95, 160);
+        getBackground().drawString("Current Cash: $" + redCash, 575, 160);
+        getBackground().drawString("Current Rating: " + blueRating + " Stars", 95, 220);
+        getBackground().drawString("Current Rating: " + redRating + " Stars", 575, 220);
         
+        addObject(new HireChef(300, blueCash), 95, 300);
+        //addObject(new CelebEndorsement(redCash), 575, 250);
         SoundManager.playNextDay();
     }
     

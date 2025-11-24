@@ -145,6 +145,12 @@ public class Customer extends SuperSmoothMover
 
         if (givingUp && !leavingStore)
         {
+            if(!reviewCounted)
+            {
+                restaurant.addNumReviews(1);
+                restaurant.recordRating(rating);
+                reviewCounted = true;
+            }
             walkToExit();
             return;  
         }
