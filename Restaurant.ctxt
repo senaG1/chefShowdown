@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Restaurant
-comment0.text=\r\n\ The\ Restaurant\ class\ is\ responsible\ for\ managing\ the\ UI\ and\ for\ taking\ information\ from\ Chef\ and\ Customer\r\n\ <li>\ tracks\ how\ much\ cash\ the\ restaurant\ has</li>\r\n\ <li>\ pays\ the\ Chefs</li>\r\n\ <li>\ takes\ Customers'\ ratings\ and\ cash</li>\r\n\ <li>\ updates\ UI\ with\ cash\ and\ rating</li>\r\n\ \r\n\ @author\ Jiayu\ Chen,\ Cayden\ Chan\r\n\ @version\ November\ 2025\r\n
+comment0.text=\r\n\ The\ Restaurant\ class\ is\ responsible\ for\ managing\ the\ UI\ and\ for\ taking\ information\ from\ Chef\ and\ Customer\r\n\ <li>\ tracks\ how\ much\ cash\ the\ restaurant\ has</li>\r\n\ <li>\ pays\ the\ Chefs</li>\r\n\ <li>\ takes\ Customers'\ ratings\ and\ cash</li>\r\n\ <li>\ updates\ UI\ with\ cash\ and\ rating</li>\r\n\ \r\n\ @author\ Jiayu\ Chen,\ Cayden\ Chan,\ Grace\ Tao\r\n\ @version\ November\ 2025\r\n
 comment1.params=numChefs\ cash\ team\ xLocation
 comment1.target=Restaurant(java.util.ArrayList,\ int,\ java.lang.String,\ int)
 comment1.text=\r\n\ Sets\ up\ the\ UI\ display,\ and\ draws\ the\ image\ for\ the\ restaurant.\r\n\ \r\n\ @param\ numChefs\ \ the\ number\ of\ chefs\ selected\ in\ SettingsWorld\r\n\ @param\ cash\ \ starting\ cash\ selected\ in\ SettingsWorld\r\n\ @param\ team\ \ which\ side\ the\ restaurant\ is\ (blue\ or\ red)\r\n\ @param\ xLoaction\ the\ location\ of\ the\ restaurant\ based\ on\ the\ side\r\n

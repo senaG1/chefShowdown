@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * <li> takes Customers' ratings and cash</li>
  * <li> updates UI with cash and rating</li>
  * 
- * @author Jiayu Chen, Cayden Chan
+ * @author Jiayu Chen, Cayden Chan, Grace Tao
  * @version November 2025
  */
 public class Restaurant extends SuperSmoothMover

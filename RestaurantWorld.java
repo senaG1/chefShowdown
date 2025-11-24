@@ -165,11 +165,10 @@ public class RestaurantWorld extends World
     }
     
     /**
-     * Spawns the specified effect on the given restaurant side.
-     * Creates the appropriate effect object and adds it to the world.
-     * 
-     * @param side The restaurant side to affect ("Blue" or "Red")
-     * @param effectType The type of effect to spawn ("PowerOutage" or "RatInfestation")
+     * Adds chefs to both restaurants based on the selections from SettingsWorld.
+     * Retrieves chef counts from ArrayLists where index 0=Master, 1=Cohen, 2=Hungry, 3=Lazy,
+     * creates the appropriate chef objects, and positions them at predefined kitchen locations.
+     * Blue chefs spawn on the left side, red chefs spawn on the right side.
      */
     private void spawnEffect(String side, String effectType){
         if (effectType.equals("PowerOutage")) {

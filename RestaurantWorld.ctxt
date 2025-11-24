@@ -31,7 +31,7 @@ comment4.target=void\ trySpawnEffect(java.lang.String,\ java.lang.String)
 comment4.text=\r\n\ Attempts\ to\ spawn\ an\ effect\ on\ the\ specified\ side\ if\ no\ effect\ is\ currently\ active.\r\n\ Uses\ cooldown\ timer\ to\ prevent\ multiple\ effects\ on\ same\ side\ simultaneously.\r\n\ \r\n\ @param\ side\ The\ restaurant\ side\ to\ affect\ ("Blue"\ or\ "Red")\r\n\ @param\ effectType\ The\ type\ of\ effect\ to\ spawn\ ("PowerOutage"\ or\ "RatInfestation")\r\n
 comment5.params=side\ effectType
 comment5.target=void\ spawnEffect(java.lang.String,\ java.lang.String)
-comment5.text=\r\n\ Spawns\ the\ specified\ effect\ on\ the\ given\ restaurant\ side.\r\n\ Creates\ the\ appropriate\ effect\ object\ and\ adds\ it\ to\ the\ world.\r\n\ \r\n\ @param\ side\ The\ restaurant\ side\ to\ affect\ ("Blue"\ or\ "Red")\r\n\ @param\ effectType\ The\ type\ of\ effect\ to\ spawn\ ("PowerOutage"\ or\ "RatInfestation")\r\n
+comment5.text=\r\n\ Adds\ chefs\ to\ both\ restaurants\ based\ on\ the\ selections\ from\ SettingsWorld.\r\n\ Retrieves\ chef\ counts\ from\ ArrayLists\ where\ index\ 0\=Master,\ 1\=Cohen,\ 2\=Hungry,\ 3\=Lazy,\r\n\ creates\ the\ appropriate\ chef\ objects,\ and\ positions\ them\ at\ predefined\ kitchen\ locations.\r\n\ Blue\ chefs\ spawn\ on\ the\ left\ side,\ red\ chefs\ spawn\ on\ the\ right\ side.\r\n
 comment6.params=
 comment6.target=void\ stopped()
 comment6.text=\r\n\ Called\ when\ the\ world\ is\ stopped.\ Stops\ all\ background\ music\ and\ sound\ effects.\r\n
