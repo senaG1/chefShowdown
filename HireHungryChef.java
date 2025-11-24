@@ -3,21 +3,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class HireChef here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jiayu Chen
+ * @version November 23 2025
  */
-public class HireChef extends Actor
+public class HireHungryChef extends Actor
 {
     private GreenfootImage image;
     private Restaurant restaurant;
     private int value;
     private boolean isBought;
     private int teamCash;
-    public HireChef(int cost, int teamCash) {
+    private RestaurantWorld rw;
+    public HireHungryChef(int cost, int teamCash, Restaurant restaurant) {
         value = cost;
         this.restaurant = restaurant;
         this.teamCash = teamCash;
-        image = new GreenfootImage("Buffs/Hire_MasterChef.png");
+        image = new GreenfootImage("Buffs/Hire_HungryChef.png");
         setImage(image);
     }
     
@@ -26,17 +27,18 @@ public class HireChef extends Actor
     }
     
     public void act()
-    {
+    {   
+        int teamCash = restaurant.getCash();
         if (DayWorld.timer == 150 && teamCash > value + 200) {
             getWorld().removeObject(this);
+            restaurant.collectCash(-value);
+            HungryChef newChef = new HungryChef();
+            restaurant.hireChef(newChef, restaurant);
+            
             SoundManager.playMoney();
             isBought = true;
         }
         
         isBought = false;
-    }
-    
-    private void drawImage() {
-        
     }
 }

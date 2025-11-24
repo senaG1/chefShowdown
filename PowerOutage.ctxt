@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=PowerOutage
-comment0.text=\r\n\ Darkens\ one\ restaurant\ side\ causing\ customers\ to\ leave.\r\n\ At\ least\ 2\ customers\ leave,\ with\ 50%\ chance\ for\ others.\ Lasts\ 4\ seconds\ with\ fade-out.\r\n\ Plays\ electricity\ out\ sound\ effect.\r\n\ \r\n\ @author\ Sena\ Godek\r\n\ @version\ November\ 2025\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ PowerOutage\ here.\r\n\ \r\n\ @author\ Sena\ Godek\r\n\ @version\ 2025\r\n
 comment1.params=side
 comment1.target=PowerOutage(java.lang.String)
 comment1.text=\r\n\ Constructor\ for\ PowerOutage\r\n\ @param\ side\ -\ "Red"\ or\ "Blue"\ to\ specify\ which\ restaurant\ loses\ power\r\n

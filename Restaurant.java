@@ -76,7 +76,7 @@ public class Restaurant extends SuperSmoothMover
     
     public void act() {
         actCount++;
-        if(actCount >= 600){
+        if(actCount >= 200){
             actCount = 0;
             chefs = new ArrayList(getWorld().getObjects(Chef.class));
             for(Chef c : chefs){//each restaurant will only pay its own chefs
@@ -94,11 +94,13 @@ public class Restaurant extends SuperSmoothMover
         }
     }
     
-    private void purchaseEffect() {
-        // check how much cash it has
-        // decide which effect it wants to buy
-        // "buff" --> Influencer
-        // "sabatoge" --> rat infestation/power outage (power outage can just be a random occurance though)
+    public void hireChef(Chef chef, Restaurant restaurant) {
+        chefs.add(chef);
+        if (restaurant == rw.restaurantBlue) {
+            rw.addObject(chef, 300, 200);
+        } else {
+            rw.addObject(chef, 700, 200);
+        }
     }
     
     /**
@@ -200,12 +202,14 @@ public class Restaurant extends SuperSmoothMover
     public String getTeam() {
         return team;
     }
+    
     /**
      * returns how much cash the restaurant currently has
      */
     public int getCash() {
         return currentCash;
     }
+    
     /**
      * returns the restaurant's current average rating
      */
