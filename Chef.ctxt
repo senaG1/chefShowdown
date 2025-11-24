@@ -6,6 +6,7 @@ comment1.target=Chef()
 comment1.text=\r\n\ Default\ constructor\ called\ by\ all\ Chef\ subclasses.\r\n\ Sets\ up\ the\ same\ walk\ cycle\ for\ all\ chefs.\r\n
 comment10.params=
 comment10.target=int\ getSalary()
+comment10.text=\r\n\ returns\ how\ much\ the\ chef\ must\ be\ paid\ by\ its\ restaurant\r\n
 comment11.params=
 comment11.target=void\ quit()
 comment11.text=\r\n\ if\ the\ restaurant\ does\ not\ have\ enough\ money\ to\ pay\ the\ chef's\ salary,\ the\ chef\ will\ despawn\r\n

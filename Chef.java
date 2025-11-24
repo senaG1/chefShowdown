@@ -14,7 +14,7 @@ public abstract class Chef extends SuperSmoothMover
     protected int upperBound, lowerBound, farBound, closeBound;//movement box (close and far from center x of screen)
     protected int centreX;
     protected String side, foodItem;
-    protected boolean isCooking;
+    protected boolean isCooking, barAdded;
     protected SuperStatBar cookBar;
     protected SuperSpeechBubble orderBubble;
     protected GreenfootImage image, orderImage;
@@ -29,7 +29,8 @@ public abstract class Chef extends SuperSmoothMover
     public Chef()
     {
         isCooking = false;
-
+        barAdded = false;
+        
         cookCount = 0;
         walkSpeed = 5;
 
@@ -42,8 +43,6 @@ public abstract class Chef extends SuperSmoothMover
     }
 
     public void addedToWorld(World w){
-        cookBar = new SuperStatBar(cookSpeed, 0, this, 40, 10, -30, Color.YELLOW, Color.DARK_GRAY);
-        w.addObject(cookBar, getX(), getY());
         if(getX() <= w.getWidth() / 2){//on left side, works for blue restaurant
             side = "L";
             turn(180);
@@ -62,6 +61,14 @@ public abstract class Chef extends SuperSmoothMover
      * <li> updates the superStatBar for cooking time </li>
      */
     public void act(){
+        if(cookBar == null){
+            barAdded = false;
+        }
+        if(!barAdded){
+            cookBar = new SuperStatBar(cookSpeed, 0, this, 40, 10, -30, Color.YELLOW, Color.DARK_GRAY);
+            getWorld().addObject(cookBar, getX(), getY());
+            barAdded = true;
+        }
         walk();
         cookBar.update(cookCount);
         if(isCooking){
@@ -189,6 +196,9 @@ public abstract class Chef extends SuperSmoothMover
 
     }
     
+    /**
+     * returns how much the chef must be paid by its restaurant
+     */
     public int getSalary() {
         return salary;
     }

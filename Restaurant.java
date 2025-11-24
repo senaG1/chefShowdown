@@ -34,7 +34,7 @@ public class Restaurant extends SuperSmoothMover
     private int custLineY;
     private int teamBannerX;
     
-    private int numReviews = 0;
+    private int numReviews = 1;
     private int totalRating;
     
     private int actCount;
@@ -117,15 +117,11 @@ public class Restaurant extends SuperSmoothMover
      * @param rating    the Customer's rating out of five
      */
     public void recordRating(int rating) {
-        numReviews++;
-        System.out.println("num reviews: " + numReviews);
+        // numReviews++;
+        //System.out.println("num reviews: " + numReviews);
         totalRating += rating;
         double averageRating = totalRating / numReviews;
         double roundedRating = roundNearestRating(averageRating);
-         // Play sound if rating increased
-        if (roundedRating > finalRating) {
-            SoundManager.playIncreaseStar();
-        }
         finalRating = roundedRating;
         teamUI.updateRating(roundedRating);
     }

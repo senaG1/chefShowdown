@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Food extends SuperSmoothMover
 {
     private GreenfootImage image;
-    private int quality;
+    private int quality, actCount;
     /**
      * The constructor for the Food class that creates the food and determines its quality.
      * 
@@ -21,9 +21,18 @@ public class Food extends SuperSmoothMover
         image.scale(52, 52);
         setImage(image);
         
+        actCount = 0;
+        
         this.quality = quality;
     }
-   
+    
+    public void act(){
+        actCount++;
+        if(actCount >= 300){
+            getWorld().removeObject(this);
+        }
+    }
+    
     public int getQuality(){
         return quality;
     }

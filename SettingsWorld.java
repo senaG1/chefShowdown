@@ -611,6 +611,7 @@ public class SettingsWorld extends World
     public static int getNumRedChefs() {
         return numChefsRed;
     }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
