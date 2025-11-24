@@ -12,6 +12,9 @@ import greenfoot.*;
  * increaseStar by freesound_CrunchpixStudio from pixabay
  * nextDay by MixKit
  * electrivityOut by DB sound from pixabay 
+ * backgroundSound by HitsLab from pixabay
+ * happySound by Universfield from pixabay
+ * disgustSound by freesound_community from pixabay
  * 
  * @author Sena Godek
  * @version November 2025
@@ -28,6 +31,8 @@ public class SoundManager
     private static GreenfootSound[] increaseStarSounds;
     private static GreenfootSound[] electrivityOutSounds;
     private static GreenfootSound[] moneySounds;
+    private static GreenfootSound[] happySounds;
+    private static GreenfootSound[] disgustSounds;
     private static GreenfootSound backgroundSound; // background music
     
     // Indices to track which copy to play next
@@ -40,6 +45,8 @@ public class SoundManager
     private static int increaseStarIndex = 0;
     private static int electrivityOutIndex = 0;
     private static int moneyIndex = 0;
+    private static int happyIndex = 0;
+    private static int disgustIndex = 0;
     
      static {
         initializeSounds();
@@ -112,6 +119,20 @@ public class SoundManager
         for (int i = 0; i < moneySounds.length; i++){
             moneySounds[i] = new GreenfootSound("money.wav");
             moneySounds[i].setVolume(70);
+        }
+        
+        // leaveWithFood sound
+        happySounds = new GreenfootSound[15];
+        for (int i = 0; i < happySounds.length; i++){
+            happySounds[i] = new GreenfootSound("happy.wav");
+            happySounds[i].setVolume(70);
+        }
+        
+        // leaveWithFood (bad) sound
+        disgustSounds = new GreenfootSound[15];
+        for (int i = 0; i < disgustSounds.length; i++){
+            disgustSounds[i] = new GreenfootSound("disgust2.wav");
+            disgustSounds[i].setVolume(100);
         }
         
         backgroundSound = new GreenfootSound("backgroundmusic.mp3");
@@ -220,6 +241,28 @@ public class SoundManager
     }
     
     /**
+     *  Play happy sound
+     */
+    public static void playHappy(){
+        happySounds[happyIndex].play();
+        happyIndex++;
+        if (happyIndex >= happySounds.length) {
+            happyIndex = 0;
+        }
+    }
+    
+    /**
+     * Play disgust sound
+     */
+    public static void playDisgust(){
+        disgustSounds[disgustIndex].play();
+        disgustIndex++;
+        if (disgustIndex >= disgustSounds.length) {
+            disgustIndex = 0;
+        }
+    }
+    
+    /**
      * Starts background music loop if not already playing.
      */
     public static void playBackground(){
@@ -231,34 +274,8 @@ public class SoundManager
         backgroundSound.setVolume(20);
         backgroundSound.playLoop();
     }
+      
     
-    /**
-     * Stops background music completely.
-     */
-        public static void stopBackgroundMusic() {
-        if (backgroundSound != null) {
-            backgroundSound.stop();
-            backgroundSound = null;
-        }
-    }
-    
-    /**
-     * Pauses background music if currently playing.
-     */
-    public static void pauseBackgroundMusic() {
-        if (backgroundSound != null && backgroundSound.isPlaying()) {
-            backgroundSound.pause();
-        }
-    }
-    
-    /**
-     * Resumes background music from pause.
-     */
-    public static void resumeBackgroundMusic() {
-        if (backgroundSound != null) {
-            backgroundSound.play();
-        }
-    }
     
     /**
      * Stop all sounds (call this when game ends or is stopped)
@@ -311,6 +328,6 @@ public class SoundManager
         }
         
         // Stop background sound
-        stopBackgroundMusic();
+        backgroundSound.stop();
     }
 }

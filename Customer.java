@@ -41,6 +41,7 @@ public class Customer extends SuperSmoothMover
     protected boolean waitingOrder = false;
     protected boolean orderRecieved = false;
     protected boolean reviewCounted = false;
+    protected boolean leaveSoundPlayed = false;
     private boolean teamBlue;
     protected int foodQuality;
 
@@ -430,10 +431,20 @@ public class Customer extends SuperSmoothMover
         if(foodQuality <= 2)
         {
             orderImage = new GreenfootImage("disgust.png");
+            if(!leaveSoundPlayed)
+            {
+                SoundManager.playDisgust();
+                leaveSoundPlayed = true;
+            }
         }
         else
         {
             orderImage = new GreenfootImage("happy.png");
+            if(!leaveSoundPlayed)
+            {
+                SoundManager.playHappy();
+                leaveSoundPlayed = true;
+            }
         }
         orderBubble = new SuperSpeechBubble(this, 50, 55, 50, 15, 30, orderImage, true, true);
         getWorld().addObject(orderBubble, getX(), getY());

@@ -75,8 +75,6 @@ public class DayWorld extends World
         
         if(timer == 300){
             Greenfoot.setWorld(restWorld);
-        }
-        if(timer == 310){
             SoundManager.playBackground();
         }
     }
