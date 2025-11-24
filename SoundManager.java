@@ -19,7 +19,6 @@ import greenfoot.*;
 public class SoundManager  
 {
     // Arrays to store multiple copies of each sound
-    private static GreenfootSound[] coinSounds;
     private static GreenfootSound[] nextDaySounds;
     private static GreenfootSound[] paparazziSounds;
     private static GreenfootSound[] leaveSounds;
@@ -32,7 +31,6 @@ public class SoundManager
     private static GreenfootSound backgroundSound; // background music
     
     // Indices to track which copy to play next
-    private static int coinIndex = 0;
     private static int nextDayIndex = 0;
     private static int paparazziIndex = 0;
     private static int leaveIndex = 0;
@@ -52,12 +50,6 @@ public class SoundManager
      * Multiple copies prevent sounds from cutting off when played rapidly.
      */
     private static void initializeSounds() {
-        // coin sound
-        coinSounds = new GreenfootSound[15];
-        for (int i = 0; i < coinSounds.length; i++) {
-            coinSounds[i] = new GreenfootSound("coin.wav");
-            coinSounds[i].setVolume(100);
-        }
         
         // nextDay sound
         nextDaySounds = new GreenfootSound[15];
@@ -127,16 +119,6 @@ public class SoundManager
         
     }
     
-    /**
-     * Play coin sound
-     */
-    public static void playCoin() {
-        coinSounds[coinIndex].play();
-        coinIndex++;
-        if (coinIndex >= coinSounds.length) {
-            coinIndex = 0;
-        }
-    }
     
     /**
      * Play nextDay sound
@@ -282,10 +264,6 @@ public class SoundManager
      * Stop all sounds (call this when game ends or is stopped)
      */
     public static void stopAllSounds() {
-        // Stop all coin sounds
-        for (int i = 0; i < coinSounds.length; i++) {
-            coinSounds[i].stop();
-        }
         
         // Stop all nextDay sounds
         for (int i = 0; i < nextDaySounds.length; i++) {
