@@ -140,7 +140,7 @@ public class Restaurant extends SuperSmoothMover
      * 
      * @param rating    the Customer's rating out of five
      */
-    public void recordRating(int rating) {
+    public void recordRating(double rating) {
         // numReviews++;
         System.out.println("num reviews: " + numReviews);
         
@@ -151,6 +151,8 @@ public class Restaurant extends SuperSmoothMover
         teamUI.updateRating(roundedRating);
         
         System.out.println("rating: " + rating);
+        System.out.println("avg rating: " + averageRating);
+        System.out.println("Rounded rating: " + roundedRating);
     }
 
     private double roundNearestRating(double rating) {

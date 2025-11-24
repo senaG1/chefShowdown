@@ -49,7 +49,7 @@ public class Customer extends SuperSmoothMover
     private boolean teamBlue;
     protected int foodQuality;
 
-    private int rating;
+    private double rating;
 
     protected Restaurant restaurant;
 
@@ -459,32 +459,32 @@ public class Customer extends SuperSmoothMover
         {
             if(patiencePercent >= 70)
             {
-                rating = 5;
+                rating = 5.0;
             }
             else if(patiencePercent >= 60)
             {
-                rating = 4;
+                rating = 4.0;
             }
             else if(patiencePercent >= 50)
             {
-                rating = 3;
+                rating = 3.0;
             }
             else if(patiencePercent >= 40)
             {
-                rating = 2;
+                rating = 2.0;
             }
             else if(patiencePercent > 30)
             {
-                rating = 1;
+                rating = 1.0;
             }
             else
             {
-                rating = 0;
+                rating = 0.0;
             }
         }
         else
         {
-            rating = 2;
+            rating = 2.0;
         }
         walkToExit();
     }
@@ -576,7 +576,7 @@ public class Customer extends SuperSmoothMover
         orderRecieved = true;
     }
 
-    public int getRating()
+    public double getRating()
     {
         return rating;
     }
