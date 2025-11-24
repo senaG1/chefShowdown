@@ -82,9 +82,10 @@ public class RatInfestation extends Effect
         
         // Decrease rating by adding 2-3 bad reviews (1-2 stars each)
         if (targetRestaurant != null) {
-            int badReviews = Greenfoot.getRandomNumber(2) + 2; // 2 or 3 bad reviews
+            int badReviews = 1;
             for (int i = 0; i < badReviews; i++) {
-                int badRating = Greenfoot.getRandomNumber(2) + 1; // 1 or 2 stars
+                int badRating = Greenfoot.getRandomNumber(2) + 1;
+                targetRestaurant.addNumReviews(1);
                 targetRestaurant.recordRating(badRating);
             }
         }
