@@ -294,7 +294,7 @@ public class SoundManager
     /**
      * Poof celebrate sound
      */
-    public static void poofPlay(){
+    public static void playPoof(){
         poofSounds[poofIndex].play();
         poofIndex++;
         if (poofIndex >= poofSounds.length){
