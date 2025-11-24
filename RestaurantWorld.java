@@ -405,4 +405,12 @@ public class RestaurantWorld extends World
     private void prepare()
     {
     }
+    
+    public Restaurant getRedRestaurant() {
+        return restaurantRed;
+    }
+    
+    public Restaurant getBlueRestaurant() {
+        return restaurantBlue;
+    }
 }

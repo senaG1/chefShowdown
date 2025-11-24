@@ -84,7 +84,7 @@ public class SettingsWorld extends World
     private final int MIN_CHEFS = 1;
     private final int MAX_CHEFS = 3;
     private final int MIN_MONEY = 500;
-    private final int MAX_MONEY = 5000;
+    private final int MAX_MONEY = 3000;
     private final int MONEY_INCREMENT = 100;
 
     private final int BLUE_CENTER_X = 280;
