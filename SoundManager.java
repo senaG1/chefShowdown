@@ -15,6 +15,7 @@ import greenfoot.*;
  * backgroundSound by HitsLab from pixabay
  * happySound by Universfield from pixabay
  * disgustSound by freesound_community from pixabay
+ * celebrateSound by storegraphic from pixabay
  * 
  * @author Sena Godek
  * @version November 2025
@@ -33,6 +34,7 @@ public class SoundManager
     private static GreenfootSound[] moneySounds;
     private static GreenfootSound[] happySounds;
     private static GreenfootSound[] disgustSounds;
+    private static GreenfootSound[] celebrateSounds;
     private static GreenfootSound backgroundSound; // background music
     
     // Indices to track which copy to play next
@@ -47,6 +49,7 @@ public class SoundManager
     private static int moneyIndex = 0;
     private static int happyIndex = 0;
     private static int disgustIndex = 0;
+    private static int celebrateIndex = 0;
     
      static {
         initializeSounds();
@@ -133,6 +136,13 @@ public class SoundManager
         for (int i = 0; i < disgustSounds.length; i++){
             disgustSounds[i] = new GreenfootSound("disgust2.wav");
             disgustSounds[i].setVolume(100);
+        }
+        
+        // Celebrate during EndingWorld
+        celebrateSounds = new GreenfootSound[15];
+        for (int i = 0; i < celebrateSounds.length; i++){
+            celebrateSounds[i] = new GreenfootSound("celebrate.wav");
+            celebrateSounds[i].setVolume(90);
         }
         
         backgroundSound = new GreenfootSound("backgroundmusic.mp3");
@@ -263,6 +273,17 @@ public class SoundManager
     }
     
     /**
+     * Play celebrate sound
+     */
+    public static void playCelebrate(){
+        celebrateSounds[celebrateIndex].play();
+        celebrateIndex++;
+        if (celebrateIndex >= celebrateSounds.length){
+            celebrateIndex = 0;
+        }
+    }
+    
+    /**
      * Starts background music loop if not already playing.
      */
     public static void playBackground(){
@@ -326,6 +347,23 @@ public class SoundManager
         for (int i = 0; i < moneySounds.length; i++) {
             moneySounds[i].stop();
         }
+        
+        // Stop all happy sounds
+        for (int i = 0; i < happySounds.length; i++) {
+            happySounds[i].stop();
+        }
+        
+        // Stop all disgust sounds
+        for (int i = 0; i < disgustSounds.length; i++) {
+            disgustSounds[i].stop();
+        }
+        
+        // Stop all celebrate sounds
+        for (int i = 0; i < celebrateSounds.length; i++) {
+            celebrateSounds[i].stop();
+        }
+        
+        
         
         // Stop background sound
         backgroundSound.stop();

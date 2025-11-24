@@ -3,7 +3,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Arrays;
 /**
- * Write a description of class Customer here.
+ * Customers is an Actor, inherited from SuperSmoothMover
+ * <p>
+ * It is added to either the Left or Right side
+ * <p>
+ * Is able to line up, pay for food, order food, give ratings and display emotions
  * 
  * @author Oscar Ho 
  * @version 15-11

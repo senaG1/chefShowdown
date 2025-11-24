@@ -121,6 +121,7 @@ public class EndingWorld extends World
         if(timer == 720){
             talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "both, just kidding, you guys will share this hat", true, false);
             addObject(talkingBubble, 0, 0);
+            SoundManager.playCelebrate();
         }
 
         if(timer == 920){
@@ -186,7 +187,7 @@ public class EndingWorld extends World
             talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, winner, true, false);
             addObject(talkingBubble, 0, 0);
             winCohen.switchImage(imageColour);
-            
+            SoundManager.playCelebrate();
         }
 
         if(timer == 920){
