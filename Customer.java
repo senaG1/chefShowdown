@@ -548,6 +548,7 @@ public class Customer extends SuperSmoothMover
                 getWorld().removeObject(patience);
             }
             getWorld().removeObject(this);
+            return; //I added this for error remove if causes error
         }
     }
     

@@ -15,7 +15,7 @@ public class RestaurantWorld extends World
     //Counters
     private int actCount;
     private int actTimer = 180;
-    private int dayTimer = 1800;
+    private int dayTimer = 1650;
     
     private ArrayList<Customer> customers;
     //Restaurants
@@ -53,7 +53,7 @@ public class RestaurantWorld extends World
      * 
      */
     public RestaurantWorld() {
-        this(1);
+        this(0);
         prepare();
     }
     
@@ -132,7 +132,7 @@ public class RestaurantWorld extends World
             double leftRating = restaurantBlue.getRating();
             double rightRating = restaurantRed.getRating();
             Greenfoot.setWorld(new DayWorld(this, leftCash, leftRating, rightCash, rightRating));
-            dayTimer = 3600;
+            dayTimer = 1650;
         }
         
         if(currentDay == maxDays)

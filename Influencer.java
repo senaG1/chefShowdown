@@ -30,8 +30,11 @@ public class Influencer extends Customer
     
     public void act()
     {
+        if(getWorld() == null){ return;}
         super.act();
+        if(getWorld() == null){ return;}
         Paparazzi effect;
+        
         if (!hasPaparzzi && isInPositon() && inLine) {
             effect = new Paparazzi(); //Adds Paparazzi effect
             rw.addObject(effect, getX(), getY() - 100); //Calls world to add this
