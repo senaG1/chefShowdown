@@ -89,7 +89,7 @@ public class Restaurant extends SuperSmoothMover
     
     private void payChef(Chef c){
         collectCash(-c.getSalary());
-        if(currentCash == 0){
+        if(currentCash <= c.getSalary()){
             c.quit();
         }
     }
