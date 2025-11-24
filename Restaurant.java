@@ -121,7 +121,7 @@ public class Restaurant extends SuperSmoothMover
      * @param rating    the Customer's rating out of five
      */
     public void recordRating(int rating) {
-        // numReviews++;
+        numReviews++;
         System.out.println("num reviews: " + numReviews);
         totalRating += rating;
         double averageRating = totalRating / numReviews;

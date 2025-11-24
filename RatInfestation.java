@@ -3,23 +3,25 @@ import java.util.ArrayList;
 
 /**
  * RatInfestation - Spawns rats that run across the screen and causes customers to leave.
- * Decreases restaurant popularity and removes customers who are disgusted by the rats.
+ * Decreases restaurant popularity by removing 1-2 customers and lowering rating.
+ * Lasts 10 seconds with rats spawning every 10 seconds.
  * 
  * @author Sena Godek 
  * @version 2025
  */
 public class RatInfestation extends Effect
 {
-    private int spawnTimer;
-    private int totalDuration;
-    private boolean customersRemoved;
+    private int spawnTimer;               // Timer for spawning next batch of rats
+    private int totalDuration;            // Total effect duration
+    private boolean customersRemoved;     // Flag to remove customers only once
+    private Restaurant targetRestaurant;  // The affected restaurant
     
     /**
-     * Constructor for RatInfestation.
-     * Creates a rat infestation that lasts 60 seconds (3600 acts).
+     * Constructor - Creates a 10 second rat infestation effect.
+     * 
+     * @param side "Blue" or "Red" restaurant side
      */
-    public RatInfestation(String side)
-    {
+    public RatInfestation(String side){
         super(600, side);
         this.spawnTimer = 0;
         this.totalDuration = 600;
@@ -27,28 +29,65 @@ public class RatInfestation extends Effect
     }
     
     /**
+     * Gets reference to the correct restaurant when added to world.
+     * Needed to affect that restaurant's rating.
+     * 
+     * @param w The world this effect is being added to
+     */
+     public void addedToWorld(World w) {
+        RestaurantWorld rw = (RestaurantWorld) w;
+        // Get the correct restaurant based on side
+        if (restaurantSide.equals("Blue")) {
+            targetRestaurant = rw.restaurantBlue;
+        } else {
+            targetRestaurant = rw.restaurantRed;
+        }
+    }
+    
+    /**
      * loseCustomers - Removes customers who leave due to seeing rats.
      * At least 3 customers will leave, and remaining customers have a 60% chance of leaving.
-     * TODO: Also decrease restaurant star rating when that system is implemented.
      */
     public void loseCustomers()
     {
-        // Get all customers currently in the world
+         // Get all customers currently in the world
         ArrayList<Customer> customers = (ArrayList<Customer>)getWorld().getObjects(Customer.class);
         
-        // If there are no customers, nothing to do
         if (customers.isEmpty()) {
             return;
         }
         
-        // For all customers, 30% chance they leave
-        for (int i = customers.size() - 1; i >= 0; i--) {
-            if (Greenfoot.getRandomNumber(10) < 3) {  // 30% chance
-                getWorld().removeObject(customers.get(i));
+        // Filter customers to only those on this restaurant's side
+        ArrayList<Customer> sideCustomers = new ArrayList<Customer>();
+        for (Customer c : customers) {
+            if (c.getRestaurantSide().equals(restaurantSide)) {
+                sideCustomers.add(c);
             }
         }
-        // TODO: When star rating system is added, decrease stars here
-        // Example: restaurantWorld.decreaseStars(1);
+        
+        if (sideCustomers.isEmpty()) {
+            return;
+        }
+        
+        // Remove only 1-2 customers (very few)
+        int customersToRemove = Math.min(2, sideCustomers.size());
+        customersToRemove = Greenfoot.getRandomNumber(2) + 1; // 1 or 2 customers
+        
+        for (int i = 0; i < customersToRemove && i < sideCustomers.size(); i++) {
+            Customer c = sideCustomers.get(i);
+            if (c.getWorld() != null) {
+                getWorld().removeObject(c);
+            }
+        }
+        
+        // Decrease rating by adding 2-3 bad reviews (1-2 stars each)
+        if (targetRestaurant != null) {
+            int badReviews = Greenfoot.getRandomNumber(2) + 2; // 2 or 3 bad reviews
+            for (int i = 0; i < badReviews; i++) {
+                int badRating = Greenfoot.getRandomNumber(2) + 1; // 1 or 2 stars
+                targetRestaurant.recordRating(badRating);
+            }
+        }
     }
     
     /**
