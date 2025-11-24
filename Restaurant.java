@@ -38,6 +38,7 @@ public class Restaurant extends SuperSmoothMover
     private int totalRating;
     
     private int actCount;
+    private int hireChefCount;
     
     /**
      * Sets up the UI display, and draws the image for the restaurant.
@@ -96,10 +97,30 @@ public class Restaurant extends SuperSmoothMover
     
     public void hireChef(Chef chef, Restaurant restaurant) {
         chefs.add(chef);
-        if (restaurant == rw.restaurantBlue) {
-            rw.addObject(chef, 300, 200);
+        if (hireChefCount == 0) {
+            if (restaurant == rw.restaurantBlue) {
+                rw.addObject(chef, 300, 200);
+                hireChefCount++;
+            } else {
+                rw.addObject(chef, 700, 200);
+                hireChefCount++;
+            }
+        } else if (hireChefCount == 1) {
+            if (restaurant == rw.restaurantBlue) {
+                rw.addObject(chef, 400, 200);
+                hireChefCount++;
+            } else {
+                rw.addObject(chef, 800, 200);
+                hireChefCount++;
+            }
         } else {
-            rw.addObject(chef, 700, 200);
+            if (restaurant == rw.restaurantBlue) {
+                rw.addObject(chef, 400, 200);
+                hireChefCount++;
+            } else {
+                rw.addObject(chef, 700, 300);
+                hireChefCount++;
+            }
         }
     }
     
