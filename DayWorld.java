@@ -58,14 +58,14 @@ public class DayWorld extends World
         getBackground().fill();
         
         getBackground().setColor(Color.WHITE);        
-        dayFont = new Font ("Times New Roman", true, false, 80);
+        dayFont = new Font ("Times New Roman", true, false, 70);
         teamFont = new Font("Times New Roman", true, false, 50);
         statFont = new Font("Times New Roman", false, false, 35);
         getBackground().setFont(dayFont); 
-        getBackground().drawString("Day " + restWorld.getCurrentDay(), 357, 120);
+        getBackground().drawString("Day " + restWorld.getCurrentDay(), 400, 100);
         getBackground().setFont(teamFont);
         getBackground().drawString("Blue Team:", 120, 100);
-        getBackground().drawString("Red Team: ", 640, 100);
+        getBackground().drawString("Red Team: ", 620, 100);
         getBackground().setFont(statFont);
         getBackground().drawString("Current Rating: " + blueRating + " Stars", 95, 200);
         getBackground().drawString("Current Rating: " + redRating + " Stars", 575, 200);
