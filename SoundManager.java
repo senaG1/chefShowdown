@@ -72,14 +72,14 @@ public class SoundManager
         paparazziSounds = new GreenfootSound[15];
         for (int i = 0; i < paparazziSounds.length; i++) {
             paparazziSounds[i] = new GreenfootSound("paparazzi.wav");
-            paparazziSounds[i].setVolume(75);
+            paparazziSounds[i].setVolume(70);
         }
         
         // leave sound 
         leaveSounds = new GreenfootSound[15];
         for (int i = 0; i < leaveSounds.length; i++) {
             leaveSounds[i] = new GreenfootSound("leave.wav");
-            leaveSounds[i].setVolume(75);
+            leaveSounds[i].setVolume(65);
         }
         
         // rat sound
@@ -121,7 +121,7 @@ public class SoundManager
         moneySounds = new GreenfootSound[15];
         for (int i = 0; i < moneySounds.length; i++){
             moneySounds[i] = new GreenfootSound("money.wav");
-            moneySounds[i].setVolume(70);
+            moneySounds[i].setVolume(65);
         }
         
         // leaveWithFood sound
@@ -146,7 +146,7 @@ public class SoundManager
         }
         
         backgroundSound = new GreenfootSound("backgroundmusic.mp3");
-        backgroundSound.setVolume(20);
+        backgroundSound.setVolume(30);
         
     }
     
