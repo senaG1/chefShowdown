@@ -45,6 +45,8 @@ public class RestaurantWorld extends World
     private static final int RAT_SPAWN_X = 0;
     private static final int RAT_SPAWN_Y = 0;
     
+    private boolean hasStarted =  false;
+    
     /**
      * Constructor for RestaurantWorld - creates a new RestaurantWorld.
      * This is called from SettingsWorld, and is the second Constructor for RestaurantWorld.
@@ -184,6 +186,17 @@ public class RestaurantWorld extends World
      */
     public void stopped() {
         SoundManager.stopAllSounds();
+    }
+    
+    /**
+     * Called when the world is started/resumed. Restarts background music only if resuming.
+     */
+    public void started() {
+        if (hasStarted) {
+            // Only restart music if we're resuming (not first start)
+            SoundManager.playBackground();
+        }
+        hasStarted = true;
     }
     
     private void addChefs() {
