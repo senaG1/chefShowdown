@@ -29,8 +29,6 @@ public class CelebEndorsement extends Actor
             getWorld().removeObject(this);
             SoundManager.playMoney();
             isBought = true;
-            
-            rw.restaurantRed.setEndorsed(isBought);
         }
         
         isBought = false;
