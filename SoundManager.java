@@ -70,7 +70,7 @@ public class SoundManager
         paparazziSounds = new GreenfootSound[15];
         for (int i = 0; i < paparazziSounds.length; i++) {
             paparazziSounds[i] = new GreenfootSound("paparazzi.wav");
-            paparazziSounds[i].setVolume(100);
+            paparazziSounds[i].setVolume(75);
         }
         
         // leave sound 
