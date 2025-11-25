@@ -15,6 +15,14 @@ public class HireLazyChef extends Actor
     private int teamCash;
     private RestaurantWorld rw;
     private int purchaseRange;
+    
+    /**
+     * The constructor for HireLazyChef
+     * 
+     * @param cost          Takes the cost of the chef being hired
+     * @param teamCash      Takes the current amount of cash of the restaurant hiring
+     * @param restaurant    Takes the restaurant that is hiring the chef
+     */
     public HireLazyChef(int cost, int teamCash, Restaurant restaurant) {
         value = cost;
         purchaseRange = value + 200;

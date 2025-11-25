@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * <p>
  * This world allows players to customize their game setup through two screens:
  * <ul>
- * <li>Screen 1: Configure the number of chefs (1-3) and starting money ($500-$5000) for both Blue and Red restaurants</li>
+ * <li>Screen 1: Configure the number of chefs (1-3) and starting money ($100-$1000) for both Blue and Red restaurants</li>
  * <li>Screen 2: Select specific chef types (Master, Cohen, Hungry, Lazy) for each restaurant based on the total count chosen</li>
  * </ul>
  * The selected settings are stored as variables and passed to RestaurantWorld when the game starts.
