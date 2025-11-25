@@ -51,7 +51,7 @@ public class StatScreen extends SuperSmoothMover
         }
         
     }
-    
+    //Checks if object is at Y position
     private boolean isAtPosition(){
         return isAtY;
     }

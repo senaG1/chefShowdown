@@ -45,6 +45,8 @@ public class RestaurantWorld extends World
     private static final int RAT_SPAWN_X = 0;
     private static final int RAT_SPAWN_Y = 0;
     
+    private boolean hasStarted =  false;
+    
     /**
      * Constructor for RestaurantWorld - creates a new RestaurantWorld.
      * This is called from SettingsWorld, and is the second Constructor for RestaurantWorld.
@@ -184,6 +186,17 @@ public class RestaurantWorld extends World
      */
     public void stopped() {
         SoundManager.stopAllSounds();
+    }
+    
+    /**
+     * Called when the world is started/resumed. Restarts background music only if resuming.
+     */
+    public void started() {
+        if (hasStarted) {
+            // Only restart music if we're resuming (not first start)
+            SoundManager.playBackground();
+        }
+        hasStarted = true;
     }
     
     private void addChefs() {
@@ -341,28 +354,18 @@ public class RestaurantWorld extends World
     //Removes all customers when it switches the day
     private void removeCustomers(){
         ArrayList<Customer> cust = new ArrayList<Customer>(getObjects(Customer.class));
-        
         for(Customer c : cust){
             if(c.getWorld() != null){
                 removeObject(c);
             }
         }
-        
+        //For error checks
         ArrayList<SuperSpeechBubble> bubs = new ArrayList<SuperSpeechBubble>(getObjects(SuperSpeechBubble.class));
         for(SuperSpeechBubble b : bubs){
             if(b.getWorld() != null){
                 removeObject(b);
             }
         }
-        
-        ArrayList<SuperStatBar> bars = new ArrayList<SuperStatBar>(getObjects(SuperStatBar.class));
-        for(SuperStatBar bar : bars){
-            if(bar.getWorld() != null){
-                removeObject(bar);
-            }
-        }
-        
-        
     }
     
     /**
@@ -411,6 +414,7 @@ public class RestaurantWorld extends World
      */
     public void spawnCustomers(int amountOfCust, String restaurant){
         Restaurant rest = restaurant.equals("Blue") ? restaurantBlue : restaurantRed;
+        //Will run method the number of times given
         for(int i = 0; i < amountOfCust; i++){
             int customerType = Greenfoot.getRandomNumber(10);
             //Uses almost same method as add customers

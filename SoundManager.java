@@ -3,19 +3,18 @@ import greenfoot.*;
  * SoundManager - Manages all game sounds and background music.
  * Uses arrays of sound copies to allow overlapping sounds without cutting off.
  * 
- * coin sound by chieuk from pixabay
  * paprazzi by ShidenBeatsMusic from pixabay
  * leave by AberrantRealities from pixabay
  * rat by SOUND_GARAGE from pixabay
  * endGame by Superpuyofãns1234 from pixabay
  * fasterGameStart by Universfield from pixabay
- * increaseStar by freesound_CrunchpixStudio from pixabay
  * nextDay by MixKit
  * electrivityOut by DB sound from pixabay 
  * backgroundSound by HitsLab from pixabay
  * happySound by Universfield from pixabay
  * disgustSound by freesound_community from pixabay
  * celebrateSound by storegraphic from pixabay
+ * poof sound by freesound_community from pixabay
  * 
  * @author Sena Godek
  * @version November 2025
@@ -35,6 +34,7 @@ public class SoundManager
     private static GreenfootSound[] happySounds;
     private static GreenfootSound[] disgustSounds;
     private static GreenfootSound[] celebrateSounds;
+    private static GreenfootSound[] poofSounds;
     private static GreenfootSound backgroundSound; // background music
     
     // Indices to track which copy to play next
@@ -50,6 +50,7 @@ public class SoundManager
     private static int happyIndex = 0;
     private static int disgustIndex = 0;
     private static int celebrateIndex = 0;
+    private static int poofIndex = 0;
     
      static {
         initializeSounds();
@@ -72,21 +73,21 @@ public class SoundManager
         paparazziSounds = new GreenfootSound[15];
         for (int i = 0; i < paparazziSounds.length; i++) {
             paparazziSounds[i] = new GreenfootSound("paparazzi.wav");
-            paparazziSounds[i].setVolume(75);
+            paparazziSounds[i].setVolume(70);
         }
         
         // leave sound 
         leaveSounds = new GreenfootSound[15];
         for (int i = 0; i < leaveSounds.length; i++) {
             leaveSounds[i] = new GreenfootSound("leave.wav");
-            leaveSounds[i].setVolume(75);
+            leaveSounds[i].setVolume(65);
         }
         
         // rat sound
         ratSounds = new GreenfootSound[15];
         for (int i = 0; i < ratSounds.length; i++) {
             ratSounds[i] = new GreenfootSound("rat.wav");
-            ratSounds[i].setVolume(120);
+            ratSounds[i].setVolume(100);
         }
         
         // endGame sound 
@@ -121,7 +122,7 @@ public class SoundManager
         moneySounds = new GreenfootSound[15];
         for (int i = 0; i < moneySounds.length; i++){
             moneySounds[i] = new GreenfootSound("money.wav");
-            moneySounds[i].setVolume(70);
+            moneySounds[i].setVolume(65);
         }
         
         // leaveWithFood sound
@@ -145,8 +146,15 @@ public class SoundManager
             celebrateSounds[i].setVolume(90);
         }
         
+        // poof sound
+        poofSounds = new GreenfootSound[15];
+        for (int i = 0; i < poofSounds.length; i++){
+            poofSounds[i] = new GreenfootSound("poof.wav");
+            poofSounds[i].setVolume(90);
+        }
+        
         backgroundSound = new GreenfootSound("backgroundmusic.mp3");
-        backgroundSound.setVolume(20);
+        backgroundSound.setVolume(30);
         
     }
     
@@ -284,6 +292,17 @@ public class SoundManager
     }
     
     /**
+     * Poof celebrate sound
+     */
+    public static void playPoof(){
+        poofSounds[poofIndex].play();
+        poofIndex++;
+        if (poofIndex >= poofSounds.length){
+            poofIndex = 0;
+        }
+    }
+    
+    /**
      * Starts background music loop if not already playing.
      */
     public static void playBackground(){
@@ -363,7 +382,10 @@ public class SoundManager
             celebrateSounds[i].stop();
         }
         
-        
+        // Stop all poof sounds
+        for (int i = 0; i < poofSounds.length; i++) {
+            poofSounds[i].stop();
+        }
         
         // Stop background sound
         backgroundSound.stop();

@@ -10,8 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Influencer extends Customer
 {
     private GreenfootImage image;
-    private boolean firstAct = true;
-    private boolean hasPaparzzi = false;
+    private boolean hasPaparzzi = false; //Same as firstAct
     /**
      * Constructor for Influencer - creates a new Influencer.
      * This is called from Restaurant World.
@@ -32,8 +31,8 @@ public class Influencer extends Customer
     {
         if(getWorld() == null){ return;} //Stops errors
         super.act();
-        if(getWorld() == null){ return;}
-        Paparazzi effect;
+        if(getWorld() == null){ return;}//Stops errors
+        Paparazzi effect;//From effects class
         
         if (!hasPaparzzi && isInPositon() && inLine) {
             effect = new Paparazzi(); //Adds Paparazzi effect
@@ -44,14 +43,14 @@ public class Influencer extends Customer
             w.spawnCustomers(1, restaurant.getTeam()); 
             hasPaparzzi = true; //Paparzzi is only spawned once
             
-            //firstAct = false;
         }
     }
-    //Ensures that Influencer is in line BEFORE spawning a new customer
+    //Ensures that Influencer is in line BEFORE spawning a new customer 
+    //--> Without, causes customers to walk accross the game
     private boolean isInPositon(){
         int xCord = (getX() >= 480) ? LINE_X - 20 : LINE_X;
-        double distance = Math.abs(getX() - xCord);
-        return distance < 10;
+        double distance = Math.abs(getX() - xCord); //Always positive x cord
+        return distance < 10;//Return true if influencer is in line
     }
     
 }

@@ -202,7 +202,7 @@ public abstract class Chef extends SuperSmoothMover
      * if the restaurant does not have enough money to pay the chef's salary, the chef will despawn
      */
     public void quit(){
+        SoundManager.playPoof();
         getWorld().removeObject(this);
-        // play angry s;ound
     }   
 }
