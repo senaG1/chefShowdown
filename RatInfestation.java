@@ -78,7 +78,7 @@ public class RatInfestation extends Effect
         for (int i = 0; i < customersToRemove && i < sideCustomers.size(); i++) {
             Customer c = sideCustomers.get(i);
             if (c.getWorld() != null) {
-                getWorld().removeObject(c);
+                c.giveUp();
             }
         }
         

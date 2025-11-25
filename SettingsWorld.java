@@ -109,13 +109,13 @@ public class SettingsWorld extends World
         super(960, 640, 1);
 
         numChefsBlue = 1;
-        startMoneyBlue = 1000;
+        startMoneyBlue = 500;
         
         backgroundMusic = new GreenfootSound("SettingsBg.mp3");
         backgroundMusic.playLoop();
         // Red restaurant settings
         numChefsRed = 1;
-        startMoneyRed = 1000;
+        startMoneyRed = 500;
 
         background = new GreenfootImage("bg_settings.png");
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
