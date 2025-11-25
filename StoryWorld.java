@@ -37,7 +37,7 @@ public class StoryWorld extends World
         redCohen = new Cohen("red_Cohen.PNG", false);
         blueCohen = new Cohen("blue_Cohen.PNG", false);
         
-        addObject(goldenCohen, 178, 444);
+        addObject(goldenCohen, 185, 444);
         addObject(redCohen, 743, 398);
         addObject(blueCohen, 900, 398);
         
