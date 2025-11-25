@@ -31,7 +31,7 @@ public class HireMasterChef extends Actor
     public void act()
     {   
         teamCash = restaurant.getCash();
-        if (DayWorld.timer == 50 && teamCash > purchaseRange) {
+        if (DayWorld.timer == 200 && teamCash > purchaseRange) {
             getWorld().removeObject(this);
             restaurant.collectCash(-value);
             MasterChef newChef = new MasterChef();

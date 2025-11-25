@@ -78,6 +78,9 @@ public class DayWorld extends World
         getBackground().setFont(teamFont);
         getBackground().drawString("Red Team: ", 620, 100);
         getBackground().setColor(Color.WHITE);
+        
+        getBackground().drawString("Current Cash: $" + blueCash, 20, 160);
+        getBackground().drawString("Current Cash: $" + redCash, 500, 160);
        
         //Hires chefs for blue
         addObject(new HireMasterChef(300, blueCash, restaurantBlue), 146, 319);
@@ -87,19 +90,16 @@ public class DayWorld extends World
         addObject(new HireMasterChef(300, redCash, restaurantRed), 599, 319);
         addObject(new HireLazyChef(200, redCash, restaurantRed), 786, 319);
         addObject(new HireHungryChef(100, redCash, restaurantRed), 704, 523);
-        //addObject(new CelebEndorsement(redCash), 575, 250);
+        
         SoundManager.playNextDay();
     }
     
     public void act(){
         timer++;
         
-        if(timer == 300){
+        if(timer == 500){
             Greenfoot.setWorld(restWorld);
             SoundManager.playBackground();
         }
-        
-        getBackground().drawString("Current Cash: $" + blueCash, 20, 160);
-        getBackground().drawString("Current Cash: $" + redCash, 500, 160);
     }
 }

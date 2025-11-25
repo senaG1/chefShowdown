@@ -87,6 +87,7 @@ public class RatInfestation extends Effect
             int badReviews = Greenfoot.getRandomNumber(2) + 2; // 2 or 3 bad reviews
             for (int i = 0; i < badReviews; i++) {
                 int badRating = Greenfoot.getRandomNumber(2) + 1; // 1 or 2 stars
+                targetRestaurant.addNumReviews(badReviews);
                 targetRestaurant.recordRating(badRating);
             }
         }

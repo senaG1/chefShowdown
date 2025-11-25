@@ -17,7 +17,7 @@ public class HireLazyChef extends Actor
     private int purchaseRange;
     public HireLazyChef(int cost, int teamCash, Restaurant restaurant) {
         value = cost;
-        purchaseRange = value + 300;
+        purchaseRange = value + 200;
         this.restaurant = restaurant;
         this.teamCash = teamCash;
         image = new GreenfootImage("Buffs/Hire_LazyChef.png");
@@ -31,7 +31,7 @@ public class HireLazyChef extends Actor
     public void act()
     {   
         teamCash = restaurant.getCash();
-        if (DayWorld.timer == 100 && teamCash > purchaseRange) {
+        if (DayWorld.timer == 300 && teamCash > purchaseRange) {
             getWorld().removeObject(this);
             restaurant.collectCash(-value);
             LazyChef newChef = new LazyChef();
