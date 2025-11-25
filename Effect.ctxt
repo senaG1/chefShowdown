@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Effect
-comment0.text=\r\n\ Effect\ -\ Abstract\ superclass\ for\ temporary\ visual\ and\ gameplay\ effects.\r\n\ <p>\r\n\ Provides\ fade-out\ functionality\ and\ automatic\ removal\ after\ a\ duration.\r\n\ \r\n\ @Sena\ Godek\ \r\n\ @version\:\ 2025\r\n
+comment0.text=\r\n\ Effect\ -\ Abstract\ superclass\ for\ temporary\ visual\ and\ gameplay\ effects.\r\n\ \r\n\ Provides\ fade-out\ functionality\ and\ automatic\ removal\ after\ a\ duration.\r\n\ \r\n\ @Sena\ Godek\ \r\n\ @version\:\ 2025\r\n
 comment1.params=duration
 comment1.target=Effect(int)
 comment1.text=\r\n\ Constructor\ for\ Effect\r\n\ @param\ duration\ -\ how\ long\ the\ effect\ lasts\ before\ fading\ out\r\n\ @param\ side\ -\ Red\ or\ Blue\ to\ specify\ which\ restaurant\ is\ affected\r\n
@@ -16,7 +16,6 @@ comment5.params=
 comment5.target=void\ act()
 comment6.params=
 comment6.target=void\ loseCustomers()
-comment6.text=\r\n\ Any\ effect\ should\ cause\ some\ number\ of\ customers\ to\ leave\ the\ restaurant\r\n
 comment7.params=
 comment7.target=java.lang.String\ getRestaurantSide()
 comment7.text=\r\n\ Get\ which\ restaurant\ side\ this\ effect\ is\ for\r\n\ @return\ "Red"\ or\ "Blue"\r\n
