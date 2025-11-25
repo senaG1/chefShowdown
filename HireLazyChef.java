@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class HireChef here.
+ * Hires a Lazy chef in the respective restaurant.
  * 
  * @author Jiayu Chen
  * @version November 23 2025
