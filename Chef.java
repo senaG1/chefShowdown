@@ -122,7 +122,7 @@ public abstract class Chef extends SuperSmoothMover
      * @param c the customer that is ordering
      */
     public boolean takeOrder(GreenfootImage img, String orderName, Customer c){
-        if(!isCooking && this != null){
+        if(!isCooking){
             isCooking = true;
             currentFood = 0;
             orderImage = new GreenfootImage(img);
@@ -197,12 +197,4 @@ public abstract class Chef extends SuperSmoothMover
     public int getSalary() {
         return salary;
     }
-
-    /**
-     * if the restaurant does not have enough money to pay the chef's salary, the chef will despawn
-     */
-    public void quit(){
-        SoundManager.playPoof();
-        getWorld().removeObject(this);
-    }   
 }
