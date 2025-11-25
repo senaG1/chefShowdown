@@ -158,3 +158,17 @@ Sound Credits:
 -Creative Commons CC BY 3.0
 -https://creativecommons.org/licenses/by/3.0/
 
+-Forever Young by AudioCoffee | https://www.audiocoffee.net/
+-Music promoted by https://www.chosic.com/free-music/all/
+-Creative Commons CC BY-SA 3.0
+-https://creativecommons.org/licenses/by-sa/3.0/
+
+-Resurgence by Ghostrifter Official | https://soundcloud.com/ghostrifter-official
+-Music promoted by https://www.chosic.com/free-music/all/
+-Creative Commons CC BY-SA 3.0
+-https://creativecommons.org/licenses/by-sa/3.0/
+
+-Cooking by Alex-Productions | https://onsound.eu/
+-Music promoted by https://www.chosic.com/free-music/all/
+-Creative Commons CC BY 3.0
+-https://creativecommons.org/licenses/by/3.0/
