@@ -3,14 +3,12 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Arrays;
 /**
- * Customers is an Actor, inherited from SuperSmoothMover
+ * Customers is an Actor that is added to either the left or right side of the screen.
  * <p>
- * It is added to either the Left or Right side
- * <p>
- * Is able to line up, pay for food, order food, give ratings and display emotions
+ * Is able to line up, pay for food, order food, give ratings and display emotions.
  * 
- * @author Oscar Ho 
- * @version 15-11
+ * @author Oscar Ho, Cayden Chan
+ * @version November 2025
  */
 public class Customer extends SuperSmoothMover
 {
@@ -242,8 +240,7 @@ public class Customer extends SuperSmoothMover
 
     
     /**
-     * Makes customers exit the building
-     * and displays angry speech bubble
+     * Makes customers exit the building and displays angry speech bubble
      */
     public void giveUp()
     {
@@ -560,6 +557,10 @@ public class Customer extends SuperSmoothMover
         }
     }
     
+    /**
+     * the customer takes its food and rates it
+     * @param f the customer's food item made by the chef
+     */
     public void pickUpOrder(Food f){
         World w = getWorld();
         if(w != null){
@@ -569,20 +570,35 @@ public class Customer extends SuperSmoothMover
         foodQuality = f.getQuality();
     }
     
+    /**
+     * if the customer is lining up to order
+     * @return boolean True if lining up otherwise False
+     */
     public boolean isInLine(){
         return inLine;    
     }
-
+    
+    /**
+     * called when the customer gets its order
+     */
     public void setOrderRecieved()
     {
         orderRecieved = true;
     }
-
+    
+    /**
+     * returns the rating that the customer gives the food
+     * @return double the rating that the customer gives
+     */
     public double getRating()
     {
         return rating;
     }
-
+    
+    /**
+     * returns the food item the customer ordered
+     * @return String the food item
+     */
     public String getOrder()
     {
         return order;

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=RatInfestation
-comment0.text=\r\n\ RatInfestation\ -\ Spawns\ rats\ that\ run\ across\ the\ screen\ and\ causes\ customers\ to\ leave.\r\n\ <p>\r\n\ Decreases\ restaurant\ popularity\ by\ removing\ 1-2\ customers\ and\ lowering\ rating.\r\n\ <p>\r\n\ Lasts\ 10\ seconds\ with\ rats\ spawning\ every\ 10\ seconds.\r\n\ \r\n\ @author\ Sena\ Godek\ \r\n\ @version\ 2025\r\n
+comment0.text=\r\n\ RatInfestation\ -\ Spawns\ rats\ that\ run\ across\ the\ screen\ and\ causes\ customers\ to\ leave.\r\n\ Decreases\ restaurant\ popularity\ by\ removing\ 1-2\ customers\ and\ lowering\ rating.\r\n\ Lasts\ 10\ seconds\ with\ rats\ spawning\ every\ 10\ seconds.\r\n\ \r\n\ @author\ Sena\ Godek\ \r\n\ @version\ 2025\r\n
 comment1.params=side
 comment1.target=RatInfestation(java.lang.String)
 comment1.text=\r\n\ Constructor\ -\ Creates\ a\ 10\ second\ rat\ infestation\ effect.\r\n\ \r\n\ @param\ side\ "Blue"\ or\ "Red"\ restaurant\ side\r\n
