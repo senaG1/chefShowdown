@@ -31,6 +31,10 @@ Image Credits:
 -istockphoto
 -https://www.istockphoto.com/vector/star-rating-icons-on-gray-background-one-to-five-star-halfling-feedback-review-rate-gm1413680990-462678193
 
+-Forest View Window Images
+-By Adobe Stock
+-https://stock.adobe.com/search?k=forest+view+window
+
 -8-bit pixel art star raring icons set
 -By Yejin Woo
 -shutterstock

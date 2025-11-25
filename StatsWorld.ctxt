@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=StatsWorld
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ StatsWorld\ here.\r\n\ \r\n\ @author\ Oscar\ Ho\ \r\n\ @version\ 11-22\r\n
+comment0.text=\r\n\ The\ StatsWorld\ displays\ the\ final\ data\ of\ both\ restaurants\ at\ the\ end\ of\ the\ simulation.\r\n\ \r\n\ @author\ Oscar\ Ho\ \r\n\ @version\ 11-22\r\n
 comment1.params=leftCash\ rightCash\ leftRating\ rightRating
 comment1.target=StatsWorld(int,\ int,\ double,\ double)
 comment1.text=\r\n\ Constructor\ for\ StatsWorld\ -\ creates\ a\ new\ StatsWorld\r\n\ This\ is\ called\ from\ EndingWorld\r\n\ \r\n\ @param\ leftCash\ \ Amount\ of\ cash\ Blue\ team\ has\r\n\ @param\ rightCash\ Amount\ of\ cash\ Red\ team\ has\r\n\ @param\ leftRating\ \ \ End\ rating\ for\ Blue\ team\r\n\ @param\ rightRating\ \ \ End\ rating\ for\ Red\ team\r\n
