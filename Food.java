@@ -35,6 +35,8 @@ public class Food extends SuperSmoothMover
     
     /**
      * Returns the quality of the food
+     * 
+     * @return int of the quality based on the chef's skill level
      */
     public int getQuality(){
         return quality;
