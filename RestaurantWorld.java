@@ -355,9 +355,11 @@ public class RestaurantWorld extends World
     private void removeCustomers(){
         ArrayList<Customer> cust = new ArrayList<Customer>(getObjects(Customer.class));
         for(Customer c : cust){
-            if(c.getWorld() != null){
+            World x = c.getWorld(); //
+            if(c.getWorld() != null && !c.isCustRemove()){
                 removeObject(c);
             }
+            
         }
     }
     
