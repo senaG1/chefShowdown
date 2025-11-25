@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class StatsWorld here.
+ * The StatsWorld displays the final data of both restaurants at the end of the simulation.
  * 
  * @author Oscar Ho 
  * @version 11-22
