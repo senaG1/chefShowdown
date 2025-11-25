@@ -28,7 +28,7 @@ public class RestaurantWorld extends World
     private int currentDay;
     private boolean spawnAtRed;
     //Here for now, will change when settings world added days 
-    private int maxDays = 3;
+    private int maxDays = 4;
 
     //Constants
     private static int labelHeight = 30;
@@ -55,7 +55,7 @@ public class RestaurantWorld extends World
      * 
      */
     public RestaurantWorld() {
-        this(0);
+        this(1);
         prepare();
     }
     
@@ -360,12 +360,14 @@ public class RestaurantWorld extends World
             }
         }
         //For error checks
+        /*
         ArrayList<SuperSpeechBubble> bubs = new ArrayList<SuperSpeechBubble>(getObjects(SuperSpeechBubble.class));
         for(SuperSpeechBubble b : bubs){
             if(b.getWorld() != null){
                 removeObject(b);
             }
         }
+        */
     }
     
     /**

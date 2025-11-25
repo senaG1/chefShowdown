@@ -100,6 +100,9 @@ Image Credits:
 -Images of Jordan Cohen
 -Taken by Isabel Powell
 
+-Day World Character Sprites of Chefs
+-Put together by Jiayu Chen on Canva
+
 Borrowed Code:
 
 -Button Animation
