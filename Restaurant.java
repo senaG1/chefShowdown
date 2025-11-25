@@ -189,6 +189,8 @@ public class Restaurant extends SuperSmoothMover
     
     /**
      * returns all chefs currently in the world
+     * 
+     * @return the chefs in the world
      */
     public ArrayList<Chef> getChefs() {
         return chefs;
@@ -196,6 +198,8 @@ public class Restaurant extends SuperSmoothMover
     
     /**
      * returns x position of customer spawn point
+     * 
+     * @return int x position of the customer spawn
      */
     public int getCustSpawnX() {
         return this.custSpawnX;
@@ -203,6 +207,8 @@ public class Restaurant extends SuperSmoothMover
     
     /**
      * returns y position of customer spawn point
+     * 
+     * @return int y position of the customer spawn
      */
     public int getCustSpawnY() {
         return this.custSpawnY;
@@ -210,6 +216,8 @@ public class Restaurant extends SuperSmoothMover
     
     /**
      * returns x position of the start of the Customer line
+     * 
+     * @return int x position of the customer line
      */
     public int getCustLineX() {
         return this.custLineX;
@@ -217,6 +225,8 @@ public class Restaurant extends SuperSmoothMover
     
     /**
      * returns y position of the start of the Customer line
+     * 
+     * @return int y position of the customer line
      */
     public int getCustLineY() {
         return this.custLineY;
@@ -224,6 +234,8 @@ public class Restaurant extends SuperSmoothMover
     
     /**
      * returns which team the restaurant is (Blue/Red)
+     * 
+     * @return String of the team
      */
     public String getTeam() {
         return team;
@@ -231,6 +243,8 @@ public class Restaurant extends SuperSmoothMover
     
     /**
      * returns how much cash the restaurant currently has
+     * 
+     * @return int amount of current cash
      */
     public int getCash() {
         return currentCash;
@@ -238,6 +252,8 @@ public class Restaurant extends SuperSmoothMover
     
     /**
      * returns the restaurant's current average rating
+     * 
+     * @return the rating of the restaurant
      */
     public double getRating() {
         return finalRating;

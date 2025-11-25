@@ -59,8 +59,6 @@ public class StatScreen extends SuperSmoothMover
     /**
      * This method is for other classes such as story world, and end World to call from.
      * To get the Cohens to do actions.
-     * 
-     * @return void    if called from, doAction will become true
      */
     public void callAction(){
         doAction = true;
