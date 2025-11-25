@@ -94,8 +94,11 @@ Image Credits:
 -Ending World
 -By Isabel Powell
 
--Mr. Cohen drawing
+-Jordan Cohen drawing
 -By Isabel Powell
+
+-Images of Jordan Cohen
+-Taken by Isabel Powell
 
 Borrowed Code:
 
@@ -110,5 +113,35 @@ Borrowed Code:
 -By Jordan Cohen
 
 -SuperSpeechBubble
--By Jordan Cohen, edited by Isabel and Ocar
+-By Jordan Cohen, edited by Isabel and Oscar
+
+-Label Class
+-By Greenfoot 
+
+Sound Credits:
+-coin sound by chieuk from pixabay
+
+-paprazzi by ShidenBeatsMusic from pixabay
+
+-leave by AberrantRealities from pixabay
+
+-rat by SOUND_GARAGE from pixabay
+
+-endGame by Superpuyofãns1234 from pixabay
+
+-fasterGameStart by Universfield from pixabay
+
+-increaseStar by freesound_CrunchpixStudio from pixabay
+
+-nextDay by MixKit
+
+-electrivityOut by DB sound from pixabay 
+
+-backgroundSound by HitsLab from pixabay
+
+-happySound by Universfield from pixabay
+
+-disgustSound by freesound_community from pixabay
+
+-celebrateSound by storegraphic from pixabay
 

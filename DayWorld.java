@@ -52,7 +52,7 @@ public class DayWorld extends World
 
         
         SoundManager.stopAllSounds();
-        restWorld.tomorrow();
+        restWorld.tomorrow(); //Calls public method in restaurant world
         
         getBackground().setColor(Color.BLACK);
         getBackground().fill();
@@ -61,19 +61,29 @@ public class DayWorld extends World
         dayFont = new Font ("Times New Roman", true, false, 70);
         teamFont = new Font("Times New Roman", true, false, 50);
         statFont = new Font("Times New Roman", false, false, 35);
+        //Number of day
         getBackground().setFont(dayFont); 
         getBackground().drawString("Day " + restWorld.getCurrentDay(), 400, 100);
+        //For Blue Team (blue Colour)
+        getBackground().setColor(Color.BLUE);
         getBackground().setFont(teamFont);
         getBackground().drawString("Blue Team:", 120, 100);
-        getBackground().drawString("Red Team: ", 620, 100);
+        //For blue Stats
+        getBackground().setColor(Color.WHITE);
         getBackground().setFont(statFont);
         getBackground().drawString("Current Rating: " + blueRating + " Stars", 95, 200);
         getBackground().drawString("Current Rating: " + redRating + " Stars", 575, 200);
-        
+        //For red Team:
+        getBackground().setColor(Color.RED);
+        getBackground().setFont(teamFont);
+        getBackground().drawString("Red Team: ", 620, 100);
+        getBackground().setColor(Color.WHITE);
+       
+        //Hires chefs for blue
         addObject(new HireMasterChef(300, blueCash, restaurantBlue), 146, 319);
         addObject(new HireLazyChef(200, blueCash, restaurantBlue), 348, 319);
         addObject(new HireHungryChef(100, blueCash, restaurantBlue), 258, 523);
-        
+        //Hires chefs for red
         addObject(new HireMasterChef(300, redCash, restaurantRed), 599, 319);
         addObject(new HireLazyChef(200, redCash, restaurantRed), 786, 319);
         addObject(new HireHungryChef(100, redCash, restaurantRed), 704, 523);
@@ -89,7 +99,7 @@ public class DayWorld extends World
             SoundManager.playBackground();
         }
         
-        getBackground().drawString("Current Cash: $" + blueCash, 95, 140);
-        getBackground().drawString("Current Cash: $" + redCash, 575, 140);
+        getBackground().drawString("Current Cash: $" + blueCash, 20, 160);
+        getBackground().drawString("Current Cash: $" + redCash, 500, 160);
     }
 }
