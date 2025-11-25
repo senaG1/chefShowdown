@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * A Label class that allows you to display a textual value on screen.
- * 
+ * <p>
  * The Label is an actor, so you will need to create it, and then add it to the world
  * in Greenfoot.  If you keep a reference to the Label then you can change the text it
  * displays.  

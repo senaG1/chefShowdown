@@ -3,7 +3,7 @@ import greenfoot.Greenfoot;
 import greenfoot.*; 
  
 /**
- * Write a description of class Buttons here.
+ * The Button class creates an interactive button that the user can click.
  *
  * @author Yehuda (1/2 of Nosson1459 - greenfoot.org user name)
  * @version Nov 2025 - Modified by Grace Tao
@@ -14,6 +14,12 @@ public class Button extends Actor {
     private Actor actorHoveredOver = null;
     private boolean clicked = false;
     
+    /**
+     * The constructor of the Button class.
+     * 
+     * @param image1    Takes the first image and sets it.
+     * @param image2    Takes the second image and stores it.
+     */
     public Button(String image1, String image2){
         image = new GreenfootImage (image1);
         image_2 = new GreenfootImage(image2);

@@ -59,7 +59,7 @@ public class TeamUI extends SuperSmoothMover {
      * @param newCash   Takes the current cash value from each restaurant.
      */
     public void updateCash(int newCash) {
-        cashCounter.setValue(newCash); // This updates the label
+        cashCounter.setValue(newCash); // This updates the cash label
     }
     
     /**
@@ -69,7 +69,7 @@ public class TeamUI extends SuperSmoothMover {
      *                          set the closest represented image of the actual average rating.
      */
     public void updateRating(double roundedRating) {
-        starImage = new GreenfootImage("star_rating/stars" + roundedRating + ".png");
+        starImage = new GreenfootImage("star_rating/stars" + roundedRating + ".png"); // sets the star image based on the average rounded rating
         starImage.scale(190, 40);
         starIcon.setImage(starImage);
     }

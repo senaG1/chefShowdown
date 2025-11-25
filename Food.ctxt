@@ -8,4 +8,5 @@ comment2.params=
 comment2.target=void\ act()
 comment3.params=
 comment3.target=int\ getQuality()
+comment3.text=\r\n\ Returns\ the\ quality\ of\ the\ food\r\n
 numComments=4

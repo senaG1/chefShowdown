@@ -3,7 +3,9 @@ import java.util.ArrayList;
 
 /**
  * RatInfestation - Spawns rats that run across the screen and causes customers to leave.
+ * <p>
  * Decreases restaurant popularity by removing 1-2 customers and lowering rating.
+ * <p>
  * Lasts 10 seconds with rats spawning every 10 seconds.
  * 
  * @author Sena Godek 
@@ -34,7 +36,7 @@ public class RatInfestation extends Effect
      * 
      * @param w The world this effect is being added to
      */
-     public void addedToWorld(World w) {
+    public void addedToWorld(World w) {
         RestaurantWorld rw = (RestaurantWorld) w;
         // Get the correct restaurant based on side
         if (restaurantSide.equals("Blue")) {

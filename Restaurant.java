@@ -95,6 +95,12 @@ public class Restaurant extends SuperSmoothMover
         }
     }
     
+    /**
+     * Adds a chef to a specified restaurant at a specific location
+     * 
+     * @param chef          Takes the type of chef
+     * @param restaurant    Takes the restaurant that hires the chef
+     */
     public void hireChef(Chef chef, Restaurant restaurant) {
         chefs.add(chef);
         if (hireChefCount == 0) {
@@ -136,23 +142,16 @@ public class Restaurant extends SuperSmoothMover
     }
     
     /**
-     * takes a customer's rating and updates the UI with the new average
+     * Takes a customer's rating and updates the UI with the new average
      * 
      * @param rating    the Customer's rating out of five
      */
     public void recordRating(double rating) {
-        // numReviews++;
-        System.out.println("num reviews: " + numReviews);
-        
         totalRating += rating;
         double averageRating = totalRating / numReviews;
         double roundedRating = roundNearestRating(averageRating);
         finalRating = roundedRating;
         teamUI.updateRating(roundedRating);
-        
-        System.out.println("rating: " + rating);
-        System.out.println("avg rating: " + averageRating);
-        System.out.println("Rounded rating: " + roundedRating);
     }
 
     private double roundNearestRating(double rating) {
@@ -180,9 +179,13 @@ public class Restaurant extends SuperSmoothMover
         setImage(img);
     }
     
-    public int addNumReviews(int reviewCount) {
+    /**
+     * Adds the number of reviews to each restaurant
+     * 
+     * @param reviewCount   Takes the number of reviews that a customer leaves
+     */
+    public void addNumReviews(int reviewCount) {
         numReviews += reviewCount;
-        return numReviews;
     }
     
     /**

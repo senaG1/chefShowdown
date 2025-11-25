@@ -1,8 +1,9 @@
 import greenfoot.*;
 /**
  * SoundManager - Manages all game sounds and background music.
+ * <p>
  * Uses arrays of sound copies to allow overlapping sounds without cutting off.
- * 
+ * <p>
  * paprazzi by ShidenBeatsMusic from pixabay
  * leave by AberrantRealities from pixabay
  * rat by SOUND_GARAGE from pixabay

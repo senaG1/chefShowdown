@@ -88,7 +88,7 @@ public class StoryWorld extends World
         
     }
     
-    protected void fade (int timeLeft, int totalFadeTime){
+    private void fade (int timeLeft, int totalFadeTime){
         double percent = timeLeft / (double)totalFadeTime;
         if (percent > 1.00) return;
         int newTransparency = (int)(percent * 255);

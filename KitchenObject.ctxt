@@ -1,8 +1,7 @@
 #BlueJ class context
 comment0.target=KitchenObject
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ KitchenObject\ here.\r\n\ \r\n\ @author\ Grace\ Tao\r\n\ @version\ Nov\ 2025\r\n
+comment0.text=\r\n\ Scales\ and\ sets\ the\ images\ for\ kitchen\ objects.\r\n\ \r\n\ @author\ Grace\ Tao\r\n\ @version\ Nov\ 2025\r\n
 comment1.params=costumeName
 comment1.target=KitchenObject(java.lang.String)
-comment2.params=
-comment2.target=void\ act()
-numComments=3
+comment1.text=\r\n\ The\ constructor\ for\ KitchenObject.\r\n\ \r\n\ @param\ costumeName\ \ \ Takes\ the\ name\ of\ the\ png.file\ of\ the\ image\r\n
+numComments=2

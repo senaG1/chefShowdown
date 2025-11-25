@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * High cost chef that cooks very fast
+ * High cost chef that cooks good quality food very fast
  * 
  * @author Cayden Chan
  * @version November 2025

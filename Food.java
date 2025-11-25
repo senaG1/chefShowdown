@@ -33,6 +33,9 @@ public class Food extends SuperSmoothMover
         }
     }
     
+    /**
+     * Returns the quality of the food
+     */
     public int getQuality(){
         return quality;
     }

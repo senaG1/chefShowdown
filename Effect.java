@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Effect - Abstract superclass for temporary visual and gameplay effects.
- * 
+ * <p>
  * Provides fade-out functionality and automatic removal after a duration.
  * 
  * @Sena Godek 
@@ -81,6 +81,9 @@ public abstract class Effect extends SuperSmoothMover
         }
     }
     
+    /**
+     * Any effect should cause some number of customers to leave the restaurant
+     */
     public abstract void loseCustomers();
     
     /**

@@ -3,7 +3,11 @@ import java.util.ArrayList;
 
 /**
  * Darkens one restaurant side causing customers to leave.
- * At least 2 customers leave, with 50% chance for others. Lasts 4 seconds with fade-out.
+ * <p>
+ * At least 2 customers leave, with 50% chance for others.
+ * <p>
+ * Lasts 4 seconds with fade-out.
+ * <p>
  * Plays electricity out sound effect.
  * 
  * @author Sena Godek

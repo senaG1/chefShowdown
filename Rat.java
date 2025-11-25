@@ -2,6 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Rat - Individual rat that scurries across the screen during a rat infestation.
+ * <p>
  * Runs from bottom to top and fades out after reaching the top.
  * 
  * @author Sena Godek 
