@@ -31,6 +31,10 @@ Image Credits:
 -istockphoto
 -https://www.istockphoto.com/vector/star-rating-icons-on-gray-background-one-to-five-star-halfling-feedback-review-rate-gm1413680990-462678193
 
+-Forest View Window Images
+-By Adobe Stock
+-https://stock.adobe.com/search?k=forest+view+window
+
 -8-bit pixel art star raring icons set
 -By Yejin Woo
 -shutterstock
@@ -158,3 +162,17 @@ Sound Credits:
 -Creative Commons CC BY 3.0
 -https://creativecommons.org/licenses/by/3.0/
 
+-Forever Young by AudioCoffee | https://www.audiocoffee.net/
+-Music promoted by https://www.chosic.com/free-music/all/
+-Creative Commons CC BY-SA 3.0
+-https://creativecommons.org/licenses/by-sa/3.0/
+
+-Resurgence by Ghostrifter Official | https://soundcloud.com/ghostrifter-official
+-Music promoted by https://www.chosic.com/free-music/all/
+-Creative Commons CC BY-SA 3.0
+-https://creativecommons.org/licenses/by-sa/3.0/
+
+-Cooking by Alex-Productions | https://onsound.eu/
+-Music promoted by https://www.chosic.com/free-music/all/
+-Creative Commons CC BY 3.0
+-https://creativecommons.org/licenses/by/3.0/

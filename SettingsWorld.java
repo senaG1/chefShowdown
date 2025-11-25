@@ -112,7 +112,7 @@ public class SettingsWorld extends World
         startMoneyBlue = 1000;
         
         backgroundMusic = new GreenfootSound("SettingsBg.mp3");
-        
+        backgroundMusic.playLoop();
         // Red restaurant settings
         numChefsRed = 1;
         startMoneyRed = 1000;
