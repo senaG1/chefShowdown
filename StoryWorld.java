@@ -36,6 +36,7 @@ public class StoryWorld extends World
         
         backgroundMusic = new GreenfootSound("StoryBg.mp3");
         backgroundMusic.playLoop();
+        backgroundMusic.setVolume(50);
         
         goldenCohen = new Cohen("golden_Cohen.PNG", true);
         redCohen = new Cohen("red_Cohen.PNG", false);

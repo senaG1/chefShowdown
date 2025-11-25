@@ -327,7 +327,7 @@ public class SoundManager
             bgSettings.stop();
         }
         bgSettings = new GreenfootSound("SettingsBg.mp3");
-        bgSettings.setVolume(50);
+        bgSettings.setVolume(40);
         if(backgroundSound.isPlaying()){
             bgSettings.playLoop();
         }
@@ -343,7 +343,7 @@ public class SoundManager
             bgStart.stop();
         }
         backgroundSound = new GreenfootSound("Cusine.mp3");
-        backgroundSound.setVolume(60);
+        backgroundSound.setVolume(50);
         backgroundSound.playLoop();
     }
     
