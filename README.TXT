@@ -111,11 +111,18 @@ Image Credits:
 -Day World Character Sprites of Chefs
 -Put together by Jiayu Chen on Canva
 
+-RestaurantWorld background, chef sprites, kitchen appliances
+-Put together by Grace Tao using Microsoft Paint program
+
+-SettingsWorld background, buttons, images
+-Put together by Grace Tao using Microsoft Paint program
+
 Borrowed Code:
 
 -Button Animation
 -By Nosson1459 and danpost
 -https://www.greenfoot.org/topics/58859/0
+-Edited by Grace Tao
 
 -SuperSmoothMover
 -By Jordan Cohen
