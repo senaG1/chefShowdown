@@ -386,6 +386,9 @@ public class SettingsWorld extends World
         // Draw title
         bg.setFont(new Font("Consolas", true, false, 64));
         bg.drawString("OPTIONS", 360, 200);
+        
+        bg.setFont(new Font("Consolas", true, false, 22));
+        bg.drawString("Choose the number of chefs (up to 3) and \nstarting money for each restaurant ($100-$1000)", 200, 450);
 
         // BLUE RESTAURANT (LEFT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
