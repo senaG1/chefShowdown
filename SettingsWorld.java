@@ -97,6 +97,8 @@ public class SettingsWorld extends World
     private final int RED_CENTER_X = 680;
     private final int RED_CHEF_Y = 320;
     private final int RED_MONEY_Y = 390;
+    
+    private GreenfootSound backgroundMusic;
 
     public SettingsWorld()
     {    
@@ -105,7 +107,10 @@ public class SettingsWorld extends World
 
         numChefsBlue = 1;
         startMoneyBlue = 1000;
-
+        
+        backgroundMusic = new GreenfootSound("SettingsBg.mp3");
+        backgroundMusic.playLoop();
+        
         // Red restaurant settings
         numChefsRed = 1;
         startMoneyRed = 1000;
@@ -605,9 +610,26 @@ public class SettingsWorld extends World
     {
         restaurantBlue = new Restaurant(blueChefs, startMoneyBlue, "Blue", 0);
         restaurantRed = new Restaurant(redChefs, startMoneyRed, "Red", getWidth()/2);
-
+        SoundManager.stopAllSounds();
+        backgroundMusic.stop();
         Greenfoot.setWorld(new RestaurantWorld());
     }
+    
+    /**
+     * Called when the world is stopped. Stops all background music and sound effects.
+     */
+    public void stopped() {
+        SoundManager.stopAllSounds();
+        backgroundMusic.pause();
+    }
+    
+    /**
+     * Called when the world is started/resumed. Restarts background music only if resuming.
+     */
+     public void started () {
+        backgroundMusic.playLoop();
+    }
+    
 
     public static ArrayList<Integer> getBlueChefs() {
         return blueChefs;

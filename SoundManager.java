@@ -37,6 +37,8 @@ public class SoundManager
     private static GreenfootSound[] celebrateSounds;
     private static GreenfootSound[] poofSounds;
     private static GreenfootSound backgroundSound; // background music
+    private static GreenfootSound bgStart;
+    private static GreenfootSound bgSettings;
     
     // Indices to track which copy to play next
     private static int nextDayIndex = 0;
@@ -312,11 +314,38 @@ public class SoundManager
             backgroundSound.stop();
         }
         backgroundSound = new GreenfootSound("backgroundmusic.mp3");
-        backgroundSound.setVolume(20);
+        backgroundSound.setVolume(50);
         backgroundSound.playLoop();
     }
-      
     
+    /**
+     * Starts background music loop if not already playing.
+     */
+    public static void playSettingBg(){
+        if(bgSettings != null)
+        {
+            bgSettings.stop();
+        }
+        bgSettings = new GreenfootSound("SettingsBg.mp3");
+        bgSettings.setVolume(50);
+        if(backgroundSound.isPlaying()){
+            bgSettings.playLoop();
+        }
+        
+    }
+      
+      /**
+     * Starts background music loop if not already playing.
+     */
+    public static void playStartBg(){
+        if(bgStart != null)
+        {
+            bgStart.stop();
+        }
+        backgroundSound = new GreenfootSound("Cusine.mp3");
+        backgroundSound.setVolume(60);
+        backgroundSound.playLoop();
+    }
     
     /**
      * Stop all sounds (call this when game ends or is stopped)
