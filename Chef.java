@@ -122,7 +122,7 @@ public abstract class Chef extends SuperSmoothMover
      * @param c the customer that is ordering
      */
     public boolean takeOrder(GreenfootImage img, String orderName, Customer c){
-        if(!isCooking){
+        if(!isCooking && this != null){
             isCooking = true;
             currentFood = 0;
             orderImage = new GreenfootImage(img);
