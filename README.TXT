@@ -7,6 +7,10 @@ SUMMARY: Welcome to the ultimate chef showdown between the famous Red and Blue C
 
 USER INSTRUCTIONS: Press START to begin the chef showdown between Chef Red Cohen and Chef Blue Cohen. In Settings, select the number of chefs for each team, and the starting cash for each team. Then, select one of the four unique chefs to add to the Red or Blue Restaurant based on the number of chefs chosen earlier. When fully decided, click "PLAY" to start the simulation!
 
+KNOWN BUGS:
+
+- Chefs skip over an order that is made while it's cooking another order if there is only 1 chef present
+
 CREDITS:
 
 Image Credits:
