@@ -125,7 +125,7 @@ public class SoundManager
         moneySounds = new GreenfootSound[15];
         for (int i = 0; i < moneySounds.length; i++){
             moneySounds[i] = new GreenfootSound("money.wav");
-            moneySounds[i].setVolume(65);
+            moneySounds[i].setVolume(95);
         }
         
         // leaveWithFood sound
