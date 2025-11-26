@@ -14,6 +14,9 @@ public class StartWorld extends World
     private Button button;
     private int timer = -1;
     private boolean switching = false;
+    private boolean hasStarted =  false;
+    private boolean music = false;
+    
     /**
      * Constructor for StartWorld - creates a new StartWorld.
      * Added when Simulation is first opened.
@@ -26,7 +29,7 @@ public class StartWorld extends World
         
         background = new GreenfootImage("start_Screen.png");
         setBackground(background);
-        button = new Button("startButton(1).png", "small_button.png");
+        button = new Button("startButton.png", "small_button.png");
         addObject(button, 480, 376);
     }
     
@@ -42,9 +45,29 @@ public class StartWorld extends World
         if(switching){
             timer--;
             if(timer <=0){
+                SoundManager.stopAllSounds();
                 Greenfoot.setWorld(new StoryWorld());  
             }
         }
     }
-   
+    
+    /**
+     * Called when the world is stopped. Stops all background music and sound effects.
+     */
+    public void stopped() {
+        SoundManager.stopAllSounds();
+    }
+    
+    /**
+     * Called when the world is started/resumed. Restarts background music only if resuming.
+     */
+    public void started() {
+        if(!music){
+            SoundManager.playStartBg();
+            music = true;
+            return;
+        }
+        SoundManager.playStartBg();
+    }
+    
 }

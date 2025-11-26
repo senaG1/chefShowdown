@@ -48,6 +48,8 @@ public class Customer extends SuperSmoothMover
     protected int foodQuality;
 
     private double rating;
+    
+    private boolean removingSelf = false;
 
     protected Restaurant restaurant;
 
@@ -551,6 +553,7 @@ public class Customer extends SuperSmoothMover
                 getWorld().removeObject(patience);
             }
             if (this != null) {
+                removingSelf = true;
                 getWorld().removeObject(this);
             }
             return; //I added this for error remove if causes error
@@ -593,6 +596,13 @@ public class Customer extends SuperSmoothMover
     public double getRating()
     {
         return rating;
+    }
+    /**
+     * returns whelter the customer has already removed itself from the world
+     * @return boolean if false it has not removed itself
+     */
+    public boolean isCustRemove(){
+        return removingSelf;
     }
     
     /**

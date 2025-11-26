@@ -15,6 +15,7 @@ public class StoryWorld extends World
     protected SuperSpeechBubble talkingBubble;
     private int timer = 0;
     
+    private GreenfootSound backgroundMusic;
     
     private Cohen goldenCohen;
     private Cohen redCohen;
@@ -32,6 +33,10 @@ public class StoryWorld extends World
         
         background = new GreenfootImage("story_Background.jpg");
         setBackground(background);
+        
+        backgroundMusic = new GreenfootSound("StoryBg.mp3");
+        backgroundMusic.playLoop();
+        backgroundMusic.setVolume(50);
         
         goldenCohen = new Cohen("golden_Cohen.PNG", true);
         redCohen = new Cohen("red_Cohen.PNG", false);
@@ -82,16 +87,26 @@ public class StoryWorld extends World
         }
         if(timer == 750)
         {
+            SoundManager.stopAllSounds();
+            backgroundMusic.stop();
             Greenfoot.setWorld(new SettingsWorld());
         }
         //redCohen.callAction();
         
     }
     
-    private void fade (int timeLeft, int totalFadeTime){
-        double percent = timeLeft / (double)totalFadeTime;
-        if (percent > 1.00) return;
-        int newTransparency = (int)(percent * 255);
-        background.setTransparency (newTransparency);
+    /**
+     * Called when the world is stopped. Stops all background music and sound effects.
+     */
+    public void stopped() {
+        SoundManager.stopAllSounds();
+        backgroundMusic.pause();
+    }
+    
+    /**
+     * Called when the world is started/resumed. Restarts background music only if resuming.
+     */
+     public void started () {
+        backgroundMusic.playLoop();
     }
 }

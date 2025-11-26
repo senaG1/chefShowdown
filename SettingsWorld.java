@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * <p>
  * This world allows players to customize their game setup through two screens:
  * <ul>
- * <li>Screen 1: Configure the number of chefs (1-3) and starting money ($500-$5000) for both Blue and Red restaurants</li>
+ * <li>Screen 1: Configure the number of chefs (1-3) and starting money ($100-$1000) for both Blue and Red restaurants</li>
  * <li>Screen 2: Select specific chef types (Master, Cohen, Hungry, Lazy) for each restaurant based on the total count chosen</li>
  * </ul>
  * The selected settings are stored as variables and passed to RestaurantWorld when the game starts.
@@ -86,8 +86,8 @@ public class SettingsWorld extends World
 
     private final int MIN_CHEFS = 1;
     private final int MAX_CHEFS = 3;
-    private final int MIN_MONEY = 500;
-    private final int MAX_MONEY = 3000;
+    private final int MIN_MONEY = 100;
+    private final int MAX_MONEY = 1000;
     private final int MONEY_INCREMENT = 100;
 
     private final int BLUE_CENTER_X = 280;
@@ -97,18 +97,25 @@ public class SettingsWorld extends World
     private final int RED_CENTER_X = 680;
     private final int RED_CHEF_Y = 320;
     private final int RED_MONEY_Y = 390;
-
+    
+    private GreenfootSound backgroundMusic;
+    
+    /**
+     * Default constructor creates graphics, arrayLists to store user input and starting values for the selections
+     */
     public SettingsWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(960, 640, 1);
 
         numChefsBlue = 1;
-        startMoneyBlue = 1000;
-
+        startMoneyBlue = 500;
+        
+        backgroundMusic = new GreenfootSound("SettingsBg.mp3");
+        backgroundMusic.playLoop();
         // Red restaurant settings
         numChefsRed = 1;
-        startMoneyRed = 1000;
+        startMoneyRed = 500;
 
         background = new GreenfootImage("bg_settings.png");
         background.scale(background.getWidth() * 5/2, background.getHeight() * 5/2 );
@@ -121,7 +128,7 @@ public class SettingsWorld extends World
 
         addObjectsToWorld();
     }
-
+    
     private void addObjectsToWorld(){
         // BLUE RESTAURANT BUTTONS
         // Buttons for chefs
@@ -379,6 +386,9 @@ public class SettingsWorld extends World
         // Draw title
         bg.setFont(new Font("Consolas", true, false, 64));
         bg.drawString("OPTIONS", 360, 200);
+        
+        bg.setFont(new Font("Consolas", true, false, 22));
+        bg.drawString("Choose the number of chefs (up to 3) and \nstarting money for each restaurant ($100-$1000)", 200, 450);
 
         // BLUE RESTAURANT (LEFT SIDE)
         bg.setFont(new Font("Consolas", true, false, 32));
@@ -605,30 +615,70 @@ public class SettingsWorld extends World
     {
         restaurantBlue = new Restaurant(blueChefs, startMoneyBlue, "Blue", 0);
         restaurantRed = new Restaurant(redChefs, startMoneyRed, "Red", getWidth()/2);
-
+        SoundManager.stopAllSounds();
+        backgroundMusic.stop();
         Greenfoot.setWorld(new RestaurantWorld());
     }
-
+    
+    /**
+     * Called when the world is stopped. Stops all background music and sound effects.
+     */
+    public void stopped() {
+        SoundManager.stopAllSounds();
+        backgroundMusic.pause();
+    }
+    
+    /**
+     * Called when the world is started/resumed. Restarts background music only if resuming.
+     */
+     public void started () {
+        backgroundMusic.playLoop();
+    }
+    
+    /**
+     * returns the numbers of each type of chef for the blue restaurant as selected by the user
+     * @return ArrayList<Integer> the number of each type of chef
+     */
     public static ArrayList<Integer> getBlueChefs() {
         return blueChefs;
     }
 
+    /**
+     * returns the numbers of each type of chef for the red restaurant as selected by the user
+     * @return ArrayList<Integer> the number of each type of chef
+     */
     public static ArrayList<Integer> getRedChefs() {
         return redChefs;
     }
-
+    
+    /**
+     * returns the blue restaurant's starting cash selected by the user
+     * @return int  starting cash
+     */
     public static int getStartMoneyBlue() {
         return startMoneyBlue;
     }
 
+    /**
+     * returns the red restaurant's starting cash selected by the user
+     * @return int  starting cash
+     */
     public static int getStartMoneyRed() {
         return startMoneyRed;
     }
-
+    
+    /**
+     * returns how many chefs starting in the blue restaurant as selected by the user
+     * @return number of chefse
+     */
     public static int getNumBlueChefs() {
         return numChefsBlue;
     }
-
+    
+    /**
+     * returns how many chefs starting in the red restaurant as selected by the user
+     * @return number of chefse
+     */
     public static int getNumRedChefs() {
         return numChefsRed;
     }

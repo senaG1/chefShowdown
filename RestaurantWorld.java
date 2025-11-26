@@ -111,19 +111,19 @@ public class RestaurantWorld extends World
             actTimer = 180;
         }
         
-         if (actCount % 1500 == 0) {
+         if (Greenfoot.getRandomNumber(5000) == 0) {
             trySpawnEffect("Blue", "PowerOutage");
         }
     
-        if (actCount % 2400 == 0) {  // Every 40 seconds
+        if (Greenfoot.getRandomNumber(5000) == 1) { 
             trySpawnEffect("Blue", "RatInfestation");
         }
         
-        if (actCount % 2000 == 0) {  // Every 35 seconds
+        if (Greenfoot.getRandomNumber(5000) == 2) { 
             trySpawnEffect("Red", "PowerOutage");
         }
         
-        if (actCount % 2700 == 0) {  // Every 45 seconds
+        if (Greenfoot.getRandomNumber(5000) == 3) { 
             trySpawnEffect("Red", "RatInfestation");
         }
 
@@ -167,10 +167,10 @@ public class RestaurantWorld extends World
     }
     
     /**
-     * Adds chefs to both restaurants based on the selections from SettingsWorld.
-     * Retrieves chef counts from ArrayLists where index 0=Master, 1=Cohen, 2=Hungry, 3=Lazy,
-     * creates the appropriate chef objects, and positions them at predefined kitchen locations.
-     * Blue chefs spawn on the left side, red chefs spawn on the right side.
+     * Spawns a Power Outage or Rat Infestation effect at a specified side and coordinate
+     * 
+     * @param side      Takes which side of the world (which restaurant)
+     * @param type      Takes the type of effect to spawn
      */
     private void spawnEffect(String side, String effectType){
         if (effectType.equals("PowerOutage")) {
@@ -355,19 +355,12 @@ public class RestaurantWorld extends World
     private void removeCustomers(){
         ArrayList<Customer> cust = new ArrayList<Customer>(getObjects(Customer.class));
         for(Customer c : cust){
-            if(c.getWorld() != null){
+            World x = c.getWorld(); //
+            if(c.getWorld() != null && !c.isCustRemove()){
                 removeObject(c);
             }
+            
         }
-        //For error checks
-        /*
-        ArrayList<SuperSpeechBubble> bubs = new ArrayList<SuperSpeechBubble>(getObjects(SuperSpeechBubble.class));
-        for(SuperSpeechBubble b : bubs){
-            if(b.getWorld() != null){
-                removeObject(b);
-            }
-        }
-        */
     }
     
     /**

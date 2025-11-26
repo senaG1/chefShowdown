@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class StatsWorld here.
+ * The StatsWorld displays the final data of both restaurants at the end of the simulation.
  * 
  * @author Oscar Ho 
  * @version 11-22
@@ -14,6 +14,8 @@ public class StatsWorld extends World
     protected double leftTeamRating;
     protected double rightTeamRating;
     protected Font statFont;
+    
+    private GreenfootSound backgroundMusic;
     
     /**
      * Constructor for StatsWorld - creates a new StatsWorld
@@ -34,6 +36,9 @@ public class StatsWorld extends World
         this.rightTeamRating = rightRating;
         statFont = new Font("Times New Roman", false, false, 30);
         setPaintOrder(TextDisplay.class, StatScreen.class);
+        
+        backgroundMusic = new GreenfootSound("StatsBg (2).mp3");
+        backgroundMusic.playLoop();
         
         prepare();
     }
@@ -92,6 +97,21 @@ public class StatsWorld extends World
      */
     public double getRightTeamRating() {
         return rightTeamRating;
+    }
+    
+     /**
+     * Called when the world is stopped. Stops all background music and sound effects.
+     */
+    public void stopped() {
+        SoundManager.stopAllSounds();
+        backgroundMusic.pause();
+    }
+    
+    /**
+     * Called when the world is started/resumed. Restarts background music only if resuming.
+     */
+     public void started () {
+        backgroundMusic.playLoop();
     }
 }
     

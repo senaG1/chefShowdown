@@ -18,6 +18,8 @@ public class EndingWorld extends World
     private Cohen goldenCohen;
     private Cohen redCohen;
     private Cohen blueCohen;
+    
+    private GreenfootSound backgroundMusic;
 
     private int leftCash;
     private double rightRating;
@@ -53,6 +55,9 @@ public class EndingWorld extends World
         this.rightCash = rightCash;
         this.leftRating = leftRating;
         this.rightRating = rightRating;
+        
+        backgroundMusic = new GreenfootSound("EndBg.mp3");
+        backgroundMusic.playLoop();
 
         background = new GreenfootImage("end_Bg.png");
         setBackground(background);
@@ -122,6 +127,7 @@ public class EndingWorld extends World
         if(timer == 720){
             talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, "both, just kidding, you guys will share this hat", true, false);
             addObject(talkingBubble, 0, 0);
+            backgroundMusic.stop();
             SoundManager.playCelebrate();
         }
 
@@ -188,6 +194,7 @@ public class EndingWorld extends World
             talkingBubble = new SuperSpeechBubble(goldenCohen, 200, 400, 80, 30, 60, winner, true, false);
             addObject(talkingBubble, 0, 0);
             winCohen.switchImage(imageColour);
+            backgroundMusic.stop();
             SoundManager.playCelebrate();
         }
 
@@ -242,7 +249,21 @@ public class EndingWorld extends World
             imageColour = "happy_Blue.png"; //Defalt this for errors
         }
     }
-
+    
+    /**
+     * Called when the world is stopped. Stops all background music and sound effects.
+     */
+    public void stopped() {
+        SoundManager.stopAllSounds();
+        backgroundMusic.pause();
+    }
+    
+    /**
+     * Called when the world is started/resumed. Restarts background music only if resuming.
+     */
+     public void started () {
+        backgroundMusic.playLoop();
+    }
     
     /**
      * Prepare the world for the start of the program.
